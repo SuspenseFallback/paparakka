@@ -1,0 +1,70 @@
+.button {
+  padding: 16px;
+  background-color: #7a2ef3;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.button:hover {
+  background-color: #680df9;
+  box-shadow: 0 2px 1px rgba(49, 49, 49, 0.57);
+}
+
+.button-icon {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.button-icon:hover {
+  background-color: #cbcbcb;
+}
+
+.button-icon .pi {
+  color: grey;
+  font-size: 20px;
+}
+
+.button-block {
+  padding: 12px;
+  background-color: #7a2ef3;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+  width: 90%;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 2vh;
+}
+
+.button-block:hover {
+  background-color: #680df9;
+  box-shadow: 0 2px 1px rgba(49, 49, 49, 0.57);
+}
+
+.button-block:disabled,
+.button:disabled {
+  background-color: #bd97fa;
+  cursor: auto;
+}
+
+.button-block:disabled:hover,
+.button:disabled:hover {
+  background-color: #bd97fa;
+  box-shadow: none;
+}

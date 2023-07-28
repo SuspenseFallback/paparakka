@@ -1,0 +1,50 @@
+.decks-page-1 {
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  font-family: "Avenir";
+}
+
+.decks-page-1 .flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 7%;
+}
+
+.decks-page-1 .stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2%;
+  width: 95%;
+  height: 50vh;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid grey;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.decks-page-1 .recent-decks {
+  width: 95%;
+  height: 34vh;
+  margin-top: 2vh;
+}
+
+.decks-page-1 .recent-decks .subheader {
+  color: #000;
+  font-family: "Avenir";
+}
+
+.decks-page-1 .recent-decks .cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

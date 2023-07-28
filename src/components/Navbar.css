@@ -1,0 +1,178 @@
+.nav {
+  display: inline;
+  background-color: #fff;
+  width: 100vw;
+  height: 8vh;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  vertical-align: middle;
+}
+
+.nav-items {
+  display: flex;
+  height: 8vh;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav .nav-items .nav-item {
+  float: right;
+  display: block;
+  padding: 12px;
+  transition: all 0.25s;
+  border-radius: 5px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transition: all 0.25s cubic-bezier(0.4, 0.82, 0.165, 1);
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+}
+
+.nav .nav-items .nav-item.nav-button {
+  display: inline;
+}
+
+.nav .nav-items .nav-item.nav-button .nav-link {
+  color: #fff;
+}
+
+.nav .nav-items .nav-item .nav-link {
+  color: #000;
+  text-decoration: none;
+  font-family: "Avenir";
+}
+
+.nav .nav-logo {
+  display: inline;
+  color: #000;
+  font-family: "Avenir";
+  font-weight: 600;
+  font-size: 20px;
+  position: absolute;
+  left: 5%;
+}
+
+.spinner-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-account {
+  padding: 6px !important;
+  transition: all 0.25s;
+}
+
+.nav-account:hover {
+  border: 1px solid #000;
+  background-color: transparent !important;
+}
+
+.last {
+  margin-right: 2vw !important;
+}
+
+.hidden {
+  display: none !important;
+  transition: all 1s;
+}
+
+.nav-cancel {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%;
+  color: red;
+  background-color: #ffcfcf;
+}
+
+.nav-cancel:hover {
+  background-color: #ffb8b8 !important;
+}
+
+.nav-menu {
+  padding: 12px 16px !important;
+  display: none !important;
+}
+
+.nav-long-item {
+  display: block;
+  padding: 12px;
+  width: 100vw;
+  background-color: #fff;
+  z-index: 3;
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.nav-long-item:hover {
+  background-color: #e5e5e5;
+}
+
+.nav-long-item.clicked {
+  background-color: #c4c4c4;
+}
+
+.nav-long-item .nav-link {
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav-long-item:nth-child(1) {
+  margin-top: 8vh;
+}
+
+@media screen and (max-width: 685px) {
+  .nav-item {
+    display: none !important;
+  }
+
+  .nav-items {
+    display: block;
+  }
+
+  .nav-menu {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 1vh;
+  }
+}
+
+.nav-link.nav-user-link {
+  margin-left: 16px;
+}
+
+.overlay {
+  z-index: 2;
+  background-color: #434343;
+  opacity: 0.7;
+}
+
+.body-wrapper {
+  width: 100vw;
+  margin-top: 8vh;
+}

@@ -1,0 +1,18 @@
+.searchbar-container {
+  width: 100%;
+  height: 100%;
+}
+
+.searchbar {
+  background-color: #fff;
+  width: 99%;
+  padding: 15px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  font-family: "Nunito Sans";
+  font-size: 14px;
+}
+
+.searchbar:focus {
+  outline: 1px solid #000;
+}

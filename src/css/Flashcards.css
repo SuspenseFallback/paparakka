@@ -1,0 +1,19 @@
+.flashcard-page-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flashcard-page-1 .controls-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flashcard-page-1 .controls-container .controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90vw;
+  align-items: center;
+  height: 15vh;
+}

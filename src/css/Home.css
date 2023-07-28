@@ -1,0 +1,42 @@
+.home-page-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page-1 .text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  animation: come-in 1s;
+}
+
+.home-page-1 .text-container .title {
+  color: #000;
+  font-size: 3rem;
+  font-family: "Avenir";
+  font-weight: bold;
+}
+
+.home-page-1 .text-container .button {
+  padding: 16px;
+  background-color: #7a2ef3;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  font-family: "Nunito Sans";
+  font-size: 16px;
+}
+
+@keyframes come-in {
+  0% {
+    opacity: 0;
+    margin-top: -5vh;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
