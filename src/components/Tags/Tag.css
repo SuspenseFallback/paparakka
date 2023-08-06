@@ -1,0 +1,23 @@
+.tag {
+  background-color: #e1baffab;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 4px;
+  margin-left: 5px;
+  transition: all 0.25s;
+}
+
+.tag:hover {
+  background-color: #e1baff;
+}
+
+.tag .icon {
+  font-size: 12px;
+  padding-left: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tag .icon:hover {
+  color: rgb(80, 80, 80);
+}

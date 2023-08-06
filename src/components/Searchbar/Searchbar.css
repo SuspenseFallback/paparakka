@@ -4,15 +4,15 @@
 }
 
 .searchbar {
-  background-color: #fff;
+  background-color: var(--app-primary-color);
   width: 99%;
   padding: 15px;
-  border: 1px solid #000;
+  border: 1px solid var(--app-secondary-color);
   border-radius: 8px;
   font-family: "Nunito Sans";
   font-size: 14px;
 }
 
 .searchbar:focus {
-  outline: 1px solid #000;
+  outline: 1px solid var(--app-secondary-color);
 }

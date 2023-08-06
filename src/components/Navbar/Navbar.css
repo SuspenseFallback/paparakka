@@ -1,12 +1,19 @@
 .nav {
   display: inline;
-  background-color: #fff;
+  background-color: var(--app-background-color);
   width: 100vw;
   height: 8vh;
-  position: fixed;
   top: 0;
   z-index: 1000;
   vertical-align: middle;
+  transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: fixed;
+  padding-right: 14px;
+}
+
+.nav.active {
+  background-color: var(--app-primary-color);
+  box-shadow: 2px 2px 2px var(--app-shadow);
 }
 
 .nav-items {
@@ -26,44 +33,23 @@
   cursor: pointer;
 }
 
-.hover-underline {
-  position: relative;
-}
-
-.hover-underline::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #000000;
-  transition: all 0.25s cubic-bezier(0.4, 0.82, 0.165, 1);
-}
-
-.hover-underline:hover::after {
-  transform: scaleX(1);
-}
-
 .nav .nav-items .nav-item.nav-button {
   display: inline;
 }
 
 .nav .nav-items .nav-item.nav-button .nav-link {
-  color: #fff;
+  color: var(--app-primary-color);
 }
 
 .nav .nav-items .nav-item .nav-link {
-  color: #000;
+  color: var(--app-secondary-color);
   text-decoration: none;
   font-family: "Avenir";
 }
 
 .nav .nav-logo {
   display: inline;
-  color: #000;
+  color: var(--app-secondary-color);
   font-family: "Avenir";
   font-weight: 600;
   font-size: 20px;
@@ -85,7 +71,7 @@
 }
 
 .nav-account:hover {
-  border: 1px solid #000;
+  border: 1px solid var(--app-secondary-color);
   background-color: transparent !important;
 }
 
@@ -120,9 +106,9 @@
   display: block;
   padding: 12px;
   width: 100vw;
-  background-color: #fff;
+  background-color: var(--app-primary-color);
   z-index: 3;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--app-secondary-color);
   cursor: pointer;
   transition: all 0.25s;
 }
@@ -137,7 +123,7 @@
 
 .nav-long-item .nav-link {
   text-decoration: none;
-  color: #000000;
+  color: var(--app-secondary-color) 000;
 }
 
 .nav-long-item:nth-child(1) {
@@ -175,4 +161,69 @@
 .body-wrapper {
   width: 100vw;
   margin-top: 8vh;
+  padding-right: 14px;
+}
+
+.nav-user {
+  position: relative;
+}
+
+.nav-user .user-menu {
+  position: absolute;
+  top: 9.5vh;
+  right: 0;
+  background-color: var(--app-primary-color);
+  border-radius: 4px;
+  border: 1px solid grey;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 2px 2px var(--app-shadow);
+}
+
+.nav-user .user-menu.hidden {
+  display: none;
+}
+
+.nav-user .user-menu .user-link {
+  width: 15vw;
+  padding: 8px;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-user .user-menu .divider {
+  height: 1px;
+  width: 90%;
+  background-color: var(--app-grey);
+  margin: 4px 0;
+}
+
+.nav-user .user-menu .user-link:hover {
+  background-color: #f2f2f2;
+}
+
+.nav-user .user-menu .user-link.log-out {
+  color: red;
+}
+
+.nav-user .user-menu .user-link .icon {
+  padding-right: 8px;
+}
+
+.nav-user .user-menu .user-link:nth-child(1) {
+  border-radius: 4px 4px 0 0;
+}
+
+.nav-user .user-menu .user-link:nth-child(4) {
+  border-radius: 0 0 4px 4px;
+}
+
+.nav-user .user-menu .user-link p {
+  font-family: "Avenir";
+  margin: 0;
+  font-size: 14px;
 }

@@ -3,7 +3,7 @@
   background-color: #7a2ef3;
   border: none;
   border-radius: 16px;
-  color: #fff;
+  color: var(--app-primary-color);
   font-family: "Nunito Sans";
   font-size: 16px;
   cursor: pointer;
@@ -12,7 +12,7 @@
 
 .button:hover {
   background-color: #680df9;
-  box-shadow: 0 2px 1px rgba(49, 49, 49, 0.57);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.57);
 }
 
 .button-icon {
@@ -30,7 +30,7 @@
 }
 
 .button-icon .pi {
-  color: grey;
+  color: var(--app-grey);
   font-size: 20px;
 }
 
@@ -39,7 +39,7 @@
   background-color: #7a2ef3;
   border: none;
   border-radius: 12px;
-  color: #fff;
+  color: var(--app-primary-color);
   font-family: "Nunito Sans";
   font-size: 16px;
   cursor: pointer;
@@ -54,7 +54,7 @@
 
 .button-block:hover {
   background-color: #680df9;
-  box-shadow: 0 2px 1px rgba(49, 49, 49, 0.57);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.57);
 }
 
 .button-block:disabled,
@@ -67,4 +67,18 @@
 .button:disabled:hover {
   background-color: #bd97fa;
   box-shadow: none;
+}
+
+.button-glass {
+  background-color: transparent;
+  color: #000;
+}
+
+.button-glass:hover {
+  background-color: #d0d0d068;
+  box-shadow: none;
+}
+
+.button-glass .icon {
+  padding-left: 6px;
 }

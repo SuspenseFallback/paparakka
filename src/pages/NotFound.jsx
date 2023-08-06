@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/NotFound.css";
 import { useNavigate } from "react-router-dom";
+import { logData } from "../firebase/firebase";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -8,6 +9,12 @@ const NotFound = () => {
   const goToLink = (link) => {
     navigate(link);
   };
+
+  useEffect(() => {
+    logData("not_found");
+
+    document.title = "Flashcards | 404 - Not Found";
+  }, []);
 
   return (
     <>

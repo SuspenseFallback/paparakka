@@ -4,10 +4,11 @@ import "./index.css";
 import "./css/Button.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import "react-tooltip/dist/react-tooltip.css";
 // import "primeflex/primeflex.css";
 import Home from "./pages/Home";
 import Flashcards from "./pages/Flashcards";
@@ -15,6 +16,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Decks from "./pages/Decks";
+import NewDeck from "./pages/NewDeck";
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/decks",
         element: <Decks />,
+      },
+      {
+        path: "/new-deck",
+        element: <NewDeck />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
     ],
   },

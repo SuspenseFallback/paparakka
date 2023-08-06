@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../css/Flashcard.css";
 
 const Flashcard = ({ flip, setFlip, flashcard }) => {

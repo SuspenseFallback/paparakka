@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/Signup.css";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 import { validate } from "email-validator";
-import { signUpWithEmail } from "../supabase";
+import { logData, signUpWithEmail } from "../firebase/firebase.js";
 import { useNavigate } from "react-router";
 
 const Signup = () => {
@@ -27,8 +27,15 @@ const Signup = () => {
     signUpWithEmail(username, email, password, (data, err) => {
       if (err) throw err;
       console.log(data);
+      logData("signup_complete");
     });
   };
+
+  useEffect(() => {
+    logData("sign_up");
+
+    document.title = "Flashcards | Sign up";
+  }, []);
 
   const validateStuff = () => {
     if (username.length < 3 || username.length > 20) {

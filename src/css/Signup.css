@@ -7,21 +7,22 @@
 .signup-page-1 .form {
   width: 30vw;
   height: 65vh;
-  border: 1px solid grey;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--app-grey);
+  box-shadow: 2px 2px 5px var(--app-shadow);
   border-radius: 16px;
-  background-color: #fff;
+  background-color: var(--app-primary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  animation: come-in 0.5s;
 }
 
 .signup-page-1 .form .title {
   width: 100%;
   text-align: center;
   font-size: 2rem;
-  color: #000;
+  color: var(--app-secondary-color);
   font-family: "Avenir";
 }
 
@@ -38,12 +39,14 @@
   width: 100%;
   padding: 12px;
   border-radius: 6px;
-  border: 1px solid #000;
+  border: 1px solid var(--app-secondary-color);
+  background-color: var(--app-primary-color);
   font-family: "Avenir";
+  color: var(--app-secondary-color);
 }
 
 .signup-page-1 .form .input-container .input:focus {
-  outline: 1px solid #000;
+  outline: 1px solid var(--app-secondary-color);
 }
 
 .signup-page-1 .form .input-container .label {
@@ -52,7 +55,7 @@
   margin: 0;
   padding-bottom: 4px;
   font-size: 14px;
-  color: rgb(73, 73, 73);
+  color: var(--app-grey);
   font-family: "Avenir";
 }
 
@@ -77,6 +80,18 @@
   position: absolute;
   right: 10px;
   top: 30%;
-  color: grey;
+  color: var(--app-grey);
   cursor: pointer;
+}
+
+@keyframes come-in {
+  0% {
+    opacity: 0;
+    margin-top: -5vh;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
 }

@@ -13,7 +13,7 @@
 }
 
 .home-page-1 .text-container .title {
-  color: #000;
+  color: var(--app-secondary-color);
   font-size: 3rem;
   font-family: "Avenir";
   font-weight: bold;
@@ -24,7 +24,7 @@
   background-color: #7a2ef3;
   border: none;
   border-radius: 16px;
-  color: #fff;
+  color: var(--app-primary-color);
   font-family: "Nunito Sans";
   font-size: 16px;
 }
@@ -39,4 +39,90 @@
     opacity: 1;
     margin-top: 0;
   }
+}
+
+.home-page-2 {
+  background-color: var(--app-primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 200vh !important;
+}
+
+.home-page-2 .row {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30vh;
+}
+
+.home-page-2 .row .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 40vw;
+}
+
+.home-page-2 .row .text .header {
+  font-size: 1.7rem;
+  text-align: left;
+  font-family: "Avenir";
+}
+
+.home-page-2 .row .text .content {
+  text-align: left;
+  font-family: "Avenir";
+}
+
+.home-page-2 .row-1 .image img {
+  width: 240px;
+  height: 300px;
+}
+
+.home-page-2 .row-2 .image img {
+  width: 320px;
+  height: 400px;
+}
+
+.home-page-2 .row-3 .image img {
+  width: 500px;
+  height: 500px;
+}
+
+.home-page-2 .row-4 .image img {
+  width: 320px;
+  height: 300px;
+}
+
+.home-page-2 .row-2 {
+  flex-direction: row-reverse;
+}
+
+.home-page-2 .row-4 {
+  flex-direction: row-reverse;
+}
+
+.coming-soon {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 6px;
+  background-color: #dd5e5e;
+  border-radius: 16px;
+  color: var(--app-primary-color);
+  margin-right: 8px;
+  border: 1px solid red;
+  font-family: "Avenir";
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-row .button {
+  margin: 8px;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/Signup.css";
+import { logData, signInWithEmail } from "../firebase/firebase";
 
 const Login = () => {
   const [error, set_error] = useState(null);
@@ -15,6 +16,20 @@ const Login = () => {
     }
   }, [email, password]);
 
+  const login_handler = () => {
+    signInWithEmail(email, password, (data, error) => {
+      if (error) throw error;
+      console.log(data);
+      logData("signup_complete");
+    });
+  };
+
+  useEffect(() => {
+    logData("log_in");
+
+    document.title = "Flashcards | Log in";
+  }, []);
+
   const validateStuff = () => {
     if (email.length === 0) {
       return set_error("Email must not be empty");
@@ -24,7 +39,8 @@ const Login = () => {
       return set_error("Password must not be empty");
     }
 
-    return set_error("");
+    set_error("");
+    return true;
   };
 
   return (
@@ -56,10 +72,10 @@ const Login = () => {
           <p className="error">{error}</p>
           <button
             className="button-block bottom"
-            onClick={validateStuff}
+            onClick={login_handler}
             disabled={disabled}
           >
-            Sign up
+            Log in
           </button>
         </div>
       </div>
