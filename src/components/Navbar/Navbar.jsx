@@ -1,55 +1,55 @@
-import "./Navbar.css";
+import "./Navbar.css"
 
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { getUser, logOut } from "../../firebase/firebase.js";
+import { NavLink, Outlet, useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { getUser, logOut } from "../../firebase/firebase.js"
 
-import SpinnerPage from "../SpinnerPage";
-import Footer from "../Footer/Footer";
+import SpinnerPage from "../SpinnerPage"
+import Footer from "../Footer/Footer"
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
-  const [isUserItems, setIsUserItems] = useState(false);
-  const [isResponsiveMenu, setResponsiveMenu] = useState(false);
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
+  const [isUserItems, setIsUserItems] = useState(false)
+  const [isResponsiveMenu, setResponsiveMenu] = useState(false)
 
   useEffect(() => {
     getUser((data) => {
-      console.log(data);
-      setUser(data);
-      setLoading(false);
-    });
-  }, []);
+      console.log(data)
+      setUser(data)
+      setLoading(false)
+    })
+  }, [])
 
   const logOutHandler = () => {
     logOut((err) => {
-      if (err) throw err;
+      if (err) throw err
 
-      navigate("/");
-    });
-  };
+      navigate("/")
+    })
+  }
 
   useEffect(() => {
     document.addEventListener("resize", () => {
       if (window.innerWidth > 685) {
-        setResponsiveMenu(false);
+        setResponsiveMenu(false)
       }
-    });
+    })
     window.addEventListener("scroll", () => {
       if (window.scrollY > 200) {
-        document.querySelector(".nav").classList.add("active");
+        document.querySelector(".nav").classList.add("active")
       } else {
-        document.querySelector(".nav").classList.remove("active");
+        document.querySelector(".nav").classList.remove("active")
       }
-    });
-  }, []);
+    })
+  }, [])
 
   const goToLink = (link) => {
-    setResponsiveMenu(false);
-    navigate(link);
-  };
+    setResponsiveMenu(false)
+    navigate(link)
+  }
 
   return loading ? (
     <>
@@ -61,11 +61,7 @@ const Navbar = () => {
         <p className="nav-logo">Flashcards</p>
         <div className="nav-items">
           <div
-            className={
-              !isResponsiveMenu
-                ? "nav-item hover-underline"
-                : "nav-long-item hover-underline"
-            }
+            className="nav-item hover-underline"
             onClick={() => goToLink("/")}
           >
             <NavLink className={"nav-link"} to="">
@@ -73,11 +69,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div
-            className={
-              !isResponsiveMenu
-                ? "nav-item hover-underline"
-                : "nav-long-item hover-underline"
-            }
+            className="nav-item hover-underline"
             onClick={() => goToLink("/decks")}
           >
             <NavLink className={"nav-link"} to="decks">
@@ -90,7 +82,6 @@ const Navbar = () => {
                 className="nav-item nav-button button"
                 onClick={() => goToLink("/new-deck")}
               >
-                {" "}
                 <NavLink className="nav-link" to="new-deck">
                   Create a new deck <span className="pi pi-plus"></span>
                 </NavLink>
@@ -164,7 +155,7 @@ const Navbar = () => {
         <Footer />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

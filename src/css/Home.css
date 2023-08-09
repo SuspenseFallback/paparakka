@@ -15,7 +15,7 @@
 .home-page-1 .text-container .title {
   color: var(--app-secondary-color);
   font-size: 3rem;
-  font-family: "Avenir";
+  font-family: "Mulish";
   font-weight: bold;
 }
 
@@ -25,7 +25,7 @@
   border: none;
   border-radius: 16px;
   color: var(--app-primary-color);
-  font-family: "Nunito Sans";
+  font-family: "Mulish";
   font-size: 16px;
 }
 
@@ -70,12 +70,12 @@
 .home-page-2 .row .text .header {
   font-size: 1.7rem;
   text-align: left;
-  font-family: "Avenir";
+  font-family: "Mulish";
 }
 
 .home-page-2 .row .text .content {
   text-align: left;
-  font-family: "Avenir";
+  font-family: "Mulish";
 }
 
 .home-page-2 .row-1 .image img {
@@ -115,7 +115,7 @@
   color: var(--app-primary-color);
   margin-right: 8px;
   border: 1px solid red;
-  font-family: "Avenir";
+  font-family: "Mulish";
 }
 
 .button-row {

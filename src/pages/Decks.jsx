@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import "../css/Decks.css";
-import Searchbar from "../components/Searchbar/Searchbar";
-import Card from "../components/Card/Card";
-import { logData } from "../firebase/firebase";
+import React, { useEffect, useState } from "react"
+import "../css/Decks.css"
+import Searchbar from "../components/Searchbar/Searchbar"
+import Card from "../components/Card/Card"
+import { logData } from "../firebase/firebase"
 
 const Decks = () => {
-  const [search, set_search] = useState("");
+  const [search, set_search] = useState("")
 
   useEffect(() => {
-    logData("decks");
+    logData("decks")
 
-    document.title = "Flashcards | Decks";
-  }, []);
+    document.title = "Flashcards | Decks"
+  }, [])
 
   useEffect(() => {
-    console.log(search);
-  }, [search]);
+    console.log(search)
+  }, [search])
 
   const searchQuery = () => {
-    document.location.href = "/search?query=" + search;
-  };
+    document.location.href = "/search?query=" + search
+  }
 
   return (
     <>
@@ -37,7 +37,7 @@ const Decks = () => {
           </button>
         </div>
         <div className="recent-decks">
-          <h2 className="subheader">Recent decks</h2>
+          <h2 className="subheader">My Decks</h2>
           <div className="cards">
             <Card />
             <Card />
@@ -46,7 +46,7 @@ const Decks = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Decks;
+export default Decks

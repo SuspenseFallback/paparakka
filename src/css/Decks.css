@@ -7,7 +7,7 @@
 
 .header {
   text-align: center;
-  font-family: "Avenir";
+  font-family: "Mulish";
 }
 
 .decks-page-1 .flex-container {
@@ -18,6 +18,7 @@
   width: 95%;
   height: 7%;
 }
+
 .results {
   padding: 1vw;
 }
@@ -44,7 +45,7 @@
 
 .decks-page-1 .recent-decks .subheader {
   color: var(--app-secondary-color);
-  font-family: "Avenir";
+  font-family: "Mulish";
 }
 
 .decks-page-1 .recent-decks .cards {

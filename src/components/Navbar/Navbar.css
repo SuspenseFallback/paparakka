@@ -39,18 +39,19 @@
 
 .nav .nav-items .nav-item.nav-button .nav-link {
   color: var(--app-primary-color);
+  font-size: 14px;
 }
 
 .nav .nav-items .nav-item .nav-link {
   color: var(--app-secondary-color);
   text-decoration: none;
-  font-family: "Avenir";
+  font-family: "Mulish";
 }
 
 .nav .nav-logo {
   display: inline;
   color: var(--app-secondary-color);
-  font-family: "Avenir";
+  font-family: "Mulish";
   font-weight: 600;
   font-size: 20px;
   position: absolute;
@@ -68,6 +69,27 @@
 .nav-account {
   padding: 6px !important;
   transition: all 0.25s;
+}
+
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  transition: all 0.25s cubic-bezier(0.4, 0.82, 0.165, 1);
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-account:hover {
@@ -223,7 +245,7 @@
 }
 
 .nav-user .user-menu .user-link p {
-  font-family: "Avenir";
+  font-family: "Mulish";
   margin: 0;
   font-size: 14px;
 }

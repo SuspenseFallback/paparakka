@@ -11,13 +11,13 @@
 
 .not-found-page-1 .text-container .title {
   font-size: 3rem;
-  font-family: "Avenir";
+  font-family: "Mulish";
   margin: 0;
 }
 
 .not-found-page-1 .text-container .subtitle {
   color: var(--app-grey);
-  font-family: "Nunito Sans";
+  font-family: "Mulish";
   text-align: center;
   margin: 1vh;
 }

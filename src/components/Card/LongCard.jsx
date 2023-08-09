@@ -1,12 +1,21 @@
-import React from "react";
-import "./Card.css";
+import React from "react"
+import "./Card.css"
+import { useNavigate } from "react-router"
 
-const LongCard = ({ title, desc, tags, owner }) => {
+const LongCard = ({ title, desc, tags, owner, id }) => {
+  const navigate = useNavigate()
+
+  const goPreview = () => {
+    navigate("/deck/" + id)
+  }
+
   return (
     <div className="long-card">
       <div className="left">
         <div className="top">
-          <p className="title">{title}</p>
+          <p className="title" onClick={goPreview}>
+            {title}
+          </p>
           <p className="desc">{desc}</p>
         </div>
         <div className="bottom">
@@ -29,7 +38,7 @@ const LongCard = ({ title, desc, tags, owner }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LongCard;
+export default LongCard

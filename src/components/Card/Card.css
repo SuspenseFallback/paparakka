@@ -82,6 +82,10 @@
   width: 100%;
 }
 
+.long-card .right .row .button {
+  padding: 14px;
+}
+
 .long-card .right .row .button:nth-child(1) {
   border-radius: 16px 0 0 16px;
 }
@@ -96,5 +100,5 @@
 }
 
 .long-card .right .row .button:hover {
-  margin-bottom: 5px;
+  box-shadow: none;
 }

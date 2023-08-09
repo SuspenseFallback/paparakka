@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from "react";
-import "../css/Decks.css";
-import Searchbar from "../components/Searchbar/Searchbar";
-import Card from "../components/Card/Card";
-import { logData, searchDeckTitles } from "../firebase/firebase";
-import { useNavigate } from "react-router";
-import LongCard from "../components/Card/LongCard";
+import React, { useEffect, useState } from "react"
+import "../css/Decks.css"
+import Searchbar from "../components/Searchbar/Searchbar"
+import Card from "../components/Card/Card"
+import { logData, searchDeckTitles } from "../firebase/firebase"
+import { useNavigate } from "react-router"
+import LongCard from "../components/Card/LongCard"
 
 const Search = () => {
-  const [search, set_search] = useState("");
-  const [decks, set_decks] = useState([]);
-  const [loading, set_loading] = useState(true);
-  const navigate = useNavigate();
+  const [search, set_search] = useState("")
+  const [decks, set_decks] = useState([])
+  const [loading, set_loading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    logData("search");
+    logData("search")
 
-    document.title = "Flashcards | Search";
-  }, []);
+    document.title = "Flashcards | Search"
+  }, [])
 
   useEffect(() => {
-    const params = new URL(document.location).searchParams;
-    const query = params.get("query");
-    set_search(query);
+    const params = new URL(document.location).searchParams
+    const query = params.get("query")
+    set_search(query)
 
     searchDeckTitles(query, (data) => {
-      set_loading(false);
-      set_decks(data);
-    });
-  }, []);
+      set_loading(false)
+      set_decks(data)
+    })
+  }, [])
 
   const searchQuery = () => {
-    document.location.href = "/search?query=" + search;
-  };
+    document.location.href = "/search?query=" + search
+  }
 
   return (
     <>
@@ -42,6 +42,7 @@ const Search = () => {
             placeholder="Search for public decks..."
             val={search}
             setVal={set_search}
+            searchQuery={searchQuery}
           />
           <button className="button" onClick={searchQuery}>
             <span className="pi pi-search"></span>
@@ -54,14 +55,16 @@ const Search = () => {
             </>
           ) : decks.length > 0 ? (
             decks.map((card) => {
+              console.log(card)
               return (
                 <LongCard
                   title={card.title}
                   desc={card.description}
                   tags={card.tags}
                   owner={card.ownerName}
+                  id={card.id}
                 />
-              );
+              )
             })
           ) : (
             <>
@@ -76,7 +79,7 @@ const Search = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
