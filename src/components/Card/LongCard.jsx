@@ -1,13 +1,13 @@
-import React from "react"
-import "./Card.css"
-import { useNavigate } from "react-router"
+import React from "react";
+import "./Card.css";
+import { useNavigate } from "react-router";
 
 const LongCard = ({ title, desc, tags, owner, id }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const goPreview = () => {
-    navigate("/deck/" + id)
-  }
+    navigate("/preview/" + id);
+  };
 
   return (
     <div className="long-card">
@@ -38,7 +38,7 @@ const LongCard = ({ title, desc, tags, owner, id }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LongCard
+export default LongCard;

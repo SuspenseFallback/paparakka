@@ -1,14 +1,14 @@
 .tag {
-  background-color: #e1baffab;
-  font-size: 14px;
-  padding: 4px;
-  border-radius: 4px;
+  background-color: #f98f0d9a;
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 0;
   margin-left: 5px;
   transition: all 0.25s;
 }
 
 .tag:hover {
-  background-color: #e1baff;
+  background-color: #f98f0d;
 }
 
 .tag .icon {

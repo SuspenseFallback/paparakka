@@ -9,22 +9,27 @@ const NewDeck = () => {
     {
       term: "",
       definition: "",
+      index: 0,
     },
     {
       term: "",
       definition: "",
+      index: 1,
     },
     {
       term: "",
       definition: "",
+      index: 2,
     },
     {
       term: "",
       definition: "",
+      index: 3,
     },
     {
       term: "",
       definition: "",
+      index: 4,
     },
   ]);
   const [title, set_title] = useState("");
@@ -100,14 +105,14 @@ const NewDeck = () => {
           </div>
           <div className="input-container">
             <p className="label">
-              Description <span className="max">(max. 400 characters)</span>
+              Description <span className="max">(max. 100 characters)</span>
             </p>
             <input
               type="text"
               className="input"
               placeholder="Enter description here..."
               value={description}
-              maxLength={400}
+              maxLength={100}
               onChange={(e) =>
                 tags.length === 5 ? null : set_description(e.target.value)
               }
@@ -162,6 +167,7 @@ const NewDeck = () => {
               new_cards.splice(index, 0, {
                 term: term,
                 definition: definition,
+                index: index + 1,
               });
 
               set_cards(new_cards);
@@ -171,6 +177,9 @@ const NewDeck = () => {
               let new_cards = [...cards];
 
               new_cards.splice(index, 1);
+              new_cards.forEach((card, index) => {
+                card.index = index;
+              });
 
               set_cards(new_cards);
             };

@@ -1,55 +1,56 @@
-import "./Navbar.css"
+import "./Navbar.css";
 
-import { NavLink, Outlet, useNavigate } from "react-router-dom"
-import React, { useEffect, useState } from "react"
-import { getUser, logOut } from "../../firebase/firebase.js"
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { getUser, logOut } from "../../firebase/firebase.js";
 
-import SpinnerPage from "../SpinnerPage"
-import Footer from "../Footer/Footer"
+import SpinnerPage from "../SpinnerPage";
+import Footer from "../Footer/Footer";
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
-  const [isUserItems, setIsUserItems] = useState(false)
-  const [isResponsiveMenu, setResponsiveMenu] = useState(false)
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [isUserItems, setIsUserItems] = useState(false);
+  const [isResponsiveMenu, setResponsiveMenu] = useState(false);
+  const [is_active, set_is_active] = useState(false);
 
   useEffect(() => {
     getUser((data) => {
-      console.log(data)
-      setUser(data)
-      setLoading(false)
-    })
-  }, [])
+      console.log(data);
+      setUser(data);
+      setLoading(false);
+    });
+  }, []);
 
   const logOutHandler = () => {
     logOut((err) => {
-      if (err) throw err
+      if (err) throw err;
 
-      navigate("/")
-    })
-  }
+      navigate("/");
+    });
+  };
 
   useEffect(() => {
     document.addEventListener("resize", () => {
       if (window.innerWidth > 685) {
-        setResponsiveMenu(false)
+        setResponsiveMenu(false);
       }
-    })
+    });
     window.addEventListener("scroll", () => {
       if (window.scrollY > 200) {
-        document.querySelector(".nav").classList.add("active")
+        set_is_active(true);
       } else {
-        document.querySelector(".nav").classList.remove("active")
+        set_is_active(false);
       }
-    })
-  }, [])
+    });
+  }, []);
 
   const goToLink = (link) => {
-    setResponsiveMenu(false)
-    navigate(link)
-  }
+    setResponsiveMenu(false);
+    navigate(link);
+  };
 
   return loading ? (
     <>
@@ -57,11 +58,11 @@ const Navbar = () => {
     </>
   ) : (
     <>
-      <div className="nav">
+      <div className={"nav " + (is_active ? "active" : "")}>
         <p className="nav-logo">Flashcards</p>
         <div className="nav-items">
           <div
-            className="nav-item hover-underline"
+            className="nav-item nav-hide hover-underline"
             onClick={() => goToLink("/")}
           >
             <NavLink className={"nav-link"} to="">
@@ -69,7 +70,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div
-            className="nav-item hover-underline"
+            className="nav-item nav-hide hover-underline"
             onClick={() => goToLink("/decks")}
           >
             <NavLink className={"nav-link"} to="decks">
@@ -79,14 +80,14 @@ const Navbar = () => {
           {user ? (
             <>
               <div
-                className="nav-item nav-button button"
+                className="nav-item nav-hide nav-button button"
                 onClick={() => goToLink("/new-deck")}
               >
                 <NavLink className="nav-link" to="new-deck">
                   Create a new deck <span className="pi pi-plus"></span>
                 </NavLink>
               </div>
-              <div className="nav-item nav-user">
+              <div className="nav-item nav-hide nav-user">
                 <p
                   className="nav-link"
                   onClick={() => setIsUserItems(!isUserItems)}
@@ -101,21 +102,21 @@ const Navbar = () => {
                 </p>
                 <div className={"user-menu " + (isUserItems ? "" : "hidden")}>
                   <div className="user-link">
-                    <span className="icon pi pi-cog"></span>
                     <p>Stats</p>
-                  </div>
-                  <div className="user-link">
                     <span className="icon pi pi-chart-bar"></span>
-                    <p>Settings</p>
                   </div>
                   <div className="user-link">
-                    <span className="icon pi pi-clone"></span>
+                    <p>Settings</p>
+                    <span className="icon pi pi-cog"></span>
+                  </div>
+                  <div className="user-link">
                     <p>My sets</p>
+                    <span className="icon pi pi-clone"></span>
                   </div>
                   <div className="divider"></div>
                   <div className="user-link log-out">
-                    <span className="icon pi pi-sign-out"></span>
                     <p>Log out</p>
+                    <span className="icon pi pi-sign-out"></span>
                   </div>
                 </div>
               </div>
@@ -123,7 +124,7 @@ const Navbar = () => {
           ) : (
             <>
               <div
-                className="nav-item nav-button button"
+                className="nav-item nav-hide nav-button button"
                 onClick={() => goToLink("/signup")}
               >
                 {" "}
@@ -132,7 +133,7 @@ const Navbar = () => {
                 </NavLink>
               </div>
               <div
-                className="nav-item nav-button button"
+                className="nav-item nav-hide nav-button button"
                 onClick={() => goToLink("/login")}
               >
                 {" "}
@@ -142,20 +143,21 @@ const Navbar = () => {
               </div>
             </>
           )}
-          {/* <div
+          <div
             className="nav-item nav-menu"
             onClick={() => setResponsiveMenu(!isResponsiveMenu)}
           >
-            <FontAwesomeIcon icon={faBars} />
-          </div> */}
+            <span className="icon pi pi-bars"></span>
+          </div>
         </div>
       </div>
+      <div className={"sidebar " + (isResponsiveMenu ? "" : "hidden")}></div>
       <div className={"body-wrapper" + (isResponsiveMenu ? "overlay" : "")}>
         <Outlet />
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

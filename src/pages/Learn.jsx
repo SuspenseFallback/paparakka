@@ -1,0 +1,186 @@
+import React, { useEffect, useState } from "react";
+import { addHistory, getDeck, logData } from "../firebase/firebase";
+import { useParams } from "react-router";
+import shuffle from "../helpers/shuffle.js";
+import "../css/Learn.css";
+
+const Learn = () => {
+  const { id } = useParams();
+  const [index, set_index] = useState(0);
+  const [deck, set_deck] = useState({});
+  const [loading, set_loading] = useState(true);
+  const [answered, set_answered] = useState(false);
+  const [answer, set_answer] = useState("");
+  const [difficulty, set_difficulty] = useState("");
+  const [active_speed, set_active_speed] = useState(1);
+  const [count, set_count] = useState({ easy: 0, medium: 0, hard: 0 });
+  const [history, set_history] = useState([]);
+
+  useEffect(() => {
+    getDeck(id).then((data) => {
+      set_deck(data);
+      set_loading(false);
+      document.title = "Flashcards | " + data.title;
+      logData("dictate - " + data.id);
+      addHistory(data.id);
+    });
+  }, [id]);
+
+  const check_answer = () => {
+    const current_answer = deck.flashcards[index].definition;
+    set_answered(true);
+    if (answer == "") {
+      set_difficulty("hard");
+    } else if (answer.length < current_answer.length / 3) {
+      set_difficulty("hard");
+    } else if (answer === current_answer) {
+      set_difficulty("easy");
+    } else {
+      set_difficulty("unknown");
+    }
+  };
+
+  const dont_know = () => {
+    set_answer("");
+    check_answer();
+  };
+
+  const next_question = () => {
+    set_history((h) => [
+      ...h,
+      {
+        index: deck.flashcards[index].index,
+        term: deck.flashcards[index].term,
+        definition: deck.flashcards[index].definition,
+        difficulty: difficulty,
+      },
+    ]);
+    set_index((i) => i + 1);
+    set_answered(false);
+    set_difficulty("");
+    set_answer("");
+  };
+
+  return (
+    <>
+      <div className="page page-1 learn-page-1">
+        {loading ? (
+          <span className="pi pi-spinner pi-spin"></span>
+        ) : (
+          <div className="question-container">
+            <div className="top">
+              <div className="left">
+                <p className={"question " + (answered ? " hidden" : "")}>
+                  <span className="label">TERM</span>
+                  <br />
+                  <span className="term">{deck.flashcards[index].term}</span>
+                </p>
+              </div>
+              <div className="center">
+                <button
+                  className={
+                    "button button-icon " + (answered ? difficulty : "hidden")
+                  }
+                >
+                  <span
+                    className={
+                      difficulty === "hard"
+                        ? "pi pi-times icon"
+                        : difficulty === "easy"
+                        ? "pi pi-check icon"
+                        : difficulty === "medium"
+                        ? "pi pi-ellipsis-h icon"
+                        : difficulty === "unknown"
+                        ? "pi pi-question icon"
+                        : ""
+                    }
+                  ></span>
+                </button>
+              </div>
+              <div className="right">
+                <button
+                  className={"button button-icon " + (answered ? "hidden" : "")}
+                >
+                  <span className={"pi pi-cog icon"}></span>
+                </button>
+              </div>
+            </div>
+            <div className={"answer-container " + (answered ? "" : "hidden")}>
+              <div className="your-answer">
+                <p className="label">Your answer</p>
+                <p className="answer-text">{answer ? answer : <br />}</p>
+              </div>
+              <div className="correct-answer">
+                <p className="label">Correct answer</p>
+                <p className="answer-text">
+                  {deck.flashcards[index].definition}
+                </p>
+              </div>
+              {difficulty == "unknown" ? (
+                <>
+                  <p className="choose">How do you think you did?</p>
+                  <div className="button-group">
+                    <div
+                      className={
+                        "button " + (difficulty == "easy" ? "active" : "")
+                      }
+                      onClick={() => set_difficulty("easy")}
+                    >
+                      Easy
+                    </div>
+                    <div
+                      className={
+                        "button " + (difficulty == "medium" ? "active" : "")
+                      }
+                      onClick={() => set_difficulty("medium")}
+                    >
+                      Medium
+                    </div>
+                    <div
+                      className={
+                        "button " + (difficulty == "hard" ? "active" : "")
+                      }
+                      onClick={() => set_difficulty("hard")}
+                    >
+                      Hard
+                    </div>
+                  </div>
+                </>
+              ) : null}
+            </div>
+            <div className="answer">
+              <div className="input-container">
+                <p className={"label " + (answered ? "hidden" : "")}>
+                  Answer{" "}
+                  <span className="dn" onClick={dont_know}>
+                    Don't know?
+                  </span>
+                </p>
+                <div className={"input-row " + (answered ? "answered" : "")}>
+                  <input
+                    type="text"
+                    className={"input " + (answered ? "hidden" : "")}
+                    placeholder="Enter answer here..."
+                    value={answer}
+                    onChange={(e) => set_answer(e.target.value)}
+                  />
+                  <button
+                    className={
+                      "button " + (answered ? "button-block" : "button-icon")
+                    }
+                    onClick={answered ? next_question : check_answer}
+                  >
+                    {answered ? "Next" : ""}
+                    <span className="pi pi-reply icon"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Learn;

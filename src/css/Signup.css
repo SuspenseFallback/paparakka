@@ -9,7 +9,7 @@
   height: 65vh;
   border: 1px solid var(--app-grey);
   box-shadow: 2px 2px 5px var(--app-shadow);
-  border-radius: 16px;
+  border-radius: 0;
   background-color: var(--app-primary-color);
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   text-align: center;
   font-size: 2rem;
   color: var(--app-secondary-color);
-  font-family: "Mulish";
+  font-family: "Lexend";
 }
 
 .signup-page-1 .form .input-container {
@@ -38,10 +38,10 @@
 .signup-page-1 .form .input-container .input {
   width: 100%;
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 0;
   border: 1px solid var(--app-secondary-color);
   background-color: var(--app-primary-color);
-  font-family: "Mulish";
+  font-family: "Lexend";
   color: var(--app-secondary-color);
 }
 
@@ -55,8 +55,8 @@
   margin: 0;
   padding-bottom: 4px;
   font-size: 14px;
-  color: var(--app-grey);
-  font-family: "Mulish";
+  color: var(--app-secondary-color);
+  font-family: "Lexend";
 }
 
 .signup-page-1 .form .error {
@@ -64,7 +64,7 @@
   font-size: 14px;
   width: 90%;
   text-align: left;
-  font-family: "Mulish";
+  font-family: "Lexend";
 }
 
 .signup-page-1 .form .password-input {

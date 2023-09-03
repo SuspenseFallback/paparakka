@@ -1,0 +1,257 @@
+.preview-page-1.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-page-1.loading .pi {
+  font-size: 3rem;
+}
+
+.preview-page-1 .header {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 14px;
+}
+
+.preview-page-1 .header .left-side {
+  text-align: left;
+}
+
+.preview-page-1 .header .left-side .title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.preview-page-1 .header .left-side .description {
+  margin-top: 4px;
+  color: grey;
+}
+
+.preview-page-1 .header .left-side,
+.preview-page-1 .header .right-side {
+  height: 100%;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.preview-page-1 .header .right-side {
+  text-align: right;
+}
+
+.preview-page-1 .header .right-side .tag {
+  width: auto;
+}
+
+.preview-page-1 .header .created-by {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: grey;
+}
+
+.preview-page-1 .header .created-by span {
+  color: #000;
+  font-weight: bold;
+}
+
+.preview-page-1 .flashcard {
+  width: 60vw;
+  height: 50vh;
+  border-radius: 0;
+  background-color: var(--app-primary-color);
+  box-shadow: 2px 2px 5px var(--app-shadow);
+
+  transition: all 1s ease-in-out;
+  transition-duration: 0.25s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.preview-page-1 .flashcards-container {
+  display: flex;
+  justify-content: center;
+}
+
+.flashcard .content {
+  font-size: 24px;
+  font-family: "Lexend";
+}
+
+.flashcard.flip {
+  transform: rotateX(180deg);
+  box-shadow: 2px 2px 5px var(--app-shadow);
+  transition-duration: 0.25s;
+}
+
+.flashcard .flashcard-front {
+  transform: rotateX(0deg);
+}
+
+.flashcard .flashcard-back {
+  transform: rotateX(180deg);
+  background-color: var(--app-primary-color);
+}
+
+.flashcard.left-placeholder {
+  transform: rotateX(0deg);
+  animation: come-in-left 0.25s;
+}
+
+.flashcard.right-placeholder {
+  /* transform: rotateX(0deg); */
+  animation: come-in-right 0.25s;
+}
+
+.flashcard.full-right-placeholder {
+  transform: rotateX(0deg);
+  animation: come-in-right 0.1s;
+  animation-iteration-count: 5;
+}
+
+.flashcard.full-left-placeholder {
+  transform: rotateX(0deg);
+  animation: come-in-left 0.1s;
+  animation-iteration-count: 5;
+}
+
+@keyframes come-in-left {
+  0% {
+    margin-right: 100vw;
+  }
+
+  100% {
+    margin-right: 0;
+  }
+}
+
+@keyframes come-in-right {
+  0% {
+    margin-left: 100vw;
+  }
+
+  100% {
+    margin-left: 0;
+  }
+}
+
+.preview-page-1 .buttons {
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2vh;
+  gap: 1vw;
+}
+
+.preview-page-1 .buttons .learn-button {
+  padding: 18px;
+  border-radius: 0;
+  border: 1px solid grey;
+  font-family: "Lexend";
+  font-size: 14px;
+  flex-grow: 1;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.preview-page-1 .buttons .learn-button:hover {
+  background-color: #ebebeb;
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.preview-container .controls-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-container .controls-container .controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  height: 8vh;
+}
+
+.preview-container .controls-container .number {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-container .controls-container .number .num {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: rgb(56, 56, 56);
+  font-size: 14px;
+}
+
+.preview-container .controls-container .controls > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.preview-page-2 .cards {
+  width: 100vw;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-page-2 .cards .card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 85%;
+  height: 15vh;
+  margin-top: 5vh;
+  border-radius: 0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid grey;
+  background-color: #fff;
+}
+
+.preview-page-2 .cards .card-row .label {
+  font-weight: normal;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #f98f0d;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.preview-page-2 .card-row .number {
+  font-weight: bold;
+  font-family: "Lexend";
+  font-size: 2rem;
+  width: calc(100% / 3);
+}
+
+.preview-page-2 .card-row .term-container,
+.preview-page-2 .card-row .definition-container {
+  width: calc(100% / 3);
+}
+
+.preview-page-2 .card-row .term-container .term,
+.preview-page-2 .card-row .definition-container .definition {
+  font-size: 18px;
+}

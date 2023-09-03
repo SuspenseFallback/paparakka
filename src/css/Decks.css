@@ -5,9 +5,19 @@
   align-items: center;
 }
 
+.decks-page-1.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decks-page-1.loading .pi {
+  font-size: 3rem;
+}
+
 .header {
   text-align: center;
-  font-family: "Mulish";
+  font-family: "Lexend";
 }
 
 .decks-page-1 .flex-container {
@@ -32,7 +42,7 @@
   width: 95%;
   height: 50vh;
   background-color: var(--app-primary-color);
-  border-radius: 6px;
+  border-radius: 0;
   border: 1px solid var(--app-grey);
   box-shadow: 2px 2px var(--app-shadow);
 }
@@ -45,13 +55,19 @@
 
 .decks-page-1 .recent-decks .subheader {
   color: var(--app-secondary-color);
-  font-family: "Mulish";
+  font-family: "Lexend";
 }
 
 .decks-page-1 .recent-decks .cards {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: 2vw;
+}
+
+.decks-page-1 .recent-decks .cards .card {
+  flex-grow: 1;
+  flex-basis: calc(33%);
 }
 
 .results.loading {
@@ -80,4 +96,16 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 958px) {
+  .decks-page-1 .recent-decks .cards {
+    height: 60vh;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .decks-page-1 .recent-decks .cards .card {
+    flex-basis: 100%;
+  }
 }

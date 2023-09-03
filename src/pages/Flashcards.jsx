@@ -1,20 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Flashcards.css";
 import FlashcardControl from "../components/Flashcards/FlashcardControl";
-import { logData } from "../firebase/firebase";
+import { getDeck, logData } from "../firebase/firebase";
+import { useParams } from "react-router";
 
 const Flashcards = () => {
-  useEffect(() => {
-    logData("flashcards");
+  const { id } = useParams();
+  const [deck, set_deck] = useState({});
+  const [loading, set_loading] = useState(true);
 
-    document.title = "Flashcards | Flashcards";
-  }, []);
+  useEffect(() => {
+    getDeck(id).then((data) => {
+      console.log(data);
+      set_loading(false);
+      set_deck(data);
+      document.title = "Flashcards | " + data.title;
+      logData("flashcards - " + data.id);
+    });
+  }, [id]);
 
   return (
     <>
-      <div className="page page-1 flashcard-page-1">
-        <FlashcardControl />
-      </div>
+      {loading ? (
+        <span className="pi pi-spinner pi-spin"></span>
+      ) : (
+        <div className="page page-1 flashcard-page-1">
+          <FlashcardControl deck={deck} />
+        </div>
+      )}
     </>
   );
 };

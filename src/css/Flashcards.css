@@ -17,3 +17,20 @@
   align-items: center;
   height: 15vh;
 }
+
+.flashcard-page-1 .controls-container .controls > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.flashcard-page-1 .controls-container .number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.flashcard-page-1 .controls-container .number .num {
+  display: inline;
+  margin: 0;
+}

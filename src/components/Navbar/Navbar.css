@@ -1,20 +1,39 @@
+/* loading screen */
+
+.spinner-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nav {
-  display: inline;
-  background-color: var(--app-background-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: transparent;
+
   width: 100vw;
   height: 8vh;
+
+  position: fixed;
   top: 0;
   z-index: 1000;
-  vertical-align: middle;
-  transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  position: fixed;
+
   padding-right: 14px;
+
+  transition: 0.25s;
 }
 
 .nav.active {
-  background-color: var(--app-primary-color);
-  box-shadow: 2px 2px 2px var(--app-shadow);
+  border-bottom: 2px solid #000;
+  background-color: #fff;
 }
+
+/* list of items */
 
 .nav-items {
   display: flex;
@@ -25,10 +44,9 @@
 
 .nav .nav-items .nav-item {
   float: right;
-  display: block;
   padding: 12px;
   transition: all 0.25s;
-  border-radius: 5px;
+  border-radius: 0;
   margin-right: 12px;
   cursor: pointer;
 }
@@ -45,25 +63,16 @@
 .nav .nav-items .nav-item .nav-link {
   color: var(--app-secondary-color);
   text-decoration: none;
-  font-family: "Mulish";
+  font-family: "Lexend";
 }
 
 .nav .nav-logo {
   display: inline;
   color: var(--app-secondary-color);
-  font-family: "Mulish";
+  font-family: "Lexend";
   font-weight: 600;
   font-size: 20px;
-  position: absolute;
-  left: 5%;
-}
-
-.spinner-page {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 5%;
 }
 
 .nav-account {
@@ -110,18 +119,13 @@
   width: 50px;
   height: 50px;
   padding: 0;
-  border-radius: 50%;
+  border-radius: 0;
   color: red;
   background-color: #ffcfcf;
 }
 
 .nav-cancel:hover {
   background-color: #ffb8b8 !important;
-}
-
-.nav-menu {
-  padding: 12px 16px !important;
-  display: none !important;
 }
 
 .nav-long-item {
@@ -152,24 +156,6 @@
   margin-top: 8vh;
 }
 
-@media screen and (max-width: 685px) {
-  .nav-item {
-    display: none !important;
-  }
-
-  .nav-items {
-    display: block;
-  }
-
-  .nav-menu {
-    display: block !important;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 1vh;
-  }
-}
-
 .nav-link.nav-user-link {
   margin-left: 16px;
 }
@@ -186,66 +172,45 @@
   padding-right: 14px;
 }
 
-.nav-user {
-  position: relative;
-}
+/* sidebar styling */
 
-.nav-user .user-menu {
-  position: absolute;
-  top: 9.5vh;
-  right: 0;
-  background-color: var(--app-primary-color);
-  border-radius: 4px;
-  border: 1px solid grey;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 2px 2px 2px var(--app-shadow);
-}
-
-.nav-user .user-menu.hidden {
+.nav-menu {
+  padding: 12px 16px !important;
   display: none;
 }
 
-.nav-user .user-menu .user-link {
-  width: 15vw;
-  padding: 8px;
-  transition: all 0.25s;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40vw;
+  background-color: #fff;
+  z-index: 1001;
+  border-right: 1px solid #000;
+  box-shadow: 2px 2px 5px var(--app-shadow);
+  display: none;
 }
 
-.nav-user .user-menu .divider {
-  height: 1px;
-  width: 90%;
-  background-color: var(--app-grey);
-  margin: 4px 0;
+.sidebar.hidden {
+  left: calc(-40vw - 10px);
 }
 
-.nav-user .user-menu .user-link:hover {
-  background-color: #f2f2f2;
+.overlay {
+  background-color: #000;
+  opacity: 0.2;
 }
 
-.nav-user .user-menu .user-link.log-out {
-  color: red;
-}
+@media screen and (max-width: 877px) {
+  .sidebar {
+    display: block;
+  }
 
-.nav-user .user-menu .user-link .icon {
-  padding-right: 8px;
-}
+  .nav-hide {
+    display: none !important;
+  }
 
-.nav-user .user-menu .user-link:nth-child(1) {
-  border-radius: 4px 4px 0 0;
-}
-
-.nav-user .user-menu .user-link:nth-child(4) {
-  border-radius: 0 0 4px 4px;
-}
-
-.nav-user .user-menu .user-link p {
-  font-family: "Mulish";
-  margin: 0;
-  font-size: 14px;
+  .nav-menu {
+    display: block !important;
+  }
 }

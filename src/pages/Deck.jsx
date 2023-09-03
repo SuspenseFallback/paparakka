@@ -1,20 +1,103 @@
-import React, { useState, useEffect } from "react"
-import { useParams } from "react-router"
-import { getDeck } from "../firebase/firebase"
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import { getDeck, addHistory } from "../firebase/firebase";
+import "../css/Preview.css";
+import FlashcardControl from "../components/Flashcards/FlashcardControl";
+import PreviewCard from "../components/Card/PreviewCard";
 
 const Deck = () => {
-  const { id } = useParams()
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const [deck, set_deck] = useState({})
+  const [deck, set_deck] = useState({});
+  const [loading, set_loading] = useState(true);
 
   useEffect(() => {
     getDeck(id).then((data) => {
-      console.log(data)
-      set_deck(data)
-    })
-  }, [])
+      console.log(data);
+      set_loading(false);
+      set_deck(data);
+      document.title = "Flashcards | " + data.title;
+      addHistory(data.id);
+    });
+  }, []);
 
-  return <></>
-}
+  const goFlashcards = () => {
+    navigate("/flashcards/" + deck.id);
+  };
 
-export default Deck
+  const goDictate = () => {
+    navigate("/dictate/" + deck.id);
+  };
+
+  const goLearn = () => {
+    navigate("/learn/" + deck.id);
+  };
+
+  return (
+    <>
+      <div
+        className={"page page-1 preview-page-1" + (loading ? " loading" : "")}
+      >
+        {loading ? (
+          <span className="pi pi-spinner pi-spin"></span>
+        ) : (
+          <>
+            <div className="header">
+              <div className="left-side">
+                <h1 className="title">{deck.title}</h1>
+                <p className="description">{deck.description}</p>
+              </div>
+              <div className="right-side">
+                <div className="tags">
+                  {deck.tags.map((tag) => {
+                    return <span className="tag">{tag}</span>;
+                  })}
+                </div>
+                <p className="created-by">
+                  created by <span>{deck.ownerName}</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="preview-container">
+              <div className="buttons">
+                <button className="learn-button" onClick={goFlashcards}>
+                  Flashcards
+                </button>
+                <button className="learn-button" onClick={goDictate}>
+                  Dictate
+                </button>
+                <button className="learn-button" onClick={goLearn}>
+                  Learn
+                </button>
+              </div>
+              <FlashcardControl deck={deck} />
+            </div>
+          </>
+        )}
+      </div>
+      <div className="preview-page-2">
+        {loading ? (
+          <span className="pi pi-spinner pi-spin"></span>
+        ) : (
+          <>
+            <div className="cards">
+              {deck.flashcards.map((card, index) => {
+                return (
+                  <PreviewCard
+                    cardNumber={index + 1}
+                    term={card.term}
+                    definition={card.definition}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Deck;
