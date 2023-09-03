@@ -6,7 +6,7 @@ import "./css/Button.css";
 
 import reportWebVitals from "./reportWebVitals";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar.jsx";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -33,9 +33,9 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: "/flashcard-app",
+    path: "/",
     element: <Navbar />,
     errorElement: <NotFound />,
     children: [
@@ -81,7 +81,9 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename: '/flashcard-app'
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
