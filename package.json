@@ -1,7 +1,7 @@
 {
   "name": "flashcard-app",
   "version": "0.1.0",
-  "homepage": "https://suspensefallback.github.io/flashcard-app",
+  "homepage": "https://suspensefallback.github.io/flashcard-app/",
   "private": true,
   "dependencies": {
     "@supabase/supabase-js": "^2.31.0",

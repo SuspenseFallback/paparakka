@@ -6,7 +6,11 @@ import "./css/Button.css";
 
 import reportWebVitals from "./reportWebVitals";
 
-import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar.jsx";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -33,64 +37,63 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
-const router = createHashRouter([
+const router = createHashRouter(
+  [
+    {
+      path: "/",
+      element: <Navbar />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/flashcards/:id",
+          element: <Flashcards />,
+        },
+        {
+          path: "/dictate/:id",
+          element: <Dictate />,
+        },
+        {
+          path: "/learn/:id",
+          element: <Learn />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/decks",
+          element: <Decks />,
+        },
+        {
+          path: "/preview/:id",
+          element: <Deck />,
+        },
+        {
+          path: "/new-deck",
+          element: <NewDeck />,
+        },
+        {
+          path: "/search",
+          element: <Search />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Navbar />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/flashcards/:id",
-        element: <Flashcards />,
-      },
-      {
-        path: "/dictate/:id",
-        element: <Dictate />,
-      },
-      {
-        path: "/learn/:id",
-        element: <Learn />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/decks",
-        element: <Decks />,
-      },
-      {
-        path: "/preview/:id",
-        element: <Deck />,
-      },
-      {
-        path: "/new-deck",
-        element: <NewDeck />,
-      },
-      {
-        path: "/search",
-        element: <Search />,
-      },
-    ],
-  },
-], {
-  basename: '/flashcard-app'
-});
+    basename: "/flashcard-app",
+  }
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+root.render(<RouterProvider router={router} />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
