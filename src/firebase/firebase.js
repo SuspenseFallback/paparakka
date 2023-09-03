@@ -60,6 +60,7 @@ export const logOut = (callback) => {};
 
 export const getUser = async (callback) => {
   onAuthStateChanged(auth, async (user) => {
+    if(user) {
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
 
@@ -68,6 +69,8 @@ export const getUser = async (callback) => {
     } else {
       callback(null);
     }
+  } else {
+    callback(null)}
   });
 };
 
