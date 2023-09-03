@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/flashcard-app/static/css/main.3781be2e.css",
+    "main.js": "/flashcard-app/static/js/main.c4b6f655.js",
+    "static/js/787.5d1e09b3.chunk.js": "/flashcard-app/static/js/787.5d1e09b3.chunk.js",
+    "static/media/primeicons.svg": "/flashcard-app/static/media/primeicons.e1441b135b3ca9ad643c.svg",
+    "static/media/dictate.png": "/flashcard-app/static/media/dictate.44ece135bae119dfb2ce.png",
+    "static/media/learn.png": "/flashcard-app/static/media/learn.da97a8654e20a99aa580.png",
+    "static/media/flashcards.png": "/flashcard-app/static/media/flashcards.5d8e160512f103b77a34.png",
+    "static/media/primeicons.eot": "/flashcard-app/static/media/primeicons.d44157bdfa026dc877af.eot",
+    "static/media/primeicons.woff": "/flashcard-app/static/media/primeicons.10d3152104f2208ac82a.woff",
+    "static/media/primeicons.ttf": "/flashcard-app/static/media/primeicons.ea5358601d0a3fd6670b.ttf",
+    "static/media/primeicons.woff2": "/flashcard-app/static/media/primeicons.78172950b335ccdb94e2.woff2",
+    "static/media/color.png": "/flashcard-app/static/media/color.6441e63a57ccc5105bad.png",
+    "index.html": "/flashcard-app/index.html",
+    "main.3781be2e.css.map": "/flashcard-app/static/css/main.3781be2e.css.map",
+    "main.c4b6f655.js.map": "/flashcard-app/static/js/main.c4b6f655.js.map",
+    "787.5d1e09b3.chunk.js.map": "/flashcard-app/static/js/787.5d1e09b3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3781be2e.css",
+    "static/js/main.c4b6f655.js"
+  ]
+}
