@@ -35,7 +35,7 @@ gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/flashcard-app",
     element: <Navbar />,
     errorElement: <NotFound />,
     children: [
