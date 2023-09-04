@@ -669,6 +669,34 @@ const Home = () => {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
+        element.querySelector(".home-page-4 .header"),
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-4"),
+            start: "top 50%",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse",
+            scrub: true,
+          },
+        }
+      );
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    const element = ref.current;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
         element.querySelector(".home-page-3 .header"),
         {
           opacity: 0,
@@ -874,6 +902,13 @@ const Home = () => {
               </p>
               <div className="button">Try it out</div>
             </div>
+          </div>
+        </div>
+        <div className="page page-4 home-page-4">
+          <h1 className="header">Sign up to gain access to all features</h1>
+          <div className="button-row">
+            <div className="button">Sign up</div>
+            <div className="button">Log in</div>
           </div>
         </div>
       </main>
