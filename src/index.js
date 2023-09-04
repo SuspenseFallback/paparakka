@@ -30,6 +30,8 @@ import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/dist/PixiPlugin.js";
 import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./pages/helpers/ProtectedRoute";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/flashcards/:id",

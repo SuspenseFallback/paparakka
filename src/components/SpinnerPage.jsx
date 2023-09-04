@@ -5,7 +5,7 @@ const SpinnerPage = () => {
     <div className="spinner-page">
       <i
         className="pi pi-spinner pi-spin"
-        style={{ fontSize: "5rem", color: "rgb(96, 4, 255)" }}
+        style={{ fontSize: "5rem", color: "black" }}
       ></i>
     </div>
   );
