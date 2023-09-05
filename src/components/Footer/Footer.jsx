@@ -25,7 +25,7 @@ const Footer = () => {
           <p className="link">Log in</p>
         </div>
         <div className="column extra">
-          <p className="link">For if I do get a copyright...</p>
+          <p className="link">made by indian tech support ptd ltd</p>
         </div>
       </div>
     </>

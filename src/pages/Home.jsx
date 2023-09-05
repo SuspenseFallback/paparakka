@@ -744,7 +744,7 @@ const Home = () => {
       <main className="home-page" ref={ref}>
         <div className="page page-1 home-page-1">
           <div className="text-container">
-            <h1 className="title">Tomo ur a fat fuck</h1>
+            <h1 className="title">Make flashcards and study for free.</h1>
             <div className="button-row">
               <button className="button" onClick={() => goToLink("/signup")}>
                 Sign up
