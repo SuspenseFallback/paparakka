@@ -1,59 +1,60 @@
-import React, { useState, useEffect } from "react"
-import "../css/Signup.css"
-import PasswordStrengthMeter from "../components/PasswordStrengthMeter"
-import { validate } from "email-validator"
-import { logData, signUpWithEmail } from "../firebase/firebase.js"
-import { useNavigate } from "react-router"
+import React, { useState, useEffect } from "react";
+import "../css/Signup.css";
+import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
+import { validate } from "email-validator";
+import { logData, signUpWithEmail } from "../firebase/firebase.js";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [error, set_error] = useState(null)
-  const [username, set_username] = useState("")
-  const [email, set_email] = useState("")
-  const [password, set_password] = useState("")
-  const [is_password_visible, set_is_password_visible] = useState(false)
-  const [disabled, set_disabled] = useState(true)
+  const [error, set_error] = useState(null);
+  const [username, set_username] = useState("");
+  const [email, set_email] = useState("");
+  const [password, set_password] = useState("");
+  const [is_password_visible, set_is_password_visible] = useState(false);
+  const [disabled, set_disabled] = useState(true);
 
   const sign_up = () => {
     signUpWithEmail(username, email, password, (data, err) => {
-      if (err) throw err
-      console.log(data)
-      logData("signup_complete")
-    })
-  }
+      if (err) throw err;
+      console.log(data);
+      logData("signup_complete");
+      navigate("/dashboard");
+    });
+  };
 
   useEffect(() => {
-    logData("sign_up")
+    logData("sign_up");
 
-    document.title = "Flashcards | Sign up"
-  }, [])
+    document.title = "Flashcards | Sign up";
+  }, []);
 
   useEffect(() => {
     if (!validateStuff()) {
-      set_disabled(true)
+      set_disabled(true);
     } else {
-      set_disabled(false)
+      set_disabled(false);
     }
-  }, [username, email, password])
+  }, [username, email, password]);
 
   const validateStuff = () => {
     if (username.length < 3 || username.length > 20) {
-      return set_error("Username must be between 3 and 20 characters long")
+      return set_error("Username must be between 3 and 20 characters long");
     }
 
     if (!validate(email)) {
-      return set_error("Email is invalid")
+      return set_error("Email is invalid");
     }
 
     if (password.length < 6 || password.length > 40) {
-      return set_error("Password must be between 6 and 40 characters long")
+      return set_error("Password must be between 6 and 40 characters long");
     }
 
     if (!/^(?=.*[a-z])(?=.*[A-Z]).+$/.test(password)) {
       return set_error(
         "Password must contain at least one lowercase and one uppercase character"
-      )
+      );
     }
 
     if (
@@ -61,12 +62,12 @@ const Signup = () => {
     ) {
       return set_error(
         "Password must contain at least one numeric character and one special character (~! @#$%^&*()_)"
-      )
+      );
     }
 
-    set_error("")
-    return true
-  }
+    set_error("");
+    return true;
+  };
 
   return (
     <>
@@ -124,7 +125,7 @@ const Signup = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

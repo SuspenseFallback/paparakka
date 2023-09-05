@@ -21,13 +21,15 @@ const Navbar = () => {
       console.log(data);
       setUser(data);
       setLoading(false);
+
+      if (data && window.location.pathname === "/") {
+        navigate("/dashboard");
+      }
     });
   }, []);
 
   const logOutHandler = () => {
-    logOut((err) => {
-      if (err) throw err;
-
+    logOut(() => {
       navigate("/");
     });
   };
@@ -63,10 +65,10 @@ const Navbar = () => {
         <div className="nav-items">
           <div
             className="nav-item nav-hide hover-underline"
-            onClick={() => goToLink("/")}
+            onClick={() => goToLink(user ? "/dashboard" : "/")}
           >
             <NavLink className={"nav-link"} to="">
-              Home
+              {user ? "Dashboard" : "Home"}
             </NavLink>
           </div>
           <div
@@ -114,7 +116,7 @@ const Navbar = () => {
                     <span className="icon pi pi-clone"></span>
                   </div>
                   <div className="divider"></div>
-                  <div className="user-link log-out">
+                  <div className="user-link log-out" onClick={logOutHandler}>
                     <p>Log out</p>
                     <span className="icon pi pi-sign-out"></span>
                   </div>
