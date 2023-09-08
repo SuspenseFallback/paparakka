@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Flashcard from "./Flashcard";
-import Deck from "../../pages/Deck";
+import Deck from "../../pages/Set";
 
 const FlashcardControl = ({ deck }) => {
   const [flip, setFlip] = useState(false);

@@ -1,0 +1,38 @@
+.my-sets-page-1 .my-sets {
+  width: 100vw;
+  height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding-left: 2vw;
+}
+
+.my-sets-page-1 .my-sets > .title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.my-sets-page-1 .my-sets .title .icon {
+  font-size: 1.2rem;
+  color: grey;
+  cursor: pointer;
+}
+
+.my-sets-page-1 .my-sets .decks {
+  height: 90%;
+  width: 100vw;
+  flex-wrap: wrap;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1vw;
+}
+
+.my-sets-page-1 .my-sets .decks .card {
+  flex-basis: 30%;
+  width: 30vw;
+}

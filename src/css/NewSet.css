@@ -1,18 +1,18 @@
-.new-deck-page-1 {
+.new-set-page-1 {
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 1vw;
 }
 
-.new-deck-page-1 .header {
+.new-set-page-1 .header {
   text-align: center;
   font-family: "Lexend";
   font-size: 2.5rem;
   margin: 0;
 }
 
-.new-deck-page-1 .row {
+.new-set-page-1 .row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -20,7 +20,7 @@
   width: 90%;
 }
 
-.new-deck-page-1 .input-container {
+.new-set-page-1 .input-container {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   margin-top: 5%;
 }
 
-.new-deck-page-1 .input-container .input {
+.new-set-page-1 .input-container .input {
   width: 100%;
   padding: 12px;
   border-top: none;
@@ -38,19 +38,19 @@
   border-bottom: 2px solid #000;
   font-family: "Lexend";
   color: var(--app-secondary-color);
-  background-color: var(--app-background-color);
+  background-color: transparent !important;
   transition: all 0.25s;
   background-color: #fff;
 }
 
-.new-deck-page-1 .input-container .input:focus {
+.new-set-page-1 .input-container .input:focus {
   border-bottom: 3px solid #000;
   outline: none;
   font-size: 16px;
   padding: 8px;
 }
 
-.new-deck-page-1 .input-container .label {
+.new-set-page-1 .input-container .label {
   text-align: left;
   width: 100%;
   margin: 0;
@@ -61,7 +61,7 @@
   font-weight: bold;
 }
 
-.new-deck-page-1 .cards {
+.new-set-page-1 .cards {
   width: 90%;
   border-top: 1px solid var(--app-grey);
   margin-top: 5vh;
@@ -71,7 +71,7 @@
   align-items: center;
 }
 
-.new-deck-page-1 .cards .card-row {
+.new-set-page-1 .cards .card-row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -85,12 +85,12 @@
   border: 1px solid grey;
 }
 
-.new-deck-page-1 .cards .card-row .label {
+.new-set-page-1 .cards .card-row .label {
   font-weight: normal;
   font-size: 14px;
 }
 
-.new-deck-page-1 .card-row .input-container {
+.new-set-page-1 .card-row .input-container {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -99,13 +99,13 @@
   margin-top: 0;
 }
 
-.new-deck-page-1 .card-row .number {
+.new-set-page-1 .card-row .number {
   font-weight: bold;
   font-family: "Lexend";
   font-size: 2rem;
 }
 
-.new-deck-page-1 .card-row .options {
+.new-set-page-1 .card-row .options {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -113,28 +113,28 @@
   width: 10vw;
 }
 
-.new-deck-page-1 .card-row .options .icon {
+.new-set-page-1 .card-row .options .icon {
   border-radius: 0;
   padding: 6px;
   cursor: pointer;
   transition: all 0.25s;
 }
 
-.new-deck-page-1 .card-row .options .icon.disabled {
+.new-set-page-1 .card-row .options .icon.disabled {
   cursor: auto;
   background-color: #ededed;
   color: grey;
 }
 
-.new-deck-page-1 .card-row .options .icon.disabled:hover {
+.new-set-page-1 .card-row .options .icon.disabled:hover {
   background-color: #ededed;
 }
 
-.new-deck-page-1 .card-row .options .icon:hover {
+.new-set-page-1 .card-row .options .icon:hover {
   background-color: #ccc;
 }
 
-.new-deck-page-1 .cards .button-glass {
+.new-set-page-1 .cards .button-glass {
   margin-top: 3vh;
 }
 

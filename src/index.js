@@ -19,10 +19,10 @@ import Flashcards from "./pages/Flashcards";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import Decks from "./pages/Decks";
-import NewDeck from "./pages/NewDeck";
+import Sets from "./pages/Sets";
+import NewSet from "./pages/NewSet";
 import Search from "./pages/Search";
-import Deck from "./pages/Deck";
+import Set from "./pages/Set";
 import Dictate from "./pages/Dictate";
 import Learn from "./pages/Learn";
 
@@ -32,6 +32,7 @@ import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./pages/helpers/ProtectedRoute";
+import MySets from "./pages/MySets";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
@@ -55,15 +56,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/flashcards/:id",
-        element: <Flashcards />,
+        element: (
+          <ProtectedRoute>
+            <Flashcards />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dictate/:id",
-        element: <Dictate />,
+        element: (
+          <ProtectedRoute>
+            <Dictate />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/learn/:id",
-        element: <Learn />,
+        element: (
+          <ProtectedRoute>
+            <Learn />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/signup",
@@ -74,20 +87,32 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/decks",
-        element: <Decks />,
+        path: "/sets",
+        element: <Sets />,
       },
       {
         path: "/preview/:id",
-        element: <Deck />,
+        element: <Set />,
       },
       {
-        path: "/new-deck",
-        element: <NewDeck />,
+        path: "/new-set",
+        element: (
+          <ProtectedRoute>
+            <NewSet />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/my-sets",
+        element: (
+          <ProtectedRoute>
+            <MySets />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

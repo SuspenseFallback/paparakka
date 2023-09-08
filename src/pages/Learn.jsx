@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { addHistory, getDeck, logData } from "../firebase/firebase";
+import { addStudiedSets, getSet, logData } from "../firebase/firebase";
 import { useParams } from "react-router";
 import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
 
-const Learn = () => {
+const Learn = ({ user }) => {
   const { id } = useParams();
   const [index, set_index] = useState(0);
   const [deck, set_deck] = useState({});
@@ -17,12 +17,12 @@ const Learn = () => {
   const [history, set_history] = useState([]);
 
   useEffect(() => {
-    getDeck(id).then((data) => {
+    getSet(id).then((data) => {
       set_deck(data);
       set_loading(false);
       document.title = "Flashcards | " + data.title;
       logData("dictate - " + data.id);
-      addHistory(data.id);
+      addStudiedSets(data.id, user.id);
     });
   }, [id]);
 

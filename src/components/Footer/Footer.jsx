@@ -12,7 +12,7 @@ const Footer = () => {
           <p className="link">Home</p>
           <p className="link">About</p>
           <p className="link">Decks</p>
-          <p className="link">My decks</p>
+          <p className="link">My sets</p>
           <p className="link">Create a new deck</p>
         </div>
         <div className="column">

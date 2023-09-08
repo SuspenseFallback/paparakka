@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "../css/Flashcards.css";
 import FlashcardControl from "../components/Flashcards/FlashcardControl";
-import { getDeck, logData } from "../firebase/firebase";
+import { addStudiedSets, getSet, logData } from "../firebase/firebase";
 import { useParams } from "react-router";
 
-const Flashcards = () => {
+const Flashcards = ({ user }) => {
   const { id } = useParams();
   const [deck, set_deck] = useState({});
   const [loading, set_loading] = useState(true);
 
   useEffect(() => {
-    getDeck(id).then((data) => {
+    getSet(id).then((data) => {
       console.log(data);
       set_loading(false);
       set_deck(data);
       document.title = "Flashcards | " + data.title;
       logData("flashcards - " + data.id);
+      addStudiedSets(data.id, user.id);
     });
   }, [id]);
 

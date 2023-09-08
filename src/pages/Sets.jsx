@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "../css/Decks.css";
+import "../css/Sets.css";
 import Searchbar from "../components/Searchbar/Searchbar";
 import Card from "../components/Card/Card";
 import { getUser, logData } from "../firebase/firebase";
 
-const Decks = () => {
+const Sets = () => {
   const [search, set_search] = useState("");
   const [user, set_user] = useState("");
   const [loading, set_loading] = useState(true);
@@ -12,7 +12,7 @@ const Decks = () => {
   useEffect(() => {
     logData("decks");
 
-    document.title = "Flashcards | Decks";
+    document.title = "Flashcards | Sets";
   }, []);
 
   useEffect(() => {
@@ -37,10 +37,10 @@ const Decks = () => {
           <span className="pi pi-spinner pi-spin"></span>
         ) : (
           <>
-            <h1 className="header">Find public decks</h1>
+            <h1 className="header">Find public sets</h1>
             <div className="flex-container">
               <Searchbar
-                placeholder="Search for public decks..."
+                placeholder="Search for public sets..."
                 val={search}
                 setVal={set_search}
                 searchQuery={searchQuery}
@@ -50,7 +50,7 @@ const Decks = () => {
               </button>
             </div>
             <div className="recent-decks">
-              <h2 className="subheader">Recent Decks</h2>
+              <h2 className="subheader">Recent Sets</h2>
               <div className="cards">
                 {user.history.length > 3
                   ? user.history.slice(0, 3).map((card) => {
@@ -86,4 +86,4 @@ const Decks = () => {
   );
 };
 
-export default Decks;
+export default Sets;

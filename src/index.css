@@ -28,10 +28,19 @@ code {
 
 div.page {
   width: 100vw;
-  height: 100vh;
 }
 
 div.page-1 {
   width: 100vw;
-  height: 92vh !important;
+  height: 92vh;
+}
+
+div.page:not(.page-1) {
+  height: 100vh;
+}
+
+.loading-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

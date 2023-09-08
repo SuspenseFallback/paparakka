@@ -41,7 +41,7 @@ const Navbar = () => {
       }
     });
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 70) {
         set_is_active(true);
       } else {
         set_is_active(false);
@@ -51,6 +51,7 @@ const Navbar = () => {
 
   const goToLink = (link) => {
     setResponsiveMenu(false);
+    setIsUserItems(false);
     navigate(link);
   };
 
@@ -68,25 +69,25 @@ const Navbar = () => {
             onClick={() => goToLink(user ? "/dashboard" : "/")}
           >
             <NavLink className={"nav-link"} to="">
-              {user ? "Dashboard" : "Home"}
+              Home
             </NavLink>
           </div>
           <div
             className="nav-item nav-hide hover-underline"
-            onClick={() => goToLink("/decks")}
+            onClick={() => goToLink("/sets")}
           >
-            <NavLink className={"nav-link"} to="decks">
-              Decks
+            <NavLink className={"nav-link"} to="sets">
+              Sets
             </NavLink>
           </div>
           {user ? (
             <>
               <div
                 className="nav-item nav-hide nav-button button"
-                onClick={() => goToLink("/new-deck")}
+                onClick={() => goToLink("/new-set")}
               >
-                <NavLink className="nav-link" to="new-deck">
-                  Create a new deck <span className="pi pi-plus"></span>
+                <NavLink className="nav-link" to="new-set">
+                  Create a new set <span className="pi pi-plus"></span>
                 </NavLink>
               </div>
               <div className="nav-item nav-hide nav-user">
@@ -111,7 +112,10 @@ const Navbar = () => {
                     <p>Settings</p>
                     <span className="icon pi pi-cog"></span>
                   </div>
-                  <div className="user-link">
+                  <div
+                    className="user-link"
+                    onClick={() => goToLink("/my-sets")}
+                  >
                     <p>My sets</p>
                     <span className="icon pi pi-clone"></span>
                   </div>

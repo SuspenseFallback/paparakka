@@ -52,9 +52,13 @@ export const signUpWithEmail = (username, email, password, callback) => {
 };
 
 export const signInWithEmail = (email, password, callback) => {
-  signInWithEmailAndPassword(email, password, (data, err) => {
-    console.log(data, err);
-  });
+  signInWithEmailAndPassword(auth, email, password)
+    .then((data) => {
+      callback(data, "");
+    })
+    .catch((err) => {
+      callback({}, err);
+    });
 };
 
 export const logOut = (callback) => {
@@ -80,9 +84,9 @@ export const getUser = async (callback) => {
   });
 };
 
-export const addDeck = (data, callback) => {
+export const addSet = (data, callback) => {
   const id = uuidv4();
-  const docRef = doc(db, "decks", id);
+  const docRef = doc(db, "sets", id);
 
   setDoc(docRef, {
     title: data.title,
@@ -101,20 +105,20 @@ export const addDeck = (data, callback) => {
     });
 };
 
-export const getAllDecks = (callback) => {
-  getDocs(collection(db, "decks")).then((data) => {
+export const getAllSets = (callback) => {
+  getDocs(collection(db, "sets")).then((data) => {
     let docs = [];
 
-    data.docs.forEach((deck) => {
-      docs.push(deck.data());
+    data.docs.forEach((set) => {
+      docs.push(set.data());
     });
 
     callback(docs);
   });
 };
 
-export const getDeck = async (id) => {
-  const docRef = doc(db, "decks", id);
+export const getSet = async (id) => {
+  const docRef = doc(db, "sets", id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -124,21 +128,41 @@ export const getDeck = async (id) => {
   }
 };
 
-export const searchDeckTitles = (target, callback) => {
-  getAllDecks((data) => {
-    console.log(data);
-    const matches = searchDecks(data, target);
+export const getOwnerSets = (id, callback) => {
+  getAllSets((sets) => {
+    const matches = searchSetsByOwnerId(sets, id);
 
     callback(matches);
   });
 };
 
-function searchDecks(array, target) {
+export const searchSetTitles = (target, callback) => {
+  getAllSets((data) => {
+    console.log(data);
+    const matches = searchSets(data, target);
+
+    callback(matches);
+  });
+};
+
+function searchSets(array, target) {
   const matches = [];
 
-  array.forEach((deck) => {
-    if (deck.title.toLowerCase().includes(target.toLowerCase())) {
-      matches.push(deck);
+  array.forEach((set) => {
+    if (set.title.toLowerCase().includes(target.toLowerCase())) {
+      matches.push(set);
+    }
+  });
+
+  return matches;
+}
+
+function searchSetsByOwnerId(array, id) {
+  const matches = [];
+
+  array.forEach((set) => {
+    if (set.owner == id) {
+      matches.push(set);
     }
   });
 
@@ -158,9 +182,9 @@ export const addHistory = (id) => {
         const data = res.data();
 
         if (data.history) {
-          let history = data.history.filter((deck) => deck.id != id);
+          let history = data.history.filter((set) => set.id != id);
 
-          getDeck(id).then((data) => {
+          getSet(id).then((data) => {
             history.splice(0, 0, data);
 
             updateDoc(document, {
@@ -170,7 +194,7 @@ export const addHistory = (id) => {
         } else {
           const history = [];
 
-          getDeck(id).then((data) => {
+          getSet(id).then((data) => {
             history.push(data);
 
             updateDoc(document, {
@@ -178,6 +202,39 @@ export const addHistory = (id) => {
             });
           });
         }
+      });
+    }
+  });
+};
+
+export const addStudiedSets = (id, user_id) => {
+  const document = doc(db, "users", user_id);
+
+  getDoc(document).then((res) => {
+    const data = res.data();
+
+    if (data.studied_sets) {
+      let studied_sets = data.studied_sets.filter((set) => set.id != id);
+
+      getSet(id).then((data) => {
+        studied_sets.splice(0, 0, {
+          ...data,
+          time: new Date().toDateString(),
+        });
+
+        updateDoc(document, {
+          studied_sets: studied_sets,
+        });
+      });
+    } else {
+      const studied_sets = [];
+
+      getSet(id).then((data) => {
+        studied_sets.push({ ...data, time: new Date().toDateString() });
+
+        updateDoc(document, {
+          studied_sets: studied_sets,
+        });
       });
     }
   });

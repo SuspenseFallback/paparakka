@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import SpinnerPage from "../../components/SpinnerPage";
 import { getUser } from "../../firebase/firebase";
 import { useNavigate } from "react-router";
 
@@ -29,7 +28,13 @@ const ProtectedRoute = ({ children }) => {
     });
   };
 
-  return loading ? <SpinnerPage /> : <>{renderChildren()}</>;
+  return loading ? (
+    <div className="page page-1 loading-page">
+      <span className="icon pi pi-spinner pi-spin"></span>
+    </div>
+  ) : (
+    <>{renderChildren()}</>
+  );
 };
 
 export default ProtectedRoute;

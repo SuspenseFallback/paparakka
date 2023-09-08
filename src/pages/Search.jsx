@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../css/Decks.css";
+import "../css/Sets.css";
 import Searchbar from "../components/Searchbar/Searchbar";
 import Card from "../components/Card/Card";
-import { logData, searchDeckTitles } from "../firebase/firebase";
+import { logData, searchSetTitles } from "../firebase/firebase";
 import { useNavigate } from "react-router";
 import LongCard from "../components/Card/LongCard";
 
@@ -23,7 +23,7 @@ const Search = () => {
     const query = params.get("query");
     set_search(query);
 
-    searchDeckTitles(query, (data) => {
+    searchSetTitles(query, (data) => {
       set_loading(false);
       set_decks(data);
     });

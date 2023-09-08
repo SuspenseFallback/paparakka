@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
-import { getDeck, addHistory } from "../firebase/firebase";
+import { getSet, addHistory } from "../firebase/firebase";
 import "../css/Preview.css";
 import FlashcardControl from "../components/Flashcards/FlashcardControl";
 import PreviewCard from "../components/Card/PreviewCard";
 
-const Deck = () => {
+const Set = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const Deck = () => {
   const [loading, set_loading] = useState(true);
 
   useEffect(() => {
-    getDeck(id).then((data) => {
+    getSet(id).then((data) => {
       console.log(data);
       set_loading(false);
       set_deck(data);
@@ -100,4 +100,4 @@ const Deck = () => {
   );
 };
 
-export default Deck;
+export default Set;

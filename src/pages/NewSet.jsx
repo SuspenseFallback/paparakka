@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "../css/NewDeck.css";
+import "../css/NewSet.css";
 import NewCard from "../components/Card/NewCard";
 import Tag from "../components/Tags/Tag.jsx";
-import { getUser, addDeck } from "../firebase/firebase";
+import { getUser, addSet } from "../firebase/firebase";
 
-const NewDeck = () => {
+const NewSet = () => {
   const [cards, set_cards] = useState([
     {
       term: "",
@@ -61,7 +61,7 @@ const NewDeck = () => {
   }, []);
 
   const submitHandler = () => {
-    addDeck(
+    addSet(
       {
         title: title,
         description: description,
@@ -87,7 +87,7 @@ const NewDeck = () => {
 
   return (
     <>
-      <div className="new-deck-page-1">
+      <div className="new-set-page-1">
         <h1 className="header">Create a new deck</h1>
         <div className="row">
           <div className="input-container">
@@ -207,4 +207,4 @@ const NewDeck = () => {
   );
 };
 
-export default NewDeck;
+export default NewSet;
