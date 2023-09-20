@@ -1,42 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { addStudiedSets, getSet, logData } from "../firebase/firebase";
-import { useParams } from "react-router";
-import shuffle from "../helpers/shuffle.js";
+import { useNavigate, useParams } from "react-router";
+// import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
 
 const Learn = ({ user }) => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [index, set_index] = useState(0);
-  const [deck, set_deck] = useState({});
+  const [set, set_set] = useState({});
   const [loading, set_loading] = useState(true);
   const [answered, set_answered] = useState(false);
   const [answer, set_answer] = useState("");
   const [difficulty, set_difficulty] = useState("");
-  const [active_speed, set_active_speed] = useState(1);
-  const [count, set_count] = useState({ easy: 0, medium: 0, hard: 0 });
+  const [correct, set_correct] = useState("");
   const [history, set_history] = useState([]);
+  const [flashcards, set_flashcards] = useState([]);
 
   useEffect(() => {
     getSet(id).then((data) => {
-      set_deck(data);
-      set_loading(false);
+      set_set(data);
       document.title = "Flashcards | " + data.title;
       logData("dictate - " + data.id);
-      addStudiedSets(data.id, user.id);
+      
+
+      addStudiedSets(user, data.id, () => {
+        set_loading(false);
+        set_flashcards(data.flashcards);
+      })
     });
   }, [id]);
 
   const check_answer = () => {
-    const current_answer = deck.flashcards[index].definition;
+    const current_answer = flashcards[index].definition;
     set_answered(true);
-    if (answer == "") {
-      set_difficulty("hard");
-    } else if (answer.length < current_answer.length / 3) {
-      set_difficulty("hard");
+    if (answer === "") {
+      set_correct("wrong");
     } else if (answer === current_answer) {
-      set_difficulty("easy");
+      set_correct("correct");
     } else {
-      set_difficulty("unknown");
+      set_correct("unknown");
     }
   };
 
@@ -46,19 +50,31 @@ const Learn = ({ user }) => {
   };
 
   const next_question = () => {
-    set_history((h) => [
-      ...h,
-      {
-        index: deck.flashcards[index].index,
-        term: deck.flashcards[index].term,
-        definition: deck.flashcards[index].definition,
-        difficulty: difficulty,
-      },
-    ]);
+    const new_history = [...history];
+    new_history.push({
+      index: flashcards[index].index,
+      term: flashcards[index].term,
+      definition: flashcards[index].definition,
+      proficiency: difficulty,
+    });
+
+    set_history(new_history);
+
+    if (index === flashcards.length - 1) {
+      return navigate(`/preview/${set.id}`);
+    }
+
+    set_correct("unknown");
     set_index((i) => i + 1);
     set_answered(false);
     set_difficulty("");
     set_answer("");
+  };
+
+  onkeydown = (e) => {
+    if (e.key === "Enter") {
+      check_answer();
+    }
   };
 
   return (
@@ -73,24 +89,22 @@ const Learn = ({ user }) => {
                 <p className={"question " + (answered ? " hidden" : "")}>
                   <span className="label">TERM</span>
                   <br />
-                  <span className="term">{deck.flashcards[index].term}</span>
+                  <span className="term">{flashcards[index].term}</span>
                 </p>
               </div>
               <div className="center">
                 <button
                   className={
-                    "button button-icon " + (answered ? difficulty : "hidden")
+                    "button button-icon " + (answered ? correct : "hidden")
                   }
                 >
                   <span
                     className={
-                      difficulty === "hard"
+                      correct === "wrong"
                         ? "pi pi-times icon"
-                        : difficulty === "easy"
+                        : correct === "correct"
                         ? "pi pi-check icon"
-                        : difficulty === "medium"
-                        ? "pi pi-ellipsis-h icon"
-                        : difficulty === "unknown"
+                        : correct === "unknown"
                         ? "pi pi-question icon"
                         : ""
                     }
@@ -112,37 +126,27 @@ const Learn = ({ user }) => {
               </div>
               <div className="correct-answer">
                 <p className="label">Correct answer</p>
-                <p className="answer-text">
-                  {deck.flashcards[index].definition}
-                </p>
+                <p className="answer-text">{flashcards[index].definition}</p>
               </div>
-              {difficulty == "unknown" ? (
+              {correct === "unknown" ? (
                 <>
                   <p className="choose">How do you think you did?</p>
                   <div className="button-group">
                     <div
                       className={
-                        "button " + (difficulty == "easy" ? "active" : "")
+                        "button " + (correct === "correct" ? "active" : "")
                       }
-                      onClick={() => set_difficulty("easy")}
+                      onClick={() => set_correct("correct")}
                     >
-                      Easy
+                      Correct
                     </div>
                     <div
                       className={
-                        "button " + (difficulty == "medium" ? "active" : "")
+                        "button " + (correct === "wrong" ? "active" : "")
                       }
-                      onClick={() => set_difficulty("medium")}
+                      onClick={() => set_correct("wrong")}
                     >
-                      Medium
-                    </div>
-                    <div
-                      className={
-                        "button " + (difficulty == "hard" ? "active" : "")
-                      }
-                      onClick={() => set_difficulty("hard")}
-                    >
-                      Hard
+                      Wrong
                     </div>
                   </div>
                 </>
@@ -163,12 +167,14 @@ const Learn = ({ user }) => {
                     placeholder="Enter answer here..."
                     value={answer}
                     onChange={(e) => set_answer(e.target.value)}
+                    onKeyDown={(e) => onkeydown(e)}
                   />
                   <button
                     className={
                       "button " + (answered ? "button-block" : "button-icon")
                     }
                     onClick={answered ? next_question : check_answer}
+                    disabled={answered ? correct === "unknown" : false}
                   >
                     {answered ? "Next" : ""}
                     <span className="pi pi-reply icon"></span>

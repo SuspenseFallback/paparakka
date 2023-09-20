@@ -19,20 +19,24 @@ import {
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
+// initialize
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBDDnTcl8GOlnc0jQe28QpXz-h_Mpbf9PE",
-  authDomain: "flashcard-app-e33db.firebaseapp.com",
-  projectId: "flashcard-app-e33db",
-  storageBucket: "flashcard-app-e33db.appspot.com",
-  messagingSenderId: "522279942618",
-  appId: "1:522279942618:web:a30811904d3e958dda68e3",
-  measurementId: "G-53SC9NQER5",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// AUTHENTICATION
 
 export const signUpWithEmail = (username, email, password, callback) => {
   createUserWithEmailAndPassword(auth, email, password).then((data) => {
@@ -84,6 +88,8 @@ export const getUser = async (callback) => {
   });
 };
 
+// SETS
+
 export const addSet = (data, callback) => {
   const id = uuidv4();
   const docRef = doc(db, "sets", id);
@@ -96,6 +102,7 @@ export const addSet = (data, callback) => {
     owner: data.owner,
     ownerName: data.ownerName,
     id: id,
+    time: new Date().toTimeString(),
   })
     .then((data) => {
       callback(data);
@@ -161,7 +168,7 @@ function searchSetsByOwnerId(array, id) {
   const matches = [];
 
   array.forEach((set) => {
-    if (set.owner == id) {
+    if (set.owner === id) {
       matches.push(set);
     }
   });
@@ -169,9 +176,13 @@ function searchSetsByOwnerId(array, id) {
   return matches;
 }
 
+// ANALYTICS
+
 export const logData = (data) => {
   logEvent(analytics, data);
 };
+
+// HISTORY
 
 export const addHistory = (id) => {
   getUser((user) => {
@@ -182,7 +193,7 @@ export const addHistory = (id) => {
         const data = res.data();
 
         if (data.history) {
-          let history = data.history.filter((set) => set.id != id);
+          let history = data.history.filter((set) => set.id !== id);
 
           getSet(id).then((data) => {
             history.splice(0, 0, data);
@@ -207,35 +218,19 @@ export const addHistory = (id) => {
   });
 };
 
-export const addStudiedSets = (id, user_id) => {
-  const document = doc(db, "users", user_id);
+export const addStudiedSets = (user, set_id, callback) => {
+  getSet(set_id).then((set) => {
+    const docRef = doc(db, "users", user.id);
+    let studied_sets = user.studied_sets ? [...user.studied_sets] : [];
 
-  getDoc(document).then((res) => {
-    const data = res.data();
+    studied_sets = studied_sets.filter((set) => set.id !== set_id);
 
-    if (data.studied_sets) {
-      let studied_sets = data.studied_sets.filter((set) => set.id != id);
+    studied_sets.splice(0, 0, {
+      ...set,
+    });
 
-      getSet(id).then((data) => {
-        studied_sets.splice(0, 0, {
-          ...data,
-          time: new Date().toDateString(),
-        });
-
-        updateDoc(document, {
-          studied_sets: studied_sets,
-        });
-      });
-    } else {
-      const studied_sets = [];
-
-      getSet(id).then((data) => {
-        studied_sets.push({ ...data, time: new Date().toDateString() });
-
-        updateDoc(document, {
-          studied_sets: studied_sets,
-        });
-      });
-    }
+    updateDoc(docRef, {
+      studied_sets: studied_sets,
+    }).then(callback());
   });
 };

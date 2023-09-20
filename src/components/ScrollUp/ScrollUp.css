@@ -1,0 +1,42 @@
+.scroll-button {
+  position: fixed;
+  bottom: 0;
+  right: -100px;
+
+  margin: 1vw;
+
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid #000;
+
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
+
+  transition: all 0.5s;
+
+  cursor: pointer;
+}
+
+.scroll-button .icon {
+  transition: all 0.2s;
+}
+
+.scroll-button:hover {
+  background-color: #d9d9d9;
+}
+
+.scroll-button:hover .icon {
+  font-size: 13px;
+}
+
+.scroll-button.show {
+  right: 0;
+
+  transition: all 0.5s;
+}

@@ -15,9 +15,10 @@
   font-size: 3rem;
 }
 
-.header {
+.decks-page-1 .header {
   text-align: center;
   font-family: "Lexend";
+  color: var(--app-primary-text-color);
 }
 
 .decks-page-1 .flex-container {

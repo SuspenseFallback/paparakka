@@ -79,6 +79,10 @@
   padding: 8px;
 }
 
+.home-page-1 .animation .anim-controls .anim-button .pi {
+  color: var(--app-primary-text-color);
+}
+
 @keyframes come-in {
   0% {
     opacity: 0;
@@ -329,7 +333,6 @@
 /* page 3 */
 
 .home-page-3 {
-  background-color: #fff;
   padding: 1vw;
 }
 
@@ -337,6 +340,7 @@
   font-size: 3rem;
   margin-top: 10vh;
   text-shadow: 2px 2px 2px grey;
+  color: var(--app-primary-text-color);
 }
 
 .home-page-3 .container {
@@ -367,6 +371,7 @@
   width: 100%;
   font-size: 1.3rem;
   font-weight: 500;
+  color: var(--app-primary-text-color);
 }
 
 .home-page-3 .container .type-card .desc {
@@ -388,11 +393,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  border-top: 5px solid #000;
+  border-top: 5px solid var(--app-secondary-color);
 }
 
 .home-page-4 .header {
   font-size: 4rem;
   text-shadow: 4px 4px 2px rgb(177, 177, 177);
+  color: var(--app-primary-text-color);
 }

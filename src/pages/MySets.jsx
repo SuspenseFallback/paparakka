@@ -7,6 +7,7 @@ import "../css/MySets.css";
 const MySets = ({ user }) => {
   const [loading, set_loading] = useState(true);
   const [my_decks, set_my_decks] = useState([]);
+  const [total_decks, set_total_decks] = useState([]);
 
   useEffect(() => {
     document.title = "Flashcards | My Decks";
@@ -14,11 +15,11 @@ const MySets = ({ user }) => {
 
   useEffect(() => {
     getOwnerSets(user.id, (data) => {
-      console.log(data);
-      if (data.length < 6) {
+      set_total_decks(data);
+      if (data.length < 9) {
         set_my_decks(data);
       } else {
-        set_my_decks(data.slice(0, 6));
+        set_my_decks(data.slice(0, 9));
       }
       set_loading(false);
     });
@@ -30,18 +31,6 @@ const MySets = ({ user }) => {
           <div className="my-sets">
             <p className="title">My sets </p>
             <div className="decks">
-              {my_decks.map((deck, index) => {
-                return (
-                  <Card
-                    key={index + 9000}
-                    title={deck.title}
-                    desc={deck.description}
-                    tags={deck.tags}
-                    owner={deck.ownerName}
-                    id={deck.id}
-                  />
-                );
-              })}
               {my_decks.map((deck, index) => {
                 return (
                   <Card

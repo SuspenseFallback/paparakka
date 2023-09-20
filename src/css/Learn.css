@@ -7,9 +7,9 @@
 .learn-page-1 .question-container {
   width: 90%;
   height: 80%;
-  background-color: #fff;
+  background-color: var(--app-primary-color);
   border-radius: 0;
-  border: 1px solid grey;
+  border: 1px solid var(--app-secondary-color);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   position: relative;
   padding: 1vw;
@@ -19,12 +19,16 @@
   align-items: center;
 }
 
+.learn-page-1 .answer-container .button-group .button:nth-child(1) {
+  border-right: none;
+}
+
 .learn-page-1 .question-container .top .center .button-icon {
   background-color: #f98f0d;
   padding: 48px;
 }
 
-.learn-page-1 .question-container .top .center .button-icon.hard {
+.learn-page-1 .question-container .top .center .button-icon.wrong {
   background-color: rgb(231, 48, 48);
   cursor: default;
   pointer-events: none;
@@ -39,27 +43,16 @@
   gap: 1vh;
 }
 
-.learn-page-1 .question-container .top .center .button-icon.hard:hover {
+.learn-page-1 .question-container .top .center .button-icon.wrong:hover {
   background-color: rgb(231, 48, 48);
 }
 
-.learn-page-1 .question-container .top .center .button-icon.easy:hover {
+.learn-page-1 .question-container .top .center .button-icon.correct:hover {
   background-color: rgb(86, 213, 90);
 }
 
-.learn-page-1 .question-container .top .center .button-icon.easy {
+.learn-page-1 .question-container .top .center .button-icon.correct {
   background-color: rgb(86, 213, 90);
-  cursor: default;
-  pointer-events: none;
-  padding: 36px;
-}
-
-.learn-page-1 .question-container .top .center .button-icon.medium:hover {
-  background-color: rgb(255, 204, 0);
-}
-
-.learn-page-1 .question-container .top .center .button-icon.medium {
-  background-color: rgb(255, 204, 0);
   cursor: default;
   pointer-events: none;
   padding: 36px;
@@ -116,12 +109,14 @@
 
 .learn-page-1 .question-container .button-icon:hover {
   box-shadow: none;
+  background-color: var(--app-primary-hover-color);
 }
 
 .learn-page-1 .question-container .question {
   padding: 1vw;
   transition: all 0.25s;
   text-align: center;
+  color: var(--app-primary-text-color);
 }
 
 .learn-page-1 .question-container .question .term {
@@ -130,6 +125,7 @@
   font-size: 18px;
   transition: all 0.25s;
   text-align: center;
+  color: var(--app-primary-text-color);
 }
 
 .learn-page-1 .question-container .question .label {
@@ -161,19 +157,24 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--app-secondary-color);
   font-family: "Lexend";
   color: var(--app-secondary-color);
   background-color: var(--app-background-color);
   transition: all 0.25s;
-  background-color: #fff;
+  background-color: transparent;
+}
+
+.learn-page-1 .question-container .input-container .input:focus {
+  border-color: var(--app-secondary-color) !important;
 }
 
 .learn-page-1 .question-container .answer-container {
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   max-width: 95%;
 }
 
@@ -182,6 +183,7 @@
   margin-top: 2vh;
   text-align: center;
   width: 100%;
+  color: var(--app-primary-text-color);
 }
 
 .learn-page-1 .question-container .answer-container .button-group {
@@ -191,6 +193,7 @@
 .learn-page-1 .question-container .answer-container .your-answer,
 .learn-page-1 .question-container .answer-container .correct-answer {
   width: 100%;
+  color: #f98f0d;
 }
 
 .learn-page-1 .question-container .answer-container .label {
@@ -200,6 +203,7 @@
 
 .learn-page-1 .question-container .answer-container .answer-text {
   margin: 0;
+  color: var(--app-secondary-color);
 }
 
 .learn-page-1 .question-container .answer {
@@ -277,11 +281,6 @@
 
 .learn-page-1 .question-container .answer .button-icon {
   background-color: #f98f0d;
-}
-
-.learn-page-1 .question-container .answer .button-icon:hover {
-  background-color: #5916c5;
-  box-shadow: none;
 }
 
 .learn-page-1 .question-container .answer .button-icon .icon {

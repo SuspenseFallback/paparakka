@@ -32,24 +32,26 @@ const Dashboard = ({ user }) => {
     let week_count = 0;
     let month_count = 0;
 
-    user.studied_sets.forEach((set) => {
-      const date = new Date(set.time);
-      const now = new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate()
-      );
+    if (user.studied_sets) {
+      user.studied_sets.forEach((set) => {
+        const date = new Date(set.time);
+        const now = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate()
+        );
 
-      const diff = (now - date) / (1000 * 60 * 60 * 24);
+        const diff = (now - date) / (1000 * 60 * 60 * 24);
 
-      if (diff <= 7) {
-        week_count += 1;
-      }
+        if (diff <= 7) {
+          week_count += 1;
+        }
 
-      if (diff <= 30) {
-        month_count += 1;
-      }
-    });
+        if (diff <= 30) {
+          month_count += 1;
+        }
+      });
+    }
 
     set_sets_studied_this_week(week_count);
     set_sets_studied_this_month(month_count);
@@ -80,7 +82,9 @@ const Dashboard = ({ user }) => {
                   <p className="desc">sets studied in the last 30 days</p>
                 </div>
                 <div className="year">
-                  <span className="big">{user.studied_sets.length}</span>
+                  <span className="big">
+                    {user.studied_sets ? user.studied_sets.length : 0}
+                  </span>
                   <p className="desc">sets studied in lifetime</p>
                 </div>
               </div>
@@ -94,19 +98,23 @@ const Dashboard = ({ user }) => {
                   <span className="icon pi pi-angle-right"></span>
                 </span>
               </p>
-              <div className="decks">
-                {my_decks.map((deck, index) => {
-                  return (
-                    <Card
-                      key={index + 9000}
-                      title={deck.title}
-                      desc={deck.description}
-                      tags={deck.tags}
-                      owner={deck.ownerName}
-                      id={deck.id}
-                    />
-                  );
-                })}
+              <div className={"decks " + (my_decks.length > 0 ? "" : "empty")}>
+                {my_decks.length > 0 ? (
+                  my_decks.map((deck, index) => {
+                    return (
+                      <Card
+                        key={index + 9000}
+                        title={deck.title}
+                        desc={deck.description}
+                        tags={deck.tags}
+                        owner={deck.ownerName}
+                        id={deck.id}
+                      />
+                    );
+                  })
+                ) : (
+                  <p className="placeholder">You don't have any sets.</p>
+                )}
               </div>
             </div>
           </>

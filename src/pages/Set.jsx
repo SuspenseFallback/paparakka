@@ -4,6 +4,7 @@ import { getSet, addHistory } from "../firebase/firebase";
 import "../css/Preview.css";
 import FlashcardControl from "../components/Flashcards/FlashcardControl";
 import PreviewCard from "../components/Card/PreviewCard";
+import ScrollUp from "../components/ScrollUp/ScrollUp";
 
 const Set = () => {
   const { id } = useParams();
@@ -36,6 +37,7 @@ const Set = () => {
 
   return (
     <>
+      <ScrollUp limit={500} />
       <div
         className={"page page-1 preview-page-1" + (loading ? " loading" : "")}
       >

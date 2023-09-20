@@ -7,7 +7,7 @@
 .dictate-page-1 .question-container {
   width: 90%;
   height: 80%;
-  background-color: #fff;
+  background-color: var(--app-primary-color);
   border-radius: 0;
   border: 1px solid grey;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -96,7 +96,7 @@
 }
 
 .dictate-page-1 .question-container .top .right .button-icon:hover {
-  background-color: #5916c5;
+  background-color: var(--app-theme-hover-color);
   box-shadow: none;
 }
 
@@ -104,6 +104,10 @@
   font-size: 20px;
   color: white;
   transition: all 0.5s;
+}
+
+.dictate-page-1 .question-container .top .button-group .button:nth-child(1) {
+  border-right: none;
 }
 
 .dictate-page-1 .question-container .question {
@@ -116,13 +120,14 @@
   display: block;
   font-size: 18px;
   transition: all 0.25s;
+  color: var(--app-primary-text-color);
 }
 
 .dictate-page-1 .question-container .question .label {
   font-weight: normal;
   font-size: 13px;
   text-transform: uppercase;
-  color: #f98f0d;
+  color: var(--app-theme-color);
   letter-spacing: 1px;
   font-weight: bold;
   transition: all 0.25s;
@@ -130,14 +135,15 @@
 
 .dictate-page-1 .question-container .question .label .dn {
   margin-left: 8px;
-  font-weight: bold;
-  color: #f98f0d;
+  font-weight: 400;
+  color: var(--app-theme-color);
 }
 
 .dictate-page-1 .question-container .input-container {
   display: flex;
   flex-direction: column;
   width: 95%;
+  background-color: transparent;
 }
 
 .dictate-page-1 .question-container .input-container .input {
@@ -146,12 +152,15 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--app-primary-text-color);
   font-family: "Lexend";
-  color: var(--app-secondary-color);
-  background-color: var(--app-background-color);
+  color: var(--app-primary-text-color);
+  background-color: transparent;
   transition: all 0.25s;
-  background-color: #fff;
+}
+
+.dictate-page-1 .question-container .input-container .input:focus {
+  border-color: var(--app-primary-text-color) !important;
 }
 
 .dictate-page-1 .question-container .answer-container {
@@ -176,11 +185,13 @@
 .dictate-page-1 .question-container .answer-container .your-answer,
 .dictate-page-1 .question-container .answer-container .correct-answer {
   width: 100%;
+  color: var(--app-primary-text-color);
 }
 
 .dictate-page-1 .question-container .answer-container .label {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 4px;
+  color: var(--app-theme-color);
 }
 
 .dictate-page-1 .question-container .answer-container .answer-text {

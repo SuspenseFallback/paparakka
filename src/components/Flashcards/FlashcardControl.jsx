@@ -1,79 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import Flashcard from "./Flashcard";
-import Deck from "../../pages/Set";
+import randint from "../../helpers/random.js";
 
 const FlashcardControl = ({ deck }) => {
+  // state
+
   const [flip, setFlip] = useState(false);
   const [index, setIndex] = useState(1);
   const [term, setTerm] = useState(deck.flashcards[0].term);
   const [definition, setDefinition] = useState(deck.flashcards[0].definition);
   const [play, setPlay] = useState(false);
 
-  useEffect(() => {
-    const card = deck.flashcards[index - 1];
-
-    setTerm(card.term);
-    setDefinition(card.definition);
-  }, [index]);
-
   const flashcardRef = useRef();
 
-  function useInterval(callback, delay) {
-    const intervalRef = React.useRef(null);
-    const savedCallback = React.useRef(callback);
-    React.useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-    React.useEffect(() => {
-      const tick = () => savedCallback.current();
-      if (typeof delay === "number") {
-        intervalRef.current = window.setInterval(tick, delay);
-        return () => window.clearInterval(intervalRef.current);
-      }
-    }, [delay]);
-    return intervalRef;
-  }
-
-  function randint(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  function og_shuffle(arr) {
-    const array = arr.slice();
-    const newarr = [];
-
-    for (var i = arr.length + 1; i > 0; i--) {
-      let rand = randint(0, i);
-
-      let removed = array[rand];
-      array.splice(array[rand], 1);
-      console.log(array);
-
-      newarr.push(removed);
-    }
-
-    return newarr;
-  }
-
-  useEffect(() => {
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") {
-        goRight();
-      } else if (e.key === "ArrowLeft") {
-        goLeft();
-      }
-    });
-  }, []);
-
-  useInterval(() => {
-    if (play) {
-      if (!flip) {
-        toggleFlip();
-      } else {
-        goRight();
-      }
-    }
-  }, 2000);
+  // control functions
 
   const toggleFlip = () => {
     setFlip(!flip);
@@ -92,13 +32,13 @@ const FlashcardControl = ({ deck }) => {
   };
 
   const goRight = () => {
-    if (index != deck.flashcards.length) {
+    if (index !== deck.flashcards.length) {
       setIndex(index + 1);
     }
   };
 
   const goFullRight = () => {
-    if (index != deck.flashcards.length) {
+    if (index !== deck.flashcards.length) {
       setIndex(deck.flashcards.length);
     }
   };
@@ -113,9 +53,76 @@ const FlashcardControl = ({ deck }) => {
     console.log(og_shuffle(arr));
   };
 
+  // hooks
+
+  useEffect(() => {
+    const card = deck.flashcards[index - 1];
+
+    setTerm(card.term);
+    setDefinition(card.definition);
+  }, [index, deck]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        goRight();
+      } else if (e.key === "ArrowLeft") {
+        goLeft();
+      }
+    });
+  }, [goLeft, goRight]);
+
+  useInterval(() => {
+    if (play) {
+      if (!flip) {
+        toggleFlip();
+      } else {
+        goRight();
+      }
+    }
+  }, 2000);
+
+  function useInterval(callback, delay) {
+    const intervalRef = React.useRef(null);
+    const savedCallback = React.useRef(callback);
+    React.useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+    React.useEffect(() => {
+      const tick = () => savedCallback.current();
+      if (typeof delay === "number") {
+        intervalRef.current = window.setInterval(tick, delay);
+        return () => window.clearInterval(intervalRef.current);
+      }
+    }, [delay]);
+    return intervalRef;
+  }
+
+  // helper functions
+
+  function og_shuffle(arr) {
+    const array = arr.slice();
+    const newarr = [];
+
+    for (var i = arr.length + 1; i > 0; i--) {
+      let rand = randint(0, i);
+
+      let removed = array[rand];
+      array.splice(array[rand], 1);
+      console.log(array);
+
+      newarr.push(removed);
+    }
+
+    return newarr;
+  }
+
+  // jsx
+
   return (
     <>
       <div className="controls-container">
+        {/* container for flashcard - contains the actual card */}
         <div className="flashcards-container">
           <Flashcard
             flip={flip}
@@ -125,12 +132,15 @@ const FlashcardControl = ({ deck }) => {
             definition={definition}
           />
         </div>
+        {/* controls */}
         <div className="controls">
+          {/* leave */}
           <div className="left-controls">
             <button className="button-icon">
               <span className="pi pi-arrow-left"></span>
             </button>
           </div>
+          {/* movement control */}
           <div className="middle-controls">
             <button
               className="button-icon"
@@ -164,6 +174,7 @@ const FlashcardControl = ({ deck }) => {
               <span className="pi pi-angle-double-right"></span>
             </button>
           </div>
+          {/* play and shuffle */}
           <div className="right-controls">
             <button className="button-icon" onClick={playCards}>
               <span className={play ? "pi pi-pause" : "pi pi-play"}></span>
@@ -173,6 +184,7 @@ const FlashcardControl = ({ deck }) => {
             </button>
           </div>
         </div>
+        {/* flashcard index */}
         <div className="number">
           <p className="num">
             {index}/{deck.flashcards.length}

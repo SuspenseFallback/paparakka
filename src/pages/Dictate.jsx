@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addStudiedSets, getSet, logData } from "../firebase/firebase";
+import { getSet, logData } from "../firebase/firebase";
 import { useParams } from "react-router";
 import shuffle from "../helpers/shuffle.js";
 import "../css/Dictate.css";
@@ -25,24 +25,33 @@ const Dictate = ({ user }) => {
       set_loading(false);
       document.title = "Flashcards | " + data.title;
       logData("dictate - " + data.id);
-      addStudiedSets(data.id, user.id);
     });
   }, [id]);
 
   const speak = () => {
-    let utterance = new SpeechSynthesisUtterance(deck.flashcards[index].term);
-
-    if (speech && speech.speaking) {
-      console.log("speech");
-      if (speech && !speech.paused) {
-        set_is_playing(false);
-        return speech.pause();
+    if (speechSynthesis.speaking) {
+      if (speechSynthesis.paused) {
+        return speechSynthesis.resume();
       } else {
-        set_is_playing(true);
-        return speech.resume();
+        return speechSynthesis.pause();
       }
     }
-    utterance.rate = active_speed == 1 ? 0.8 : 0.5;
+
+    let utterance = new SpeechSynthesisUtterance(deck.flashcards[index].term);
+
+    utterance.addEventListener("pause", () => {
+      set_is_playing(false);
+    });
+
+    utterance.addEventListener("resume", () => {
+      set_is_playing(true);
+    });
+
+    utterance.addEventListener("end", () => {
+      set_is_playing(false);
+    });
+
+    utterance.rate = active_speed === 1 ? 0.8 : 0.5;
     const spe = speechSynthesis.speak(utterance);
     set_is_playing(true);
     set_speech(spe);
@@ -51,11 +60,11 @@ const Dictate = ({ user }) => {
   const check_answer = () => {
     const current_answer = deck.flashcards[index].definition;
     set_answered(true);
-    if (answer == "") {
+    if (answer === "") {
       set_difficulty("hard");
     } else if (answer.length < current_answer.length / 3) {
       set_difficulty("hard");
-    } else if (answer.toLowerCase() == current_answer.toLowerCase()) {
+    } else if (answer.toLowerCase() === current_answer.toLowerCase()) {
       set_difficulty(hint_displayed ? "medium" : "easy");
     } else if (
       current_answer.toLowerCase().includes(answer.toLowerCase()) &&
@@ -144,13 +153,13 @@ const Dictate = ({ user }) => {
                 </button>
                 <div className={"button-group" + (answered ? " hidden" : "")}>
                   <button
-                    className={"button " + (active_speed == 1 ? "active" : "")}
+                    className={"button " + (active_speed === 1 ? "active" : "")}
                     onClick={() => set_active_speed(1)}
                   >
                     Normal
                   </button>
                   <button
-                    className={"button " + (active_speed == 2 ? "active" : "")}
+                    className={"button " + (active_speed === 2 ? "active" : "")}
                     onClick={() => set_active_speed(2)}
                   >
                     Slowed
@@ -169,13 +178,13 @@ const Dictate = ({ user }) => {
                   {deck.flashcards[index].definition}
                 </p>
               </div>
-              {difficulty == "unknown" ? (
+              {difficulty === "unknown" ? (
                 <>
                   <p className="choose">How do you think you did?</p>
                   <div className="button-group">
                     <div
                       className={
-                        "button " + (difficulty == "easy" ? "active" : "")
+                        "button " + (difficulty === "easy" ? "active" : "")
                       }
                       onClick={() => set_difficulty("easy")}
                     >
@@ -183,7 +192,7 @@ const Dictate = ({ user }) => {
                     </div>
                     <div
                       className={
-                        "button " + (difficulty == "medium" ? "active" : "")
+                        "button " + (difficulty === "medium" ? "active" : "")
                       }
                       onClick={() => set_difficulty("medium")}
                     >
@@ -191,7 +200,7 @@ const Dictate = ({ user }) => {
                     </div>
                     <div
                       className={
-                        "button " + (difficulty == "hard" ? "active" : "")
+                        "button " + (difficulty === "hard" ? "active" : "")
                       }
                       onClick={() => set_difficulty("hard")}
                     >

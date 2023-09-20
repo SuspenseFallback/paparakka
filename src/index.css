@@ -1,15 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Lexend:wght@300;400;500;600;700;800&family=Spectral&display=swap");
-
-:root {
-  --app-background-color: #f6f6f6;
-  --app-primary-color: #ffffff;
-  --app-secondary-color: #000;
-  --app-grey: grey;
-  --app-shadow: rgba(0, 0, 0, 0.5);
-}
-
 *::selection {
-  background-color: #dfb4fe;
+  background-color: #ffbe78;
 }
 
 body {
@@ -17,7 +8,6 @@ body {
   font-family: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-color: var(--app-background-color);
   overflow-x: hidden;
 }
 
@@ -28,6 +18,10 @@ code {
 
 div.page {
   width: 100vw;
+  background-color: var(--app-background-color);
+  transition: all 0.25s;
+
+  scroll-behavior: smooth;
 }
 
 div.page-1 {

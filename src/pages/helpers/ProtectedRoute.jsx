@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../firebase/firebase";
 import { useNavigate } from "react-router";
+import "./ProtectedRoute.css";
 
 const ProtectedRoute = ({ children }) => {
   const [loading, set_loading] = useState(true);

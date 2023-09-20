@@ -25,7 +25,7 @@ const Footer = () => {
           <p className="link">Log in</p>
         </div>
         <div className="column extra">
-          <p className="link">made by indian tech support ptd ltd</p>
+          <p className="link">Made by Krithin Jay Pakshootra</p>
         </div>
       </div>
     </>

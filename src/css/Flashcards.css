@@ -23,6 +23,22 @@
   flex-direction: row;
 }
 
+.flashcard-page-1 .controls-container .controls .button-icon .pi {
+  color: var(--app-primary-text-color);
+}
+
+.flashcard-page-1 .controls-container .controls .button-icon {
+  background-color: var(--app-background-color);
+}
+
+.flashcard-page-1 .controls-container .controls .button-icon:hover {
+  background-color: var(--app-primary-color);
+}
+
+.flashcard-page-1 .controls-container .controls .button-icon:disabled {
+  background-color: var(--app-primary-hover-color);
+}
+
 .flashcard-page-1 .controls-container .number {
   display: flex;
   justify-content: center;

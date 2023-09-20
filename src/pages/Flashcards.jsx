@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/Flashcards.css";
 import FlashcardControl from "../components/Flashcards/FlashcardControl";
-import { addStudiedSets, getSet, logData } from "../firebase/firebase";
+import { getSet, logData } from "../firebase/firebase";
 import { useParams } from "react-router";
 
 const Flashcards = ({ user }) => {
@@ -16,7 +16,6 @@ const Flashcards = ({ user }) => {
       set_deck(data);
       document.title = "Flashcards | " + data.title;
       logData("flashcards - " + data.id);
-      addStudiedSets(data.id, user.id);
     });
   }, [id]);
 

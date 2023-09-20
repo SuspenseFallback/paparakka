@@ -34,6 +34,8 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./pages/helpers/ProtectedRoute";
 import MySets from "./pages/MySets";
 
+import "./theme.css";
+
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
 const router = createBrowserRouter([

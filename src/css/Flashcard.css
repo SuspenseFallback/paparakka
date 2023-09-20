@@ -27,6 +27,7 @@
   font-size: 24px;
   font-family: "Lexend";
   transition: all 0.25s;
+  color: var(--app-primary-text-color);
 }
 
 .flashcard.flip {

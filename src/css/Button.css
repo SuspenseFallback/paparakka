@@ -1,18 +1,18 @@
 .button {
   padding: 16px;
-  background-color: #f98f0d;
+  background-color: var(--app-theme-color);
   border: none;
   border-radius: 0;
-  color: var(--app-primary-color);
+  color: var(--app-primary-text-color);
   font-family: "Lexend";
   font-size: 14px;
   cursor: pointer;
   transition: 0.25s;
-  border: 2px solid #000;
+  border: 2px solid var(--app-primary-text-color);
 }
 
 .button:hover {
-  background-color: #eb880f;
+  background-color: var(--app-theme-hover-color);
 }
 
 .button-icon {
@@ -39,16 +39,17 @@
 }
 
 .button-block {
-  padding: 12px;
-  background-color: #f98f0d;
+  padding: 16px;
+  background-color: var(--app-theme-color);
   border: none;
   border-radius: 0;
-  color: var(--app-primary-color);
+  color: var(--app-primary-text-color);
   font-family: "Lexend";
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   transition: 0.25s;
   width: 90%;
+  border: 2px solid var(--app-primary-text-color);
 }
 
 .bottom {
@@ -57,7 +58,7 @@
 }
 
 .button-block:hover {
-  background-color: #eb880f;
+  background-color: var(--app-theme-hover-color);
 }
 
 .button-block:disabled,
@@ -74,7 +75,7 @@
 
 .button-glass {
   background-color: transparent;
-  color: #000;
+  color: var(--app-primary-text-color);
 }
 
 .button-glass:hover {
@@ -93,7 +94,7 @@
 
 .blur {
   filter: blur(5px);
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .button-group {
