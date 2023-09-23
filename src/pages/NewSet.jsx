@@ -44,6 +44,7 @@ const NewSet = () => {
       {
         term: "",
         definition: "",
+        index: cards.length,
       },
     ]);
   };

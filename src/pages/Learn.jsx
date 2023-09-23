@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { addStudiedSets, getSet, logData } from "../firebase/firebase";
+import {
+  addStudiedSets,
+  getSet,
+  logData,
+  updateStudiedSets,
+} from "../firebase/firebase";
 import { useNavigate, useParams } from "react-router";
 // import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
@@ -8,29 +13,28 @@ const Learn = ({ user }) => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const [index, set_index] = useState(0);
   const [set, set_set] = useState({});
+  const [index, set_index] = useState(0);
+  const [flashcards, set_flashcards] = useState([]);
+
   const [loading, set_loading] = useState(true);
+
   const [answered, set_answered] = useState(false);
   const [answer, set_answer] = useState("");
-  const [difficulty, set_difficulty] = useState("");
   const [correct, set_correct] = useState("");
-  const [history, set_history] = useState([]);
-  const [flashcards, set_flashcards] = useState([]);
 
   useEffect(() => {
     getSet(id).then((data) => {
-      set_set(data);
       document.title = "Flashcards | " + data.title;
       logData("dictate - " + data.id);
-      
 
-      addStudiedSets(user, data.id, () => {
+      addStudiedSets(user, data.id, (cards) => {
         set_loading(false);
-        set_flashcards(data.flashcards);
-      })
+        set_flashcards(cards);
+        set_set({ ...data, flashcards: cards });
+      });
     });
-  }, [id]);
+  }, [id, user]);
 
   const check_answer = () => {
     const current_answer = flashcards[index].definition;
@@ -49,26 +53,106 @@ const Learn = ({ user }) => {
     check_answer();
   };
 
-  const next_question = () => {
-    const new_history = [...history];
-    new_history.push({
-      index: flashcards[index].index,
-      term: flashcards[index].term,
-      definition: flashcards[index].definition,
-      proficiency: difficulty,
+  const sort_by_proficiency = (cards) => {
+    const unknown = [];
+    const easy = [];
+    const medium = [];
+    const hard = [];
+
+    cards.forEach((card) => {
+      // let is_7_days_before = false;
+      // let is_2_days_before = false;
+      // let is_1_days_before = false;
+
+      // const card_time = card.time ? new Date(card.time) : new Date();
+      // const seven_days_before = new Date() - 7 * 24 * 60 * 60;
+      // const two_days_before = new Date() - 2 * 24 * 60 * 60;
+      // const one_days_before = new Date() - 1 * 24 * 60 * 60;
+
+      // if (seven_days_before < card_time) {
+      //   is_7_days_before = true;
+      // } else if (two_days_before < card_time) {
+      //   is_2_days_before = true;
+      // } else if (one_days_before < card_time) {
+      //   is_1_days_before = true;
+      // }
+
+      if (!card.proficiency) {
+        unknown.push(card);
+      } else if (card.proficiency === "easy") {
+        easy.push(card);
+      } else if (card.proficiency === "medium") {
+        medium.push(card);
+      } else if (card.proficiency === "hard") {
+        hard.push(card);
+      }
     });
 
-    set_history(new_history);
+    const total = [...unknown, ...easy, ...medium, ...hard];
 
-    if (index === flashcards.length - 1) {
-      return navigate(`/preview/${set.id}`);
+    set_flashcards(total);
+  };
+
+  const get_new_proficiency = (card) => {
+    if (!card.proficiency) {
+      if (correct === "correct") {
+        return "medium";
+      } else {
+        return "hard";
+      }
     }
 
-    set_correct("unknown");
-    set_index((i) => i + 1);
-    set_answered(false);
-    set_difficulty("");
-    set_answer("");
+    if (correct === "wrong") {
+      if (card.proficiency === "hard") {
+        return "hard";
+      } else if (card.proficiency === "medium") {
+        return "hard";
+      } else if (card.proficiency === "easy") {
+        return "medium";
+      }
+    } else {
+      if (card.proficiency === "hard") {
+        return "medium";
+      } else if (card.proficiency === "medium") {
+        return "easy";
+      } else if (card.proficiency === "easy") {
+        return "easy";
+      }
+    }
+  };
+
+  const next_question = () => {
+    // set cards
+
+    let cards = [...set.flashcards];
+    const cards_index = flashcards[index].index;
+    const new_prof = get_new_proficiency(cards[cards_index]);
+
+    const new_card = {
+      ...cards[cards_index],
+      proficiency: new_prof,
+      time: new Date().toTimeString(),
+    };
+
+    cards = cards.filter((card) => card.index !== cards[cards_index].index);
+    cards.push(new_card);
+
+    console.log("cur card - ", cards[cards_index]);
+    console.log("cards - ", cards);
+
+    set_set({ ...set, flashcards: cards });
+    sort_by_proficiency(cards);
+
+    updateStudiedSets(user, set.id, cards, () => {
+      if (index === flashcards.length - 1) {
+        return navigate(`/preview/${set.id}`);
+      }
+
+      set_correct("unknown");
+      set_index((i) => i + 1);
+      set_answered(false);
+      set_answer("");
+    });
   };
 
   onkeydown = (e) => {

@@ -30,10 +30,6 @@
   height: 7%;
 }
 
-.results {
-  padding: 1vw;
-}
-
 .decks-page-1 .stats {
   display: flex;
   flex-direction: row;
@@ -44,7 +40,7 @@
   height: 50vh;
   background-color: var(--app-primary-color);
   border-radius: 0;
-  border: 1px solid var(--app-grey);
+  border: 1px solid var(--app-var(--app-grey));
   box-shadow: 2px 2px var(--app-shadow);
 }
 
@@ -85,9 +81,14 @@
 
 .results {
   display: flex;
-  flex-direction: column;
-  width: 90vw;
+  flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 1vh;
+
+  width: 90vw;
+  min-height: 60vh;
+  padding: 1vw;
 }
 
 .no-results {
@@ -97,6 +98,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.results .long-card {
+  flex-basis: 100%;
 }
 
 @media screen and (max-width: 958px) {

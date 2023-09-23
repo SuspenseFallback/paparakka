@@ -218,6 +218,8 @@ export const addHistory = (id) => {
   });
 };
 
+// STUDIED SETS
+
 export const addStudiedSets = (user, set_id, callback) => {
   getSet(set_id).then((set) => {
     const docRef = doc(db, "users", user.id);
@@ -228,6 +230,26 @@ export const addStudiedSets = (user, set_id, callback) => {
     studied_sets.splice(0, 0, {
       ...set,
     });
+
+    updateDoc(docRef, {
+      studied_sets: studied_sets,
+    }).then(callback(studied_sets[0].flashcards));
+  });
+};
+
+export const updateStudiedSets = (user, set_id, cards, callback) => {
+  getSet(set_id).then((set) => {
+    const docRef = doc(db, "users", user.id);
+    let studied_sets = user.studied_sets ? [...user.studied_sets] : [];
+    const new_set = { ...set, flashcards: cards };
+
+    studied_sets = studied_sets.filter((set) => set.id !== set_id);
+
+    studied_sets.splice(0, 0, {
+      ...new_set,
+    });
+
+    console.log("studied sets -", studied_sets);
 
     updateDoc(docRef, {
       studied_sets: studied_sets,

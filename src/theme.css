@@ -32,6 +32,6 @@
   --app-primary-text-color: #ffffff;
   --app-secondary-text-color: #000;
 
-  --app-grey: grey;
+  --app-grey: lightgrey;
   --app-shadow: rgba(0, 0, 0, 0.5);
 }

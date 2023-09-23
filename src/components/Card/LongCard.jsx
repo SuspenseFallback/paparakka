@@ -29,14 +29,7 @@ const LongCard = ({ title, desc, tags, owner, id }) => {
           </p>
         </div>
       </div>
-      <div className="right">
-        <div className="row">
-          <button className="button">Flashcards</button>
-          <button className="button">Learn</button>
-          <button className="button">Dictation</button>
-          <button className="button">Test</button>
-        </div>
-      </div>
+      <div className="right"></div>
     </div>
   );
 };

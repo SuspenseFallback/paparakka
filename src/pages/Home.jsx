@@ -97,7 +97,7 @@ const Home = () => {
           ".home-page-1 .animation .anim-controls .anim-button:nth-child(3)"
         ),
         {
-          backgroundColor: "grey",
+          backgroundColor: "var(--app-grey)",
           duration: 0.2,
         },
         ">+=0.5"
@@ -128,7 +128,7 @@ const Home = () => {
           ".home-page-1 .animation .anim-controls .anim-button:nth-child(3)"
         ),
         {
-          backgroundColor: "grey",
+          backgroundColor: "var(--app-grey)",
           duration: 0.2,
         },
         ">+=0.5"
@@ -159,7 +159,7 @@ const Home = () => {
           ".home-page-1 .animation .anim-controls .anim-button:nth-child(2)"
         ),
         {
-          backgroundColor: "grey",
+          backgroundColor: "var(--app-grey)",
           duration: 0.2,
         },
         ">+=1"
@@ -212,7 +212,7 @@ const Home = () => {
           ".home-page-1 .animation .anim-controls .anim-button:nth-child(4)"
         ),
         {
-          backgroundColor: "grey",
+          backgroundColor: "var(--app-grey)",
           duration: 0.2,
         },
         ">+=1"
@@ -265,7 +265,7 @@ const Home = () => {
           ".home-page-1 .animation .anim-controls .anim-button:nth-child(1)"
         ),
         {
-          backgroundColor: "grey",
+          backgroundColor: "var(--app-grey)",
           duration: 0.2,
         },
         ">+=1"
@@ -372,7 +372,7 @@ const Home = () => {
           ".home-page-1 .animation .anim-controls .anim-button:nth-child(5)"
         ),
         {
-          backgroundColor: "grey",
+          backgroundColor: "var(--app-grey)",
           duration: 0.2,
         },
         ">+=1"

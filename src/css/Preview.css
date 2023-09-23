@@ -30,7 +30,7 @@
 
 .preview-page-1 .header .left-side .description {
   margin-top: 4px;
-  color: grey;
+  color: var(--app-grey);
 }
 
 .preview-page-1 .header .left-side,
@@ -54,7 +54,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: grey;
+  color: var(--app-grey);
 }
 
 .preview-page-1 .header .created-by span {

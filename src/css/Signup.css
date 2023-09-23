@@ -7,7 +7,7 @@
 .signup-page-1 .form {
   width: 30vw;
   height: 65vh;
-  border: 1px solid var(--app-grey);
+  border: 1px solid var(--app-var(--app-grey));
   box-shadow: 2px 2px 5px var(--app-shadow);
   border-radius: 0;
   background-color: var(--app-primary-color);
@@ -80,7 +80,7 @@
   position: absolute;
   right: 10px;
   top: 30%;
-  color: var(--app-grey);
+  color: var(--app-var(--app-grey));
   cursor: pointer;
 }
 

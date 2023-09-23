@@ -339,7 +339,7 @@
 .home-page-3 .header {
   font-size: 3rem;
   margin-top: 10vh;
-  text-shadow: 2px 2px 2px grey;
+  text-shadow: 2px 2px 2px var(--app-grey);
   color: var(--app-primary-text-color);
 }
 
@@ -379,7 +379,7 @@
   width: 100%;
   text-align: center;
   font-size: 14px;
-  color: grey;
+  color: var(--app-grey);
 }
 
 .home-page-3 .container .type-card .button {

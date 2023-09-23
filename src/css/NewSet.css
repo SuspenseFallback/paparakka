@@ -64,7 +64,7 @@
 
 .new-set-page-1 .cards {
   width: 90%;
-  border-top: 1px solid var(--app-grey);
+  border-top: 1px solid var(--app-var(--app-grey));
   margin-top: 5vh;
   margin-bottom: 5vh;
   display: flex;
@@ -121,12 +121,13 @@
   padding: 6px;
   cursor: pointer;
   transition: all 0.25s;
+  color: var(--app-primary-text-color);
 }
 
 .new-set-page-1 .card-row .options .icon.disabled {
   cursor: auto;
   background-color: #ededed;
-  color: grey;
+  color: var(--app-grey);
 }
 
 .new-set-page-1 .card-row .options .icon.disabled:hover {

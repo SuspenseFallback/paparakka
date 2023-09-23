@@ -34,7 +34,7 @@
 }
 
 .button-icon .pi {
-  color: var(--app-grey);
+  color: var(--app-var(--app-grey));
   font-size: 20px;
 }
 

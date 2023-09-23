@@ -16,7 +16,7 @@
 }
 
 .not-found-page-1 .text-container .subtitle {
-  color: var(--app-grey);
+  color: var(--app-var(--app-grey));
   font-family: "Lexend";
   text-align: center;
   margin: 1vh;
