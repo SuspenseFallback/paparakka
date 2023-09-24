@@ -192,7 +192,7 @@ export const addHistory = (id) => {
       getDoc(document).then((res) => {
         const data = res.data();
 
-        if (data.history) {
+        if (data.history.length > 0) {
           let history = data.history.filter((set) => set.id !== id);
 
           getSet(id).then((data) => {

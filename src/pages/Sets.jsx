@@ -51,33 +51,39 @@ const Sets = () => {
             </div>
             <div className="recent-decks">
               <h2 className="subheader">Recent Sets</h2>
-              <div className="cards">
-                {user.history.length > 3
-                  ? user.history.slice(0, 3).map((card) => {
-                      return (
-                        <Card
-                          key={card.id}
-                          title={card.title}
-                          desc={card.description}
-                          owner={card.ownerName}
-                          tags={card.tags}
-                          id={card.id}
-                        />
-                      );
-                    })
-                  : user.history.map((card) => {
-                      return (
-                        <Card
-                          key={card.id}
-                          title={card.title}
-                          desc={card.description}
-                          owner={card.ownerName}
-                          tags={card.tags}
-                          id={card.id}
-                        />
-                      );
-                    })}
-              </div>
+              {user.history.length > 0 ? (
+                <div className="cards">
+                  {user.history.length > 3
+                    ? user.history.slice(0, 3).map((card) => {
+                        return (
+                          <Card
+                            key={card.id}
+                            title={card.title}
+                            desc={card.description}
+                            owner={card.ownerName}
+                            tags={card.tags}
+                            id={card.id}
+                          />
+                        );
+                      })
+                    : user.history.map((card) => {
+                        return (
+                          <Card
+                            key={card.id}
+                            title={card.title}
+                            desc={card.description}
+                            owner={card.ownerName}
+                            tags={card.tags}
+                            id={card.id}
+                          />
+                        );
+                      })}
+                </div>
+              ) : (
+                <div className="center">
+                  <p className="text">You haven't accessed any sets yet.</p>
+                </div>
+              )}
             </div>
           </>
         )}

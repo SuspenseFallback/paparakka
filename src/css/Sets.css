@@ -40,7 +40,7 @@
   height: 50vh;
   background-color: var(--app-primary-color);
   border-radius: 0;
-  border: 1px solid var(--app-var(--app-grey));
+  border: 1px solid var(--app-grey);
   box-shadow: 2px 2px var(--app-shadow);
 }
 
@@ -48,6 +48,17 @@
   width: 95%;
   height: 34vh;
   margin-top: 2vh;
+}
+
+.decks-page-1 .recent-decks .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.decks-page-1 .recent-decks .center .text {
+  color: var(--app-primary-text-color);
 }
 
 .decks-page-1 .recent-decks .subheader {

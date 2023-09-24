@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../css/Signup.css";
 import { logData, signInWithEmail } from "../firebase/firebase";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [error, set_error] = useState(null);
   const [email, set_email] = useState("");
   const [password, set_password] = useState("");
@@ -21,6 +24,7 @@ const Login = () => {
       if (error) throw error;
       console.log(data);
       logData("signup_complete");
+      navigate("/dashboard");
     });
   };
 
