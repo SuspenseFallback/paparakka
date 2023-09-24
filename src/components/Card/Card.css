@@ -139,32 +139,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
+  padding-right: 5vw;
 }
 
-.long-card .right .row {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+.long-card .right .length {
+  color: var(--app-primary-text-color);
 }
 
-.long-card .right .row .button {
-  padding: 14px;
-}
-
-.long-card .right .row .button:nth-child(1) {
-  border-radius: 16px 0 0 16px;
-}
-
-.long-card .right .row .button:nth-child(2),
-.long-card .right .row .button:nth-child(3) {
-  border-radius: 0;
-}
-
-.long-card .right .row .button:nth-child(4) {
-  border-radius: 0 16px 16px 0;
-}
-
-.long-card .right .row .button:hover {
-  box-shadow: none;
+.long-card .right .length .icon {
+  padding-right: 4px;
 }

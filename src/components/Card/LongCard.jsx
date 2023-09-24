@@ -2,7 +2,7 @@ import React from "react";
 import "./Card.css";
 import { useNavigate } from "react-router";
 
-const LongCard = ({ title, desc, tags, owner, id }) => {
+const LongCard = ({ title, desc, tags, owner, id, length }) => {
   const navigate = useNavigate();
 
   const goPreview = () => {
@@ -29,7 +29,12 @@ const LongCard = ({ title, desc, tags, owner, id }) => {
           </p>
         </div>
       </div>
-      <div className="right"></div>
+      <div className="right">
+        <p className="length">
+          {" "}
+          <span className="icon pi pi-clone"></span> {length} flashcards
+        </p>
+      </div>
     </div>
   );
 };

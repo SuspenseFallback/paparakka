@@ -91,6 +91,7 @@ const Set = () => {
                     cardNumber={index + 1}
                     term={card.term}
                     definition={card.definition}
+                    key={index + 1234567}
                   />
                 );
               })}

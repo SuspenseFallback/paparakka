@@ -223,17 +223,26 @@ export const addHistory = (id) => {
 export const addStudiedSets = (user, set_id, callback) => {
   getSet(set_id).then((set) => {
     const docRef = doc(db, "users", user.id);
-    let studied_sets = user.studied_sets ? [...user.studied_sets] : [];
 
-    studied_sets = studied_sets.filter((set) => set.id !== set_id);
+    let studied_sets = user.studied_sets ? [...user.studied_sets] : [];
+    let cards = [...set.flashcards];
+
+    studied_sets.forEach((mod_set) => {
+      if (mod_set.id === set_id) {
+        cards = [...mod_set.flashcards];
+      }
+    });
+
+    studied_sets = studied_sets.filter((fil_set) => fil_set.id !== set_id);
 
     studied_sets.splice(0, 0, {
       ...set,
+      flashcards: cards,
     });
 
     updateDoc(docRef, {
       studied_sets: studied_sets,
-    }).then(callback(studied_sets[0].flashcards));
+    }).then(callback(cards));
   });
 };
 

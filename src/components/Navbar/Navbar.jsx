@@ -20,7 +20,7 @@ const Navbar = () => {
   const [dark_theme, set_dark_theme] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem("dark_theme") !== null) {
+    if (localStorage.getItem("dark_theme")) {
       set_dark_theme(localStorage.getItem("dark_theme"));
     } else {
       if (
