@@ -3,12 +3,13 @@
   height: 25vh;
 
   padding-left: 20px;
+  padding-top: 16px;
 
   box-shadow: none;
 
   background-color: var(--app-primary-color);
   border: 2px solid var(--app-secondary-color);
-  border-radius: 0;
+  border-radius: 24px;
 
   display: flex;
   flex-direction: column;
@@ -18,8 +19,91 @@
 }
 
 .card:hover {
+  border-radius: 36px;
+}
+
+.card .more {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 16px;
+  padding: 8px;
+  border-radius: 24px;
+
+  color: var(--app-primary-text-color);
+
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.card .more:hover {
   background-color: var(--app-primary-hover-color);
-  box-shadow: 4px 4px 4px var(--app-shadow);
+}
+
+.card .menu.hidden {
+  display: none;
+}
+
+.card .menu {
+  width: 37%;
+  border: 2px solid var(--app-secondary-color);
+  z-index: 3;
+
+  position: absolute;
+  right: 3%;
+  top: 20%;
+  border-radius: 16px;
+
+  margin: 0;
+  padding: 0;
+
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card .menu .menu-item:nth-child(1) {
+  border-radius: 16px 16px 0 0;
+}
+
+.card .menu .menu-item:last-child {
+  border-radius: 0 0 16px 16px;
+}
+
+.card .menu .menu-item {
+  background-color: var(--app-primary-color);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px;
+
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.card .menu .menu-item:hover {
+  background-color: #f3f3f3;
+}
+
+.card .menu .menu-item.red {
+  color: red;
+}
+
+.card .menu .menu-item.red .text {
+  color: red;
+}
+
+.card .menu .menu-item:not(:first-child) {
+  border-top: 2px solid var(--app-secondary-color);
+}
+
+.card .menu .menu-item .text {
+  color: var(--app-primary-text-color);
+  font-size: 14px;
+
+  margin: 0;
 }
 
 .card p {
@@ -31,6 +115,7 @@
   font-size: 1.2rem;
   margin-bottom: 0;
   cursor: pointer;
+  display: inline;
 }
 
 .card .title:hover {
@@ -47,6 +132,7 @@
   margin: 4px 4px 0 0;
   cursor: pointer;
   font-weight: normal;
+  border-radius: 12px;
 }
 
 .card .bottom {
@@ -79,7 +165,7 @@
 
   background-color: var(--app-primary-color);
   border: 1px solid var(--app-grey);
-  border-radius: 0;
+  border-radius: 24px;
   box-shadow: none;
 
   padding-left: 2vw;

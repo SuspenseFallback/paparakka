@@ -24,9 +24,9 @@
 .home-page-1 .text-container .button {
   padding: 16px;
   background-color: #f98f0d;
-  border: none;
-  border-radius: 0;
-  color: var(--app-primary-color);
+  border: 2px solid var(--app-secondary-color);
+  border-radius: 24px;
+  color: var(--app-primary-text-color);
   font-family: "Lexend";
   font-size: 16px;
   transition: all 0.25s;
@@ -34,53 +34,6 @@
 
 .home-page-1 .text-container .button:hover {
   background-color: #e18310;
-}
-
-.home-page-1 .animation {
-  width: 30%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.home-page-1 .animation .anim-card {
-  width: 30vw;
-  height: 30vh;
-  background-color: #fff;
-  border: 2px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-page-1 .animation .anim-card .text-1 {
-  height: 10px;
-  width: 5%;
-  background-color: #000000;
-}
-
-.home-page-1 .animation .anim-card .text-2 {
-  height: 10px;
-  width: 25%;
-  margin-left: 2%;
-  background-color: #000000;
-}
-
-.home-page-1 .animation .anim-controls {
-  width: 30vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2vh;
-}
-
-.home-page-1 .animation .anim-controls .anim-button {
-  padding: 8px;
-}
-
-.home-page-1 .animation .anim-controls .anim-button .pi {
-  color: var(--app-primary-text-color);
 }
 
 @keyframes come-in {
@@ -203,6 +156,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-radius: 48px;
 }
 
 .home-page-2 .right .box .blue {
@@ -271,6 +226,8 @@
   border: 2px solid #000;
   top: 25%;
   left: 30%;
+
+  border-radius: 24px;
 }
 
 .home-page-2 .right .box .red .animation .cards .anim-card-2 {
@@ -281,7 +238,9 @@
   top: 40%;
   right: 30%;
   background-color: #e76c6c;
+  border-radius: 24px;
 }
+
 .home-page-2 .right .box .pink {
   background-color: #d560b2;
 }
@@ -318,6 +277,7 @@
   position: absolute;
   left: 10%;
   bottom: 30%;
+  border-radius: 24px;
 }
 
 .home-page-2 .right .box .pink .animation .anim-card-2 {
@@ -328,6 +288,7 @@
   right: 10%;
   bottom: 20%;
   background-color: #d560b2;
+  border-radius: 24px;
 }
 
 /* page 3 */
@@ -341,6 +302,7 @@
   margin-top: 10vh;
   text-shadow: 2px 2px 2px var(--app-grey);
   color: var(--app-primary-text-color);
+  text-align: center;
 }
 
 .home-page-3 .container {
@@ -364,6 +326,7 @@
 .home-page-3 .container .type-card .img {
   width: 100%;
   height: auto;
+  border-radius: 6px;
 }
 
 .home-page-3 .container .type-card .title {

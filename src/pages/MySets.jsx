@@ -34,12 +34,14 @@ const MySets = ({ user }) => {
               {my_decks.map((deck, index) => {
                 return (
                   <Card
+                    owner_id={deck.owner}
                     key={index + 9000}
                     title={deck.title}
                     desc={deck.description}
                     tags={deck.tags}
                     owner={deck.ownerName}
                     id={deck.id}
+                    user_id={user.id}
                   />
                 );
               })}

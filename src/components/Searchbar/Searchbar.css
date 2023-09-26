@@ -12,7 +12,7 @@
   width: 99%;
   padding: 15px;
   border: 2px solid var(--app-secondary-color);
-  border-radius: 0;
+  border-radius: 24px;
   font-family: "Lexend";
   font-size: 14px;
   color: var(--app-primary-text-color);

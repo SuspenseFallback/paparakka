@@ -1,8 +1,23 @@
-.footer {
-  background-color: #000;
-  border-top: 1px solid var(--app-secondary-color);
+.footer-container {
+  position: relative;
+
   width: 100vw;
   height: 30vh;
+
+  background-color: #000;
+  border-radius: 2000px 2000px 0 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 20;
+}
+
+.footer {
+  border-radius: 2000px 2000px 0 0;
+  width: 80vw;
+  height: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

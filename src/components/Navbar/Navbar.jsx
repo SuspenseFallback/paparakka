@@ -20,8 +20,10 @@ const Navbar = () => {
   const [dark_theme, set_dark_theme] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem("dark_theme")) {
-      set_dark_theme(localStorage.getItem("dark_theme"));
+    const dark = localStorage.getItem("dark_theme");
+
+    if (dark !== undefined) {
+      set_dark_theme(dark == "dark" ? true : false);
     } else {
       if (
         window.matchMedia &&
@@ -66,13 +68,6 @@ const Navbar = () => {
     document.addEventListener("resize", () => {
       if (window.innerWidth > 685) {
         set_responsive_menu(false);
-      }
-    });
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 70) {
-        set_is_active(true);
-      } else {
-        set_is_active(false);
       }
     });
   }, []);

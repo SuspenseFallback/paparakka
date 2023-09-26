@@ -39,20 +39,24 @@ const db = getFirestore(app);
 // AUTHENTICATION
 
 export const signUpWithEmail = (username, email, password, callback) => {
-  createUserWithEmailAndPassword(auth, email, password).then((data) => {
-    const user = doc(db, "users", data.user.uid);
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((data) => {
+      const user = doc(db, "users", data.user.uid);
 
-    console.log(data);
+      console.log(data);
 
-    setDoc(user, {
-      username: username,
-      email: email,
-      history: {},
-      id: data.user.uid,
-    }).then(() => {
-      callback();
+      setDoc(user, {
+        username: username,
+        email: email,
+        history: {},
+        id: data.user.uid,
+      }).then((db_data) => {
+        callback(data, false);
+      });
+    })
+    .catch((err) => {
+      callback({}, err);
     });
-  });
 };
 
 export const signInWithEmail = (email, password, callback) => {
@@ -106,6 +110,29 @@ export const addSet = (data, callback) => {
   })
     .then((data) => {
       callback(data);
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const updateSet = async (data, set_id, user) => {
+  const docRef = doc(db, "sets", set_id);
+
+  updateDoc(docRef, {
+    title: data.title,
+    description: data.description,
+    tags: data.tags,
+    flashcards: data.flashcards,
+    owner: data.owner,
+    ownerName: data.ownerName,
+    id: set_id,
+    time: new Date().toTimeString(),
+  })
+    .then((new_data) => {
+      updateStudiedSets(user, set_id, data.flashcards, () => {
+        return new_data;
+      });
     })
     .catch((err) => {
       throw err;

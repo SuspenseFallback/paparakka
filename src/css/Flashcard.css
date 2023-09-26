@@ -1,9 +1,9 @@
 .flashcard {
   width: 90vw;
   height: 70vh;
-  border-radius: 0;
+  border-radius: 24px;
   background-color: var(--app-primary-color);
-  box-shadow: 2px 2px 5px var(--app-shadow);
+  border: 2px solid var(--app-secondary-color);
 
   transition: all 1s ease-in-out;
   transition-duration: 0.25s;
@@ -34,18 +34,18 @@
   transform: rotateX(180deg);
   box-shadow: 2px 2px 5px var(--app-shadow);
   transition-duration: 0.25s;
-  border-radius: 0;
+  border-radius: 24px;
 }
 
 .flashcard .flashcard-front {
   transform: rotateX(0deg);
-  border-radius: 0;
+  border-radius: 24px;
 }
 
 .flashcard .flashcard-back {
   transform: rotateX(180deg);
   background-color: var(--app-primary-color);
-  border-radius: 0;
+  border-radius: 24px;
 }
 
 .flashcard.left-placeholder {

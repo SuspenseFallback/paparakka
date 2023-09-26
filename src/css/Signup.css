@@ -1,21 +1,29 @@
 .signup-page-1 {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  max-height: 92vh;
+  overflow: visible;
 }
 
 .signup-page-1 .form {
-  width: 30vw;
-  height: 65vh;
-  border: 1px solid var(--app-var(--app-grey));
-  box-shadow: 2px 2px 5px var(--app-shadow);
-  border-radius: 0;
-  background-color: var(--app-primary-color);
+  width: 50vw;
+  height: 122vh;
+
+  padding: 1vw 1vw 28vh 1vw;
+
+  background-color: var(--app-background-color);
+  border-top: 2px solid var(--app-primary-text-color);
+  border-right: 2px solid var(--app-primary-text-color);
+  border-radius: px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
-  animation: come-in 0.5s;
+
+  animation: come-in 1s;
 }
 
 .signup-page-1 .form .title {
@@ -38,7 +46,7 @@
 .signup-page-1 .form .input-container .input {
   width: 100%;
   padding: 12px;
-  border-radius: 0;
+  border-radius: 18px;
   border: 1px solid var(--app-secondary-color);
   background-color: var(--app-primary-color);
   font-family: "Lexend";
@@ -53,7 +61,7 @@
   text-align: left;
   width: 100%;
   margin: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   font-size: 14px;
   color: var(--app-secondary-color);
   font-family: "Lexend";
@@ -94,4 +102,235 @@
     opacity: 1;
     margin-top: 0;
   }
+}
+
+.signup-page-1 .image {
+  width: 50vw;
+  height: 122vh;
+
+  border-top: 2px solid var(--app-primary-text-color);
+
+  display: flex;
+  flex-direction: column;
+  background-color: #ffba6c;
+
+  animation: come-in 1s;
+}
+
+.signup-page-1 .image.log-in {
+  background-color: #9086ff;
+}
+
+.signup-page-1 .image.log-in .img-container {
+  background-color: #6658ff;
+}
+
+.signup-page-1 .image.log-in .header {
+  color: #fff;
+}
+
+.signup-page-1 .image .header-container {
+  height: 50%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.signup-page-1 .image .header-container .header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.signup-page-1 .image .img-container {
+  background-color: #ff9a3b;
+  height: 50%;
+  width: 100%;
+
+  border-radius: 50% 50% 0 0;
+
+  position: relative;
+}
+
+.signup-page-1 .image .img-container .anim-container {
+  position: absolute;
+  top: -50%;
+  left: -12%;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-height: 92vh;
+  overflow: visible;
+}
+
+.login-page-1 .form {
+  width: 50vw;
+  height: 122vh;
+
+  padding: 1vw 1vw 28vh 1vw;
+
+  background-color: var(--app-background-color);
+  border-top: 2px solid var(--app-primary-text-color);
+  border-right: 2px solid var(--app-primary-text-color);
+  border-radius: px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  animation: come-in 1s;
+}
+
+.login-page-1 .form .title {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--app-secondary-color);
+  font-family: "Lexend";
+}
+
+.login-page-1 .form .input-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.login-page-1 .form .input-container .input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid var(--app-secondary-color);
+  background-color: var(--app-primary-color);
+  font-family: "Lexend";
+  color: var(--app-secondary-color);
+}
+
+.login-page-1 .form .input-container .input:focus {
+  outline: 1px solid var(--app-secondary-color);
+}
+
+.login-page-1 .form .input-container .label {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 6px;
+  font-size: 14px;
+  color: var(--app-secondary-color);
+  font-family: "Lexend";
+}
+
+.login-page-1 .form .error {
+  color: red;
+  font-size: 14px;
+  width: 90%;
+  text-align: left;
+  font-family: "Lexend";
+}
+
+.login-page-1 .form .password-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-page-1 .form .password-input .icon {
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  color: var(--app-var(--app-grey));
+  cursor: pointer;
+}
+
+@keyframes come-in {
+  0% {
+    opacity: 0;
+    margin-top: -5vh;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+.login-page-1 .image {
+  width: 50vw;
+  height: 122vh;
+
+  border-top: 2px solid var(--app-primary-text-color);
+
+  display: flex;
+  flex-direction: column;
+  background-color: #ffba6c;
+
+  animation: come-in 1s;
+}
+
+.login-page-1 .image.log-in {
+  background-color: #9086ff;
+}
+
+.login-page-1 .image.log-in .img-container {
+  background-color: #6658ff;
+}
+
+.login-page-1 .image.log-in .header {
+  color: #fff;
+}
+
+.login-page-1 .image .header-container {
+  height: 50%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.login-page-1 .image .header-container .header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.login-page-1 .image .img-container {
+  background-color: #ff9a3b;
+  height: 50%;
+  width: 100%;
+
+  border-radius: 50% 50% 0 0;
+
+  position: relative;
+}
+
+.login-page-1 .image .img-container .anim-container {
+  position: absolute;
+  top: -50%;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

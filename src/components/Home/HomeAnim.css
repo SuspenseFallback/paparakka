@@ -1,0 +1,145 @@
+.home-page-1 .animation {
+  width: 30%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page-1 .animation .anim-card {
+  width: 30vw;
+  height: 30vh;
+  background-color: #fff;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+}
+
+.home-page-1 .animation .anim-card .text-1 {
+  height: 10px;
+  width: 5%;
+  background-color: #000000;
+  border-radius: 24px;
+}
+
+.home-page-1 .animation .anim-card .text-2 {
+  height: 10px;
+  width: 25%;
+  margin-left: 2%;
+  background-color: #000000;
+  border-radius: 24px;
+}
+
+.home-page-1 .animation .anim-controls {
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.home-page-1 .animation .anim-controls .anim-button {
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.home-page-1 .animation .anim-controls .anim-button .pi {
+  color: var(--app-primary-text-color);
+}
+
+.signup-page-1 .animation {
+  width: 30%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-page-1 .animation .anim-card {
+  width: 30vw;
+  height: 30vh;
+  background-color: #fff;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+}
+
+.signup-page-1 .animation .anim-card .text-1 {
+  height: 10px;
+  width: 5%;
+  background-color: #000000;
+  border-radius: 24px;
+}
+
+.signup-page-1 .animation .anim-card .text-2 {
+  height: 10px;
+  width: 25%;
+  margin-left: 2%;
+  background-color: #000000;
+  border-radius: 24px;
+}
+
+.signup-page-1 .animation .anim-controls {
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.signup-page-1 .animation .anim-controls .anim-button {
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.signup-page-1 .animation .anim-controls .anim-button .pi {
+  color: var(--app-primary-text-color);
+}
+
+.login-page-1 .animation .anim-card {
+  width: 30vw;
+  height: 30vh;
+  background-color: #fff;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+}
+
+.login-page-1 .animation .anim-card .text-1 {
+  height: 10px;
+  width: 5%;
+  background-color: #000000;
+  border-radius: 24px;
+}
+
+.login-page-1 .animation .anim-card .text-2 {
+  height: 10px;
+  width: 25%;
+  margin-left: 2%;
+  background-color: #000000;
+  border-radius: 24px;
+}
+
+.login-page-1 .animation .anim-controls {
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.login-page-1 .animation .anim-controls .anim-button {
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.login-page-1 .animation .anim-controls .anim-button .pi {
+  color: var(--app-primary-text-color);
+}

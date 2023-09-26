@@ -11,7 +11,7 @@ const Flashcard = ({
 }) => {
   return (
     <div
-      className={"flashcard" + (flip ? " flip" : "")}
+      className={"flashcard " + (flip ? "flip" : "")}
       onClick={active ? () => setFlip(!flip) : null}
       ref={flashcard}
     >

@@ -3,6 +3,7 @@ import "../css/Sets.css";
 import Searchbar from "../components/Searchbar/Searchbar";
 import Card from "../components/Card/Card";
 import { getUser, logData } from "../firebase/firebase";
+import { isAuthError } from "@supabase/supabase-js";
 
 const Sets = () => {
   const [search, set_search] = useState("");
@@ -51,7 +52,7 @@ const Sets = () => {
             </div>
             <div className="recent-decks">
               <h2 className="subheader">Recent Sets</h2>
-              {user.history.length > 0 ? (
+              {user && user.history.length > 0 ? (
                 <div className="cards">
                   {user.history.length > 3
                     ? user.history.slice(0, 3).map((card) => {
@@ -62,7 +63,9 @@ const Sets = () => {
                             desc={card.description}
                             owner={card.ownerName}
                             tags={card.tags}
+                            owner_id={card.owner}
                             id={card.id}
+                            user_id={user.id}
                           />
                         );
                       })
@@ -73,15 +76,21 @@ const Sets = () => {
                             title={card.title}
                             desc={card.description}
                             owner={card.ownerName}
+                            owner_id={card.owner}
                             tags={card.tags}
                             id={card.id}
+                            user_id={user.id}
                           />
                         );
                       })}
                 </div>
               ) : (
                 <div className="center">
-                  <p className="text">You haven't accessed any sets yet.</p>
+                  <p className="text">
+                    {user
+                      ? "You haven't accessed any sets yet."
+                      : "You are not signed in."}
+                  </p>
                 </div>
               )}
             </div>

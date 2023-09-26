@@ -39,7 +39,7 @@
   width: 95%;
   height: 50vh;
   background-color: var(--app-primary-color);
-  border-radius: 0;
+  border-radius: 24px;
   border: 1px solid var(--app-grey);
   box-shadow: 2px 2px var(--app-shadow);
 }

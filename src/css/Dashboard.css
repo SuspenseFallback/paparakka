@@ -17,11 +17,14 @@
 /* header */
 
 .dashboard-page-1 .header {
-  background-color: var(--app-primary-color);
   width: 100vw;
   height: 25vh;
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
+
+  background-color: var(--app-light-orange);
+  border-bottom: 2px solid var(--app-secondary-color);
+  border-right: 2px solid var(--app-secondary-color);
+  border-left: 2px solid var(--app-secondary-color);
+  border-radius: 0 0 100px 100px;
 
   display: flex;
   flex-direction: column;
@@ -85,7 +88,7 @@
   color: var(--app-primary-text-color);
 }
 
-.dashboard-page-1 .my-decks .title {
+.dashboard-page-1 .my-decks > .title {
   font-weight: bold;
   font-size: 1.5rem;
   color: var(--app-primary-text-color);

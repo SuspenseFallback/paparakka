@@ -35,6 +35,7 @@ import ProtectedRoute from "./pages/helpers/ProtectedRoute";
 import MySets from "./pages/MySets";
 
 import "./theme.css";
+import EditSet from "./pages/EditSet";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
 
@@ -101,6 +102,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <NewSet />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/edit-set/:id",
+        element: (
+          <ProtectedRoute>
+            <EditSet />
           </ProtectedRoute>
         ),
       },

@@ -1,11 +1,22 @@
-.new-set-page-1 {
+.edit-set-page-1 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2vw;
+  padding: 1vw;
 }
 
-.new-set-page-1 .header {
+.edit-set-page-1.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-set-page-1.loading .icon {
+  font-size: 3rem;
+  color: var(--app-theme-color);
+}
+
+.edit-set-page-1 .header {
   text-align: center;
   font-family: "Lexend";
   font-size: 2.5rem;
@@ -13,7 +24,7 @@
   color: var(--app-primary-text-color);
 }
 
-.new-set-page-1 .row {
+.edit-set-page-1 .row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -21,7 +32,7 @@
   width: 90%;
 }
 
-.new-set-page-1 .input-container {
+.edit-set-page-1 .input-container {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -30,7 +41,7 @@
   margin-top: 5%;
 }
 
-.new-set-page-1 .input-container .input {
+.edit-set-page-1 .input-container .input {
   width: 100%;
   padding: 12px;
   border-top: none;
@@ -44,14 +55,14 @@
   background-color: transparent;
 }
 
-.new-set-page-1 .input-container .input:focus {
+.edit-set-page-1 .input-container .input:focus {
   border-bottom: 3px solid var(--app-secondary-color);
   outline: none;
   font-size: 16px;
   padding: 8px;
 }
 
-.new-set-page-1 .input-container .label {
+.edit-set-page-1 .input-container .label {
   text-align: left;
   width: 100%;
   margin: 0;
@@ -62,7 +73,7 @@
   font-weight: bold;
 }
 
-.new-set-page-1 .cards {
+.edit-set-page-1 .cards {
   width: 90%;
   border-top: 1px solid var(--app-var(--app-grey));
   margin-top: 5vh;
@@ -72,7 +83,7 @@
   align-items: center;
 }
 
-.new-set-page-1 .cards .card-row {
+.edit-set-page-1 .cards .card-row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -86,13 +97,13 @@
   border: 2px solid var(--app-secondary-color);
 }
 
-.new-set-page-1 .cards .card-row .label {
+.edit-set-page-1 .cards .card-row .label {
   font-weight: normal;
   font-size: 14px;
   color: var(--app-primary-text-color);
 }
 
-.new-set-page-1 .card-row .input-container {
+.edit-set-page-1 .card-row .input-container {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -101,14 +112,14 @@
   margin-top: 0;
 }
 
-.new-set-page-1 .card-row .number {
+.edit-set-page-1 .card-row .number {
   font-weight: bold;
   font-family: "Lexend";
   font-size: 2rem;
   color: var(--app-primary-text-color);
 }
 
-.new-set-page-1 .card-row .options {
+.edit-set-page-1 .card-row .options {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -116,7 +127,7 @@
   width: 10vw;
 }
 
-.new-set-page-1 .card-row .options .icon {
+.edit-set-page-1 .card-row .options .icon {
   border-radius: 24px;
   padding: 6px;
   cursor: pointer;
@@ -124,21 +135,21 @@
   color: var(--app-primary-text-color);
 }
 
-.new-set-page-1 .card-row .options .icon.disabled {
+.edit-set-page-1 .card-row .options .icon.disabled {
   cursor: auto;
   background-color: #ededed;
   color: var(--app-grey);
 }
 
-.new-set-page-1 .card-row .options .icon.disabled:hover {
+.edit-set-page-1 .card-row .options .icon.disabled:hover {
   background-color: #ededed;
 }
 
-.new-set-page-1 .card-row .options .icon:hover {
+.edit-set-page-1 .card-row .options .icon:hover {
   background-color: #ccc;
 }
 
-.new-set-page-1 .cards .button-glass {
+.edit-set-page-1 .cards .button-glass {
   margin-top: 3vh;
   color: var(--app-primary-text-color);
   border-color: var(--app-primary-text-color);

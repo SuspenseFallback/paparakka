@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/Signup.css";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 import { validate } from "email-validator";
 import { logData, signUpWithEmail } from "../firebase/firebase.js";
 import { useNavigate } from "react-router";
+import HomeAnim from "../components/Home/HomeAnim";
 
 const Signup = () => {
   const navigate = useNavigate();
+
+  const ref = useRef(null);
 
   const [error, set_error] = useState(null);
   const [username, set_username] = useState("");
@@ -17,7 +20,12 @@ const Signup = () => {
 
   const sign_up = () => {
     signUpWithEmail(username, email, password, (data, err) => {
-      if (err) throw err;
+      if (err) {
+        console.log(err.code);
+        if (err.code == "auth/email-already-in-use") {
+          return set_error("Email already in use");
+        }
+      }
       console.log(data);
       logData("signup_complete");
       navigate("/dashboard");
@@ -71,7 +79,7 @@ const Signup = () => {
 
   return (
     <>
-      <div className="page page-1 signup-page-1">
+      <div className="page page-1 signup-page-1" ref={ref}>
         <div className="form">
           <h1 className="title">Sign up</h1>
           <div className="input-container">
@@ -116,12 +124,24 @@ const Signup = () => {
           <PasswordStrengthMeter password={password} />
           <p className="error">{error}</p>
           <button
-            className="button-block bottom"
+            className="button-block"
             onClick={sign_up}
             disabled={disabled}
           >
             Sign up
           </button>
+        </div>
+        <div className="image">
+          <div className="header-container">
+            <p className="header">
+              Sign up to get full access to all features!
+            </p>
+          </div>
+          <div className="img-container">
+            <div className="anim-container">
+              <HomeAnim home_ref={ref} className=".signup-page-1 " />
+            </div>
+          </div>
         </div>
       </div>
     </>

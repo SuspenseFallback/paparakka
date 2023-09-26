@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/Signup.css";
 import { logData, signInWithEmail } from "../firebase/firebase";
 import { useNavigate } from "react-router";
+import HomeAnim from "../components/Home/HomeAnim";
 
 const Login = () => {
   const navigate = useNavigate();
+  const ref = useRef(null);
 
   const [error, set_error] = useState(null);
   const [email, set_email] = useState("");
@@ -21,9 +23,20 @@ const Login = () => {
 
   const login_handler = () => {
     signInWithEmail(email, password, (data, error) => {
-      if (error) throw error;
+      if (error) {
+        console.log(error.code);
+        if (error.code == "auth/invalid-email") {
+          return set_error("Invalid credentials");
+        } else if (error.code == "auth/user-not-found") {
+          return set_error("Invalid credentials");
+        } else if (error.code == "auth/wrong-password") {
+          return set_error("Invalid credentials");
+        } else if (error.code == "auth/user-disabled") {
+          return set_error("User banned");
+        }
+      }
       console.log(data);
-      logData("signup_complete");
+      logData("login_complete");
       navigate("/dashboard");
     });
   };
@@ -49,7 +62,17 @@ const Login = () => {
 
   return (
     <>
-      <div className="page page-1 signup-page-1">
+      <div className="page page-1 login-page-1" ref={ref}>
+        <div className="image log-in">
+          <div className="header-container">
+            <p className="header">Log in to access all features!</p>
+          </div>
+          <div className="img-container">
+            <div className="anim-container">
+              <HomeAnim home_ref={ref} className=".login-page-1 " />
+            </div>
+          </div>
+        </div>
         <div className="form">
           <h1 className="title">Log in</h1>
           <div className="input-container">
@@ -75,7 +98,7 @@ const Login = () => {
           </div>
           <p className="error">{error}</p>
           <button
-            className="button-block bottom"
+            className="button-block"
             onClick={login_handler}
             disabled={disabled}
           >

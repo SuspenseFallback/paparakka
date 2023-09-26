@@ -13,6 +13,7 @@
   font-weight: bold;
   font-size: 1.5rem;
   margin-top: 0;
+  color: var(--app-primary-text-color);
 }
 
 .my-sets-page-1 .my-sets .title .icon {
@@ -22,17 +23,19 @@
 }
 
 .my-sets-page-1 .my-sets .decks {
-  height: 90%;
+  max-height: 90%;
   width: 100vw;
   flex-wrap: wrap;
 
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 1vw;
 }
 
 .my-sets-page-1 .my-sets .decks .card {
-  flex-basis: 30%;
-  width: 30vw;
+  flex-basis: 28%;
+  width: 28vw;
+  height: 25vh;
 }

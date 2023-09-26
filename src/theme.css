@@ -13,6 +13,7 @@
   background-color: #f6f6f6;
 
   --app-background-color: #f6f6f6;
+  --app-background-color-trans: #f6f6f6b0;
   --app-primary-color: #ffffff;
   --app-primary-hover-color: #f1f1f1;
   --app-secondary-color: #000;
@@ -20,12 +21,14 @@
   --app-secondary-text-color: #ffffff;
   --app-grey: grey;
   --app-shadow: rgba(0, 0, 0, 0.5);
+  --app-light-orange: #ffb17a;
 }
 
 .app-container.dark-theme {
   background-color: #303030;
 
   --app-background-color: #303030;
+  --app-background-color-trans: #3030309d;
   --app-primary-color: #000;
   --app-primary-hover-color: #1f1f1f;
   --app-secondary-color: #fff;
@@ -34,4 +37,5 @@
 
   --app-grey: lightgrey;
   --app-shadow: rgba(0, 0, 0, 0.5);
+  --app-light-orange: #ff8c3b;
 }

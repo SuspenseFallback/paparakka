@@ -19,7 +19,8 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: transparent;
+  background-color: var(--app-background-color-trans);
+  border-bottom: 2px solid var(--app-secondary-color);
 
   width: 100vw;
   height: 8vh;
@@ -31,11 +32,6 @@
   padding-right: 14px;
 
   transition: 0.25s;
-}
-
-.nav.active {
-  border-bottom: 2px solid var(--app-secondary-color);
-  background-color: var(--app-primary-color);
 }
 
 /* list of items */
@@ -51,7 +47,7 @@
   float: right;
   padding: 12px;
   transition: all 0.25s;
-  border-radius: 0;
+  border-radius: 24px;
   margin-right: 12px;
   cursor: pointer;
 }
@@ -130,7 +126,7 @@
   width: 50px;
   height: 50px;
   padding: 0;
-  border-radius: 0;
+  border-radius: 24px;
   color: red;
   background-color: #ffcfcf;
 }
@@ -180,14 +176,29 @@
 
   border: 2px solid var(--app-secondary-color);
 
-  width: 12vw;
+  width: 15vw;
 
   display: flex;
   flex-direction: column;
 
   background-color: var(--app-primary-color);
 
+  border-radius: 24px;
   transition: all 0.5s;
+}
+
+.nav .user-menu.hidden {
+  display: block !important;
+  top: -20vw;
+  opacity: 0;
+}
+
+.nav .user-menu .user-link:nth-child(1) {
+  border-radius: 24px 24px 0 0;
+}
+
+.nav .user-menu .user-link:last-child {
+  border-radius: 0 0 24px 24px;
 }
 
 .nav .user-menu .user-link {
@@ -199,11 +210,10 @@
   flex-direction: row;
   justify-content: space-between;
 
-  padding: 12px;
+  padding: 12px 16px;
 
   transition: all 0.5s;
 }
-
 .nav .user-menu .user-link:hover {
   background-color: var(--app-primary-hover-color);
 }

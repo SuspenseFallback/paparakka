@@ -2,7 +2,7 @@
   padding: 16px;
   background-color: var(--app-theme-color);
   border: none;
-  border-radius: 0;
+  border-radius: 8px;
   color: var(--app-primary-text-color);
   font-family: "Lexend";
   font-size: 14px;
@@ -20,7 +20,7 @@
   height: 40px;
   background-color: transparent;
   border: none;
-  border-radius: 0;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.25s;
   margin: 2px;
@@ -42,7 +42,7 @@
   padding: 16px;
   background-color: var(--app-theme-color);
   border: none;
-  border-radius: 0;
+  border-radius: 24px;
   color: var(--app-primary-text-color);
   font-family: "Lexend";
   font-size: 14px;
@@ -103,7 +103,7 @@
 }
 
 .button-group .button {
-  border-radius: 0;
+  border-radius: 6px;
 }
 
 .button-group .button:hover {
