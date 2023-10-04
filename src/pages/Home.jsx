@@ -263,7 +263,7 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <HomeAnim home_ref={ref} />
+          <HomeAnim home_ref={ref} className=".home-page-1 " />
         </div>
         <div className="page page-2 home-page-2">
           <div className="left">

@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 
 import "./HomeAnim.css";
 
-const HomeAnim = ({ home_ref, className = ".home-page-1 " }) => {
+const HomeAnim = ({ home_ref, className }) => {
   useLayoutEffect(() => {
     if (home_ref.current != null) {
       const element = home_ref.current;
