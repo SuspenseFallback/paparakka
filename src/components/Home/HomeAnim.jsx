@@ -497,7 +497,8 @@ const HomeAnim = ({ home_ref, className }) => {
 
       return () => ctx.revert();
     }
-  }, []);
+  }, [home_ref]);
+
   return (
     <div className="animation">
       <div className="anim-card">

@@ -273,10 +273,9 @@ const Home = () => {
                   <span>Easy</span> to use
                 </h1>
                 <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                  eligendi quas architecto magni nostrum repellat at distinctio
-                  dignissimos possimus debitis, amet, consectetur cumque
-                  aspernatur eius aperiam hic vitae quibusdam fuga!
+                  Our app is really easy to use! Just sign up, find a deck and
+                  let the magic begin! We handle all the logic and creation of
+                  flashcards so that you don't have to.
                 </p>
               </div>
             </div>
@@ -286,10 +285,9 @@ const Home = () => {
                   Completely <span>free</span>
                 </h1>
                 <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                  eligendi quas architecto magni nostrum repellat at distinctio
-                  dignissimos possimus debitis, amet, consectetur cumque
-                  aspernatur eius aperiam hic vitae quibusdam fuga!
+                  We made our app completely free to use so that students all
+                  across the world have the best tools at their fingertips for
+                  free. We don't have advertisements either!
                 </p>
               </div>
             </div>
@@ -299,10 +297,10 @@ const Home = () => {
                   The power of <span>active recall</span>
                 </h1>
                 <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                  eligendi quas architecto magni nostrum repellat at distinctio
-                  dignissimos possimus debitis, amet, consectetur cumque
-                  aspernatur eius aperiam hic vitae quibusdam fuga!
+                  When using flashcards, our brain does something called active
+                  recall, where you must delve deep into your memory to find the
+                  answers to questions. This promotes the strength of those
+                  memories and helps you actively recall them later on.
                 </p>
               </div>
             </div>
@@ -312,10 +310,9 @@ const Home = () => {
                   Use other people's <span>flashcards</span>
                 </h1>
                 <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                  eligendi quas architecto magni nostrum repellat at distinctio
-                  dignissimos possimus debitis, amet, consectetur cumque
-                  aspernatur eius aperiam hic vitae quibusdam fuga!
+                  With our search system, you can find and use anyone's
+                  flashcards! This means you don't always have to make your own.
+                  It is also quite useful for teachers!
                 </p>
               </div>
             </div>
