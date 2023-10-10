@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Flashcard from "./Flashcard";
 import randint from "../../helpers/random.js";
-import { gsap } from "gsap";
+import gsap from "gsap";
 
 const FlashcardControl = ({ deck }) => {
   // state

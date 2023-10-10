@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from "react";
 
-import { gsap } from "gsap";
+import gsap from "gsap";
 
 import "./HomeAnim.css";
 

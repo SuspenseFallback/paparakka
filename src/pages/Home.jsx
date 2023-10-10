@@ -5,7 +5,7 @@ import { logData } from "../firebase/firebase";
 
 import "../css/Home.css";
 
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 
 import flashcards from "../assets/flashcards.png";
