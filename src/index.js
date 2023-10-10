@@ -26,7 +26,7 @@ import Set from "./pages/Set";
 import Dictate from "./pages/Dictate";
 import Learn from "./pages/Learn";
 
-import { gsap } from "gsap";
+import { CSSPlugin, gsap } from "gsap";
 import { PixiPlugin } from "gsap/dist/PixiPlugin.js";
 import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
@@ -37,7 +37,7 @@ import MySets from "./pages/MySets";
 import "./theme.css";
 import EditSet from "./pages/EditSet";
 
-gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
+gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, CSSPlugin);
 
 const router = createBrowserRouter([
   {
