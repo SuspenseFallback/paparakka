@@ -18,7 +18,6 @@ code {
 
 div.page {
   width: 100vw;
-  background-color: var(--app-background-color);
   transition: all 0.25s;
 
   scroll-behavior: smooth;

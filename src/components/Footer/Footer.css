@@ -5,13 +5,14 @@
   height: 30vh;
 
   background-color: #000;
-  border-radius: 2000px 2000px 0 0;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   z-index: 20;
+
+  margin-right: 14px;
 }
 
 .footer {

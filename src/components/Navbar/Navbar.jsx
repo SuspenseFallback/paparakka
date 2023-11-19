@@ -17,34 +17,34 @@ const Navbar = () => {
   const [is_responsive_menu, set_responsive_menu] = useState(false);
   const [is_active, set_is_active] = useState(false);
 
-  const [dark_theme, set_dark_theme] = useState(true);
+  // const [dark_theme, set_dark_theme] = useState(true);
 
-  useEffect(() => {
-    const dark = localStorage.getItem("dark_theme");
+  // useEffect(() => {
+  //   const dark = localStorage.getItem("dark_theme");
 
-    if (dark !== undefined) {
-      set_dark_theme(dark == "dark" ? true : false);
-    } else {
-      if (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      ) {
-        set_dark_theme(true);
-      }
+  //   if (dark !== undefined) {
+  //     set_dark_theme(dark == "dark" ? true : false);
+  //   } else {
+  //     if (
+  //       window.matchMedia &&
+  //       window.matchMedia("(prefers-color-scheme: dark)").matches
+  //     ) {
+  //       set_dark_theme(true);
+  //     }
 
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (event) => {
-          const newColorScheme = event.matches ? true : false;
-          set_dark_theme(newColorScheme);
-          localStorage.setItem("dark_theme", newColorScheme);
-        });
-    }
-  }, []);
+  //     window
+  //       .matchMedia("(prefers-color-scheme: dark)")
+  //       .addEventListener("change", (event) => {
+  //         const newColorScheme = event.matches ? true : false;
+  //         set_dark_theme(newColorScheme);
+  //         localStorage.setItem("dark_theme", newColorScheme);
+  //       });
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("dark_theme", dark_theme);
-  }, [dark_theme]);
+  // useEffect(() => {
+  //   localStorage.setItem("dark_theme", dark_theme);
+  // }, [dark_theme]);
 
   useEffect(() => {
     getUser((data) => {
@@ -82,7 +82,8 @@ const Navbar = () => {
     <>
       <div
         className={
-          "app-container" + (dark_theme ? " dark-theme" : " light-theme")
+          "app-container light-theme"
+          // "app-container" + (dark_theme ? " dark-theme" : " light-theme")
         }
       >
         {loading ? (
@@ -94,12 +95,12 @@ const Navbar = () => {
             <div className={"nav " + (is_active ? "active" : "")}>
               <p className="nav-logo">Flashcards</p>
               <div className="nav-items">
-                <div className="nav-item nav-switch">
+                {/* <div className="nav-item nav-switch">
                   <Switch
                     isOn={dark_theme}
                     handleToggle={() => set_dark_theme(!dark_theme)}
                   />
-                </div>
+                </div> */}
                 <div
                   className="nav-item nav-hide hover-underline"
                   onClick={() => goToLink(user ? "/dashboard" : "/")}
