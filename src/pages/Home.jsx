@@ -33,23 +33,25 @@ const Home = () => {
 
     const ctx = gsap.context(() => {
       gsap.to(element.querySelector(".home-page-1 .part-1 .animation"), {
-        y: 500,
+        y: 240,
         duration: 1,
+        ease: "power1.inOut",
         scrollTrigger: {
-          trigger: element.querySelector(".home-page-1 .part-2"),
-          start: "top 100%",
-          end: "bottom 50%",
-          scrub: 0.5,
+          trigger: element.querySelector(".home-page-1 .part-1"),
+          start: "top -30%",
+          end: "bottom bottom",
+          scrub: 1.8,
         },
       });
 
       gsap.to(element.querySelector(".home-page-1 .part-1 .animation"), {
         scale: 1.1,
-        duration: 0.5,
+        duration: 1,
+        ease: "power1.inOut",
         scrollTrigger: {
-          trigger: element.querySelector(".home-page-1 .part-2"),
-          start: "top 20%",
-          end: "bottom 50%",
+          trigger: element.querySelector(".home-page-1 .part-1"),
+          start: "top -30%",
+          end: "bottom bottom",
           toggleActions: "play none none reverse",
         },
       });
