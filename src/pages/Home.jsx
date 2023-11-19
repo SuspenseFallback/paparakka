@@ -131,26 +131,6 @@ const Home = () => {
           },
         }
       );
-
-      gsap.fromTo(
-        element.querySelectorAll(".home-page-3 .container .type-card"),
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: element.querySelector(".home-page-3"),
-            start: "top 20%",
-            end: "bottom bottom",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
     }, ref);
 
     return () => ctx.revert();
@@ -190,87 +170,102 @@ const Home = () => {
         </div>
         <div className="page page-2 home-page-2">
           <p className="header">Why us?</p>
-          <div className="reason reason-1">
-            <p className="title">Active Recall</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
-              nihil corrupti sequi, consectetur labore rerum dicta totam
-              doloremque quia vitae, placeat enim. Enim.
-            </p>
-          </div>
-          <div className="reason reason-2">
-            <p className="title">Easy to use</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
-              nihil corrupti sequi, consectetur labore rerum dicta totam
-              doloremque quia vitae, placeat enim. Enim.
-            </p>
-          </div>
-          <div className="reason reason-3">
-            <p className="title">Completely free</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
-              nihil corrupti sequi, consectetur labore rerum dicta totam
-              doloremque quia vitae, placeat enim. Enim.
-            </p>
-          </div>
-          <div className="reason reason-4">
-            <p className="title">Multiple methods to learn and revise</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
-              nihil corrupti sequi, consectetur labore rerum dicta totam
-              doloremque quia vitae, placeat enim. Enim.
-            </p>
+          <div className="slide">
+            <div className="reason reason-1">
+              <div className="text-container">
+                <p className="title">Active Recall</p>
+                <p className="desc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
+                  voluptatem nihil corrupti sequi, consectetur labore rerum
+                  dicta totam doloremque quia vitae, placeat enim. Enim.
+                </p>
+              </div>
+            </div>
+            <div className="reason reason-2">
+              <div className="text-container">
+                <p className="title">Easy to use</p>
+                <p className="desc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
+                  voluptatem nihil corrupti sequi, consectetur labore rerum
+                  dicta totam doloremque quia vitae, placeat enim. Enim.
+                </p>
+              </div>
+            </div>
+            <div className="reason reason-3">
+              <div className="text-container">
+                <p className="title">Completely free</p>
+                <p className="desc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
+                  voluptatem nihil corrupti sequi, consectetur labore rerum
+                  dicta totam doloremque quia vitae, placeat enim. Enim.
+                </p>
+              </div>
+            </div>
+            <div className="reason reason-4">
+              <div className="text-container">
+                <p className="title">Multiple methods to learn and revise</p>
+                <p className="desc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
+                  voluptatem nihil corrupti sequi, consectetur labore rerum
+                  dicta totam doloremque quia vitae, placeat enim. Enim.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="page page-3 home-page-3">
           <h1 className="header">So many different learning methods</h1>
-          <div className="container">
-            <div className="type-card">
-              <img src={flashcards} alt="Flashcards" className="img" />
-              <p className="title">Flashcards</p>
-              <p className="desc">
-                Flashcards shows multiple cards which have a front and a back -
-                a question and an answer. These can be used to get a superficial
-                understanding of the answers, but are superior to other methods
-                due to active recall.
-              </p>
-              <div className="button">Try it out</div>
+          <div className="slide-container">
+            <div className="container">
+              <div className="type-card">
+                <p className="title">Flashcards</p>
+                <p className="desc">
+                  Flashcards shows multiple cards which have a front and a back
+                  - a question and an answer. These can be used to get a
+                  superficial understanding of the answers, but are superior to
+                  other methods due to active recall.
+                </p>
+              </div>
+              <div className="type-card inactive">
+                <p className="title">Learn</p>
+                <p className="desc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Suscipit voluptate amet corrupti nemo similique iure tempore.
+                  Magnam expedita, doloremque et sed sunt vel iste saepe, fugit
+                  quos optio laborum vitae.
+                </p>
+              </div>
+              <div className="type-card inactive">
+                <p className="title">Dictate</p>
+                <p className="desc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Assumenda itaque aliquam quae dolore iste quasi iusto aut
+                  voluptates quis totam inventore, maxime adipisci aperiam
+                  praesentium nemo. Repellat dolore quisquam quasi.
+                </p>
+              </div>
             </div>
-            <div className="type-card">
-              <img src={learn} alt="Learn" className="img" />
-              <p className="title">Learn</p>
-              <p className="desc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Suscipit voluptate amet corrupti nemo similique iure tempore.
-                Magnam expedita, doloremque et sed sunt vel iste saepe, fugit
-                quos optio laborum vitae.
-              </p>
-              <div className="button">Try it out</div>
+            <div className="controls">
+              <button className="control">
+                <span className="pi pi-angle-left"></span>
+              </button>
+              <button className="control">
+                <span className="pi pi-angle-right"></span>
+              </button>
             </div>
-            <div className="type-card">
-              <img src={dictate} alt="Dictate" className="img" />
-              <p className="title">Dictate</p>
-              <p className="desc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Assumenda itaque aliquam quae dolore iste quasi iusto aut
-                voluptates quis totam inventore, maxime adipisci aperiam
-                praesentium nemo. Repellat dolore quisquam quasi.
-              </p>
-              <div className="button">Try it out</div>
+            <div className="pagination">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
             </div>
           </div>
         </div>
         <div className="page page-4 home-page-4">
-          <h1 className="header">Sign up to gain access to all features</h1>
-          <div className="button-row">
-            <div className="button">Sign up</div>
-            <div className="button">Log in</div>
-          </div>
+          <h1 className="header">FAQ</h1>
         </div>
       </main>
     </>
