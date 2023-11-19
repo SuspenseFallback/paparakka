@@ -5,7 +5,7 @@
   align-items: center;
   background-color: var(--app-primary-color) !important;
 
-  height: 130vh !important;
+  height: 140vh !important;
 }
 
 .home-page-1 .part-1 {
@@ -112,7 +112,7 @@
   position: relative;
 
   width: 100vw;
-  height: 30vh;
+  height: 40vh;
 }
 
 .home-page-1 .part-2 .text-container {

@@ -55,6 +55,27 @@ const Home = () => {
           toggleActions: "play none none reverse",
         },
       });
+
+      gsap.fromTo(
+        element.querySelector(".home-page-1 .part-2 .text-container"),
+        {
+          y: 50,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power1.inOut",
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-1 .part-1"),
+            start: "top -30%",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
     }, ref);
 
     return () => ctx.revert();
@@ -167,7 +188,45 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="page page-2 home-page-2"></div>
+        <div className="page page-2 home-page-2">
+          <p className="header">Why us?</p>
+          <div className="reason reason-1">
+            <p className="title">Active Recall</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
+              nihil corrupti sequi, consectetur labore rerum dicta totam
+              doloremque quia vitae, placeat enim. Enim.
+            </p>
+          </div>
+          <div className="reason reason-2">
+            <p className="title">Easy to use</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
+              nihil corrupti sequi, consectetur labore rerum dicta totam
+              doloremque quia vitae, placeat enim. Enim.
+            </p>
+          </div>
+          <div className="reason reason-3">
+            <p className="title">Completely free</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
+              nihil corrupti sequi, consectetur labore rerum dicta totam
+              doloremque quia vitae, placeat enim. Enim.
+            </p>
+          </div>
+          <div className="reason reason-4">
+            <p className="title">Multiple methods to learn and revise</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              repellat laboriosam, fuga adipisci nostrum corporis voluptatem
+              nihil corrupti sequi, consectetur labore rerum dicta totam
+              doloremque quia vitae, placeat enim. Enim.
+            </p>
+          </div>
+        </div>
         <div className="page page-3 home-page-3">
           <h1 className="header">So many different learning methods</h1>
           <div className="container">

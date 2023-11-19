@@ -36,8 +36,9 @@ import MySets from "./pages/MySets";
 
 import "./theme.css";
 import EditSet from "./pages/EditSet";
+import TextPlugin from "gsap/dist/TextPlugin.js";
 
-gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger);
+gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
 const router = createBrowserRouter([
   {
