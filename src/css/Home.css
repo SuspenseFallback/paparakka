@@ -191,9 +191,6 @@
   grid-row-end: 2;
   grid-column-start: 1;
   grid-column-end: 2;
-
-  border-right: 0.5px solid grey;
-  border-bottom: 0.5px solid grey;
 }
 
 .home-page-2 .reason-2 {
@@ -202,9 +199,6 @@
   grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 2;
-
-  border-right: 0.5px solid grey;
-  border-top: 0.5px solid grey;
 }
 
 .home-page-2 .reason-3 {
@@ -213,9 +207,6 @@
   grid-row-end: 2;
   grid-column-start: 2;
   grid-column-end: 3;
-
-  border-left: 0.5px solid grey;
-  border-bottom: 0.5px solid grey;
 }
 
 .home-page-2 .reason-4 {
@@ -224,9 +215,6 @@
   grid-row-end: 3;
   grid-column-start: 2;
   grid-column-end: 3;
-
-  border-top: 0.5px solid grey;
-  border-left: 0.5px solid grey;
 }
 
 /* page 3 */
@@ -276,6 +264,7 @@
   border-radius: 8px;
 
   background-color: var(--app-secondary-color);
+  transition: all 0.5s;
 }
 
 .home-page-3 .container .type-card .title {
@@ -324,10 +313,16 @@
   padding: 12px;
 
   margin: 8px;
+  cursor: pointer;
 }
 
 .home-page-3 .controls .control:hover {
   background-color: lightgrey;
+}
+
+.home-page-3 .controls .control:disabled {
+  background-color: rgb(238, 238, 238);
+  pointer-events: none;
 }
 
 .home-page-3 .controls .control .pi {
@@ -355,6 +350,14 @@
   background-color: #cdcdcd;
 
   margin: 4px;
+
+  transition: all 0.5s;
+}
+
+.home-page-3 .pagination .dot.active {
+  background-color: #959595;
+  width: 9px;
+  height: 9px;
 }
 
 /* ! page 4 */
@@ -369,9 +372,50 @@
   height: 80vh !important;
 }
 
+.home-page-4 > p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .home-page-4 .header {
+  display: inline-block;
   font-size: 3rem;
   color: var(--app-primary-text-color);
+}
+
+.home-page-4 .cursor {
+  display: inline-block;
+
+  width: 7px;
+  height: 3rem;
+  background-color: #000000;
+
+  margin-left: 4px;
+
+  animation: 1s blink infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  51% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .home-page-4 > .content {
@@ -435,6 +479,7 @@
 
 .home-page-5 .content .input-3 .input-container {
   margin-top: 5vh;
+  width: 95%;
 }
 
 .home-page-5 .content .input-2 .input-container .label,

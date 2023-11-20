@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router";
 import { logData } from "../firebase/firebase";
@@ -6,16 +6,13 @@ import { logData } from "../firebase/firebase";
 import "../css/Home.css";
 
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
-
-import flashcards from "../assets/flashcards.png";
-import learn from "../assets/learn.png";
-import dictate from "../assets/dictate.png";
 import HomeAnim from "../components/Home/HomeAnim";
 import Accordion from "../components/Accordion/Accordion";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const [card_index, set_card_index] = useState(1);
 
   const ref = useRef(null);
 
@@ -27,6 +24,16 @@ const Home = () => {
     document.title = "Flashcards | Home";
 
     logData("home_page");
+  }, []);
+
+  useEffect(() => {
+    card_move();
+  }, [card_index]);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      card_move();
+    });
   }, []);
 
   useLayoutEffect(() => {
@@ -73,7 +80,7 @@ const Home = () => {
             trigger: element.querySelector(".home-page-1 .part-1"),
             start: "top -30%",
             end: "bottom bottom",
-            toggleActions: "play none none reverse",
+            scrub: 2,
           },
         }
       );
@@ -87,21 +94,40 @@ const Home = () => {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        element.querySelector(".home-page-4 .header"),
+        element.querySelector(".home-page-2 .header"),
         {
-          opacity: 0,
           y: 50,
+          opacity: 0,
         },
         {
-          opacity: 1,
           y: 0,
+          opacity: 1,
           duration: 1,
           scrollTrigger: {
-            trigger: element.querySelector(".home-page-4"),
+            trigger: element.querySelector(".home-page-2"),
             start: "top 50%",
             end: "bottom bottom",
-            toggleActions: "play none none reverse",
-            scrub: true,
+            scrub: 2,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        gsap.utils.toArray(element.querySelectorAll(".home-page-2 .reason")),
+        {
+          y: 25,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.4,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-2"),
+            start: "top 30%",
+            end: "bottom bottom",
+            scrub: 3,
           },
         }
       );
@@ -117,18 +143,38 @@ const Home = () => {
       gsap.fromTo(
         element.querySelector(".home-page-3 .header"),
         {
+          x: 50,
           opacity: 0,
-          y: 30,
         },
         {
+          x: 0,
           opacity: 1,
-          y: 0,
           duration: 1,
           scrollTrigger: {
             trigger: element.querySelector(".home-page-3"),
-            start: "top 80%",
-            end: "top -10%",
-            scrub: true,
+            start: "top 50%",
+            end: "bottom bottom",
+            scrub: 2,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        gsap.utils.toArray(element.querySelectorAll(".home-page-3 .type-card")),
+        {
+          x: -25,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.4,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-3"),
+            start: "top 40%",
+            end: "bottom bottom",
+            scrub: 3,
           },
         }
       );
@@ -136,6 +182,210 @@ const Home = () => {
 
     return () => ctx.revert();
   }, []);
+
+  useLayoutEffect(() => {
+    const element = ref.current;
+
+    const ctx = gsap.context(() => {
+      const anim = gsap.fromTo(
+        element.querySelector(".home-page-4 .header"),
+        {
+          text: { value: "" },
+        },
+        {
+          text: { value: "FAQ" },
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-4"),
+            start: "top 50%",
+            end: "bottom bottom",
+          },
+        }
+      );
+
+      anim.eventCallback("onComplete", () => {
+        setTimeout(() => {
+          anim.reverse();
+        }, 3000);
+      });
+
+      anim.eventCallback("onReverseComplete", () => {
+        setTimeout(() => {
+          anim.restart();
+        }, 1000);
+      });
+
+      gsap.fromTo(
+        gsap.utils.toArray(element.querySelectorAll(".home-page-4 .accordion")),
+        {
+          y: -25,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.29,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-4"),
+            start: "top 30%",
+            end: "bottom bottom",
+          },
+        }
+      );
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    const element = ref.current;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        element.querySelector(".home-page-5 .header"),
+        {
+          opacity: 0,
+          y: -25,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-5"),
+            start: "top 60%",
+            end: "bottom bottom",
+            scrub: 0.5,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        element.querySelector(".home-page-5 .input-1"),
+        {
+          opacity: 0,
+          y: -25,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-5"),
+            start: "top 30%",
+            end: "bottom bottom",
+            scrub: 2,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        element.querySelector(".home-page-5 .input-3"),
+        {
+          opacity: 0,
+          y: -25,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-5"),
+            start: "top 20%",
+            end: "bottom bottom",
+            scrub: 2,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        element.querySelector(".home-page-5 .input-2"),
+        {
+          opacity: 0,
+          y: -25,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-5"),
+            start: "top 10%",
+            end: "bottom bottom",
+            scrub: 2,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        element.querySelector(".home-page-5 .submit"),
+        {
+          opacity: 0,
+          y: -25,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element.querySelector(".home-page-5"),
+            start: "top -10%",
+            end: "bottom bottom",
+            scrub: 2,
+          },
+        }
+      );
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
+  const card_move = () => {
+    const slide = document.querySelector(".home-page-3 .container");
+    const x =
+      card_index == 1
+        ? 0
+        : card_index == 2
+        ? window.innerWidth * 0.387 * -1
+        : card_index == 3
+        ? window.innerWidth * 0.387 * -2
+        : 0;
+
+    const card1 = document.querySelector(
+      ".home-page-3 .container .type-card-1"
+    );
+    const card2 = document.querySelector(
+      ".home-page-3 .container .type-card-2"
+    );
+    const card3 = document.querySelector(
+      ".home-page-3 .container .type-card-3"
+    );
+
+    if (card_index == 1) {
+      card1.classList.remove("inactive");
+      card2.classList.add("inactive");
+      card3.classList.add("inactive");
+    } else if (card_index == 2) {
+      card1.classList.add("inactive");
+      card2.classList.remove("inactive");
+      card3.classList.add("inactive");
+    } else if (card_index == 3) {
+      card1.classList.add("inactive");
+      card2.classList.add("inactive");
+      card3.classList.remove("inactive");
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.to(slide, {
+        duration: 0.5,
+        ease: "",
+        x: x,
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  };
 
   return (
     <>
@@ -222,7 +472,7 @@ const Home = () => {
           <h1 className="header">So many different learning methods</h1>
           <div className="slide-container">
             <div className="container">
-              <div className="type-card">
+              <div className="type-card type-card-1">
                 <p className="title">Flashcards</p>
                 <p className="desc">
                   Flashcards shows multiple cards which have a front and a back
@@ -231,7 +481,7 @@ const Home = () => {
                   other methods due to active recall.
                 </p>
               </div>
-              <div className="type-card inactive">
+              <div className="type-card type-card-2 inactive">
                 <p className="title">Learn</p>
                 <p className="desc">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -240,7 +490,7 @@ const Home = () => {
                   quos optio laborum vitae.
                 </p>
               </div>
-              <div className="type-card inactive">
+              <div className="type-card type-card-3 inactive">
                 <p className="title">Dictate</p>
                 <p className="desc">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -251,22 +501,43 @@ const Home = () => {
               </div>
             </div>
             <div className="controls">
-              <button className="control">
+              <button
+                className="control"
+                disabled={card_index == 1}
+                onClick={() => {
+                  set_card_index(card_index - 1);
+                }}
+              >
                 <span className="pi pi-angle-left"></span>
               </button>
-              <button className="control">
+              <button
+                className="control"
+                disabled={card_index == 3}
+                onClick={() => {
+                  set_card_index(card_index + 1);
+                }}
+              >
                 <span className="pi pi-angle-right"></span>
               </button>
             </div>
             <div className="pagination">
-              <span className="dot"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
+              <span
+                className={"dot" + (card_index == 1 ? " active" : "")}
+              ></span>
+              <span
+                className={"dot" + (card_index == 2 ? " active" : "")}
+              ></span>
+              <span
+                className={"dot" + (card_index == 3 ? " active" : "")}
+              ></span>
             </div>
           </div>
         </div>
         <div className="page page-4 home-page-4">
-          <h1 className="header">FAQ</h1>
+          <p>
+            <h1 className="header">FAQ</h1>
+            <span className="cursor"></span>
+          </p>
           <div className="content">
             <Accordion
               title="Example 1"
