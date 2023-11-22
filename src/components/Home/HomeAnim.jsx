@@ -14,6 +14,10 @@ const HomeAnim = ({ home_ref, className }) => {
           repeat: -1,
         });
 
+        window.addEventListener("resize", () => {
+          tl.restart();
+        });
+
         // make stuff show up
 
         tl.fromTo(

@@ -115,6 +115,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 70%;
 }
 
 .home-page-1 .part-2 .text-container .button {
@@ -127,6 +129,13 @@
 
 .home-page-1 .part-2 .header {
   font-size: 4rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .home-page-1 .part-2 .header {
+    font-size: 3rem;
+  }
 }
 
 .home-page-1 .part-2 .header span {
@@ -284,7 +293,7 @@
 }
 
 .home-page-3 .container .type-card.inactive {
-  scale: 0.95;
+  scale: 0.95 !important;
   opacity: 0.8;
 
   background-color: #00000091;

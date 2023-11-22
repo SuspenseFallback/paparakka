@@ -332,7 +332,7 @@ const Home = () => {
             trigger: element.querySelector(".home-page-5"),
             start: "top -10%",
             end: "bottom bottom",
-            scrub: 2,
+            scrub: 1,
           },
         }
       );

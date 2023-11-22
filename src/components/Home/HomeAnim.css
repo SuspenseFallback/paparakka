@@ -1,12 +1,12 @@
 .home-page-1 .animation {
-  width: 30%;
+  width: 500px;
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
 .home-page-1 .animation .anim-card {
-  width: 30vw;
+  width: 500px;
   height: 30vh;
   background-color: #fff;
   border: 2px solid #000;
@@ -32,7 +32,7 @@
 }
 
 .home-page-1 .animation .anim-controls {
-  width: 30vw;
+  width: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -142,4 +142,19 @@
 
 .login-page-1 .animation .anim-controls .anim-button .pi {
   color: var(--app-primary-text-color);
+}
+
+@media screen and (max-width: 768px) {
+  .home-page-1 .animation {
+    width: 300px;
+  }
+
+  .home-page-1 .animation .anim-card {
+    width: 300px;
+    height: 20vh;
+  }
+
+  .home-page-1 .animation .anim-controls {
+    width: 300px;
+  }
 }
