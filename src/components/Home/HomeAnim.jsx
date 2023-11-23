@@ -6,507 +6,498 @@ import "./HomeAnim.css";
 
 const HomeAnim = ({ home_ref, className }) => {
   useLayoutEffect(() => {
-    console.log(home_ref.current)
-    if (home_ref.current != null) {
-      const element = home_ref.current;
-      console.log(
-        "element",
-        element.querySelector(className + ".animation .anim-card")
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        repeat: -1,
+      });
+
+      window.addEventListener("resize", () => {
+        tl.restart();
+      });
+
+      // make stuff show up
+
+      tl.fromTo(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+        },
+        "+=0.5"
       );
 
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          repeat: -1,
-        });
+      tl.fromTo(
+        document.querySelector(className + ".animation .anim-controls"),
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+        },
+        ">-=0.75"
+      );
 
-        window.addEventListener("resize", () => {
-          tl.restart();
-        });
+      tl.fromTo(
+        document.querySelector(className + ".animation .anim-card .text-1"),
+        {
+          scaleX: 0,
+        },
+        {
+          scaleX: 1,
+          transformOrigin: "left",
+          duration: 0.5,
+        },
+        ">-=0.5"
+      );
+      tl.fromTo(
+        document.querySelector(className + ".animation .anim-card .text-2"),
+        {
+          scaleX: 0,
+        },
+        {
+          scaleX: 1,
+          transformOrigin: "left",
+          duration: 0.75,
+        },
+        ">"
+      );
 
-        // make stuff show up
+      // click button and flip
 
-        tl.fromTo(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            y: 20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-          },
-          "+=0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(3)"
+        ),
+        {
+          backgroundColor: "var(--app-grey)",
+          duration: 0.2,
+        },
+        ">+=0.5"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          rotateX: "180",
+          duration: 0.5,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(3)"
+        ),
+        {
+          backgroundColor: "transparent",
+          duration: 0.2,
+        },
+        ">-=0.5"
+      );
 
-        tl.fromTo(
-          element.querySelector(className + ".animation .anim-controls"),
-          {
-            opacity: 0,
-            y: 20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-          },
-          ">-=0.75"
-        );
+      // click button and flip again
 
-        tl.fromTo(
-          element.querySelector(className + ".animation .anim-card .text-1"),
-          {
-            scaleX: 0,
-          },
-          {
-            scaleX: 1,
-            transformOrigin: "left",
-            duration: 0.5,
-          },
-          ">-=0.5"
-        );
-        tl.fromTo(
-          element.querySelector(className + ".animation .anim-card .text-2"),
-          {
-            scaleX: 0,
-          },
-          {
-            scaleX: 1,
-            transformOrigin: "left",
-            duration: 0.75,
-          },
-          ">"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(3)"
+        ),
+        {
+          backgroundColor: "var(--app-grey)",
+          duration: 0.2,
+        },
+        ">+=0.5"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          rotateX: "0",
+          duration: 0.5,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(3)"
+        ),
+        {
+          backgroundColor: "transparent",
+          duration: 0.2,
+        },
+        ">-=0.5"
+      );
 
-        // click button and flip
+      // make card go left
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(3)"
-          ),
-          {
-            backgroundColor: "var(--app-grey)",
-            duration: 0.2,
-          },
-          ">+=0.5"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            rotateX: "180",
-            duration: 0.5,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(3)"
-          ),
-          {
-            backgroundColor: "transparent",
-            duration: 0.2,
-          },
-          ">-=0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(2)"
+        ),
+        {
+          backgroundColor: "var(--app-grey)",
+          duration: 0.2,
+        },
+        ">+=1"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.5,
+        },
+        ">"
+      );
 
-        // click button and flip again
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(2)"
+        ),
+        {
+          backgroundColor: "transparent",
+          duration: 0.2,
+        },
+        ">-0.5"
+      );
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(3)"
-          ),
-          {
-            backgroundColor: "var(--app-grey)",
-            duration: 0.2,
-          },
-          ">+=0.5"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            rotateX: "0",
-            duration: 0.5,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(3)"
-          ),
-          {
-            backgroundColor: "transparent",
-            duration: 0.2,
-          },
-          ">-=0.5"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.001,
+        },
+        ">+=0.5"
+      );
 
-        // make card go left
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+        },
+        ">+=0.5"
+      );
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(2)"
-          ),
-          {
-            backgroundColor: "var(--app-grey)",
-            duration: 0.2,
-          },
-          ">+=1"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.5,
-          },
-          ">"
-        );
+      // make card go right
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(2)"
-          ),
-          {
-            backgroundColor: "transparent",
-            duration: 0.2,
-          },
-          ">-0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(4)"
+        ),
+        {
+          backgroundColor: "var(--app-grey)",
+          duration: 0.2,
+        },
+        ">+=1"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.5,
+        },
+        ">"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.001,
-          },
-          ">+=0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(4)"
+        ),
+        {
+          backgroundColor: "transparent",
+          duration: 0.2,
+        },
+        ">-0.5"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-          },
-          ">+=0.5"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.001,
+        },
+        ">+=0.5"
+      );
 
-        // make card go right
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+        },
+        ">+=0.5"
+      );
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(4)"
-          ),
-          {
-            backgroundColor: "var(--app-grey)",
-            duration: 0.2,
-          },
-          ">+=1"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.5,
-          },
-          ">"
-        );
+      // make card go all the way left
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(4)"
-          ),
-          {
-            backgroundColor: "transparent",
-            duration: 0.2,
-          },
-          ">-0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(1)"
+        ),
+        {
+          backgroundColor: "var(--app-grey)",
+          duration: 0.2,
+        },
+        ">+=1"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.5,
+        },
+        ">"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.001,
-          },
-          ">+=0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(1)"
+        ),
+        {
+          backgroundColor: "transparent",
+          duration: 0.2,
+        },
+        ">-0.5"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-          },
-          ">+=0.5"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.001,
+        },
+        ">+=0.5"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: 200,
+          duration: 0.001,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.25,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.01,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: 200,
+          duration: 0.001,
+        },
+        ">+=0.5"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.25,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.01,
+        },
+        ">"
+      );
 
-        // make card go all the way left
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.25,
+        },
+        ">+=0.5"
+      );
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(1)"
-          ),
-          {
-            backgroundColor: "var(--app-grey)",
-            duration: 0.2,
-          },
-          ">+=1"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.5,
-          },
-          ">"
-        );
+      // make card go all the way right
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(1)"
-          ),
-          {
-            backgroundColor: "transparent",
-            duration: 0.2,
-          },
-          ">-0.5"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(5)"
+        ),
+        {
+          backgroundColor: "var(--app-grey)",
+          duration: 0.2,
+        },
+        ">+=1"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.5,
+        },
+        ">"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.001,
-          },
-          ">+=0.5"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: 200,
-            duration: 0.001,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.25,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.01,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: 200,
-            duration: 0.001,
-          },
-          ">+=0.5"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.25,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.01,
-          },
-          ">"
-        );
+      tl.to(
+        document.querySelector(
+          className + ".animation .anim-controls .anim-button:nth-child(5)"
+        ),
+        {
+          backgroundColor: "transparent",
+          duration: 0.2,
+        },
+        ">-0.5"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.25,
-          },
-          ">+=0.5"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.001,
+        },
+        ">+=0.5"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: -200,
+          duration: 0.001,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.25,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.01,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: -200,
+          duration: 0.001,
+        },
+        ">+=0.5"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: 200,
+          duration: 0.25,
+        },
+        ">"
+      );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          x: -200,
+          duration: 0.01,
+        },
+        ">"
+      );
 
-        // make card go all the way right
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.25,
+        },
+        ">+=0.5"
+      );
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(5)"
-          ),
-          {
-            backgroundColor: "var(--app-grey)",
-            duration: 0.2,
-          },
-          ">+=1"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.5,
-          },
-          ">"
-        );
+      // make everything go out
 
-        tl.to(
-          element.querySelector(
-            className + ".animation .anim-controls .anim-button:nth-child(5)"
-          ),
-          {
-            backgroundColor: "transparent",
-            duration: 0.2,
-          },
-          ">-0.5"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card .text-2"),
+        {
+          scaleX: 0,
+          transformOrigin: "left",
+          duration: 0.75,
+        },
+        ">"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.001,
-          },
-          ">+=0.5"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: -200,
-            duration: 0.001,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.25,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.01,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: -200,
-            duration: 0.001,
-          },
-          ">+=0.5"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: 200,
-            duration: 0.25,
-          },
-          ">"
-        );
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            x: -200,
-            duration: 0.01,
-          },
-          ">"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-card .text-1"),
+        {
+          scaleX: 0,
+          transformOrigin: "left",
+          duration: 0.5,
+        },
+        ">-=0.5"
+      );
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.25,
-          },
-          ">+=0.5"
-        );
+      tl.to(
+        document.querySelector(className + ".animation .anim-controls"),
+        {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+        },
+        ">-=0.75"
+      );
 
-        // make everything go out
+      tl.to(
+        document.querySelector(className + ".animation .anim-card"),
+        {
+          opacity: 0,
+          y: 20,
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card .text-2"),
-          {
-            scaleX: 0,
-            transformOrigin: "left",
-            duration: 0.75,
-          },
-          ">"
-        );
+          duration: 1,
+        },
+        "+=0.5"
+      );
+    }, home_ref);
 
-        tl.to(
-          element.querySelector(className + ".animation .anim-card .text-1"),
-          {
-            scaleX: 0,
-            transformOrigin: "left",
-            duration: 0.5,
-          },
-          ">-=0.5"
-        );
-
-        tl.to(
-          element.querySelector(className + ".animation .anim-controls"),
-          {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-          },
-          ">-=0.75"
-        );
-
-        tl.to(
-          element.querySelector(className + ".animation .anim-card"),
-          {
-            opacity: 0,
-            y: 20,
-
-            duration: 1,
-          },
-          "+=0.5"
-        );
-      }, home_ref);
-
-      return () => ctx.revert();
-    }
-  }, [home_ref]);
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className="animation">
