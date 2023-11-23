@@ -8,6 +8,10 @@ const HomeAnim = ({ home_ref, className }) => {
   useLayoutEffect(() => {
     if (home_ref.current != null) {
       const element = home_ref.current;
+      console.log(
+        "element",
+        element.querySelector(className + ".animation .anim-card")
+      );
 
       const ctx = gsap.context(() => {
         const tl = gsap.timeline({
