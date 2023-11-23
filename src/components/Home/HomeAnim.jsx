@@ -6,6 +6,7 @@ import "./HomeAnim.css";
 
 const HomeAnim = ({ home_ref, className }) => {
   useLayoutEffect(() => {
+    console.log(home_ref.current)
     if (home_ref.current != null) {
       const element = home_ref.current;
       console.log(
