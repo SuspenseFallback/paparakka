@@ -1,6 +1,18 @@
 import React from "react";
 
-const FlashcardControlBar = () => {
+const FlashcardControlBar = ({
+  index,
+  goFullLeft,
+  goLeft,
+  goRight,
+  goFullRight,
+  playCards,
+  play,
+  shuffle,
+  toggleFlip,
+  flip,
+  deck,
+}) => {
   return (
     <>
       {/* controls */}

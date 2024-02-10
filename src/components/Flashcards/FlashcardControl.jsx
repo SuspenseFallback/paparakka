@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Flashcard from "./Flashcard";
 import randint from "../../helpers/random.js";
 import gsap from "gsap";
+import FlashcardControlBar from "./FlashcardControlBar.jsx";
 
 const FlashcardControl = ({ deck }) => {
   // state
@@ -59,21 +60,25 @@ const FlashcardControl = ({ deck }) => {
 
   useEffect(() => {
     const card = deck.flashcards[index - 1];
-    console.log("card", card, "at index", index - 1);
-    console.log(deck.flashcards);
 
     setTerm(card.term);
     setDefinition(card.definition);
   }, [index, deck]);
 
+  const catchKeystrokes = (e) => {
+    if (e.key === "ArrowRight") {
+      goRight();
+    } else if (e.key === "ArrowLeft") {
+      goLeft();
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") {
-        goRight();
-      } else if (e.key === "ArrowLeft") {
-        goLeft();
-      }
-    });
+    window.addEventListener("keydown", catchKeystrokes);
+
+    return () => {
+      window.removeEventListener("keydown", catchKeystrokes);
+    };
   }, [goLeft, goRight]);
 
   // helper functions
@@ -116,6 +121,19 @@ const FlashcardControl = ({ deck }) => {
             {index}/{deck.flashcards.length}
           </p>
         </div>
+        <FlashcardControlBar
+          index={index}
+          goLeft={goLeft}
+          goRight={goRight}
+          goFullLeft={goFullLeft}
+          goFullRight={goFullRight}
+          play={play}
+          shuffle={shuffle}
+          playCards={playCards}
+          flip={flip}
+          toggleFlip={toggleFlip}
+          deck={deck}
+        />
       </div>
     </>
   );

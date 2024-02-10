@@ -15,7 +15,7 @@
   justify-content: space-between;
   width: 90vw;
   align-items: center;
-  height: 15vh;
+  height: 10vh;
 }
 
 .flashcard-page-1 .controls-container .controls > div {
@@ -44,6 +44,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 16px;
 }
 
 .flashcard-page-1 .controls-container .number .num {
