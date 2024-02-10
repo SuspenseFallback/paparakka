@@ -14,125 +14,7 @@ const FlashcardControl = ({ deck }) => {
 
   const flashcardRef = useRef();
 
-  const animLeft = () => {
-    const ctx = gsap.context(() => {
-      const element = flashcardRef.current;
-      const tl = gsap.timeline();
-
-      tl.to(
-        document.querySelector(
-          ".controls-container .flashcards-container .flashcard"
-        ),
-        {
-          opacity: 0,
-          x: -200,
-          duration: 0.25,
-        }
-      );
-
-      tl.to(
-        document.querySelector(
-          ".controls-container .flashcards-container .flashcard"
-        ),
-        {
-          opacity: 0,
-          x: 400,
-          duration: 0.01,
-        },
-        ">+=0.25"
-      );
-
-      tl.to(
-        document.querySelector(
-          ".controls-container .flashcards-container .flashcard"
-        ),
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.25,
-        },
-        ">+=0.25"
-      );
-    }, flashcardRef);
-
-    return () => ctx.revert();
-  };
-
-  const animFlip = () => {
-    const ctx = gsap.context(() => {
-      const element = flashcardRef.current;
-      const tl = gsap.timeline();
-
-      if (flip) {
-        tl.to(
-          document.querySelector(
-            ".controls-container .flashcards-container .flashcard"
-          ),
-          {
-            rotateZ: 180,
-            duration: 0.25,
-          }
-        );
-      } else {
-        tl.to(
-          document.querySelector(
-            ".controls-container .flashcards-container .flashcard"
-          ),
-          {
-            rotateZ: 0,
-            duration: 0.25,
-          }
-        );
-      }
-    }, flashcardRef);
-
-    return () => ctx.revert();
-  };
-
-  const animRight = () => {
-    const ctx = gsap.context(() => {
-      const element = flashcardRef.current;
-      const tl = gsap.timeline();
-
-      tl.to(
-        document.querySelector(
-          ".controls-container .flashcards-container .flashcard"
-        ),
-        {
-          opacity: 0,
-          x: 200,
-          duration: 0.25,
-        }
-      );
-
-      tl.to(
-        document.querySelector(
-          ".controls-container .flashcards-container .flashcard"
-        ),
-        {
-          opacity: 0,
-          x: -400,
-          duration: 0.01,
-        },
-        ">+=0.25"
-      );
-
-      tl.to(
-        document.querySelector(
-          ".controls-container .flashcards-container .flashcard"
-        ),
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.25,
-        },
-        ">+=0.25"
-      );
-    }, flashcardRef);
-
-    return () => ctx.revert();
-  };
-
+  console.log(deck);
   // control functions
 
   const toggleFlip = () => {
@@ -149,14 +31,12 @@ const FlashcardControl = ({ deck }) => {
     if (index !== 1) {
       setIndex(index - 1);
     }
-    animLeft();
   };
 
   const goRight = () => {
     if (index !== deck.flashcards.length) {
       setIndex(index + 1);
     }
-    animRight();
   };
 
   const goFullRight = () => {
@@ -179,6 +59,8 @@ const FlashcardControl = ({ deck }) => {
 
   useEffect(() => {
     const card = deck.flashcards[index - 1];
+    console.log("card", card, "at index", index - 1);
+    console.log(deck.flashcards);
 
     setTerm(card.term);
     setDefinition(card.definition);
@@ -193,32 +75,6 @@ const FlashcardControl = ({ deck }) => {
       }
     });
   }, [goLeft, goRight]);
-
-  useInterval(() => {
-    if (play) {
-      if (!flip) {
-        toggleFlip();
-      } else {
-        goRight();
-      }
-    }
-  }, 2000);
-
-  function useInterval(callback, delay) {
-    const intervalRef = React.useRef(null);
-    const savedCallback = React.useRef(callback);
-    React.useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-    React.useEffect(() => {
-      const tick = () => savedCallback.current();
-      if (typeof delay === "number") {
-        intervalRef.current = window.setInterval(tick, delay);
-        return () => window.clearInterval(intervalRef.current);
-      }
-    }, [delay]);
-    return intervalRef;
-  }
 
   // helper functions
 
@@ -253,58 +109,6 @@ const FlashcardControl = ({ deck }) => {
             term={term}
             definition={definition}
           />
-        </div>
-        {/* controls */}
-        <div className="controls">
-          {/* leave */}
-          <div className="left-controls">
-            <button className="button-icon">
-              <span className="pi pi-arrow-left"></span>
-            </button>
-          </div>
-          {/* movement control */}
-          <div className="middle-controls">
-            <button
-              className="button-icon"
-              disabled={index === 1}
-              onClick={goFullLeft}
-            >
-              <span className="pi pi-angle-double-left"></span>
-            </button>
-            <button
-              className="button-icon"
-              disabled={index === 1}
-              onClick={goLeft}
-            >
-              <span className="pi pi-angle-left"></span>
-            </button>
-            <button className="button-icon" onClick={toggleFlip}>
-              <span className="pi pi-arrow-up"></span>
-            </button>
-            <button
-              className="button-icon"
-              disabled={index === deck.flashcards.length}
-              onClick={goRight}
-            >
-              <span className="pi pi-angle-right"></span>
-            </button>
-            <button
-              className="button-icon"
-              disabled={index === deck.flashcards.length}
-              onClick={goFullRight}
-            >
-              <span className="pi pi-angle-double-right"></span>
-            </button>
-          </div>
-          {/* play and shuffle */}
-          <div className="right-controls">
-            <button className="button-icon" onClick={playCards}>
-              <span className={play ? "pi pi-pause" : "pi pi-play"}></span>
-            </button>
-            <button className="button-icon" onClick={shuffle}>
-              <span className="pi pi-sync"></span>
-            </button>
-          </div>
         </div>
         {/* flashcard index */}
         <div className="number">

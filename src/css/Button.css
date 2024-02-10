@@ -63,14 +63,14 @@
 
 .button-block:disabled,
 .button:disabled {
-  background-color: #ecaf66;
+  background-color: var(--app-disabled);
   cursor: auto;
 }
 
 .button-block:disabled:hover,
 .button:disabled:hover {
-  background-color: #ecaf66;
   box-shadow: none;
+  cursor: not-allowed;
 }
 
 .button-glass {

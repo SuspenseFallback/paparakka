@@ -38,6 +38,31 @@ const NewSet = () => {
   const [user, setUser] = useState(null);
   const [tag_value, set_tag_value] = useState("");
 
+  const [disabled, set_disabled] = useState(true);
+
+  useEffect(() => {
+
+    let empty = false;
+
+    for (var i = 0; i < cards.length; i++) {
+      const card = cards[i]
+
+      if (card.term == "") {
+        empty = true
+      } else if (card.definition == "") {
+        empty = true
+      }
+    }
+
+    if (!title) {
+      set_disabled(true);
+    } else if (empty) {
+      set_disabled(true);
+    } else {
+      set_disabled(false)
+    }
+  }, [title, cards]);
+
   const add_new_card = () => {
     set_cards((c) => [
       ...c,
@@ -200,7 +225,7 @@ const NewSet = () => {
             Add flashcard <span className="icon pi pi-plus"></span>
           </button>
         </div>
-        <button className="button-block" onClick={submitHandler}>
+        <button className="button-block" disabled={disabled} onClick={submitHandler}>
           Create a new deck
         </button>
       </div>

@@ -21,9 +21,7 @@
   height: 25vh;
 
   background-color: var(--app-light-orange);
-  border-bottom: 2px solid var(--app-secondary-color);
-  border-right: 2px solid var(--app-secondary-color);
-  border-left: 2px solid var(--app-secondary-color);
+  border: 2px solid var(--app-secondary-color);
   border-radius: 0 0 100px 100px;
 
   display: flex;
