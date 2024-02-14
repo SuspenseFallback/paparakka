@@ -212,34 +212,31 @@ export const logData = (data) => {
 // HISTORY
 
 export const addHistory = (id) => {
+  // see if user is authenticated
   getUser((user) => {
+    // if they are, proceed
     if (user) {
+      // fetch user doc
       const document = doc(db, "users", user.id);
 
       getDoc(document).then((res) => {
+        // doc data
         const data = res.data();
 
-        if (data.history.length > 0) {
-          let history = data.history.filter((set) => set.id !== id);
+        // different actions for history length
+        let history =
+          data.history.length > 0
+            ? data.history.filter((set) => set.id !== id)
+            : [];
 
-          getSet(id).then((data) => {
-            history.splice(0, 0, data);
+        getSet(id).then((data) => {
+          delete data.flashcards;
+          history.splice(0, 0, data);
 
-            updateDoc(document, {
-              history: history,
-            });
+          updateDoc(document, {
+            history: history,
           });
-        } else {
-          const history = [];
-
-          getSet(id).then((data) => {
-            history.push(data);
-
-            updateDoc(document, {
-              history: history,
-            });
-          });
-        }
+        });
       });
     }
   });
