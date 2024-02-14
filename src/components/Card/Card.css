@@ -19,7 +19,7 @@
 }
 
 .card:hover {
-  border-radius: 36px;
+  border-radius: 30px;
 }
 
 .card .more {
@@ -49,6 +49,7 @@
   width: 37%;
   border: 2px solid var(--app-secondary-color);
   z-index: 3;
+  max-width: 200px;
 
   position: absolute;
   right: 3%;

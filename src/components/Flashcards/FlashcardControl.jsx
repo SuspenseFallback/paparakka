@@ -63,6 +63,7 @@ const FlashcardControl = ({ deck }) => {
 
     setTerm(card.term);
     setDefinition(card.definition);
+    setFlip(false);
   }, [index, deck]);
 
   const catchKeystrokes = (e) => {
