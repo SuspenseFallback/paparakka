@@ -282,8 +282,6 @@ export const updateStudiedSets = (user, set_id, cards, callback) => {
       ...new_set,
     });
 
-    console.log("studied sets -", studied_sets);
-
     updateDoc(docRef, {
       studied_sets: studied_sets,
     }).then(callback());

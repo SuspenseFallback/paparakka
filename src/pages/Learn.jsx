@@ -6,7 +6,7 @@ import {
   updateStudiedSets,
 } from "../firebase/firebase";
 import { useNavigate, useParams } from "react-router";
-// import shuffle from "../helpers/shuffle.js";
+import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
 
 const Learn = ({ user }) => {
@@ -14,11 +14,13 @@ const Learn = ({ user }) => {
 
   const { id } = useParams();
   const [set, set_set] = useState({});
-  const [index, set_index] = useState(0);
 
   const [loading, set_loading] = useState(true);
 
-  const [modified_flashcards, set_modified_flashcards] = useState([]);
+  // flashcards that are being studied
+  const [study_flashcards, set_study_flashcards] = useState([]);
+
+  // flashcards to be uploaded
   const [flashcards, set_flashcards] = useState([]);
 
   const [answered, set_answered] = useState(false);
@@ -31,16 +33,40 @@ const Learn = ({ user }) => {
       set_set({ ...data });
 
       addStudiedSets(user, data.id, (cards) => {
-        set_flashcards(cards);
-        set_modified_flashcards(cards);
         set_loading(false);
-        sort_by_proficiency(cards);
+
+        set_flashcards(cards);
+        check_time_of_cards(cards);
       });
     });
   }, [id, user]);
 
+  const check_time_of_cards = (cards) => {
+    const new_cards = [];
+
+    cards.forEach((card) => {
+      if (card.time == undefined) {
+        new_cards.push(card);
+      } else {
+        const now = new Date();
+
+        if (card.time < now) {
+          new_cards.push(card);
+        }
+      }
+    });
+
+    set_study_flashcards(shuffle(new_cards));
+  };
+
+  // triggered when user doesn't know the answer
+  const dont_know = () => {
+    set_answer("");
+    check_answer();
+  };
+
   const check_answer = () => {
-    const current_answer = flashcards[index].definition;
+    const current_answer = study_flashcards[0].definition;
     set_answered(true);
     if (answer === "") {
       set_correct("wrong");
@@ -51,116 +77,104 @@ const Learn = ({ user }) => {
     }
   };
 
-  const dont_know = () => {
-    set_answer("");
-    check_answer();
-  };
+  const modify_study_cards = (prof) => {
+    const copy = [...study_flashcards];
+    copy.splice(0, 1);
 
-  const sort_by_proficiency = (cards) => {
-    const unknown = [];
-    const easy = [];
-    const medium = [];
-    const hard = [];
+    if (study_flashcards.length == 1) {
+      return;
+    }
 
-    cards.forEach((card) => {
-      let is_7_days_ahead = false;
-      let is_2_days_ahead = false;
-      let is_1_days_ahead = false;
+    console.log(copy);
 
-      const today = new Date();
-      const card_time = card.time ? new Date(card.time) : new Date();
-      const seven_days_ahead = card_time + 7 * 24 * 60 * 60;
-      const two_days_ahead = card_time + 2 * 24 * 60 * 60;
-      const one_days_ahead = card_time + 1 * 24 * 60 * 60;
+    if (copy.length == 0) {
+      return set_study_flashcards([]);
+    }
 
-      if (seven_days_ahead < today) {
-        is_7_days_ahead = true;
-      }
-      if (two_days_ahead < today) {
-        is_2_days_ahead = true;
-      }
-      if (one_days_ahead < today) {
-        is_1_days_ahead = true;
-      }
+    if (prof == "medium") {
+      const length = Math.round(0.6 * study_flashcards.length);
+      copy.splice(length - 1, 0, study_flashcards[0]);
+    }
 
-      if (!card.proficiency) {
-        unknown.push(card);
-      } else if (card.proficiency === "easy") {
-        if (is_7_days_ahead) {
-          easy.push(card);
-        }
-      } else if (card.proficiency === "medium") {
-        if (is_2_days_ahead) {
-          medium.push(card);
-        }
-      } else if (card.proficiency === "hard") {
-        if (is_1_days_ahead) {
-          hard.push(card);
-        }
-      }
-    });
+    if (prof == "hard") {
+      const length = Math.round(0.3 * study_flashcards.length);
+      copy.splice(length - 1, 0, study_flashcards[0]);
+    }
 
-    const total = [...unknown, ...easy, ...medium, ...hard];
-    console.log("proficiency sorted -", total);
-    set_flashcards(total);
+    if (prof == "again") {
+      const length = Math.round(0.1 * study_flashcards.length);
+      copy.splice(length - 1, 0, study_flashcards[0]);
+    }
+
+    set_study_flashcards(copy);
   };
 
   const get_new_proficiency = (card) => {
-    if (!card.proficiency) {
-      if (correct === "correct") {
-        return "medium";
+    /*
+    4 levels:
+
+    - Easy
+    - Medium
+    - Hard
+    - Again
+
+    */
+
+    if (correct == "wrong") {
+      if (answer == "") {
+        return "again";
       } else {
         return "hard";
       }
     }
 
-    if (correct === "wrong") {
-      if (card.proficiency === "hard") {
-        return "hard";
-      } else if (card.proficiency === "medium") {
-        return "hard";
-      } else if (card.proficiency === "easy") {
-        return "medium";
-      }
-    } else {
-      if (card.proficiency === "hard") {
-        return "medium";
-      } else if (card.proficiency === "medium") {
+    if (correct == "correct") {
+      if (answer === study_flashcards[0].definition) {
         return "easy";
-      } else if (card.proficiency === "easy") {
-        return "easy";
+      } else {
+        return "medium";
       }
     }
   };
 
   const next_question = () => {
-    // set cards
+    const cards = [...flashcards];
+    const proficiency = get_new_proficiency(study_flashcards[0]);
+    const card_index = study_flashcards[0].index;
 
-    let cards = [...modified_flashcards];
-    const cards_index = index;
-    const new_prof = get_new_proficiency(cards[cards_index]);
+    let time = new Date();
+
+    switch (proficiency) {
+      case "easy":
+        time = new Date(time.getTime() + 1000 * 60 * 60 * 24 * 2);
+        break;
+      case "medium":
+        time = new Date(time.getTime() + 1000 * 60 * 60 * 24);
+        break;
+      case "hard":
+        time = new Date(time.getTime() + 1000 * 60 * 60 * 4);
+        break;
+      case "again":
+        time = new Date(time.getTime() + 1000 * 60 * 10);
+        break;
+      default:
+        break;
+    }
 
     const new_card = {
-      ...cards[cards_index],
-      proficiency: new_prof,
-      time: new Date().toTimeString(),
+      ...study_flashcards[0],
+      proficiency: proficiency,
+      time: time.toUTCString(),
     };
 
-    console.log("index - ", index);
-    console.log("new card - ", new_card);
-
-    cards = cards.filter((card) => card.index !== new_card.index);
-    cards.push(new_card);
-
-    console.log("cards - ", cards);
-
-    set_modified_flashcards(cards);
-    sort_by_proficiency(cards);
+    cards[card_index] = new_card;
+    set_flashcards(cards);
 
     updateStudiedSets(user, set.id, cards, () => {
       set_correct("unknown");
       set_answered(false);
       set_answer("");
+      modify_study_cards(proficiency);
     });
   };
 
@@ -181,14 +195,14 @@ const Learn = ({ user }) => {
           <span className="pi pi-spinner pi-spin"></span>
         ) : (
           <div className="question-container">
-            {flashcards.length > 0 ? (
+            {study_flashcards.length > 0 ? (
               <>
                 <div className="top">
                   <div className="left">
                     <p className={"question " + (answered ? " hidden" : "")}>
                       <span className="label">TERM</span>
                       <br />
-                      <span className="term">{flashcards[index].term}</span>
+                      <span className="term">{study_flashcards[0].term}</span>
                     </p>
                   </div>
                   <div className="center">
@@ -230,7 +244,7 @@ const Learn = ({ user }) => {
                   <div className="correct-answer">
                     <p className="label">Correct answer</p>
                     <p className="answer-text">
-                      {flashcards[index].definition}
+                      {study_flashcards[0].definition}
                     </p>
                   </div>
                   {correct === "unknown" ? (

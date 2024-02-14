@@ -1,5 +1,7 @@
 export default function shuffle(array) {
-  let currentIndex = array.length,
+  const copy = [...array];
+
+  let currentIndex = copy.length,
     randomIndex;
 
   // While there remain elements to shuffle.
@@ -9,11 +11,11 @@ export default function shuffle(array) {
     currentIndex--;
 
     // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
+    [copy[currentIndex], copy[randomIndex]] = [
+      copy[randomIndex],
+      copy[currentIndex],
     ];
   }
 
-  return array;
+  return copy;
 }
