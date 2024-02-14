@@ -9,27 +9,22 @@ const NewSet = () => {
     {
       term: "",
       definition: "",
-      index: 0,
     },
     {
       term: "",
       definition: "",
-      index: 1,
     },
     {
       term: "",
       definition: "",
-      index: 2,
     },
     {
       term: "",
       definition: "",
-      index: 3,
     },
     {
       term: "",
       definition: "",
-      index: 4,
     },
   ]);
   const [title, set_title] = useState("");
@@ -41,16 +36,15 @@ const NewSet = () => {
   const [disabled, set_disabled] = useState(true);
 
   useEffect(() => {
-
     let empty = false;
 
     for (var i = 0; i < cards.length; i++) {
-      const card = cards[i]
+      const card = cards[i];
 
       if (card.term == "") {
-        empty = true
+        empty = true;
       } else if (card.definition == "") {
-        empty = true
+        empty = true;
       }
     }
 
@@ -59,7 +53,7 @@ const NewSet = () => {
     } else if (empty) {
       set_disabled(true);
     } else {
-      set_disabled(false)
+      set_disabled(false);
     }
   }, [title, cards]);
 
@@ -87,6 +81,10 @@ const NewSet = () => {
   }, []);
 
   const submitHandler = () => {
+    cards.forEach((card, index) => {
+      cards[index] = { ...card, index: index };
+    });
+
     addSet(
       {
         title: title,
@@ -104,7 +102,10 @@ const NewSet = () => {
 
   const onTag = (e) => {
     if (e.key === "Enter" || e.code === "Space") {
-      if (e.target.value.trim() && tags.length < 5) {
+      if (
+        e.target.value.trim() &&
+        (tags.length < 5) & (e.target.value.length <= 20)
+      ) {
         set_tags((t) => [...t, e.target.value]);
         set_tag_value("");
       }
@@ -146,7 +147,8 @@ const NewSet = () => {
           </div>
           <div className="input-container">
             <p className="label">
-              Tags <span className="max">(max. 5 tags)</span>
+              Tags <span className="max">(max. 5 tags)</span>{" "}
+              <span className="max">(max. 20 char.)</span>
               {tags.map((tag, index) => {
                 const removeTag = () => {
                   const tags_copy = [...tags];
@@ -193,7 +195,6 @@ const NewSet = () => {
               new_cards.splice(index, 0, {
                 term: term,
                 definition: definition,
-                index: index + 1,
               });
 
               set_cards(new_cards);
@@ -203,9 +204,6 @@ const NewSet = () => {
               let new_cards = [...cards];
 
               new_cards.splice(index, 1);
-              new_cards.forEach((card, index) => {
-                card.index = index;
-              });
 
               set_cards(new_cards);
             };
@@ -225,7 +223,11 @@ const NewSet = () => {
             Add flashcard <span className="icon pi pi-plus"></span>
           </button>
         </div>
-        <button className="button-block" disabled={disabled} onClick={submitHandler}>
+        <button
+          className="button-block"
+          disabled={disabled}
+          onClick={submitHandler}
+        >
           Create a new deck
         </button>
       </div>

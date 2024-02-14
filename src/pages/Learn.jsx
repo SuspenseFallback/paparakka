@@ -28,11 +28,9 @@ const Learn = ({ user }) => {
   useEffect(() => {
     getSet(id).then((data) => {
       document.title = "Flashcards | " + data.title;
-      logData("dictate - " + data.id);
       set_set({ ...data });
 
       addStudiedSets(user, data.id, (cards) => {
-        console.log("newly set cards - ", cards);
         set_flashcards(cards);
         set_modified_flashcards(cards);
         set_loading(false);
@@ -103,7 +101,7 @@ const Learn = ({ user }) => {
     });
 
     const total = [...unknown, ...easy, ...medium, ...hard];
-    console.log("sorted -", total);
+    console.log("proficiency sorted -", total);
     set_flashcards(total);
   };
 

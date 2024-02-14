@@ -115,12 +115,7 @@ const FlashcardControl = ({ deck }) => {
             definition={definition}
           />
         </div>
-        {/* flashcard index */}
-        <div className="number">
-          <p className="num">
-            {index}/{deck.flashcards.length}
-          </p>
-        </div>
+
         <FlashcardControlBar
           index={index}
           goLeft={goLeft}
@@ -134,6 +129,12 @@ const FlashcardControl = ({ deck }) => {
           toggleFlip={toggleFlip}
           deck={deck}
         />
+        {/* flashcard index */}
+        <div className="number">
+          <p className="num">
+            {index}/{deck.flashcards.length}
+          </p>
+        </div>
       </div>
     </>
   );

@@ -45,6 +45,7 @@
   align-items: center;
   width: 100%;
   padding: 16px;
+  margin-top: 8px;
 }
 
 .flashcard-page-1 .controls-container .number .num {
