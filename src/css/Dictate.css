@@ -32,7 +32,7 @@
 }
 
 .dictate-page-1 .question-container .top .right .button-icon {
-  background-color: #f98f0d;
+  background-color: var(--app-theme-color);
   padding: 48px;
 }
 
@@ -226,7 +226,7 @@
 .dictate-page-1 .question-container .answer .input-container .label .dn {
   margin-left: 16px;
   font-weight: bold;
-  color: #f98f0d;
+  color: var(--app-theme-color);
   cursor: pointer;
 }
 
@@ -276,11 +276,11 @@
 }
 
 .dictate-page-1 .question-container .answer .button-icon {
-  background-color: #f98f0d;
+  background-color: var(--app-theme-color);
 }
 
 .dictate-page-1 .question-container .answer .button-icon:hover {
-  background-color: #5916c5;
+  background-color: var(--app-theme-hover-color);
   box-shadow: none;
 }
 
