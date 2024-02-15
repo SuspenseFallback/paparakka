@@ -27,19 +27,24 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
           onClick={() => set_open((o) => !o)}
         ></span>
 
-        <div className={"menu " + (open ? "" : "hidden")}>
-          <div className="menu-item" onClick={open_in_new_tab}>
-            <p className="text">Open in new tab</p>
+        <div className="menu">
+          <div
+            className={"menu-item " + (open ? "" : "hiddens")}
+            onClick={open_in_new_tab}
+          >
             <span className="icon pi pi-external-link"></span>
           </div>
           {user_id == owner_id ? (
             <>
-              <div className="menu-item" onClick={edit}>
-                <p className="text">Edit</p>
+              <div
+                className={"menu-item edit " + (open ? "" : "hiddens")}
+                onClick={edit}
+              >
                 <span className="icon pi pi-pencil"></span>
               </div>
-              <div className="menu-item red">
-                <p className="text">Delete</p>
+              <div
+                className={"menu-item red delete " + (open ? "" : "hiddens")}
+              >
                 <span className="icon pi pi-trash"></span>
               </div>
             </>

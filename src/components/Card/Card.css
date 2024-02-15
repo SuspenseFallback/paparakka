@@ -41,47 +41,68 @@
   background-color: var(--app-primary-hover-color);
 }
 
-.card .menu.hidden {
-  display: none;
-}
-
 .card .menu {
-  width: 37%;
-  border: 2px solid var(--app-secondary-color);
+  width: 190px;
+  height: 50px;
   z-index: 3;
-  max-width: 200px;
 
   position: absolute;
-  right: 3%;
-  top: 20%;
-  border-radius: 16px;
+  right: 1%;
+  top: 22%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 
   margin: 0;
   padding: 0;
-
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-.card .menu .menu-item:nth-child(1) {
-  border-radius: 16px 16px 0 0;
-}
-
-.card .menu .menu-item:last-child {
-  border-radius: 0 0 16px 16px;
 }
 
 .card .menu .menu-item {
   background-color: var(--app-primary-color);
+  border: 2px solid var(--app-secondary-color);
+
+  opacity: 1;
 
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
   padding: 12px;
+  margin-top: 12px;
 
   cursor: pointer;
-  transition: all 0.25s;
+  transition: background-color 0.5s linear 0s, margin-top 0.5s linear 0s,
+    opacity 0.5s linear 0s;
+}
+
+.card .menu .menu-item.hiddens {
+  margin-top: 0;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.card .menu .menu-item.edit {
+  transition: background-color 0.5s linear 0s, margin-top 0.4s linear 0.2s,
+    opacity 0.4s linear 0.2s;
+}
+
+.card .menu .menu-item.edit.hiddens {
+  transition-delay: 0.2s;
+}
+
+.card .menu .menu-item.delete {
+  transition: background-color 0.5s linear 0s, margin-top 0.4s linear 0.4s,
+    opacity 0.4s linear 0.4s;
+}
+
+.card .menu .menu-item.delete.hiddens {
+  transition-delay: 0.4s;
 }
 
 .card .menu .menu-item:hover {
@@ -94,10 +115,6 @@
 
 .card .menu .menu-item.red .text {
   color: red;
-}
-
-.card .menu .menu-item:not(:first-child) {
-  border-top: 2px solid var(--app-secondary-color);
 }
 
 .card .menu .menu-item .text {

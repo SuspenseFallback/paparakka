@@ -170,7 +170,7 @@
 
 .nav .user-menu {
   position: fixed;
-  top: 11vh;
+  top: 10vh;
   right: 1vw;
 
   border: 2px solid var(--app-secondary-color);
