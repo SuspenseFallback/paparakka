@@ -3,6 +3,7 @@ import { getSet, logData } from "../firebase/firebase";
 import { useParams } from "react-router";
 import shuffle from "../helpers/shuffle.js";
 import "../css/Dictate.css";
+import SpinnerAnim from "../components/SpinnerAnim/SpinnerAnim.jsx";
 
 const Dictate = ({ user }) => {
   const { id } = useParams();
@@ -116,7 +117,7 @@ const Dictate = ({ user }) => {
     <>
       <div className="page page-1 dictate-page-1">
         {loading ? (
-          <span className="pi pi-spinner pi-spin"></span>
+          <SpinnerAnim />
         ) : (
           <div className="question-container">
             <div className="top">

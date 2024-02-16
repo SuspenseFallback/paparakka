@@ -3,6 +3,7 @@ import "../css/Dashboard.css";
 import { getOwnerSets } from "../firebase/firebase";
 import Card from "../components/Card/Card";
 import { useNavigate } from "react-router";
+import SpinnerAnim from "../components/SpinnerAnim/SpinnerAnim";
 
 const Dashboard = ({ user }) => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const Dashboard = ({ user }) => {
         className={"page page-1 dashboard-page-1 " + (loading ? "loading" : "")}
       >
         {loading ? (
-          <span className="icon pi pi-spinner pi-spin"></span>
+          <SpinnerAnim />
         ) : (
           <>
             <div className="header">
