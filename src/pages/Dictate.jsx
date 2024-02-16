@@ -28,6 +28,22 @@ const Dictate = ({ user }) => {
     });
   }, [id]);
 
+  const onEnter = (e) => {
+    if (e.key == "Enter") {
+      if (!answered) {
+        check_answer();
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", onEnter);
+
+    return () => {
+      document.removeEventListener("keydown", onEnter);
+    };
+  });
+
   const speak = () => {
     if (speechSynthesis.speaking) {
       if (speechSynthesis.paused) {
