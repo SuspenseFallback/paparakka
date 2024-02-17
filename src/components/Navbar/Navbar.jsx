@@ -127,11 +127,11 @@ const Navbar = () => {
                         Create a new set <span className="pi pi-plus"></span>
                       </NavLink>
                     </div>
-                    <div className="nav-item nav-hide nav-user">
-                      <p
-                        className="nav-link"
-                        onClick={() => set_is_user_items(!is_user_items)}
-                      >
+                    <div
+                      className="nav-item nav-hide nav-user"
+                      onClick={() => set_is_user_items(!is_user_items)}
+                    >
+                      <p className="nav-link">
                         {user.username}{" "}
                         <span
                           className={
