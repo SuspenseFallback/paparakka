@@ -19,7 +19,8 @@
   --app-secondary-color: #000;
   --app-primary-text-color: #000;
   --app-secondary-text-color: #ffffff;
-  --app-grey: rgb(204, 204, 204);
+  --app-grey: rgb(136, 136, 136);
+  --app-light-grey: rgb(204, 204, 204);
   --app-shadow: rgba(0, 0, 0, 0.5);
   --app-light-orange: #ff7a7a;
   --app-disabled: #ffacac;

@@ -39,7 +39,7 @@
 
   margin-top: 3vh;
 
-  background-color: var(--app-grey);
+  background-color: var(--app-light-grey);
 
   display: flex;
   flex-direction: column;
