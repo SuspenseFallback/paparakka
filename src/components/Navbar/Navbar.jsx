@@ -149,7 +149,10 @@ const Navbar = () => {
                           <p>Stats</p>
                           <span className="icon pi pi-chart-bar"></span>
                         </div>
-                        <div className="user-link">
+                        <div
+                          className="user-link"
+                          onClick={() => goToLink("/settings")}
+                        >
                           <p>Settings</p>
                           <span className="icon pi pi-cog"></span>
                         </div>
