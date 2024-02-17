@@ -30,18 +30,30 @@
   height: 7%;
 }
 
-.decks-page-1 .stats {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2%;
+.decks-page-1 .callout-card {
   width: 95%;
-  height: 50vh;
-  background-color: var(--app-primary-color);
-  border-radius: 24px;
-  border: 1px solid var(--app-grey);
-  box-shadow: 2px 2px var(--app-shadow);
+  padding: 12px;
+
+  border: 2px solid var(--app-secondary-color);
+  border-radius: 12px;
+
+  margin-top: 3vh;
+
+  background-color: var(--app-grey);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.decks-page-1 .callout-card .title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.decks-page-1 .callout-card .content {
+  width: 90%;
 }
 
 .decks-page-1 .recent-decks {
