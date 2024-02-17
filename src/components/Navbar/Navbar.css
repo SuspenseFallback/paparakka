@@ -170,7 +170,7 @@
 
 .nav .user-menu {
   position: fixed;
-  top: 10vh;
+  top: 11vh;
   right: 1vw;
 
   border: 2px solid var(--app-secondary-color);
@@ -188,7 +188,7 @@
 
 .nav .user-menu.hidden {
   display: block !important;
-  right: -20vw;
+  right: -10vw;
   opacity: 0;
 }
 
