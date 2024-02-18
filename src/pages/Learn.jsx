@@ -11,9 +11,12 @@ import "../css/Learn.css";
 import useSpeechRecognition from "../hooks/useSpeechRecognition.js";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMicrophone, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import LearnHeader from "../components/Learn/LearnHeader.jsx";
+import ChooseDifficulty from "../components/Learn/ChooseDifficulty.jsx";
 
 const Learn = ({ user }) => {
+  // hooks
   const navigate = useNavigate();
   const {
     listening,
@@ -22,21 +25,19 @@ const Learn = ({ user }) => {
     text,
     hasRecognitionSupport,
   } = useSpeechRecognition();
-
   const { id } = useParams();
+
+  // state
+
   const [set, set_set] = useState({});
-
   const [loading, set_loading] = useState(true);
-
-  // flashcards that are being studied
-  const [study_flashcards, set_study_flashcards] = useState([]);
-
-  // flashcards to be uploaded
-  const [flashcards, set_flashcards] = useState([]);
-
   const [answered, set_answered] = useState(false);
   const [answer, set_answer] = useState("");
   const [correct, set_correct] = useState("");
+  // flashcards that are being studied
+  const [study_flashcards, set_study_flashcards] = useState([]);
+  // flashcards to be uploaded
+  const [flashcards, set_flashcards] = useState([]);
 
   useEffect(() => {
     set_answer(text);
@@ -55,6 +56,8 @@ const Learn = ({ user }) => {
       });
     });
   }, [id, user]);
+
+  // filter out cards that have not reached the time
 
   const check_time_of_cards = (cards) => {
     const new_cards = [];
@@ -78,6 +81,7 @@ const Learn = ({ user }) => {
   const dont_know = () => {
     set_answer("");
     check_answer();
+    next_question();
   };
 
   const check_answer = () => {
@@ -91,6 +95,8 @@ const Learn = ({ user }) => {
       set_correct("unknown");
     }
   };
+
+  // change the cards that are being studied
 
   const modify_study_cards = (prof) => {
     const copy = [...study_flashcards];
@@ -124,6 +130,8 @@ const Learn = ({ user }) => {
     set_study_flashcards(copy);
   };
 
+  // get new proficiency level for a card
+
   const get_new_proficiency = (card) => {
     /*
     4 levels:
@@ -151,6 +159,8 @@ const Learn = ({ user }) => {
       }
     }
   };
+
+  // next question
 
   const next_question = () => {
     const cards = [...flashcards];
@@ -196,6 +206,8 @@ const Learn = ({ user }) => {
     });
   };
 
+  // key events
+
   onkeydown = (e) => {
     if (e.key === "Enter") {
       check_answer();
@@ -206,6 +218,8 @@ const Learn = ({ user }) => {
     navigate("/preview/" + id);
   };
 
+  // jsx
+
   return (
     <>
       <div className="page page-1 learn-page-1">
@@ -213,124 +227,29 @@ const Learn = ({ user }) => {
           <span className="pi pi-spinner pi-spin"></span>
         ) : (
           <>
+            {/* header row */}
             <div className="row">
               <h1 className="header">{set.title}</h1>
               <div className="buttons"></div>
             </div>
+            {/* layout (main body) */}
             <div className="layout">
               <div className="question-container">
                 {study_flashcards.length > 0 ? (
                   <>
-                    <div className="top">
-                      <div className="row">
-                        <div className="left">
-                          <span className="label">QUESTION</span>
-                          <div className="group">
-                            <button className="button button-icon">
-                              <FontAwesomeIcon
-                                icon={faVolumeHigh}
-                                color="white"
-                              />
-                            </button>
-                            <p
-                              className={
-                                "question " + (answered ? " hidden" : "")
-                              }
-                            >
-                              <span className="term">
-                                {study_flashcards[0].term}
-                              </span>
-                            </p>
-                          </div>
-                        </div>
-                        <div className="center">
-                          <button
-                            className={
-                              "button button-icon " + (answered ? "" : "hidden")
-                            }
-                            id={answered ? correct : ""}
-                          >
-                            <span
-                              className={
-                                correct === "wrong"
-                                  ? "pi pi-times icon"
-                                  : correct === "correct"
-                                  ? "pi pi-check icon"
-                                  : correct === "unknown"
-                                  ? "pi pi-question icon"
-                                  : ""
-                              }
-                            ></span>
-                          </button>
-                        </div>
-                        <div className="right">
-                          <button
-                            className={
-                              "button button-icon " + (answered ? "hidden" : "")
-                            }
-                          >
-                            <span className={"pi pi-cog icon"}></span>
-                          </button>
-                        </div>
-                      </div>
-                      <div className="stats-section">
-                        <p className="stat">
-                          Times revised:{" "}
-                          {study_flashcards[0].times_revised || "0"}
-                        </p>
-                        <p className="stat">
-                          Proficiency:{" "}
-                          {study_flashcards[0].proficiency || "none"}
-                        </p>
-                        <p className="stat">
-                          Last revised: {study_flashcards[0].time || "never"}
-                        </p>
-                      </div>
-                    </div>
+                    <LearnHeader
+                      answered={answered}
+                      study_flashcards={study_flashcards}
+                      correct={correct}
+                    />
 
-                    <div
-                      className={
-                        "answer-container " + (answered ? "" : "hidden")
-                      }
-                    >
-                      <div className="your-answer">
-                        <p className="label">Your answer</p>
-                        <p className="answer-text">
-                          {answer ? answer : <br />}
-                        </p>
-                      </div>
-                      <div className="correct-answer">
-                        <p className="label">Correct answer</p>
-                        <p className="answer-text">
-                          {study_flashcards[0].definition}
-                        </p>
-                      </div>
-                      {correct === "unknown" ? (
-                        <>
-                          <p className="choose">How do you think you did?</p>
-                          <div className="button-group">
-                            <div
-                              className={
-                                "button " +
-                                (correct === "correct" ? "active" : "")
-                              }
-                              onClick={() => set_correct("correct")}
-                            >
-                              Correct
-                            </div>
-                            <div
-                              className={
-                                "button " +
-                                (correct === "wrong" ? "active" : "")
-                              }
-                              onClick={() => set_correct("wrong")}
-                            >
-                              Wrong
-                            </div>
-                          </div>
-                        </>
-                      ) : null}
-                    </div>
+                    <ChooseDifficulty
+                      answered={answered}
+                      study_flashcards={study_flashcards}
+                      correct={correct}
+                      set_correct={set_correct}
+                      answer={answer}
+                    />
                     {listening ? (
                       <p>Your browser is currently listening</p>
                     ) : null}
@@ -339,7 +258,11 @@ const Learn = ({ user }) => {
                       <p className={"label " + (answered ? "hidden" : "")}>
                         Answer{" "}
                       </p>
-                      <div className="input-container">
+                      <div
+                        className={
+                          "input-container " + (answered ? "answered" : "")
+                        }
+                      >
                         <div
                           className={
                             "input-row " + (answered ? "answered" : "")
