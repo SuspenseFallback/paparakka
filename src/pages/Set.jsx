@@ -53,7 +53,11 @@ const Set = () => {
               <div className="right-side">
                 <div className="tags">
                   {deck.tags.map((tag) => {
-                    return <span className="tag">{tag}</span>;
+                    return (
+                      <span className="tag" key={tag + "eoirnv ueim"}>
+                        {tag}
+                      </span>
+                    );
                   })}
                 </div>
                 <p className="created-by">
