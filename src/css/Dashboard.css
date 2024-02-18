@@ -20,8 +20,8 @@
   width: 100vw;
   height: 25vh;
 
-  background-color: var(--app-light-orange);
-  border: 2px solid var(--app-secondary-color);
+  background-color: var(--app-theme-color);
+  border: 2px solid var(--app-light-grey);
   border-radius: 0 0 100px 100px;
 
   display: flex;

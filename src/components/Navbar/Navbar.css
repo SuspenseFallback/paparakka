@@ -33,6 +33,42 @@
   transition: 0.25s;
 }
 
+.nav .logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.nav .logo-container .text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav .nav-logo {
+  display: inline;
+  color: var(--app-primary-text-color);
+  font-family: "Lexend";
+  font-weight: 600;
+  font-size: 28px;
+
+  margin: 0;
+}
+
+.nav .nav-caption {
+  margin: 2px 0 0 25px;
+  font-size: 14px;
+  font-weight: 300;
+  color: grey;
+  font-style: italic;
+}
+
+.nav .img {
+  width: 80px;
+  height: 80px;
+}
+
 /* list of items */
 
 .nav-items {
@@ -61,7 +97,7 @@
   display: inline;
 }
 
-.nav .nav-items .nav-item.nav-button .nav-link {
+.nav .nav-items .nav-item.nav-button {
   font-size: 14px;
   color: var(--app-primary-text-color);
 }
@@ -70,15 +106,6 @@
   color: var(--app-primary-text-color);
   text-decoration: none;
   font-family: "Lexend";
-}
-
-.nav .nav-logo {
-  display: inline;
-  color: var(--app-primary-text-color);
-  font-family: "Lexend";
-  font-weight: 600;
-  font-size: 28px;
-  margin-left: 5%;
 }
 
 .nav-account {

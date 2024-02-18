@@ -5,8 +5,10 @@
 }
 
 .app-container {
-  --app-theme-color: rgb(255, 87, 82);
-  --app-theme-hover-color: rgb(235, 61, 55);
+  --app-theme-color: rgb(238, 104, 8);
+  --app-theme-hover-color: rgb(212, 93, 8);
+  --app-theme-secondary-color: rgb(43, 106, 9);
+  --app-theme-secondary-hover-color: rgb(31, 75, 7);
 }
 
 .app-container.light-theme {
@@ -20,10 +22,10 @@
   --app-primary-text-color: #000;
   --app-secondary-text-color: #ffffff;
   --app-grey: rgb(136, 136, 136);
-  --app-light-grey: rgb(204, 204, 204);
+  --app-light-grey: rgb(218, 218, 218);
   --app-shadow: rgba(0, 0, 0, 0.5);
-  --app-light-orange: #ff7a7a;
-  --app-disabled: #ffacac;
+  --app-light-orange: #ffad7a;
+  --app-disabled: #ffcfac;
 }
 
 .app-container.dark-theme {

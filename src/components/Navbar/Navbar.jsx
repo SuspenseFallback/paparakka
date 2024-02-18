@@ -8,6 +8,8 @@ import SpinnerPage from "../SpinnerPage";
 import Footer from "../Footer/Footer";
 import Switch from "../Switch/Switch";
 
+import logo from "../../assets/papaya-logo.png";
+
 const Navbar = () => {
   const navigate = useNavigate();
 
@@ -93,7 +95,14 @@ const Navbar = () => {
         ) : (
           <>
             <div className={"nav " + (is_active ? "active" : "")}>
-              <p className="nav-logo">Papparakka</p>
+              <div className="logo-container">
+                <div className="text-container">
+                  <p className="nav-logo">Papparakka</p>
+                  <p className="nav-caption">Seeds of knowledge</p>
+                </div>
+                <img className="img" src={logo} />
+              </div>
+
               <div className="nav-items">
                 {/* <div className="nav-item nav-switch">
                   <Switch
@@ -120,7 +129,7 @@ const Navbar = () => {
                 {user ? (
                   <>
                     <div
-                      className="nav-item nav-hide nav-button button"
+                      className="nav-item nav-hide nav-button button button-secondary"
                       onClick={() => goToLink("/new-set")}
                     >
                       <NavLink className="nav-link" to="new-set">

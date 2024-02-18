@@ -8,7 +8,6 @@
   font-size: 14px;
   cursor: pointer;
   transition: 0.25s;
-  border: 2px solid var(--app-primary-text-color);
 }
 
 .button:hover {
@@ -116,4 +115,9 @@
 
 .button-group .button.active:hover {
   background-color: #df6310;
+}
+
+.button-secondary {
+  background-color: var(--app-theme-secondary-color);
+  color: #fff;
 }
