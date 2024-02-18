@@ -8,9 +8,17 @@ import {
 import { useNavigate, useParams } from "react-router";
 import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
+import useSpeechRecognition from "../hooks/useSpeechRecognition.js";
 
 const Learn = ({ user }) => {
   const navigate = useNavigate();
+  const {
+    listening,
+    startListening,
+    stopListening,
+    text,
+    hasRecognitionSupport,
+  } = useSpeechRecognition();
 
   const { id } = useParams();
   const [set, set_set] = useState({});
@@ -26,6 +34,10 @@ const Learn = ({ user }) => {
   const [answered, set_answered] = useState(false);
   const [answer, set_answer] = useState("");
   const [correct, set_correct] = useState("");
+
+  useEffect(() => {
+    set_answer(text);
+  }, [text]);
 
   useEffect(() => {
     getSet(id).then((data) => {
@@ -204,6 +216,9 @@ const Learn = ({ user }) => {
                       <br />
                       <span className="term">{study_flashcards[0].term}</span>
                     </p>
+                    <button className="button button-icon">
+                      <i className="pi pi-play icon"></i>
+                    </button>
                   </div>
                   <div className="center">
                     <button
@@ -271,6 +286,7 @@ const Learn = ({ user }) => {
                     </>
                   ) : null}
                 </div>
+                {listening ? <p>Your browser is currently listening</p> : null}
                 <div className="answer">
                   <div className="input-container">
                     <p className={"label " + (answered ? "hidden" : "")}>
@@ -290,6 +306,18 @@ const Learn = ({ user }) => {
                         onChange={(e) => set_answer(e.target.value)}
                         onKeyDown={(e) => onkeydown(e)}
                       />
+                      <button
+                        className={"button-icon " + (answered ? "hidden" : "")}
+                        onClick={listening ? stopListening : startListening}
+                      >
+                        <span
+                          className={
+                            listening
+                              ? "pi icon pi-stop-circle"
+                              : "pi icon pi-circle-fill"
+                          }
+                        ></span>
+                      </button>
                       <button
                         className={
                           "button " +

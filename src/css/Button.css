@@ -121,3 +121,11 @@
   background-color: var(--app-theme-secondary-color);
   color: #fff;
 }
+
+.button-secondary > * {
+  color: #fff !important;
+}
+
+.button-secondary:hover {
+  background-color: var(--app-theme-secondary-hover-color);
+}

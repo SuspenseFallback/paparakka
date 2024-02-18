@@ -23,8 +23,14 @@
   border-right: none;
 }
 
+.learn-page-1 .question-container .top .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .learn-page-1 .question-container .top .center .button-icon {
-  background-color: #f98f0d;
+  background-color: var(--app-theme-color);
   padding: 48px;
 }
 
@@ -132,7 +138,7 @@
   font-weight: normal;
   font-size: 13px;
   text-transform: uppercase;
-  color: #f98f0d;
+  color: var(--app-theme-color);
   letter-spacing: 1px;
   font-weight: bold;
   transition: all 0.25s;
@@ -142,7 +148,7 @@
 .learn-page-1 .question-container .question .label .dn {
   margin-left: 8px;
   font-weight: bold;
-  color: #f98f0d;
+  color: var(--app-theme-color);
 }
 
 .learn-page-1 .question-container .input-container {
@@ -152,7 +158,7 @@
 }
 
 .learn-page-1 .question-container .input-container .input {
-  width: 95%;
+  width: 92%;
   padding: 12px;
   border-top: none;
   border-left: none;
@@ -193,7 +199,7 @@
 .learn-page-1 .question-container .answer-container .your-answer,
 .learn-page-1 .question-container .answer-container .correct-answer {
   width: 100%;
-  color: #f98f0d;
+  color: var(--app-theme-color);
 }
 
 .learn-page-1 .question-container .answer-container .label {
@@ -234,7 +240,7 @@
 .learn-page-1 .question-container .answer .input-container .label .dn {
   margin-left: 16px;
   font-weight: bold;
-  color: #f98f0d;
+  color: var(--app-theme-color);
   cursor: pointer;
 }
 
@@ -279,11 +285,18 @@
   padding-left: 8px;
 }
 
-.learn-page-1 .question-container .answer .button-icon {
-  background-color: #f98f0d;
+.learn-page-1 .question-container .answer .button-icon,
+.learn-page-1 .left .button-icon {
+  background-color: var(--app-theme-color);
 }
 
-.learn-page-1 .question-container .answer .button-icon .icon {
+.learn-page-1 .question-container .answer .button-icon:hover,
+.learn-page-1 .left .button-icon:hover {
+  background-color: var(--app-theme-hover-color);
+}
+
+.learn-page-1 .question-container .answer .button-icon .icon,
+.learn-page-1 .left .button-icon .icon {
   color: white;
   font-size: 15px;
 }
