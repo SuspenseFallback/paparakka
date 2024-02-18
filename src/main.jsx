@@ -39,6 +39,7 @@ import EditSet from "./pages/EditSet.jsx";
 import TextPlugin from "gsap/dist/TextPlugin.js";
 import SpinnerAnim from "./components/SpinnerAnim/SpinnerAnim.jsx";
 import Settings from "./pages/Settings.jsx";
+import Stats from "./pages/Stats.jsx";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
@@ -117,6 +118,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Settings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/stats",
+        element: (
+          <ProtectedRoute>
+            <Stats />
           </ProtectedRoute>
         ),
       },

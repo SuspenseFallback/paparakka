@@ -1,0 +1,72 @@
+.stats-page {
+  width: 100vw;
+  min-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats-page .layout {
+  height: 80vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-page .layout .column {
+  height: 100%;
+  width: calc(100% / 4);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stats-page .layout .column .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.stats-page .layout .column .stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-page .layout .column .stat .number {
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stats-page .layout .wide-column {
+  width: 50%;
+  max-height: 100%;
+}
+
+.stats-page .layout .wide-column .wide-stat {
+  width: 80%;
+  height: 25%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-page .layout .wide-column .wide-stat .number {
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stats-page .layout .wide-column .wide-stat .caption {
+  width: 50%;
+  text-align: center;
+}

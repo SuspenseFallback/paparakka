@@ -145,7 +145,10 @@ const Navbar = () => {
                           "user-menu " + (is_user_items ? "" : "hidden")
                         }
                       >
-                        <div className="user-link">
+                        <div
+                          className="user-link"
+                          onClick={() => goToLink("/stats")}
+                        >
                           <p>Stats</p>
                           <span className="icon pi pi-chart-bar"></span>
                         </div>
