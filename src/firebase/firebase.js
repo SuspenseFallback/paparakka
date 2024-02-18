@@ -19,6 +19,8 @@ import {
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
+import fuzzysort from "fuzzysort";
+
 // initialize
 
 const firebaseConfig = {
@@ -180,15 +182,17 @@ export const searchSetTitles = (target, callback) => {
 };
 
 function searchSets(array, target) {
-  const matches = [];
+  const titles = array.map(({ title }) => title);
 
-  array.forEach((set) => {
-    if (set.title.toLowerCase().includes(target.toLowerCase())) {
-      matches.push(set);
-    }
+  const result = fuzzysort.go(target, titles, { allowTypo: true });
+  let results = [];
+
+  result.forEach((res) => {
+    const newlist = array.filter((s) => s.title == res.target);
+    results = results.concat(newlist);
   });
 
-  return matches;
+  return results;
 }
 
 function searchSetsByOwnerId(array, id) {
