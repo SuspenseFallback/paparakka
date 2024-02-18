@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Settings.css";
+import ThemeSelector from "../components/Settings/ThemeSelector";
 
 const Settings = () => {
   useEffect(() => {
@@ -18,14 +19,7 @@ const Settings = () => {
             </div>
             <div className="divider"></div>
             <div className="right-side">
-              <div className="input-container">
-                <p className="label">Username</p>
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Enter username here..."
-                />
-              </div>
+              <ThemeSelector />
             </div>
           </div>
           <div className="area">

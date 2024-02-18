@@ -9,7 +9,7 @@
 }
 
 .settings-page .layout {
-  width: 60%;
+  width: 70%;
   min-height: 90vh;
 
   margin-top: 5vh;
@@ -103,4 +103,136 @@
   font-size: 14px;
   color: var(--app-secondary-color);
   font-family: "Lexend";
+}
+
+/* theme selector */
+
+.theme-selector {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.theme-selector .light {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.theme-selector .light .illustration,
+.theme-selector .dark .illustration {
+  width: 250px;
+  height: 170px;
+  border-radius: 12px;
+  border: 2px solid var(--app-secondary-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-selector .light .illustration .illustration-card,
+.theme-selector .dark .illustration .illustration-card {
+  width: 50%;
+  height: 50%;
+
+  border-radius: 12px;
+  border: 2px solid var(--app-secondary-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-selector .light .illustration .illustration-card .text1,
+.theme-selector .dark .illustration .illustration-card .text1 {
+  width: 10px;
+  height: 6px;
+
+  border-radius: 24px;
+  background-color: #000;
+}
+
+.theme-selector .light .illustration .illustration-card .text2,
+.theme-selector .dark .illustration .illustration-card .text2 {
+  margin-left: 4px;
+
+  width: 25px;
+  height: 6px;
+
+  border-radius: 24px;
+  background-color: #000;
+}
+
+.theme-selector .dark .illustration {
+  background-color: #000;
+}
+
+.theme-selector .dark .illustration .illustration-card {
+  border-color: white;
+}
+
+.theme-selector .dark .illustration .illustration-card .text1,
+.theme-selector .dark .illustration .illustration-card .text2 {
+  background-color: #fff;
+}
+
+.theme-selector .illustration .illustration-controls {
+  width: 50%;
+
+  margin-top: 3%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-selector .illustration .illustration-controls > i {
+  font-size: 12px;
+  padding: 4px;
+}
+
+.theme-selector .dark .illustration .illustration-controls > i {
+  color: #fff;
+}
+
+.theme-selector .text input {
+  margin-right: 8px;
+}
+
+.theme-selector .text input:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid var(--app-secondary-color);
+
+  transition: all 0.25s;
+}
+
+.theme-selector .text input:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: var(--app-theme-color);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid var(--app-secondary-color);
+  transition: all 0.25s;
 }
