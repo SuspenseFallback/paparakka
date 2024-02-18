@@ -6,6 +6,10 @@ const Stats = ({ user }) => {
   const [sets_studied_this_month, set_sets_studied_this_month] = useState(0);
 
   useEffect(() => {
+    document.title = "Flashcards - Stats";
+  }, []);
+
+  useEffect(() => {
     let week_count = 0;
     let month_count = 0;
 

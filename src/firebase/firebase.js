@@ -106,7 +106,7 @@ export const addSet = (data, callback) => {
     owner: data.owner,
     ownerName: data.ownerName,
     id: id,
-    time: new Date().toTimeString(),
+    time: new Date().toUTCString(),
   })
     .then((data) => {
       callback(data);
@@ -127,7 +127,7 @@ export const updateSet = async (data, set_id, user) => {
     owner: data.owner,
     ownerName: data.ownerName,
     id: set_id,
-    time: new Date().toTimeString(),
+    time: new Date().toUTCString(),
   })
     .then((new_data) => {
       updateStudiedSets(user, set_id, data.flashcards, () => {
@@ -262,6 +262,7 @@ export const addStudiedSets = (user, set_id, callback) => {
     studied_sets.splice(0, 0, {
       ...set,
       flashcards: cards,
+      time: new Date().toUTCString(),
     });
 
     updateDoc(docRef, {
