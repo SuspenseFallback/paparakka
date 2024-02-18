@@ -8,11 +8,11 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
   const [open, set_open] = useState(false);
 
   const preview = () => {
-    navigate("/preview/" + id);
+    navigate("/learn/" + id);
   };
 
   const open_in_new_tab = () => {
-    window.open("/preview/" + id, "_blank");
+    window.open("/learn/" + id, "_blank");
   };
 
   const edit = () => {

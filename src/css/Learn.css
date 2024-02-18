@@ -1,12 +1,45 @@
 .learn-page-1 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+/* top header row */
+
+.learn-page-1 .row {
+  width: 80%;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.learn-page-1 .row .header {
+  font-size: 1.4rem;
+  font-weight: 500;
+
+  margin-left: 1vw;
+}
+
+/* main body */
+
+.learn-page-1 .layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 80%;
+  height: 60vh;
+}
+
+/* question container */
+
 .learn-page-1 .question-container {
-  width: 90%;
-  height: 80%;
+  width: 60vw;
+  height: 100%;
   background-color: var(--app-primary-color);
   border-radius: 24px;
   border: 1px solid var(--app-secondary-color);
@@ -19,286 +52,23 @@
   align-items: center;
 }
 
-.learn-page-1 .answer-container .button-group .button:nth-child(1) {
-  border-right: none;
+.learn-page-1 .question-container .top .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.learn-page-1 .question-container .top .left {
+.learn-page-1 .question-container .top .left .group {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .learn-page-1 .question-container .top .center .button-icon {
   background-color: var(--app-theme-color);
   padding: 48px;
-}
-
-.learn-page-1 .question-container .top .center .button-icon.wrong {
-  background-color: rgb(231, 48, 48);
-  cursor: default;
-  pointer-events: none;
-  padding: 36px;
-}
-
-.learn-page-1 .question-container .top .controls {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1vh;
-}
-
-.learn-page-1 .question-container .top .center .button-icon.wrong:hover {
-  background-color: rgb(231, 48, 48);
-}
-
-.learn-page-1 .question-container .top .center .button-icon.correct:hover {
-  background-color: rgb(86, 213, 90);
-}
-
-.learn-page-1 .question-container .top .center .button-icon.correct {
-  background-color: rgb(86, 213, 90);
-  cursor: default;
-  pointer-events: none;
-  padding: 36px;
-}
-
-.learn-page-1 .question-container .top .center .button-icon.unknown:hover {
-  background-color: rgb(0, 170, 255);
-}
-
-.learn-page-1 .question-container .top .center .button-icon.unknown {
-  background-color: rgb(0, 170, 255);
-  cursor: default;
-  pointer-events: none;
-}
-
-.learn-page-1 .question-container .top .center .button-icon.hard .icon,
-.learn-page-1 .question-container .top .center .button-icon.easy .icon,
-.learn-page-1 .question-container .top .center .button-icon.medium .icon,
-.learn-page-1 .question-container .top .center .button-icon.unknown .icon {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.learn-page-1 .question-container .top .center .button-icon:hover {
-  background-color: #5916c5;
-  box-shadow: none;
-}
-
-.learn-page-1 .question-container .top .center .button-icon .icon {
-  font-size: 20px;
-  color: white;
-  transition: all 0.5s;
-}
-
-.learn-page-1 .question-container .hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.learn-page-1 .question-container .top .right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 1vw;
-}
-
-.learn-page-1 .question-container .top {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.learn-page-1 .question-container .button-icon:hover {
-  box-shadow: none;
-  background-color: var(--app-primary-hover-color);
-}
-
-.learn-page-1 .question-container .question {
-  padding: 1vw;
-  transition: all 0.25s;
-  text-align: center;
-  color: var(--app-primary-text-color);
-}
-
-.learn-page-1 .question-container .question .term {
-  margin-top: 8px;
-  display: block;
-  font-size: 18px;
-  transition: all 0.25s;
-  text-align: center;
-  color: var(--app-primary-text-color);
-}
-
-.learn-page-1 .question-container .question .label {
-  font-weight: normal;
-  font-size: 13px;
-  text-transform: uppercase;
-  color: var(--app-theme-color);
-  letter-spacing: 1px;
-  font-weight: bold;
-  transition: all 0.25s;
-  text-align: center;
-}
-
-.learn-page-1 .question-container .question .label .dn {
-  margin-left: 8px;
-  font-weight: bold;
-  color: var(--app-theme-color);
-}
-
-.learn-page-1 .question-container .input-container {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-}
-
-.learn-page-1 .question-container .input-container .input {
-  width: 92%;
-  padding: 12px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 2px solid var(--app-secondary-color);
-  font-family: "Lexend";
-  color: var(--app-secondary-color);
-  background-color: var(--app-background-color);
-  transition: all 0.25s;
-  background-color: transparent;
-}
-
-.learn-page-1 .question-container .input-container .input:focus {
-  border-color: var(--app-secondary-color) !important;
-}
-
-.learn-page-1 .question-container .answer-container {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 95%;
-}
-
-.learn-page-1 .question-container .answer-container .choose {
-  margin-bottom: 0;
-  margin-top: 2vh;
-  text-align: center;
-  width: 100%;
-  color: var(--app-primary-text-color);
-}
-
-.learn-page-1 .question-container .answer-container .button-group {
-  margin-top: 1vh;
-}
-
-.learn-page-1 .question-container .answer-container .your-answer,
-.learn-page-1 .question-container .answer-container .correct-answer {
-  width: 100%;
-  color: var(--app-theme-color);
-}
-
-.learn-page-1 .question-container .answer-container .label {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.learn-page-1 .question-container .answer-container .answer-text {
-  margin: 0;
-  color: var(--app-secondary-color);
-}
-
-.learn-page-1 .question-container .answer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.learn-page-1 .question-container .answer .input-container .input:focus {
-  border-bottom: 3px solid #000;
-  outline: none;
-  font-size: 16px;
-  padding: 8px;
-}
-
-.learn-page-1 .question-container .answer .input-container .label {
-  text-align: left;
-  width: 100%;
-  margin: 0;
-  padding-bottom: 4px;
-  font-size: 14px;
-  color: var(--app-secondary-color);
-  font-family: "Lexend";
-  transition: all 0.25s;
-}
-
-.learn-page-1 .question-container .answer .input-container .label .dn {
-  margin-left: 16px;
-  font-weight: bold;
-  color: var(--app-theme-color);
-  cursor: pointer;
-}
-
-.learn-page-1 .question-container .answer .hidden {
-  position: absolute;
-  bottom: -10vh;
-  opacity: 0;
-}
-
-.learn-page-1 .question-container .answer .input-container .label .dn:hover {
-  text-decoration: 2px underline;
-}
-
-.learn-page-1 .question-container .answer .input-container .input-row {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.learn-page-1 .question-container .answer .input-container .input-row.answered {
-  justify-content: center;
-}
-
-.learn-page-1
-  .question-container
-  .answer
-  .input-container
-  .input-row.answered
-  .button {
-  width: 100%;
-}
-
-.learn-page-1
-  .question-container
-  .answer
-  .input-container
-  .input-row.answered
-  .button
-  .icon {
-  padding-left: 8px;
-}
-
-.learn-page-1 .question-container .answer .button-icon,
-.learn-page-1 .left .button-icon {
-  background-color: var(--app-theme-color);
-}
-
-.learn-page-1 .question-container .answer .button-icon:hover,
-.learn-page-1 .left .button-icon:hover {
-  background-color: var(--app-theme-hover-color);
-}
-
-.learn-page-1 .question-container .answer .button-icon .icon,
-.learn-page-1 .left .button-icon .icon {
-  color: white;
-  font-size: 15px;
 }
 
 .question-container > .center {
@@ -315,4 +85,317 @@
   color: var(--app-primary-text-color);
   font-size: 2rem;
   font-weight: bold;
+}
+
+/* icons for right/wrong answer */
+
+.button-icon#wrong {
+  background-color: rgb(231, 48, 48);
+  cursor: default;
+  pointer-events: none;
+  padding: 36px;
+}
+
+.button-icon#wrong:hover {
+  background-color: rgb(231, 48, 48);
+}
+
+.button-icon#correct:hover {
+  background-color: rgb(86, 213, 90);
+}
+
+.button-icon#correct {
+  background-color: rgb(86, 213, 90);
+  cursor: default;
+  pointer-events: none;
+  padding: 36px;
+}
+
+.button-icon#unknown:hover {
+  background-color: rgb(0, 170, 255);
+}
+
+.button-icon#unknown {
+  background-color: rgb(0, 170, 255);
+  cursor: default;
+  pointer-events: none;
+}
+
+.button-icon#hard .icon,
+.button-icon#easy .icon,
+.button-icon#medium .icon,
+.button-icon#unknown .icon {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.button-icon:hover {
+  background-color: #5916c5;
+  box-shadow: none;
+}
+
+.learn-page-1 .question-container .top .center .button-icon .icon {
+  font-size: 20px;
+  color: white;
+  transition: all 0.5s;
+}
+
+.learn-page-1 .question-container .top .controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+}
+
+.learn-page-1 .question-container .hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.learn-page-1 .question-container .top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.learn-page-1 .question-container .top .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.learn-page-1 .question-container .top .right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1vw;
+}
+
+.learn-page-1 .question-container .button-icon:hover {
+  box-shadow: none;
+  background-color: var(--app-primary-hover-color);
+}
+
+.learn-page-1 .question-container .label {
+  font-weight: normal;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--app-theme-color);
+  letter-spacing: 1px;
+  font-weight: bold;
+  transition: all 0.25s;
+  text-align: center;
+}
+
+.learn-page-1 .question-container .question {
+  padding-left: 12px;
+  margin: 0;
+  transition: all 0.25s;
+  text-align: center;
+  color: var(--app-primary-text-color);
+}
+
+.learn-page-1 .question-container .question .term {
+  margin-top: 8px;
+  display: block;
+  font-size: 18px;
+  transition: all 0.25s;
+  text-align: center;
+  color: var(--app-primary-text-color);
+}
+
+/* * middle parts  */
+
+.learn-page-1 .question-container .stats-section {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.learn-page-1 .question-container .stats-section .stat {
+  color: var(--app-grey);
+}
+
+.learn-page-1 .question-container .dn {
+  margin-left: 8px;
+  font-weight: bold;
+  color: var(--app-theme-color);
+
+  cursor: pointer;
+}
+
+.learn-page-1 .question-container .dn:hover {
+  text-decoration: underline;
+}
+
+/* answer container */
+
+.learn-page-1 .question-container .input-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+
+  border: 2px solid #000;
+  border-radius: 12px;
+}
+
+.learn-page-1 .question-container .input-container .input {
+  width: 40%;
+  padding: 12px;
+
+  font-family: "Lexend";
+  color: var(--app-secondary-color);
+  background-color: var(--app-background-color);
+  transition: all 0.25s;
+  background-color: transparent;
+  border: none;
+
+  text-align: center;
+}
+
+.learn-page-1 .answer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.learn-page-1 .answer .input-container .input:focus {
+  outline: none;
+  padding: 8px;
+}
+
+.learn-page-1 .answer .input-container .label {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 4px;
+  font-size: 14px;
+  color: var(--app-secondary-color);
+  font-family: "Lexend";
+  transition: all 0.25s;
+}
+
+.learn-page-1 .answer .hidden {
+  position: absolute;
+  bottom: -10vh;
+  opacity: 0;
+}
+
+.learn-page-1 .answer .input-container .input-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* after answered */
+
+.learn-page-1 .answer-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 95%;
+}
+
+.learn-page-1 .answer-container .choose {
+  margin-bottom: 0;
+  margin-top: 2vh;
+  text-align: center;
+  width: 100%;
+  color: var(--app-primary-text-color);
+}
+
+.learn-page-1 .answer-container .button-group {
+  margin-top: 1vh;
+}
+
+.learn-page-1 .answer-container .your-answer,
+.learn-page-1 .answer-container .correct-answer {
+  width: 100%;
+  color: var(--app-theme-color);
+}
+
+.learn-page-1 .label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.learn-page-1 .answer-container .button-group .button:nth-child(1) {
+  border-right: none;
+}
+
+.learn-page-1 .answer-container .answer-text {
+  margin: 0;
+  color: var(--app-secondary-color);
+}
+
+.learn-page-1 .answer .input-container .input-row.answered {
+  justify-content: center;
+}
+
+.learn-page-1 .answer .input-container .input-row.answered .button {
+  width: 100%;
+}
+
+.learn-page-1 .answer .input-container .input-row.answered .button .icon {
+  padding-left: 8px;
+}
+
+.learn-page-1 .question-container .answer .button-icon,
+.learn-page-1 .left .button-icon {
+  background-color: var(--app-theme-color);
+  padding: 23px !important;
+}
+
+.learn-page-1 .question-container .answer .button-icon:hover,
+.learn-page-1 .left .button-icon:hover {
+  background-color: var(--app-theme-hover-color);
+}
+
+.learn-page-1 .question-container .answer .button-icon .icon,
+.learn-page-1 .left .button-icon .icon {
+  color: white;
+  font-size: 15px;
+}
+
+/* skip button on right-side */
+
+.learn-page-1 .skip {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 12px;
+
+  background-color: var(--app-background-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.learn-page-1 .skip:hover {
+  background-color: var(--app-light-grey);
+}
+
+.learn-page-1 .skip .icon {
+  font-size: 5rem;
+}
+
+.learn-page-1 .skip .caption {
+  margin: 0;
 }

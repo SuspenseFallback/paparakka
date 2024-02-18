@@ -10,6 +10,9 @@ import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
 import useSpeechRecognition from "../hooks/useSpeechRecognition.js";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+
 const Learn = ({ user }) => {
   const navigate = useNavigate();
   const {
@@ -167,7 +170,7 @@ const Learn = ({ user }) => {
         time = new Date(time.getTime() + 1000 * 60 * 60 * 4);
         break;
       case "again":
-        time = new Date(time.getTime() + 1000 * 60 * 10);
+        time = new Date(time.getTime() + 1000 * 60 * 1);
         break;
       default:
         break;
@@ -175,6 +178,9 @@ const Learn = ({ user }) => {
 
     const new_card = {
       ...study_flashcards[0],
+      times_revised: study_flashcards[0].times_revised
+        ? study_flashcards[0].times_revised + 1
+        : 1,
       proficiency: proficiency,
       time: time.toUTCString(),
     };
@@ -206,142 +212,191 @@ const Learn = ({ user }) => {
         {loading ? (
           <span className="pi pi-spinner pi-spin"></span>
         ) : (
-          <div className="question-container">
-            {study_flashcards.length > 0 ? (
-              <>
-                <div className="top">
-                  <div className="left">
-                    <p className={"question " + (answered ? " hidden" : "")}>
-                      <span className="label">TERM</span>
-                      <br />
-                      <span className="term">{study_flashcards[0].term}</span>
-                    </p>
-                    <button className="button button-icon">
-                      <i className="pi pi-play icon"></i>
-                    </button>
-                  </div>
-                  <div className="center">
-                    <button
-                      className={
-                        "button button-icon " + (answered ? correct : "hidden")
-                      }
-                    >
-                      <span
-                        className={
-                          correct === "wrong"
-                            ? "pi pi-times icon"
-                            : correct === "correct"
-                            ? "pi pi-check icon"
-                            : correct === "unknown"
-                            ? "pi pi-question icon"
-                            : ""
-                        }
-                      ></span>
-                    </button>
-                  </div>
-                  <div className="right">
-                    <button
-                      className={
-                        "button button-icon " + (answered ? "hidden" : "")
-                      }
-                    >
-                      <span className={"pi pi-cog icon"}></span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  className={"answer-container " + (answered ? "" : "hidden")}
-                >
-                  <div className="your-answer">
-                    <p className="label">Your answer</p>
-                    <p className="answer-text">{answer ? answer : <br />}</p>
-                  </div>
-                  <div className="correct-answer">
-                    <p className="label">Correct answer</p>
-                    <p className="answer-text">
-                      {study_flashcards[0].definition}
-                    </p>
-                  </div>
-                  {correct === "unknown" ? (
-                    <>
-                      <p className="choose">How do you think you did?</p>
-                      <div className="button-group">
-                        <div
-                          className={
-                            "button " + (correct === "correct" ? "active" : "")
-                          }
-                          onClick={() => set_correct("correct")}
-                        >
-                          Correct
+          <>
+            <div className="row">
+              <h1 className="header">{set.title}</h1>
+              <div className="buttons"></div>
+            </div>
+            <div className="layout">
+              <div className="question-container">
+                {study_flashcards.length > 0 ? (
+                  <>
+                    <div className="top">
+                      <div className="row">
+                        <div className="left">
+                          <span className="label">QUESTION</span>
+                          <div className="group">
+                            <button className="button button-icon">
+                              <FontAwesomeIcon
+                                icon={faVolumeHigh}
+                                color="white"
+                              />
+                            </button>
+                            <p
+                              className={
+                                "question " + (answered ? " hidden" : "")
+                              }
+                            >
+                              <span className="term">
+                                {study_flashcards[0].term}
+                              </span>
+                            </p>
+                          </div>
                         </div>
-                        <div
-                          className={
-                            "button " + (correct === "wrong" ? "active" : "")
-                          }
-                          onClick={() => set_correct("wrong")}
-                        >
-                          Wrong
+                        <div className="center">
+                          <button
+                            className={
+                              "button button-icon " + (answered ? "" : "hidden")
+                            }
+                            id={answered ? correct : ""}
+                          >
+                            <span
+                              className={
+                                correct === "wrong"
+                                  ? "pi pi-times icon"
+                                  : correct === "correct"
+                                  ? "pi pi-check icon"
+                                  : correct === "unknown"
+                                  ? "pi pi-question icon"
+                                  : ""
+                              }
+                            ></span>
+                          </button>
+                        </div>
+                        <div className="right">
+                          <button
+                            className={
+                              "button button-icon " + (answered ? "hidden" : "")
+                            }
+                          >
+                            <span className={"pi pi-cog icon"}></span>
+                          </button>
                         </div>
                       </div>
-                    </>
-                  ) : null}
-                </div>
-                {listening ? <p>Your browser is currently listening</p> : null}
-                <div className="answer">
-                  <div className="input-container">
-                    <p className={"label " + (answered ? "hidden" : "")}>
-                      Answer{" "}
-                      <span className="dn" onClick={dont_know}>
-                        Don't know?
-                      </span>
-                    </p>
-                    <div
-                      className={"input-row " + (answered ? "answered" : "")}
-                    >
-                      <input
-                        type="text"
-                        className={"input " + (answered ? "hidden" : "")}
-                        placeholder="Enter answer here..."
-                        value={answer}
-                        onChange={(e) => set_answer(e.target.value)}
-                        onKeyDown={(e) => onkeydown(e)}
-                      />
-                      <button
-                        className={"button-icon " + (answered ? "hidden" : "")}
-                        onClick={listening ? stopListening : startListening}
-                      >
-                        <span
-                          className={
-                            listening
-                              ? "pi icon pi-stop-circle"
-                              : "pi icon pi-circle-fill"
-                          }
-                        ></span>
-                      </button>
-                      <button
-                        className={
-                          "button " +
-                          (answered ? "button-block" : "button-icon")
-                        }
-                        onClick={answered ? next_question : check_answer}
-                        disabled={answered ? correct === "unknown" : false}
-                      >
-                        {answered ? "Next" : ""}
-                        <span className="pi pi-reply icon"></span>
-                      </button>
+                      <div className="stats-section">
+                        <p className="stat">
+                          Times revised:{" "}
+                          {study_flashcards[0].times_revised || "0"}
+                        </p>
+                        <p className="stat">
+                          Proficiency:{" "}
+                          {study_flashcards[0].proficiency || "none"}
+                        </p>
+                        <p className="stat">
+                          Last revised: {study_flashcards[0].time || "never"}
+                        </p>
+                      </div>
                     </div>
+
+                    <div
+                      className={
+                        "answer-container " + (answered ? "" : "hidden")
+                      }
+                    >
+                      <div className="your-answer">
+                        <p className="label">Your answer</p>
+                        <p className="answer-text">
+                          {answer ? answer : <br />}
+                        </p>
+                      </div>
+                      <div className="correct-answer">
+                        <p className="label">Correct answer</p>
+                        <p className="answer-text">
+                          {study_flashcards[0].definition}
+                        </p>
+                      </div>
+                      {correct === "unknown" ? (
+                        <>
+                          <p className="choose">How do you think you did?</p>
+                          <div className="button-group">
+                            <div
+                              className={
+                                "button " +
+                                (correct === "correct" ? "active" : "")
+                              }
+                              onClick={() => set_correct("correct")}
+                            >
+                              Correct
+                            </div>
+                            <div
+                              className={
+                                "button " +
+                                (correct === "wrong" ? "active" : "")
+                              }
+                              onClick={() => set_correct("wrong")}
+                            >
+                              Wrong
+                            </div>
+                          </div>
+                        </>
+                      ) : null}
+                    </div>
+                    {listening ? (
+                      <p>Your browser is currently listening</p>
+                    ) : null}
+
+                    <div className="answer">
+                      <p className={"label " + (answered ? "hidden" : "")}>
+                        Answer{" "}
+                      </p>
+                      <div className="input-container">
+                        <div
+                          className={
+                            "input-row " + (answered ? "answered" : "")
+                          }
+                        >
+                          <button
+                            className={
+                              "button-icon " + (answered ? "hidden" : "")
+                            }
+                            onClick={listening ? stopListening : startListening}
+                          >
+                            <FontAwesomeIcon
+                              icon={faMicrophone}
+                              color="white"
+                            />
+                          </button>
+                          <input
+                            type="text"
+                            className={"input " + (answered ? "hidden" : "")}
+                            placeholder="Enter answer here..."
+                            value={answer}
+                            onChange={(e) => set_answer(e.target.value)}
+                            onKeyDown={(e) => onkeydown(e)}
+                          />
+
+                          <button
+                            className={
+                              "button " +
+                              (answered ? "button-block" : "button-icon")
+                            }
+                            onClick={answered ? next_question : check_answer}
+                            disabled={answered ? correct === "unknown" : false}
+                          >
+                            {answered ? "Next" : ""}
+                            <span className="pi pi-reply icon"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="center">
+                    <p className="header">
+                      You have learned everything for now!
+                    </p>
+                    <button className="button" onClick={onOver}>
+                      Go back to set
+                    </button>
                   </div>
-                </div>
-              </>
-            ) : (
-              <div className="center">
-                <p className="header">You have learned everything for now!</p>
-                <button className="button" onClick={onOver}>
-                  Go back to set
-                </button>
+                )}
               </div>
-            )}
-          </div>
+              <div className="skip" onClick={dont_know}>
+                <i className="icon pi pi-angle-double-right"></i>
+                <p className="caption">Skip</p>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </>
