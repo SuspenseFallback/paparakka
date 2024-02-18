@@ -13,7 +13,7 @@ const Sets = () => {
   useEffect(() => {
     logData("decks");
 
-    document.title = "Flashcards - Sets";
+    document.title = "Papparakka - Sets";
   }, []);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Sets = () => {
             <div className="callout-card">
               <p className="title">How does it work?</p>
               <p className="content">
-                On {"{app-name}"}, every set that a user creates is accessible
+                On {"Papparakka"}, every set that a user creates is accessible
                 by any user of the website. This ensures that there are enough
                 sets for different fields, different curricula and different
                 people's needs. This allows people to find resources that are

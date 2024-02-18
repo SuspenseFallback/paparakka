@@ -18,7 +18,7 @@ const Set = () => {
       console.log(data);
       set_loading(false);
       set_deck(data);
-      document.title = "Flashcards | " + data.title;
+      document.title = "Papparakka | " + data.title;
       addHistory(data.id);
     });
   }, []);

@@ -10,7 +10,7 @@ const MySets = ({ user }) => {
   const [total_decks, set_total_decks] = useState([]);
 
   useEffect(() => {
-    document.title = "Flashcards | My Decks";
+    document.title = "Papparakka | My Decks";
   }, []);
 
   useEffect(() => {

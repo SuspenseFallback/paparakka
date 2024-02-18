@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    document.title = "Flashcards | Home";
+    document.title = "Papparakka | Home";
 
     logData("home_page");
   }, []);

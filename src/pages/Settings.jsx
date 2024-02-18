@@ -4,7 +4,7 @@ import ThemeSelector from "../components/Settings/ThemeSelector";
 
 const Settings = () => {
   useEffect(() => {
-    document.title = "Flashcards - Settings";
+    document.title = "Papparakka - Settings";
   }, []);
 
   return (

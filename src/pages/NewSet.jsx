@@ -69,7 +69,7 @@ const NewSet = () => {
   };
 
   useEffect(() => {
-    document.title = "Flashcards | Create a new deck";
+    document.title = "Papparakka | Create a new deck";
 
     window.onbeforeunload = () => true;
   }, []);

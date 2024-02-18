@@ -29,7 +29,7 @@ const Learn = ({ user }) => {
 
   useEffect(() => {
     getSet(id).then((data) => {
-      document.title = "Flashcards | " + data.title;
+      document.title = "Papparakka | " + data.title;
       set_set({ ...data });
 
       addStudiedSets(user, data.id, (cards) => {

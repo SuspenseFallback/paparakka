@@ -6,7 +6,7 @@ const Stats = ({ user }) => {
   const [sets_studied_this_month, set_sets_studied_this_month] = useState(0);
 
   useEffect(() => {
-    document.title = "Flashcards - Stats";
+    document.title = "Papparakka - Stats";
   }, []);
 
   useEffect(() => {

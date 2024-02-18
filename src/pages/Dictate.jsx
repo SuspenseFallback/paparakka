@@ -24,7 +24,7 @@ const Dictate = ({ user }) => {
     getSet(id).then((data) => {
       set_deck(data);
       set_loading(false);
-      document.title = "Flashcards | " + data.title;
+      document.title = "Papparakka | " + data.title;
       logData("dictate - " + data.id);
     });
   }, [id]);

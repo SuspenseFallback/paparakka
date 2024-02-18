@@ -93,7 +93,7 @@ const Navbar = () => {
         ) : (
           <>
             <div className={"nav " + (is_active ? "active" : "")}>
-              <p className="nav-logo">Flashcards</p>
+              <p className="nav-logo">Papparakka</p>
               <div className="nav-items">
                 {/* <div className="nav-item nav-switch">
                   <Switch
@@ -209,7 +209,7 @@ const Navbar = () => {
             </div>
             <div className={"sidebar " + (is_responsive_menu ? "" : "hidden")}>
               <div className="top">
-                <p className="logo">Flashcards</p>
+                <p className="logo">Papparakka</p>
 
                 <span
                   className="icon pi pi-times"

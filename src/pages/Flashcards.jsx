@@ -14,7 +14,7 @@ const Flashcards = ({ user }) => {
       console.log(data);
       set_loading(false);
       set_deck(data);
-      document.title = "Flashcards | " + data.title;
+      document.title = "Papparakka | " + data.title;
       logData("flashcards - " + data.id);
     });
   }, [id]);

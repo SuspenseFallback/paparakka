@@ -35,7 +35,7 @@ const Signup = () => {
   useEffect(() => {
     logData("sign_up");
 
-    document.title = "Flashcards | Sign up";
+    document.title = "Papparakka | Sign up";
   }, []);
 
   useEffect(() => {

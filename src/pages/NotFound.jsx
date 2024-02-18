@@ -13,7 +13,7 @@ const NotFound = () => {
   useEffect(() => {
     logData("not_found");
 
-    document.title = "Flashcards | 404 - Not Found";
+    document.title = "Papparakka | 404 - Not Found";
   }, []);
 
   return (

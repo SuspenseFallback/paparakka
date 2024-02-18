@@ -14,7 +14,7 @@ const Search = () => {
   useEffect(() => {
     logData("search");
 
-    document.title = "Flashcards | Search";
+    document.title = "Papparakka | Search";
   }, []);
 
   useEffect(() => {

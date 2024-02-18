@@ -44,7 +44,7 @@ const Login = () => {
   useEffect(() => {
     logData("log_in");
 
-    document.title = "Flashcards | Log in";
+    document.title = "Papparakka | Log in";
   }, []);
 
   const validateStuff = () => {

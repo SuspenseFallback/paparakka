@@ -37,7 +37,7 @@ const EditSet = ({ user }) => {
       if (set.owner !== user.id) {
         window.close();
       }
-      document.title = "Flashcards | Edit Set | " + set.title;
+      document.title = "Papparakka | Edit Set | " + set.title;
 
       set_set({ ...set });
       set_title(set.title);

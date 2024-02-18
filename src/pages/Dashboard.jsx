@@ -14,7 +14,7 @@ const Dashboard = ({ user }) => {
   const [sets_studied_this_month, set_sets_studied_this_month] = useState(0);
 
   useEffect(() => {
-    document.title = "Flashcards | Dashboard";
+    document.title = "Papparakka | Dashboard";
   }, []);
 
   useEffect(() => {
