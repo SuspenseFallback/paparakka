@@ -215,7 +215,7 @@
 
 .nav .user-menu.hidden {
   display: block !important;
-  right: -10vw;
+  right: -20vw;
   opacity: 0;
 }
 

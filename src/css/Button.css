@@ -129,3 +129,22 @@
 .button-secondary:hover {
   background-color: var(--app-theme-secondary-hover-color);
 }
+
+.button-outline {
+  border: 2px solid var(--app-secondary-color);
+  border-radius: 12px;
+  background-color: var(--app-primary-color);
+
+  padding: 16px;
+  width: 12vw;
+
+  font-family: "Lexend";
+  font-size: 14px;
+
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.button-outline:hover {
+  background-color: var(--app-primary-hover-color);
+}

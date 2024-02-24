@@ -68,7 +68,7 @@ const Learn = ({ user }) => {
       } else {
         const now = new Date();
 
-        if (card.time < now) {
+        if (new Date(card.time) < now) {
           new_cards.push(card);
         }
       }
@@ -103,7 +103,7 @@ const Learn = ({ user }) => {
     copy.splice(0, 1);
 
     if (study_flashcards.length == 1) {
-      return;
+      set_study_flashcards([]);
     }
 
     console.log(copy);
@@ -215,7 +215,7 @@ const Learn = ({ user }) => {
   };
 
   const onOver = () => {
-    navigate("/preview/" + id);
+    navigate("/dashboard/");
   };
 
   // jsx
@@ -230,7 +230,14 @@ const Learn = ({ user }) => {
             {/* header row */}
             <div className="row">
               <h1 className="header">{set.title}</h1>
-              <div className="buttons"></div>
+              <div className="buttons">
+                <button
+                  className="button-outline"
+                  onClick={() => navigate("/add-cards/" + id)}
+                >
+                  Add cards
+                </button>
+              </div>
             </div>
             {/* layout (main body) */}
             <div className="layout">
@@ -306,10 +313,10 @@ const Learn = ({ user }) => {
                 ) : (
                   <div className="center">
                     <p className="header">
-                      You have learned everything for now!
+                      You have completed this set for now.
                     </p>
                     <button className="button" onClick={onOver}>
-                      Go back to set
+                      Go back home
                     </button>
                   </div>
                 )}

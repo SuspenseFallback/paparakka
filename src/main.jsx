@@ -41,6 +41,7 @@ import TextPlugin from "gsap/dist/TextPlugin.js";
 import SpinnerAnim from "./components/SpinnerAnim/SpinnerAnim.jsx";
 import Settings from "./pages/Settings.jsx";
 import Stats from "./pages/Stats.jsx";
+import AddCards from "./pages/AddCards.jsx";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
@@ -107,10 +108,18 @@ const router = createBrowserRouter([
         element: <Set />,
       },
       {
-        path: "/new-set",
+        path: "/preview/:id",
         element: (
           <ProtectedRoute>
-            <NewSet />
+            <Set />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/add-cards/:id",
+        element: (
+          <ProtectedRoute>
+            <AddCards />
           </ProtectedRoute>
         ),
       },
@@ -147,6 +156,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <MySets />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/new-set",
+        element: (
+          <ProtectedRoute>
+            <NewSet />
           </ProtectedRoute>
         ),
       },

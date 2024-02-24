@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
   padding: 2vw;
+
+  height: 90vh;
 }
 
 .new-set-page-1 .header {
@@ -62,10 +65,14 @@
   font-weight: bold;
 }
 
+.new-set-page-1 .row.imports {
+  padding-top: 5vh;
+}
+
 .new-set-page-1 .cards {
   width: 90%;
   border-top: 1px solid var(--app-var(--app-grey));
-  margin-top: 5vh;
+  /* margin-top: 3vh; */
   margin-bottom: 5vh;
   display: flex;
   flex-direction: column;
@@ -152,4 +159,16 @@
 
 .max:hover {
   font-size: 13px;
+}
+
+.new-set-page-1 .modal ol li {
+  margin-top: 8px;
+}
+
+.new-set-page-1 .modal .error {
+  color: red;
+}
+
+.new-set-page-1 .button-block {
+  margin-top: 5vh;
 }

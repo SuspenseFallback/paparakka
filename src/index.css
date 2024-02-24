@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Lexend:wght@300;400;500;600;700;800&family=Spectral&display=swap");
-*::selection {
-  background-color: #ffbe78;
-}
 
 body {
   margin: 0;
@@ -36,4 +33,14 @@ div.page:not(.page-1) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

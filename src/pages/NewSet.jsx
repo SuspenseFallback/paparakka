@@ -1,78 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../css/NewSet.css";
 import NewCard from "../components/Card/NewCard";
 import Tag from "../components/Tags/Tag.jsx";
 import { getUser, addSet } from "../firebase/firebase";
+import { useNavigate } from "react-router";
+import Modal from "../components/Modal/Modal.jsx";
 
 const NewSet = () => {
-  const [cards, set_cards] = useState([
-    {
-      term: "",
-      definition: "",
-    },
-    {
-      term: "",
-      definition: "",
-    },
-    {
-      term: "",
-      definition: "",
-    },
-    {
-      term: "",
-      definition: "",
-    },
-    {
-      term: "",
-      definition: "",
-    },
-  ]);
+  const navigate = useNavigate();
+
+  const files = useRef();
+
+  const [user, setUser] = useState(null);
+
+  // anki modal
+  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+
+  // deck values
   const [title, set_title] = useState("");
   const [description, set_description] = useState("");
   const [tags, set_tags] = useState([]);
-  const [user, setUser] = useState(null);
   const [tag_value, set_tag_value] = useState("");
-
   const [disabled, set_disabled] = useState(true);
 
   useEffect(() => {
-    let empty = false;
-
-    for (var i = 0; i < cards.length; i++) {
-      const card = cards[i];
-
-      if (card.term == "") {
-        empty = true;
-      } else if (card.definition == "") {
-        empty = true;
-      }
-    }
-
-    if (!title) {
-      set_disabled(true);
-    } else if (empty) {
+    if (!title || !description) {
       set_disabled(true);
     } else {
       set_disabled(false);
     }
-  }, [title, cards]);
-
-  const add_new_card = () => {
-    set_cards((c) => [
-      ...c,
-      {
-        term: "",
-        definition: "",
-        index: cards.length,
-      },
-    ]);
-  };
-
-  useEffect(() => {
-    document.title = "Papparakka | Create a new deck";
-
-    window.onbeforeunload = () => true;
-  }, []);
+  }, [title, description]);
 
   useEffect(() => {
     getUser((data) => {
@@ -81,21 +39,18 @@ const NewSet = () => {
   }, []);
 
   const submitHandler = () => {
-    cards.forEach((card, index) => {
-      cards[index] = { ...card, index: index };
-    });
-
     addSet(
       {
         title: title,
         description: description,
-        flashcards: cards,
+        flashcards: [],
         tags: tags,
         owner: user.id,
         ownerName: user.username,
       },
       (data) => {
         console.log(data);
+        navigate("/dashboard");
       }
     );
   };
@@ -112,9 +67,56 @@ const NewSet = () => {
     }
   };
 
+  const handleFile = () => {
+    const input = files.current;
+    const read = new FileReader();
+
+    read.readAsBinaryString(input.files[0]);
+
+    read.onloadend = function () {
+      const lines = read.result.split("\n");
+
+      console.log(lines);
+      if (lines[0] != "#separator:tab") {
+        return setError("Invalid file provided");
+      }
+
+      if (lines[1] != "#html:false") {
+        return setError("Invalid file provided");
+      }
+
+      setError("");
+      lines.splice(0, 2);
+
+      lines.forEach((line) => {});
+    };
+  };
+
   return (
     <>
       <div className="new-set-page-1">
+        <Modal open={open} set_open={setOpen} title="Importing cards from Anki">
+          <ol>
+            <li>Open the Anki app</li>
+            <li>Hover over the deck you want to export</li>
+            <li>Click on the settings icon</li>
+            <li>Click 'Export'</li>
+            <li>Select 'Cards in plain text (.txt)'</li>
+            <li>Select separator as tab and set HTML media to false</li>
+            <li>Choose the file here</li>
+          </ol>
+          <input
+            type="file"
+            name="fileHandler"
+            id="text"
+            accept="text/*,.txt"
+            ref={files}
+          />
+          <p className="error">{error}</p>
+          <button className="button button-block" onClick={handleFile}>
+            Submit
+          </button>
+        </Modal>
         <h1 className="header">Create a new deck</h1>
         <div className="row">
           <div className="input-container">
@@ -170,57 +172,13 @@ const NewSet = () => {
               value={tag_value}
               onChange={(e) => set_tag_value(e.target.value)}
               onKeyDown={(e) => onTag(e)}
-              maxLength={50}
+              maxLength={20}
             />
           </div>
         </div>
-        <div className="cards">
-          {cards.map((card, index) => {
-            const cardNumber = index + 1;
-
-            const updateCard = (data) => {
-              let new_cards = [...cards];
-
-              new_cards[index].term = data.term;
-              new_cards[index].definition = data.definition;
-
-              set_cards(new_cards);
-            };
-
-            const duplicate = () => {
-              let new_cards = [...cards];
-              const term = cards[index].term;
-              const definition = cards[index].definition;
-
-              new_cards.splice(index, 0, {
-                term: term,
-                definition: definition,
-              });
-
-              set_cards(new_cards);
-            };
-
-            const deleteCard = () => {
-              let new_cards = [...cards];
-
-              new_cards.splice(index, 1);
-
-              set_cards(new_cards);
-            };
-
-            return (
-              <NewCard
-                cardNumber={cardNumber}
-                key={cardNumber}
-                updateCard={updateCard}
-                duplicate={duplicate}
-                deleteCard={deleteCard}
-                cards={cards}
-              />
-            );
-          })}
-          <button className="button button-glass" onClick={add_new_card}>
-            Add flashcard <span className="icon pi pi-plus"></span>
+        <div className="row imports">
+          <button className="button" onClick={() => setOpen(true)}>
+            Import cards from Anki
           </button>
         </div>
         <button

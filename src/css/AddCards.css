@@ -1,0 +1,36 @@
+.add-cards-page-1 {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90vw;
+  height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container .question-container {
+  width: 100%;
+}
+
+.container .question-container #question {
+  width: 100%;
+  padding: 12px;
+
+  border: 2px solid var(--app-secondary-color);
+  border-radius: 2px;
+}
+
+.container .answer-container {
+  height: 70vh;
+}
+
+.container .answer-container .editor-container {
+  height: 90%;
+}
