@@ -48,7 +48,6 @@
   cursor: pointer;
   transition: 0.25s;
   width: 90%;
-  border: 2px solid var(--app-primary-text-color);
 }
 
 .bottom {

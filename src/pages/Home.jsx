@@ -9,6 +9,8 @@ import gsap from "gsap";
 import HomeAnim from "../components/Home/HomeAnim";
 import Accordion from "../components/Accordion/Accordion";
 
+import { Button } from "../components/ui/moving-border.tsx";
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -396,13 +398,15 @@ const Home = () => {
               <div className="text-container">
                 <h1 className="title">Make flashcards and study for free.</h1>
                 <div className="button-row">
+                  {/* <Button onClick={() => goToLink("/signup")}>Sign up</Button>
+                  <Button onClick={() => goToLink("/login")}>Log in</Button> */}
                   <button
-                    className="button"
                     onClick={() => goToLink("/signup")}
+                    className="button"
                   >
                     Sign up
                   </button>
-                  <button className="button" onClick={() => goToLink("/login")}>
+                  <button onClick={() => goToLink("/login")} className="button">
                     Log in
                   </button>
                 </div>

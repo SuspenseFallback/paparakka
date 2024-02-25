@@ -14,8 +14,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@uiw/react-md-editor": "^4.0.3",
+    "clsx": "^2.1.0",
     "email-validator": "^2.0.4",
     "firebase": "^10.1.0",
+    "framer-motion": "^11.0.6",
     "fuzzysort": "^2.0.4",
     "gsap": "^3.12.2",
     "primeflex": "^3.3.1",
@@ -29,6 +31,7 @@
     "react-tooltip": "^5.19.0",
     "regenerator-runtime": "^0.14.1",
     "rehype-sanitize": "^6.0.0",
+    "tailwind-merge": "^2.2.1",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
