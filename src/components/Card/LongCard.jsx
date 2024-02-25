@@ -6,7 +6,7 @@ const LongCard = ({ title, desc, tags, owner, id, length }) => {
   const navigate = useNavigate();
 
   const goPreview = () => {
-    navigate("/preview/" + id);
+    navigate("/learn/" + id);
   };
 
   return (
