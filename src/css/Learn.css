@@ -23,6 +23,14 @@
   margin-left: 1vw;
 }
 
+.learn-page-1 .row .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1vw;
+}
+
 /* main body */
 
 .learn-page-1 .layout {

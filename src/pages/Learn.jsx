@@ -244,6 +244,12 @@ const Learn = ({ user }) => {
             <div className="row">
               <h1 className="header">{set.title}</h1>
               <div className="buttons">
+                <button
+                  className="button-outline"
+                  onClick={() => navigate("/flashcards/" + id)}
+                >
+                  View cards
+                </button>
                 {set.owner == user.id ? (
                   <button
                     className="button-outline"
