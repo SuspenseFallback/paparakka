@@ -4,9 +4,9 @@
   border-radius: 24px;
   background-color: var(--app-primary-color);
   border: 2px solid var(--app-light-grey);
-
+  /* 
   transition: all 1s ease-in-out;
-  transition-duration: 0.25s;
+  transition-duration: 0.25s; */
   transform-style: preserve-3d;
   perspective: 1000px;
 }
@@ -28,6 +28,7 @@
   font-family: "Lexend";
   transition: all 0.25s;
   color: var(--app-primary-text-color);
+  max-width: 80%;
 }
 
 .flashcard.flip {

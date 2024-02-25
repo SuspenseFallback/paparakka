@@ -63,3 +63,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.mini-modal {
+  width: 30vw;
+  height: 30vh;
+}

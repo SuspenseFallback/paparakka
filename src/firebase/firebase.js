@@ -141,6 +141,8 @@ export const updateSet = async (data, set_id, user) => {
     });
 };
 
+export const deleteSet = async (set_id, user) => {};
+
 export const getAllSets = (callback) => {
   getDocs(collection(db, "sets")).then((data) => {
     let docs = [];

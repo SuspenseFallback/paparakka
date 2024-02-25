@@ -76,30 +76,44 @@ const NewSet = () => {
     read.readAsBinaryString(input.files[0]);
 
     read.onloadend = function () {
+      let res = read.result;
+      res = res.replaceAll('""', '"');
+      res = res.replace(/^"(.*)"$/, "$1");
       const lines = read.result.split("\n");
 
       console.log(lines);
       if (lines[0] != "#separator:tab") {
         return setError("Invalid file provided");
       }
-
       setError("");
-      lines.splice(0, 2);
-      lines.pop();
 
-      lines.forEach((line, index) => {
-        const split = line.split("\t");
-        const new_card = {
-          index,
-          term: split[0],
-          definition: split[1],
-          times_revised: 0,
-          proficiency: "hard",
-        };
+      const split = res.split("\t");
+      const cards = [];
+      let question = "";
 
-        cards.push(new_card);
+      split.forEach((s, index) => {
+        const s_split = s.split("\n");
+
+        if (index == 0) {
+          question = s_split.pop();
+        } else {
+          const new_question = s_split.pop();
+          const answer = s_split.join("\n");
+
+          cards.push({
+            term: question,
+            definition: answer,
+            index: cards.length,
+            times_revised: 0,
+            proficiency: "hard",
+          });
+
+          question = new_question;
+        }
       });
+
       console.log(cards);
+
       set_flashcards(cards);
       setOpen(false);
     };
@@ -114,8 +128,9 @@ const NewSet = () => {
             <li>Hover over the deck you want to export</li>
             <li>Click on the settings icon</li>
             <li>Click 'Export'</li>
-            <li>Select 'Cards in plain text (.txt)'</li>
-            <li>Select separator as tab and set HTML media to false</li>
+            <li>Select 'Notes in plain text (.txt)'</li>
+            <li>Select separator as tab and set HTML media to true</li>
+            <li>Uncheck everything else</li>
             <li>Choose the file here</li>
           </ol>
           <input
