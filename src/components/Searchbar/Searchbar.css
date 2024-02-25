@@ -11,7 +11,8 @@
   background-color: var(--app-primary-color);
   width: 99%;
   padding: 15px;
-  border: 2px solid var(--app-light-grey);
+  /* border: 2px solid var(--app-light-grey); */
+  border: none;
   border-radius: 24px;
   font-family: "Lexend";
   font-size: 14px;

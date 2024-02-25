@@ -62,7 +62,7 @@ const Sets = () => {
             </div>
             <div className="recent-decks">
               <h2 className="subheader">Recent Sets</h2>
-              {user && user.history.length > 0 ? (
+              {user && user.history && user.history.length > 0 ? (
                 <div className="cards">
                   {user.history.length > 3
                     ? user.history.slice(0, 3).map((card) => {

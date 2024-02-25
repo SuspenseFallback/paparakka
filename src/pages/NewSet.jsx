@@ -23,6 +23,7 @@ const NewSet = () => {
   const [tags, set_tags] = useState([]);
   const [tag_value, set_tag_value] = useState("");
   const [disabled, set_disabled] = useState(true);
+  const [flashcards, set_flashcards] = useState([]);
 
   useEffect(() => {
     if (!title || !description) {
@@ -43,7 +44,7 @@ const NewSet = () => {
       {
         title: title,
         description: description,
-        flashcards: [],
+        flashcards,
         tags: tags,
         owner: user.id,
         ownerName: user.username,
@@ -70,6 +71,7 @@ const NewSet = () => {
   const handleFile = () => {
     const input = files.current;
     const read = new FileReader();
+    const cards = [];
 
     read.readAsBinaryString(input.files[0]);
 
@@ -81,14 +83,25 @@ const NewSet = () => {
         return setError("Invalid file provided");
       }
 
-      if (lines[1] != "#html:false") {
-        return setError("Invalid file provided");
-      }
-
       setError("");
       lines.splice(0, 2);
+      lines.pop();
 
-      lines.forEach((line) => {});
+      lines.forEach((line, index) => {
+        const split = line.split("\t");
+        const new_card = {
+          index,
+          term: split[0],
+          definition: split[1],
+          times_revised: 0,
+          proficiency: "hard",
+        };
+
+        cards.push(new_card);
+      });
+      console.log(cards);
+      set_flashcards(cards);
+      setOpen(false);
     };
   };
 

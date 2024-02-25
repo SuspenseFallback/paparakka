@@ -53,6 +53,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  font-family: "Lexend";
 }
 
 .learn-page-1 .question-container .top .left {
@@ -245,26 +247,23 @@
   flex-direction: column;
   width: 95%;
 
-  border: 2px solid #000;
   border-radius: 12px;
 }
 
-.learn-page-1 .question-container .input-container.answered {
-  border: none;
-}
-
 .learn-page-1 .question-container .input-container .input {
-  width: 40%;
+  width: 90%;
   padding: 12px;
+  margin-right: 6px;
+  border-radius: 4px;
+  height: 20vh;
 
   font-family: "Lexend";
   color: var(--app-secondary-color);
   background-color: var(--app-background-color);
+  border: 2px solid #000;
   transition: all 0.25s;
   background-color: transparent;
-  border: none;
-
-  text-align: center;
+  resize: none;
 }
 
 .learn-page-1 .answer {
@@ -277,7 +276,6 @@
 
 .learn-page-1 .answer .input-container .input:focus {
   outline: none;
-  padding: 8px;
 }
 
 .learn-page-1 .answer .input-container .label {
@@ -337,10 +335,6 @@
 .learn-page-1 .label {
   font-weight: bold;
   margin-bottom: 8px;
-}
-
-.learn-page-1 .answer-container .button-group .button:nth-child(1) {
-  border-right: none;
 }
 
 .learn-page-1 .answer-container .answer-text {

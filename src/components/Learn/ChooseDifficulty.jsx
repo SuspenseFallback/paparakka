@@ -1,3 +1,4 @@
+import MDEditor from "@uiw/react-md-editor";
 import React from "react";
 
 const ChooseDifficulty = ({
@@ -10,14 +11,21 @@ const ChooseDifficulty = ({
   return (
     <>
       {" "}
-      <div className={"answer-container " + (answered ? "" : "hidden")}>
+      <div
+        className={"answer-container " + (answered ? "" : "hidden")}
+        data-color-mode="light"
+      >
         <div className="your-answer">
           <p className="label">Your answer</p>
-          <p className="answer-text">{answer ? answer : <br />}</p>
+          <p className="answer-text">
+            <MDEditor.Markdown source={answer} />
+          </p>
         </div>
         <div className="correct-answer">
           <p className="label">Correct answer</p>
-          <p className="answer-text">{study_flashcards[0].definition}</p>
+          <p className="answer-text">
+            <MDEditor.Markdown source={study_flashcards[0].definition} />
+          </p>
         </div>
         {correct === "unknown" ? (
           <>

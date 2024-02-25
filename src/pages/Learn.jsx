@@ -27,6 +27,8 @@ const Learn = ({ user }) => {
   } = useSpeechRecognition();
   const { id } = useParams();
 
+  console.log("support", hasRecognitionSupport);
+
   // state
 
   const [set, set_set] = useState({});
@@ -100,31 +102,34 @@ const Learn = ({ user }) => {
 
   const modify_study_cards = (prof) => {
     const copy = [...study_flashcards];
+    const new_card = {
+      ...study_flashcards[0],
+      proficiency: prof,
+      times_revised: study_flashcards[0].time_revised
+        ? study_flashcards[0].time_revised + 1
+        : 1,
+    };
     copy.splice(0, 1);
 
-    if (study_flashcards.length == 1) {
+    console.log(prof);
+
+    if (study_flashcards.length == 1 && prof == "easy") {
       set_study_flashcards([]);
-    }
-
-    console.log(copy);
-
-    if (copy.length == 0) {
-      return set_study_flashcards([]);
     }
 
     if (prof == "medium") {
       const length = Math.round(0.6 * study_flashcards.length);
-      copy.splice(length - 1, 0, study_flashcards[0]);
+      copy.splice(length - 1, 0, new_card);
     }
 
     if (prof == "hard") {
       const length = Math.round(0.3 * study_flashcards.length);
-      copy.splice(length - 1, 0, study_flashcards[0]);
+      copy.splice(length - 1, 0, new_card);
     }
 
     if (prof == "again") {
       const length = Math.round(0.1 * study_flashcards.length);
-      copy.splice(length - 1, 0, study_flashcards[0]);
+      copy.splice(length - 1, 0, new_card);
     }
 
     set_study_flashcards(copy);
@@ -152,7 +157,11 @@ const Learn = ({ user }) => {
     }
 
     if (correct == "correct") {
-      if (answer === study_flashcards[0].definition) {
+      if (
+        answer === study_flashcards[0].definition ||
+        (study_flashcards[0].proficiency &&
+          study_flashcards[0].proficiency == "medium")
+      ) {
         return "easy";
       } else {
         return "medium";
@@ -167,6 +176,8 @@ const Learn = ({ user }) => {
     const proficiency = get_new_proficiency(study_flashcards[0]);
     const card_index = study_flashcards[0].index;
 
+    console.log(proficiency);
+
     let time = new Date();
 
     switch (proficiency) {
@@ -180,7 +191,7 @@ const Learn = ({ user }) => {
         time = new Date(time.getTime() + 1000 * 60 * 60 * 4);
         break;
       case "again":
-        time = new Date(time.getTime() + 1000 * 60 * 1);
+        time = new Date(time.getTime() - 1000 * 60);
         break;
       default:
         break;
@@ -194,6 +205,8 @@ const Learn = ({ user }) => {
       proficiency: proficiency,
       time: time.toUTCString(),
     };
+
+    console.log(cards[card_index]);
 
     cards[card_index] = new_card;
     set_flashcards(cards);
@@ -231,12 +244,16 @@ const Learn = ({ user }) => {
             <div className="row">
               <h1 className="header">{set.title}</h1>
               <div className="buttons">
-                <button
-                  className="button-outline"
-                  onClick={() => navigate("/add-cards/" + id)}
-                >
-                  Add cards
-                </button>
+                {set.owner == user.id ? (
+                  <button
+                    className="button-outline"
+                    onClick={() =>
+                      window.open("/add-cards/" + id, { target: "_blank" })
+                    }
+                  >
+                    Add cards
+                  </button>
+                ) : null}
               </div>
             </div>
             {/* layout (main body) */}
@@ -275,6 +292,14 @@ const Learn = ({ user }) => {
                             "input-row " + (answered ? "answered" : "")
                           }
                         >
+                          <textarea
+                            type="text"
+                            className={"input " + (answered ? "hidden" : "")}
+                            placeholder="Enter answer here..."
+                            value={answer}
+                            onChange={(e) => set_answer(e.target.value)}
+                            onKeyDown={(e) => onkeydown(e)}
+                          />
                           <button
                             className={
                               "button-icon " + (answered ? "hidden" : "")
@@ -286,15 +311,6 @@ const Learn = ({ user }) => {
                               color="white"
                             />
                           </button>
-                          <input
-                            type="text"
-                            className={"input " + (answered ? "hidden" : "")}
-                            placeholder="Enter answer here..."
-                            value={answer}
-                            onChange={(e) => set_answer(e.target.value)}
-                            onKeyDown={(e) => onkeydown(e)}
-                          />
-
                           <button
                             className={
                               "button " +
