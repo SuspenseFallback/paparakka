@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./Card.css";
 import { useNavigate } from "react-router";
+import { deleteSet } from "../../firebase/firebase";
+import MiniModal from "../Modal/MiniModal.jsx";
 
 const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
   const navigate = useNavigate();
 
   const [open, set_open] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const preview = () => {
     navigate("/learn/" + id);
@@ -19,8 +22,25 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
     window.open("/edit-set/" + id, "_blank");
   };
 
+  const deletes = () => {
+    deleteSet(id, { id: user_id }).then((res) => {
+      if (res == "401") {
+        console.error("Error");
+      }
+
+      setDeleteModal(false);
+      window.location.reload();
+    });
+  };
+
   return (
     <>
+      <MiniModal
+        text="this set"
+        open={deleteModal}
+        setOpen={setDeleteModal}
+        action={deletes}
+      />
       <div className="card">
         <span
           className="more pi pi-ellipsis-h"
@@ -44,6 +64,7 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
               </div>
               <div
                 className={"menu-item red delete " + (open ? "" : "hiddens")}
+                onClick={() => setDeleteModal(true)}
               >
                 <span className="icon pi pi-trash"></span>
               </div>

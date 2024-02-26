@@ -1,21 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import MDEditor from "@uiw/react-md-editor";
 
 const LearnHeader = ({ answered, study_flashcards, correct }) => {
+  // speech
+  const [speech, set_speech] = useState(null);
+  const [is_playing, set_is_playing] = useState(false);
+
+  const speak = () => {
+    if (speechSynthesis.speaking) {
+      if (speechSynthesis.paused) {
+        return speechSynthesis.resume();
+      } else {
+        return speechSynthesis.pause();
+      }
+    }
+
+    let utterance = new SpeechSynthesisUtterance(study_flashcards[0].term);
+
+    utterance.addEventListener("pause", () => {
+      set_is_playing(false);
+    });
+
+    utterance.addEventListener("resume", () => {
+      set_is_playing(true);
+    });
+
+    utterance.addEventListener("end", () => {
+      set_is_playing(false);
+    });
+
+    utterance.rate = 1;
+    const spe = speechSynthesis.speak(utterance);
+    set_is_playing(true);
+    set_speech(spe);
+  };
   return (
     <>
       <div className="top">
-        <div className="row">
+        <div className="row" data-color-mode="light">
           <div className={"left" + (answered ? " hidden" : "")}>
             <span className="label">QUESTION</span>
             <div className="group">
-              <button className="button button-icon">
+              <button className="button button-icon" onClick={speak}>
                 <FontAwesomeIcon icon={faVolumeHigh} color="white" />
               </button>
               <p className={"question "}>
-                <span className="term">{study_flashcards[0].term}</span>
+                <MDEditor.Markdown source={study_flashcards[0].term} />
               </p>
             </div>
           </div>
@@ -38,11 +71,11 @@ const LearnHeader = ({ answered, study_flashcards, correct }) => {
             </button>
           </div>
           <div className="right">
-            <button
+            {/* <button
               className={"button button-icon " + (answered ? "hidden" : "")}
             >
               <span className={"pi pi-cog icon"}></span>
-            </button>
+            </button> */}
           </div>
         </div>
         <div className={"stats-section " + (answered ? "hidden" : "")}>

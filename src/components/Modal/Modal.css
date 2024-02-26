@@ -9,7 +9,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: #0000006a;
+  background-color: #0000008a;
 
   display: flex;
   justify-content: center;
@@ -67,4 +67,63 @@
 .mini-modal {
   width: 30vw;
   height: 30vh;
+  background-color: #fff;
+
+  z-index: 4000;
+
+  opacity: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 12px;
+  border: 2px solid var(--app-light-grey);
+
+  padding: 18px 1vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mini-modal .title {
+  font-weight: 500;
+  font-size: 1.3rem;
+
+  margin: 0;
+
+  width: 100%;
+  text-align: left;
+}
+
+.mini-modal .buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.mini-modal .buttons .button {
+  align-self: flex-end;
+}
+
+.mini-modal .buttons .button.secondary {
+  background-color: #a2a2a2;
+}
+
+.mini-modal .buttons .button.secondary:hover {
+  background-color: #7c7c7c;
+}
+
+.mini-modal .buttons .button.danger {
+  background-color: #f61212;
+}
+
+.mini-modal .buttons .button.danger:hover {
+  background-color: #ce1010;
 }

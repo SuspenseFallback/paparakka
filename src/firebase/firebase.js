@@ -16,6 +16,7 @@ import {
   updateDoc,
   getDocs,
   doc,
+  deleteDoc,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
@@ -141,7 +142,24 @@ export const updateSet = async (data, set_id, user) => {
     });
 };
 
-export const deleteSet = async (set_id, user) => {};
+export const deleteSet = async (set_id, user_id) => {
+  const set = doc(db, "sets", set_id);
+  const user_doc = doc(db, "user", user_id.id);
+  const user = await getDoc(user_doc);
+
+  if (set.owner == user_id.id) {
+    await deleteDoc(doc);
+    const new_studied_sets = [...user.studied_sets];
+    const naya = new_studied_sets.filter((s) => s.id != set_id);
+    updateDoc(user_doc, {
+      studied_sets: naya,
+    });
+
+    return "200";
+  } else {
+    return "401";
+  }
+};
 
 export const getAllSets = (callback) => {
   getDocs(collection(db, "sets")).then((data) => {

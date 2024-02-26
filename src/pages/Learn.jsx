@@ -343,10 +343,6 @@ const Learn = ({ user }) => {
                   </div>
                 )}
               </div>
-              <div className="skip" onClick={dont_know}>
-                <i className="icon pi pi-angle-double-right"></i>
-                <p className="caption">Skip</p>
-              </div>
             </div>
           </>
         )}

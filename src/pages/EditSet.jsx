@@ -62,7 +62,7 @@ const EditSet = ({ user }) => {
       user
     ).then((data) => {
       console.log(data);
-      navigate("/preview/" + set.id);
+      navigate("/learn/" + set.id);
     });
   };
 

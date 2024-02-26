@@ -9,8 +9,11 @@ const Dictate = ({ user }) => {
   const { id } = useParams();
   const [index, set_index] = useState(0);
   const [hint_displayed, set_hint_displayed] = useState(false);
+
+  // speech
   const [speech, set_speech] = useState(null);
   const [is_playing, set_is_playing] = useState(false);
+
   const [deck, set_deck] = useState({});
   const [loading, set_loading] = useState(true);
   const [answered, set_answered] = useState(false);
