@@ -42,30 +42,6 @@ const Home = () => {
     const element = ref.current;
 
     const ctx = gsap.context(() => {
-      gsap.to(element.querySelector(".home-page-1 .part-1 .animation"), {
-        y: 240,
-        duration: 1,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: element.querySelector(".home-page-1 .part-1"),
-          start: "top -30%",
-          end: "bottom bottom",
-          scrub: 1.8,
-        },
-      });
-
-      gsap.to(element.querySelector(".home-page-1 .part-1 .animation"), {
-        scale: 1.1,
-        duration: 1,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: element.querySelector(".home-page-1 .part-1"),
-          start: "top -30%",
-          end: "bottom bottom",
-          toggleActions: "play none none reverse",
-        },
-      });
-
       gsap.fromTo(
         element.querySelector(".home-page-1 .part-2 .text-container"),
         {
@@ -398,24 +374,15 @@ const Home = () => {
               <div className="text-container">
                 <h1 className="title">Make flashcards and study for free.</h1>
                 <div className="button-row">
-                  {/* <Button onClick={() => goToLink("/signup")}>Sign up</Button>
-                  <Button onClick={() => goToLink("/login")}>Log in</Button> */}
-                  <button
-                    onClick={() => goToLink("/signup")}
-                    className="button"
-                  >
-                    Sign up
-                  </button>
-                  <button onClick={() => goToLink("/login")} className="button">
-                    Log in
-                  </button>
+                  <Button onClick={() => goToLink("/signup")}>Sign up</Button>
+                  <Button onClick={() => goToLink("/login")}>Log in</Button>
                 </div>
               </div>
-              <HomeAnim home_ref={ref} className=".home-page-1 " />
             </div>
           </div>
           <div className="part-2">
             <div className="text-container">
+              <HomeAnim home_ref={ref} className=".home-page-1 " />
               <p className="header">
                 The <span>best flashcards</span> out there
               </p>

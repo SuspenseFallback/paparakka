@@ -16,6 +16,8 @@
 }
 
 .decks-page-1 .header {
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   font-family: "Lexend";
   color: var(--app-primary-text-color);
@@ -28,32 +30,8 @@
   justify-content: center;
   width: 95%;
   height: 7%;
-}
 
-.decks-page-1 .callout-card {
-  width: 95%;
-  padding: 12px;
-
-  border: 2px solid var(--app-secondary-color);
-  border-radius: 12px;
-
-  margin-top: 3vh;
-
-  background-color: var(--app-light-grey);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.decks-page-1 .callout-card .title {
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-
-.decks-page-1 .callout-card .content {
-  width: 90%;
+  margin-top: 2vh;
 }
 
 .decks-page-1 .recent-decks {
@@ -76,6 +54,8 @@
 .decks-page-1 .recent-decks .subheader {
   color: var(--app-secondary-color);
   font-family: "Lexend";
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .decks-page-1 .recent-decks .cards {

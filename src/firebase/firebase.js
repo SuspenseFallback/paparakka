@@ -277,9 +277,12 @@ export const addStudiedSets = (user, set_id, callback) => {
 
     studied_sets.forEach((mod_set) => {
       if (mod_set.id === set_id) {
+        console.log(mod_set);
         cards = [...mod_set.flashcards];
       }
     });
+
+    console.log(cards);
 
     studied_sets = studied_sets.filter((fil_set) => fil_set.id !== set_id);
 
@@ -311,4 +314,29 @@ export const updateStudiedSets = (user, set_id, cards, callback) => {
       studied_sets: studied_sets,
     }).then(callback());
   });
+};
+
+// set rating
+
+export const updateSetRating = async (set_id, newRating) => {
+  const setDoc = doc(db, "sets", set_id);
+
+  const { rating, number_of_ratings } = getDoc(setDoc);
+
+  if (rating && number_of_ratings) {
+    updateDoc(setDoc, {
+      rating: parseFloat(
+        (
+          (rating * number_of_ratings + newRating) / number_of_ratings +
+          1
+        ).toFixed(1)
+      ),
+      number_of_ratings: number_of_ratings + 1,
+    });
+  } else {
+    updateDoc(setDoc, {
+      rating: newRating,
+      number_of_ratings: 1,
+    });
+  }
 };

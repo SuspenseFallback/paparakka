@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 import MDEditor from "@uiw/react-md-editor";
 
 const LearnHeader = ({ answered, study_flashcards, correct }) => {
@@ -45,7 +43,7 @@ const LearnHeader = ({ answered, study_flashcards, correct }) => {
             <span className="label">QUESTION</span>
             <div className="group">
               <button className="button button-icon" onClick={speak}>
-                <FontAwesomeIcon icon={faVolumeHigh} color="white" />
+                <i className="icon pi pi-volume-up"></i>
               </button>
               <p className={"question "}>
                 <MDEditor.Markdown source={study_flashcards[0].term} />

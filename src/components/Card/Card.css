@@ -177,6 +177,8 @@
   box-shadow: none;
 
   padding-left: 2vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 
   transition: all 0.25s;
 }
@@ -209,11 +211,13 @@
   margin: 4px 4px 0 0;
   cursor: pointer;
   font-weight: normal;
+  margin-bottom: 8px;
 }
 
 .long-card .bottom {
   position: absolute;
   bottom: 0;
+  margin-bottom: 12px;
 }
 
 .long-card .bottom .created-by {

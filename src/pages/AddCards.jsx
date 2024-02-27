@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { getSet, updateSet } from "../firebase/firebase";
+import { getSet, updateSet, updateStudiedSets } from "../firebase/firebase";
 import MDEditor from "@uiw/react-md-editor/nohighlight";
 import rehypeSanitize from "rehype-sanitize";
 import "../css/AddCards.css";
@@ -39,6 +39,9 @@ const AddCards = ({ user }) => {
     updateSet(new_set, set.id, user).then(() => {
       setQuestion("");
       setAnswer("");
+    });
+    updateStudiedSets(user, set.id, flashcards, () => {
+      console.log("updated");
     });
   };
 

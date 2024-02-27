@@ -10,10 +10,9 @@ import shuffle from "../helpers/shuffle.js";
 import "../css/Learn.css";
 import useSpeechRecognition from "../hooks/useSpeechRecognition.js";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import LearnHeader from "../components/Learn/LearnHeader.jsx";
 import ChooseDifficulty from "../components/Learn/ChooseDifficulty.jsx";
+import Rating from "../components/Rating/Rating.jsx";
 
 const Learn = ({ user }) => {
   // hooks
@@ -49,11 +48,13 @@ const Learn = ({ user }) => {
     getSet(id).then((data) => {
       document.title = "Papparakka | " + data.title;
       set_set({ ...data });
+      console.log(data);
 
-      addStudiedSets(user, data.id, (cards) => {
+      addStudiedSets(user, id, (cards) => {
         set_loading(false);
 
         set_flashcards(cards);
+        console.log(cards);
         check_time_of_cards(cards);
       });
     });
@@ -65,7 +66,7 @@ const Learn = ({ user }) => {
     const new_cards = [];
 
     cards.forEach((card) => {
-      if (card.time == undefined) {
+      if (!card.time) {
         new_cards.push(card);
       } else {
         const now = new Date();
@@ -244,6 +245,7 @@ const Learn = ({ user }) => {
             <div className="row">
               <h1 className="header">{set.title}</h1>
               <div className="buttons">
+                <Rating />
                 <button
                   className="button-outline"
                   onClick={() => navigate("/flashcards/" + id)}
@@ -312,10 +314,7 @@ const Learn = ({ user }) => {
                             }
                             onClick={listening ? stopListening : startListening}
                           >
-                            <FontAwesomeIcon
-                              icon={faMicrophone}
-                              color="white"
-                            />
+                            <i className="icon pi pi-microphone"></i>
                           </button>
                           <button
                             className={

@@ -1,0 +1,49 @@
+.rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 15vw;
+  margin-right: 1vw;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  padding: 8px;
+  border-radius: 8px;
+
+  transition: all 0.25s;
+}
+
+.rating.rate {
+  width: 15vw;
+}
+
+.rating.rate .icon {
+  font-size: 1.5rem;
+}
+
+.rating:hover {
+  background-color: var(--app-light-grey);
+}
+
+.rating .icon {
+  color: var(--app-theme-color);
+  font-size: 2rem;
+  transition: all 0.25s;
+}
+
+.rating-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.number-of-ratings {
+  font-size: 12px;
+  font-weight: 300;
+
+  text-align: right;
+}

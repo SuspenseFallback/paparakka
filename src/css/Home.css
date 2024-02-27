@@ -43,9 +43,6 @@
   justify-content: space-around;
   height: 80vh;
   width: 100%;
-  background-color: var(--app-background-color);
-
-  border-radius: 0 0 40% 40%;
 }
 
 .home-page-1 .part-1 .text-container {
@@ -55,12 +52,12 @@
   justify-content: center;
   text-align: center;
   animation: come-in 1s;
-  width: 40%;
+  width: 80%;
 }
 
 .home-page-1 .part-1 .text-container .title {
   color: var(--app-secondary-color);
-  font-size: 3rem;
+  font-size: 4rem;
   font-family: "Lexend";
   font-weight: bold;
 }
@@ -71,17 +68,20 @@
   flex-direction: row;
   justify-content: center;
   gap: 1vw;
+
+  margin-top: 6vh;
 }
 
 .home-page-1 .part-1 .text-container .button {
   padding: 16px;
   background-color: var(--app-theme-color);
-  border: 2px solid var(--app-secondary-color);
   border-radius: 24px;
   color: var(--app-primary-text-color);
   font-family: "Lexend";
   font-size: 16px;
   transition: all 0.25s;
+
+  border: 1px solid var(--app-light-grey);
 }
 
 .home-page-1 .part-1 .text-container .button:hover {

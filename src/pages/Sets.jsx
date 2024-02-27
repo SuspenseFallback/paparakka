@@ -49,16 +49,6 @@ const Sets = () => {
                 <span className="pi pi-search"></span>
               </button>
             </div>
-            <div className="callout-card">
-              <p className="title">How does it work?</p>
-              <p className="content">
-                On {"Papparakka"}, every set that a user creates is accessible
-                by any user of the website. This ensures that there are enough
-                sets for different fields, different curricula and different
-                people's needs. This allows people to find resources that are
-                useful to them without needing extra effort to create new sets.
-              </p>
-            </div>
             <div className="recent-decks">
               <h2 className="subheader">Recent Sets</h2>
               {user && user.studied_sets && user.studied_sets.length > 0 ? (
