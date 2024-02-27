@@ -136,6 +136,10 @@
   margin: 3px 4px 2px 0;
 }
 
+.card .tags {
+  margin-bottom: 6px;
+}
+
 .card .tag {
   font-size: 0.6rem;
   margin: 4px 4px 0 0;
