@@ -28,7 +28,7 @@ const AddCards = ({ user }) => {
       term: question,
       definition: answer,
       index: set.flashcards.length,
-      proficiency: "hard",
+      proficiency: "hard1",
     };
 
     const flashcards = [...set.flashcards];

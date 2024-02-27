@@ -14,6 +14,7 @@ import LearnHeader from "../components/Learn/LearnHeader.jsx";
 import ChooseDifficulty from "../components/Learn/ChooseDifficulty.jsx";
 import Rating from "../components/Rating/Rating.jsx";
 import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 const Learn = ({ user }) => {
   // hooks
@@ -364,6 +365,9 @@ const Learn = ({ user }) => {
                             placeholder="Enter answer here..."
                             value={answer}
                             onChange={set_answer}
+                            previewOptions={{
+                              rehypePlugins: [[rehypeSanitize]],
+                            }}
                           />
                           <button
                             className={
