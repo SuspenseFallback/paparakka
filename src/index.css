@@ -53,3 +53,8 @@ div.page:not(.page-1) {
 .wmde-markdown {
   font-family: "Lexend" !important;
 }
+
+ol,
+ul {
+  list-style-type: disc !important;
+}

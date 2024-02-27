@@ -210,6 +210,10 @@
   color: var(--app-grey);
 }
 
+.long-card .tags {
+  margin-bottom: 6px;
+}
+
 .long-card .tag {
   font-size: 0.6rem;
   margin: 4px 4px 0 0;

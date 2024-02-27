@@ -13,6 +13,7 @@ import useSpeechRecognition from "../hooks/useSpeechRecognition.js";
 import LearnHeader from "../components/Learn/LearnHeader.jsx";
 import ChooseDifficulty from "../components/Learn/ChooseDifficulty.jsx";
 import Rating from "../components/Rating/Rating.jsx";
+import MDEditor from "@uiw/react-md-editor";
 
 const Learn = ({ user }) => {
   // hooks
@@ -118,17 +119,37 @@ const Learn = ({ user }) => {
       set_study_flashcards([]);
     }
 
-    if (prof == "medium") {
+    if (prof == "easy1") {
+      const length = Math.round(0.7 * study_flashcards.length);
+      copy.splice(length - 1, 0, new_card);
+    }
+
+    if (prof == "easy2") {
       const length = Math.round(0.6 * study_flashcards.length);
       copy.splice(length - 1, 0, new_card);
     }
 
-    if (prof == "hard") {
+    if (prof == "easy3") {
+      const length = Math.round(0.5 * study_flashcards.length);
+      copy.splice(length - 1, 0, new_card);
+    }
+
+    if (prof == "medium1") {
+      const length = Math.round(0.4 * study_flashcards.length);
+      copy.splice(length - 1, 0, new_card);
+    }
+
+    if (prof == "medium2") {
       const length = Math.round(0.3 * study_flashcards.length);
       copy.splice(length - 1, 0, new_card);
     }
 
-    if (prof == "again") {
+    if (prof == "hard1") {
+      const length = Math.round(0.2 * study_flashcards.length);
+      copy.splice(length - 1, 0, new_card);
+    }
+
+    if (prof == "again1") {
       const length = Math.round(0.1 * study_flashcards.length);
       copy.splice(length - 1, 0, new_card);
     }
@@ -140,32 +161,59 @@ const Learn = ({ user }) => {
 
   const get_new_proficiency = (card) => {
     /*
-    4 levels:
+   The levels are (descending order):
 
-    - Easy
-    - Medium
-    - Hard
-    - Again
+   - again1 - <1m later
+   - hard1 - ~3m later
+   - medium2 - 10m later
+   - medium1 - 30m later
+   - easy3 - 1h later
+   - easy2 - 4h later
+   - easy1 - 1d later
+
+   the lower on the list, the better
 
     */
 
+    const cur_prof = study_flashcards[0].proficiency;
+
     if (correct == "wrong") {
       if (answer == "") {
-        return "again";
+        return "again1";
       } else {
-        return "hard";
+        switch (cur_prof) {
+          case "again":
+            return "again1";
+          case "hard1":
+            return "again1";
+          case "medium2":
+            return "hard2";
+          default:
+            return "hard1";
+        }
       }
-    }
-
-    if (correct == "correct") {
-      if (
-        answer === study_flashcards[0].definition ||
-        (study_flashcards[0].proficiency &&
-          study_flashcards[0].proficiency == "medium")
-      ) {
-        return "easy";
+    } else {
+      if (answer === study_flashcards[0].definition) {
+        return "easy2";
       } else {
-        return "medium";
+        switch (cur_prof) {
+          case "again1":
+            return "hard1";
+          case "hard1":
+            return "medium2";
+          case "medium2":
+            return "medium1";
+          case "medium1":
+            return "easy3";
+          case "easy3":
+            return "easy2";
+          case "easy2":
+            return "easy1";
+          case "easy1":
+            return "easy1";
+          default:
+            return "medium1";
+        }
       }
     }
   };
@@ -182,17 +230,26 @@ const Learn = ({ user }) => {
     let time = new Date();
 
     switch (proficiency) {
-      case "easy":
-        time = new Date(time.getTime() + 1000 * 60 * 60 * 24 * 2);
-        break;
-      case "medium":
+      case "easy1":
         time = new Date(time.getTime() + 1000 * 60 * 60 * 24);
         break;
-      case "hard":
+      case "easy2":
         time = new Date(time.getTime() + 1000 * 60 * 60 * 4);
         break;
-      case "again":
-        time = new Date(time.getTime() - 1000 * 60);
+      case "easy3":
+        time = new Date(time.getTime() + 1000 * 60 * 60);
+        break;
+      case "medium1":
+        time = new Date(time.getTime() + 1000 * 60 * 30);
+        break;
+      case "medium2":
+        time = new Date(time.getTime() + 1000 * 60 * 10);
+        break;
+      case "hard1":
+        time = new Date(time.getTime() + 1000 * 60 * 5);
+        break;
+      case "again1":
+        time = new Date(time.getTime() - 1000 * 1);
         break;
       default:
         break;
@@ -222,11 +279,12 @@ const Learn = ({ user }) => {
 
   // key events
 
-  onkeydown = (e) => {
-    if (e.key === "Enter") {
-      check_answer();
-    }
-  };
+  // onkeydown = (e) => {
+  //   console.log(e);
+  //   if (e.key === "Enter") {
+  //     check_answer();
+  //   }
+  // };
 
   const onOver = () => {
     navigate("/dashboard/");
@@ -300,13 +358,12 @@ const Learn = ({ user }) => {
                             "input-row " + (answered ? "answered" : "")
                           }
                         >
-                          <textarea
+                          <MDEditor
                             type="text"
                             className={"input " + (answered ? "hidden" : "")}
                             placeholder="Enter answer here..."
                             value={answer}
-                            onChange={(e) => set_answer(e.target.value)}
-                            onKeyDown={(e) => onkeydown(e)}
+                            onChange={set_answer}
                           />
                           <button
                             className={

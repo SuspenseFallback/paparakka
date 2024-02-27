@@ -388,6 +388,10 @@
   margin-top: 1vh;
 }
 
+.learn-page-1 .answer-container .correct-answer {
+  margin-top: 1vh;
+}
+
 .learn-page-1 .answer-container .your-answer,
 .learn-page-1 .answer-container .correct-answer {
   width: 100%;
