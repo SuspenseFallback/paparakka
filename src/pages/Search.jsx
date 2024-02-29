@@ -7,7 +7,7 @@ import LongCard from "../components/Card/LongCard";
 
 const Search = () => {
   const [search, set_search] = useState("");
-  const [decks, set_decks] = useState([]);
+  const [sets, set_sets] = useState([]);
   const [loading, set_loading] = useState(true);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const Search = () => {
 
     searchSetTitles(query, (data) => {
       set_loading(false);
-      set_decks(data);
+      set_sets(data);
     });
   }, []);
 
@@ -34,11 +34,11 @@ const Search = () => {
 
   return (
     <>
-      <div className="decks-page-1">
-        <h1 className="header">Find public decks</h1>
+      <div className="sets-page-1">
+        <h1 className="header">Find public sets</h1>
         <div className="flex-container">
           <Searchbar
-            placeholder="Search for public decks..."
+            placeholder="Search for public sets..."
             val={search}
             setVal={set_search}
             searchQuery={searchQuery}
@@ -52,8 +52,8 @@ const Search = () => {
             <>
               <span className="pi pi-spinner pi-spin"></span>
             </>
-          ) : decks.length > 0 ? (
-            decks.map((card) => {
+          ) : sets.length > 0 ? (
+            sets.map((card) => {
               console.log(card);
               return (
                 <LongCard

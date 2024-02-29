@@ -14,7 +14,7 @@ const Dictate = ({ user }) => {
   const [speech, set_speech] = useState(null);
   const [is_playing, set_is_playing] = useState(false);
 
-  const [deck, set_deck] = useState({});
+  const [set, set_set] = useState({});
   const [loading, set_loading] = useState(true);
   const [answered, set_answered] = useState(false);
   const [answer, set_answer] = useState("");
@@ -25,7 +25,7 @@ const Dictate = ({ user }) => {
 
   useEffect(() => {
     getSet(id).then((data) => {
-      set_deck(data);
+      set_set(data);
       set_loading(false);
       document.title = "Papparakka | " + data.title;
       logData("dictate - " + data.id);
@@ -57,7 +57,7 @@ const Dictate = ({ user }) => {
       }
     }
 
-    let utterance = new SpeechSynthesisUtterance(deck.flashcards[index].term);
+    let utterance = new SpeechSynthesisUtterance(set.flashcards[index].term);
 
     utterance.addEventListener("pause", () => {
       set_is_playing(false);
@@ -78,7 +78,7 @@ const Dictate = ({ user }) => {
   };
 
   const check_answer = () => {
-    const current_answer = deck.flashcards[index].definition;
+    const current_answer = set.flashcards[index].definition;
     set_answered(true);
     if (answer === "") {
       set_difficulty("hard");
@@ -105,7 +105,7 @@ const Dictate = ({ user }) => {
     set_history((h) => [
       ...h,
       {
-        index: deck.flashcards[index].index,
+        index: set.flashcards[index].index,
         difficulty: difficulty,
       },
     ]);
@@ -135,7 +135,7 @@ const Dictate = ({ user }) => {
                   <span className="label">TERM</span>
                   <br />
                   <span className="term">
-                    {hint_displayed ? deck.flashcards[index].term : "hint?"}
+                    {hint_displayed ? set.flashcards[index].term : "hint?"}
                   </span>
                 </p>
               </div>
@@ -195,7 +195,7 @@ const Dictate = ({ user }) => {
               <div className="correct-answer">
                 <p className="label">Correct answer</p>
                 <p className="answer-text">
-                  {deck.flashcards[index].definition}
+                  {set.flashcards[index].definition}
                 </p>
               </div>
               {difficulty === "unknown" ? (

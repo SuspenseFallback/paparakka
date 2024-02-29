@@ -6,8 +6,8 @@ import "../css/MySets.css";
 
 const MySets = ({ user }) => {
   const [loading, set_loading] = useState(true);
-  const [my_decks, set_my_decks] = useState([]);
-  const [total_decks, set_total_decks] = useState([]);
+  const [my_sets, set_my_sets] = useState([]);
+  const [total_sets, set_total_sets] = useState([]);
 
   useEffect(() => {
     document.title = "Papparakka | My Decks";
@@ -15,11 +15,11 @@ const MySets = ({ user }) => {
 
   useEffect(() => {
     getOwnerSets(user.id, (data) => {
-      set_total_decks(data);
+      set_total_sets(data);
       if (data.length < 9) {
-        set_my_decks(data);
+        set_my_sets(data);
       } else {
-        set_my_decks(data.slice(0, 9));
+        set_my_sets(data.slice(0, 9));
       }
       set_loading(false);
     });
@@ -30,17 +30,17 @@ const MySets = ({ user }) => {
         <div className="page page-1 my-sets-page-1">
           <div className="my-sets">
             <p className="title">My sets </p>
-            <div className="decks">
-              {my_decks.map((deck, index) => {
+            <div className="sets">
+              {my_sets.map((set, index) => {
                 return (
                   <Card
-                    owner_id={deck.owner}
+                    owner_id={set.owner}
                     key={index + 9000}
-                    title={deck.title}
-                    desc={deck.description}
-                    tags={deck.tags}
-                    owner={deck.ownerName}
-                    id={deck.id}
+                    title={set.title}
+                    desc={set.description}
+                    tags={set.tags}
+                    owner={set.ownerName}
+                    id={set.id}
                     user_id={user.id}
                   />
                 );

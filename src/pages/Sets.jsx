@@ -10,7 +10,7 @@ const Sets = () => {
   const [loading, set_loading] = useState(true);
 
   useEffect(() => {
-    logData("decks");
+    logData("sets");
 
     document.title = "Papparakka - Sets";
   }, []);
@@ -32,7 +32,7 @@ const Sets = () => {
 
   return (
     <>
-      <div className={"page page-1 decks-page-1" + (loading ? " loading" : "")}>
+      <div className={"page page-1 sets-page-1" + (loading ? " loading" : "")}>
         {loading ? (
           <span className="pi pi-spinner pi-spin"></span>
         ) : (
@@ -49,7 +49,7 @@ const Sets = () => {
                 <span className="pi pi-search"></span>
               </button>
             </div>
-            <div className="recent-decks">
+            <div className="recent-sets">
               <h2 className="subheader">Recent Sets</h2>
               {user && user.studied_sets && user.studied_sets.length > 0 ? (
                 <div className="cards">

@@ -17,7 +17,7 @@ const NewSet = () => {
   const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
 
-  // deck values
+  // set values
   const [title, set_title] = useState("");
   const [description, set_description] = useState("");
   const [tags, set_tags] = useState([]);
@@ -125,7 +125,7 @@ const NewSet = () => {
         <Modal open={open} set_open={setOpen} title="Importing cards from Anki">
           <ol>
             <li>Open the Anki app</li>
-            <li>Hover over the deck you want to export</li>
+            <li>Hover over the set you want to export</li>
             <li>Click on the settings icon</li>
             <li>Click 'Export'</li>
             <li>Select 'Notes in plain text (.txt)'</li>
@@ -145,7 +145,7 @@ const NewSet = () => {
             Submit
           </button>
         </Modal>
-        <h1 className="header">Create a new deck</h1>
+        <h1 className="header">Create a new set</h1>
         <div className="row">
           <div className="input-container">
             <p className="label">
@@ -214,7 +214,7 @@ const NewSet = () => {
           disabled={disabled}
           onClick={submitHandler}
         >
-          Create a new deck
+          Create a new set
         </button>
       </div>
     </>

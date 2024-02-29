@@ -200,7 +200,7 @@ const EditSet = ({ user }) => {
               </button>
             </div>
             <button className="button-block" onClick={submitHandler}>
-              Save deck
+              Save set
             </button>
           </>
         )}

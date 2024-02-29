@@ -10,29 +10,29 @@ const Set = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [deck, set_deck] = useState({});
+  const [set, set_set] = useState({});
   const [loading, set_loading] = useState(true);
 
   useEffect(() => {
     getSet(id).then((data) => {
       console.log(data);
       set_loading(false);
-      set_deck(data);
+      set_set(data);
       document.title = "Papparakka | " + data.title;
       addHistory(data.id);
     });
   }, []);
 
   const goFlashcards = () => {
-    navigate("/flashcards/" + deck.id);
+    navigate("/flashcards/" + set.id);
   };
 
   const goDictate = () => {
-    navigate("/dictate/" + deck.id);
+    navigate("/dictate/" + set.id);
   };
 
   const goLearn = () => {
-    navigate("/learn/" + deck.id);
+    navigate("/learn/" + set.id);
   };
 
   return (
@@ -47,12 +47,12 @@ const Set = () => {
           <>
             <div className="header">
               <div className="left-side">
-                <h1 className="title">{deck.title}</h1>
-                <p className="description">{deck.description}</p>
+                <h1 className="title">{set.title}</h1>
+                <p className="description">{set.description}</p>
               </div>
               <div className="right-side">
                 <div className="tags">
-                  {deck.tags.map((tag) => {
+                  {set.tags.map((tag) => {
                     return (
                       <span className="tag" key={tag + "eoirnv ueim"}>
                         {tag}
@@ -61,7 +61,7 @@ const Set = () => {
                   })}
                 </div>
                 <p className="created-by">
-                  created by <span>{deck.ownerName}</span>
+                  created by <span>{set.ownerName}</span>
                 </p>
               </div>
             </div>
@@ -78,7 +78,7 @@ const Set = () => {
                   Learn
                 </button>
               </div>
-              <FlashcardControl deck={deck} />
+              <FlashcardControl set={set} />
             </div>
           </>
         )}
@@ -89,7 +89,7 @@ const Set = () => {
         ) : (
           <>
             <div className="cards">
-              {deck.flashcards.map((card, index) => {
+              {set.flashcards.map((card, index) => {
                 return (
                   <PreviewCard
                     cardNumber={index + 1}

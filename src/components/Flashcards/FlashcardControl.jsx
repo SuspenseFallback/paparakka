@@ -4,18 +4,18 @@ import randint from "../../helpers/random.js";
 import gsap from "gsap";
 import FlashcardControlBar from "./FlashcardControlBar.jsx";
 
-const FlashcardControl = ({ deck }) => {
+const FlashcardControl = ({ set }) => {
   // state
 
   const [flip, setFlip] = useState(false);
   const [index, setIndex] = useState(1);
-  const [term, setTerm] = useState(deck.flashcards[0].term);
-  const [definition, setDefinition] = useState(deck.flashcards[0].definition);
+  const [term, setTerm] = useState(set.flashcards[0].term);
+  const [definition, setDefinition] = useState(set.flashcards[0].definition);
   const [play, setPlay] = useState(false);
 
   const flashcardRef = useRef();
 
-  console.log(deck);
+  console.log(set);
   // control functions
 
   const toggleFlip = () => {
@@ -35,14 +35,14 @@ const FlashcardControl = ({ deck }) => {
   };
 
   const goRight = () => {
-    if (index !== deck.flashcards.length) {
+    if (index !== set.flashcards.length) {
       setIndex(index + 1);
     }
   };
 
   const goFullRight = () => {
-    if (index !== deck.flashcards.length) {
-      setIndex(deck.flashcards.length);
+    if (index !== set.flashcards.length) {
+      setIndex(set.flashcards.length);
     }
   };
 
@@ -59,12 +59,12 @@ const FlashcardControl = ({ deck }) => {
   // hooks
 
   useEffect(() => {
-    const card = deck.flashcards[index - 1];
+    const card = set.flashcards[index - 1];
 
     setTerm(card.term);
     setDefinition(card.definition);
     setFlip(false);
-  }, [index, deck]);
+  }, [index, set]);
 
   const catchKeystrokes = (e) => {
     if (e.key === "ArrowRight") {
@@ -128,12 +128,12 @@ const FlashcardControl = ({ deck }) => {
           playCards={playCards}
           flip={flip}
           toggleFlip={toggleFlip}
-          deck={deck}
+          set={set}
         />
         {/* flashcard index */}
         <div className="number">
           <p className="num">
-            {index}/{deck.flashcards.length}
+            {index}/{set.flashcards.length}
           </p>
         </div>
       </div>

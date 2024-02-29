@@ -1,21 +1,21 @@
-.decks-page-1 {
+.sets-page-1 {
   padding: 2vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.decks-page-1.loading {
+.sets-page-1.loading {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.decks-page-1.loading .pi {
+.sets-page-1.loading .pi {
   font-size: 3rem;
 }
 
-.decks-page-1 .header {
+.sets-page-1 .header {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
@@ -23,7 +23,7 @@
   color: var(--app-primary-text-color);
 }
 
-.decks-page-1 .flex-container {
+.sets-page-1 .flex-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,38 +34,38 @@
   margin-top: 2vh;
 }
 
-.decks-page-1 .recent-decks {
+.sets-page-1 .recent-sets {
   width: 95%;
   height: 34vh;
   margin-top: 2vh;
 }
 
-.decks-page-1 .recent-decks .center {
+.sets-page-1 .recent-sets .center {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60vh;
 }
 
-.decks-page-1 .recent-decks .center .text {
+.sets-page-1 .recent-sets .center .text {
   color: var(--app-primary-text-color);
 }
 
-.decks-page-1 .recent-decks .subheader {
+.sets-page-1 .recent-sets .subheader {
   color: var(--app-secondary-color);
   font-family: "Lexend";
   font-size: 1.1rem;
   font-weight: 500;
 }
 
-.decks-page-1 .recent-decks .cards {
+.sets-page-1 .recent-sets .cards {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   gap: 2vw;
 }
 
-.decks-page-1 .recent-decks .cards .card {
+.sets-page-1 .recent-sets .cards .card {
   flex-grow: 1;
   flex-basis: calc(33%);
 }
@@ -108,13 +108,13 @@
 }
 
 @media screen and (max-width: 958px) {
-  .decks-page-1 .recent-decks .cards {
+  .sets-page-1 .recent-sets .cards {
     height: 60vh;
     width: 100%;
     flex-direction: column;
   }
 
-  .decks-page-1 .recent-decks .cards .card {
+  .sets-page-1 .recent-sets .cards .card {
     flex-basis: 100%;
   }
 }

@@ -69,9 +69,9 @@
   justify-content: center;
 }
 
-/* ! my decks */
+/* ! my sets */
 
-.dashboard-page-1 .my-decks {
+.dashboard-page-1 .my-sets {
   width: 100vw;
   height: 70vh;
 
@@ -81,23 +81,23 @@
   padding: 2vw;
 }
 
-.dashboard-page-1 .my-decks .placeholder {
+.dashboard-page-1 .my-sets .placeholder {
   color: var(--app-primary-text-color);
 }
 
-.dashboard-page-1 .my-decks > .title {
+.dashboard-page-1 .my-sets > .title {
   font-weight: bold;
   font-size: 1.5rem;
   color: var(--app-primary-text-color);
 }
 
-.dashboard-page-1 .my-decks .title .icon {
+.dashboard-page-1 .my-sets .title .icon {
   font-size: 1.2rem;
   color: var(--app-grey);
   cursor: pointer;
 }
 
-.dashboard-page-1 .my-decks .decks {
+.dashboard-page-1 .my-sets .sets {
   height: 90%;
   width: 100vw;
   flex-wrap: wrap;
@@ -108,19 +108,19 @@
   gap: 1vw;
 }
 
-.dashboard-page-1 .my-decks .decks.empty {
+.dashboard-page-1 .my-sets .sets.empty {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.dashboard-page-1 .my-decks .decks .card {
+.dashboard-page-1 .my-sets .sets .card {
   flex-basis: 30%;
   width: 30vw;
 }
 
 @media screen and (max-width: 1125px) {
-  .dashboard-page-1 .my-decks .decks .card {
+  .dashboard-page-1 .my-sets .sets .card {
     flex-basis: 47%;
     width: 47vw;
   }
@@ -133,7 +133,7 @@
     height: 200vh !important;
   }
 
-  .dashboard-page-1 .my-decks .decks {
+  .dashboard-page-1 .my-sets .sets {
     height: 90%;
     width: 100vw;
     flex-wrap: wrap;
@@ -145,7 +145,7 @@
     gap: 1vw;
   }
 
-  .dashboard-page-1 .my-decks .decks .card {
+  .dashboard-page-1 .my-sets .sets .card {
     flex-basis: 94%;
     width: 94vw;
   }

@@ -11,7 +11,7 @@ const FlashcardControlBar = ({
   shuffle,
   toggleFlip,
   flip,
-  deck,
+  set,
 }) => {
   return (
     <>
@@ -44,14 +44,14 @@ const FlashcardControlBar = ({
           </button>
           <button
             className="button-icon"
-            disabled={index === deck.flashcards.length}
+            disabled={index === set.flashcards.length}
             onClick={goRight}
           >
             <span className="pi pi-angle-right"></span>
           </button>
           <button
             className="button-icon"
-            disabled={index === deck.flashcards.length}
+            disabled={index === set.flashcards.length}
             onClick={goFullRight}
           >
             <span className="pi pi-angle-double-right"></span>

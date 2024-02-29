@@ -9,7 +9,7 @@ const Dashboard = ({ user }) => {
   const navigate = useNavigate();
 
   const [loading, set_loading] = useState(true);
-  const [my_decks, set_my_decks] = useState([]);
+  const [my_sets, set_my_sets] = useState([]);
   const [sets_studied_this_week, set_sets_studied_this_week] = useState(0);
   const [sets_studied_this_month, set_sets_studied_this_month] = useState(0);
 
@@ -21,9 +21,9 @@ const Dashboard = ({ user }) => {
     getOwnerSets(user.id, (data) => {
       console.log(data);
       if (data.length < 6) {
-        set_my_decks(data);
+        set_my_sets(data);
       } else {
-        set_my_decks(data.slice(0, 6));
+        set_my_sets(data.slice(0, 6));
       }
       set_loading(false);
     });
@@ -92,25 +92,25 @@ const Dashboard = ({ user }) => {
               <div className="month"></div>
               <div className="lifetime"></div>
             </div>
-            <div className="my-decks">
+            <div className="my-sets">
               <p className="title">
                 My sets{" "}
                 <span className="more" onClick={goToMyDecks}>
                   <span className="icon pi pi-angle-right"></span>
                 </span>
               </p>
-              <div className={"decks " + (my_decks.length > 0 ? "" : "empty")}>
-                {my_decks.length > 0 ? (
-                  my_decks.map((deck, index) => {
+              <div className={"sets " + (my_sets.length > 0 ? "" : "empty")}>
+                {my_sets.length > 0 ? (
+                  my_sets.map((set, index) => {
                     return (
                       <Card
                         key={index + 9000}
-                        owner_id={deck.owner}
-                        title={deck.title}
-                        desc={deck.description}
-                        tags={deck.tags}
-                        owner={deck.ownerName}
-                        id={deck.id}
+                        owner_id={set.owner}
+                        title={set.title}
+                        desc={set.description}
+                        tags={set.tags}
+                        owner={set.ownerName}
+                        id={set.id}
                         user_id={user.id}
                       />
                     );
