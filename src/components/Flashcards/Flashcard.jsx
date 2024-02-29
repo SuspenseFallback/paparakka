@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/Flashcard.css";
 import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 const Flashcard = ({
   flip,
@@ -10,19 +11,26 @@ const Flashcard = ({
   definition,
   active = true,
 }) => {
+  const [answer, setAnswer] = useState(definition);
+
   return (
     <div
       className={"flashcard " + (flip ? "flip" : "")}
-      onClick={active ? () => setFlip(!flip) : null}
       ref={flashcard}
       data-color-mode="light"
     >
-      <div className="flashcard-front flashcard-face">
+      <div
+        className="flashcard-front flashcard-face"
+        onClick={active ? () => setFlip(!flip) : null}
+      >
         <p className="content">{term}</p>
       </div>
-      <div className="flashcard-back flashcard-face">
+      <div
+        className="flashcard-back flashcard-face"
+        onClick={active ? () => setFlip(!flip) : null}
+      >
         <p className="content">
-          <MDEditor.Markdown source={definition}></MDEditor.Markdown>
+          <MDEditor.Markdown source={definition} />
         </p>
       </div>
     </div>

@@ -42,6 +42,7 @@ import SpinnerAnim from "./components/SpinnerAnim/SpinnerAnim.jsx";
 import Settings from "./pages/Settings.jsx";
 import Stats from "./pages/Stats.jsx";
 import AddCards from "./pages/AddCards.jsx";
+import EditCards from "./pages/EditCards.jsx";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
@@ -68,6 +69,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Flashcards />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/edit/:id",
+        element: (
+          <ProtectedRoute>
+            <EditCards />
           </ProtectedRoute>
         ),
       },

@@ -1,0 +1,128 @@
+.edit-cards-page-1 {
+  min-height: 90vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-cards-page-1 .container {
+  width: 90vw;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 1vh;
+}
+
+.edit-cards-page-1 .container .question-container {
+  width: 85vw;
+}
+
+.edit-cards-page-1 .container .question-container #question {
+  width: 100%;
+  padding: 12px;
+
+  /* border: 1px solid var(--app-light-grey); */
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.edit-cards-page-1 .container .question-container #question:focus {
+  outline: black;
+}
+
+.edit-cards-page-1 .container .answer-container {
+  height: 40vh;
+  margin-top: 2vh;
+  width: 85vw;
+}
+
+.edit-cards-page-1 .container .answer-container .editor-container {
+  height: 90%;
+}
+
+.edit-cards-page-1 .button-block {
+  margin-top: 2vh;
+  width: 85vw;
+  margin-bottom: 3vh;
+}
+
+.edit-cards-page-1 .cards {
+  width: 100vw;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-cards-page-1 .cards .card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  height: 10vh;
+  margin-top: 2vh;
+  border-radius: 24px;
+  border: 1px solid var(--app-light-grey);
+  background-color: var(--app-primary-color);
+}
+
+.edit-cards-page-1 .cards .card-row .label {
+  font-weight: normal;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #f98f0d;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.edit-cards-page-1 .card-row .group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+}
+
+.edit-cards-page-1 .card-row .number {
+  font-weight: bold;
+  font-family: "Lexend";
+  font-size: 2rem;
+  width: calc(100% / 3);
+  color: var(--app-primary-text-color);
+}
+
+.edit-cards-page-1 .card-row .term-container {
+  width: 60%;
+}
+
+.edit-cards-page-1 .card-row .term-container .term {
+  font-size: 18px;
+  color: var(--app-primary-text-color);
+}
+
+.edit-cards-page-1 .card-row .edit {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--app-grey);
+  margin-right: 2vw;
+
+  background-color: var(--app-primary-color);
+
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.edit-cards-page-1 .card-row .edit:hover {
+  background-color: var(--app-primary-hover-color);
+}
+
+.edit-cards-page-1 .cards .edit-area {
+  width: 85vw;
+}

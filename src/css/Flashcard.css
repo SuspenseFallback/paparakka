@@ -43,6 +43,10 @@
   border-radius: 24px;
 }
 
+.flashcard .content.edit {
+  z-index: 1000;
+}
+
 .flashcard .flashcard-back {
   transform: rotateX(180deg);
   background-color: var(--app-primary-color);
