@@ -72,7 +72,7 @@ const EditDialog = ({ card, set_set, set }) => {
           onClick={editCard}
           disabled={!(question && answer)}
         >
-          Edit card
+          Save changes
         </button>
       </div>
     </>
