@@ -371,6 +371,7 @@ const Learn = ({ user }) => {
                             placeholder="Enter answer here..."
                             value={answer}
                             onChange={set_answer}
+                            visibleDragbar={false}
                             previewOptions={{
                               rehypePlugins: [[rehypeSanitize]],
                             }}

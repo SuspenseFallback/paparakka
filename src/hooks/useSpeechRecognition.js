@@ -4,7 +4,7 @@ let recognition = null;
 if ("webkitSpeechRecognition" in window) {
   recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
-  recognition.lang = "fr-fr";
+  recognition.lang = "en-US";
 }
 
 const useSpeechRecognition = () => {
