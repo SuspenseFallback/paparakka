@@ -13,6 +13,8 @@ const AddCards = ({ user }) => {
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getSet(id).then((data) => {
@@ -21,6 +23,23 @@ const AddCards = ({ user }) => {
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const in_set = set.flashcards.filter((f) => f.term == question);
+
+      if (in_set.length != 0) {
+        setError("Question already in set");
+        setDisabled(true);
+      } else if (question == "" || answer == "") {
+        setError("");
+        setDisabled(true);
+      } else {
+        setError("");
+        setDisabled(false);
+      }
+    }
+  }, [question, answer, loading]);
 
   const addCard = () => {
     const card = {
@@ -63,6 +82,7 @@ const AddCards = ({ user }) => {
                   onChange={(e) => setQuestion(e.target.value)}
                 />
               </div>
+              <p className="error">{error}</p>
 
               <div className="answer-container">
                 <p className="label">Answer</p>
@@ -82,7 +102,7 @@ const AddCards = ({ user }) => {
             <button
               className="button button-block"
               onClick={addCard}
-              disabled={!(question && answer)}
+              disabled={disabled}
             >
               Add card
             </button>

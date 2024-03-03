@@ -16,6 +16,11 @@
   flex-direction: column;
 }
 
+.add-cards-page-1 .container .error {
+  color: red;
+  margin-top: 4px;
+}
+
 .add-cards-page-1 .container .question-container {
   width: 100%;
 }
