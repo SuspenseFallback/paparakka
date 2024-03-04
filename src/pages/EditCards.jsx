@@ -13,9 +13,6 @@ const EditCards = ({ user }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-
   useEffect(() => {
     getSet(id).then((data) => {
       document.title = "Papparakka | Add cards to " + data.title;
@@ -29,6 +26,7 @@ const EditCards = ({ user }) => {
       return;
     } else {
       updateSet(set, set.id, user);
+      updateStudiedSets(user, set.id, set.flashcards);
     }
   }, [set]);
 

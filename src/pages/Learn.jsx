@@ -28,8 +28,6 @@ const Learn = ({ user }) => {
   } = useSpeechRecognition();
   const { id } = useParams();
 
-  console.log("support", hasRecognitionSupport);
-
   // state
 
   const [set, set_set] = useState({});
@@ -50,13 +48,24 @@ const Learn = ({ user }) => {
     getSet(id).then((data) => {
       document.title = "Papparakka | " + data.title;
       set_set({ ...data });
-      console.log(data);
 
       addStudiedSets(user, id, (cards) => {
-        set_loading(false);
+        function compare(a, b) {
+          if (a.times_revised < b.times_revised) {
+            return -1;
+          }
 
+          if (a.times_revised > b.times_revised) {
+            return 1;
+          }
+
+          return 0;
+        }
+
+        cards.sort(compare);
+
+        set_loading(false);
         set_flashcards(cards);
-        console.log(cards);
         check_time_of_cards(cards);
       });
     });
@@ -105,16 +114,15 @@ const Learn = ({ user }) => {
 
   const modify_study_cards = (prof) => {
     const copy = [...study_flashcards];
+
     const new_card = {
       ...study_flashcards[0],
       proficiency: prof,
-      times_revised: study_flashcards[0].time_revised
-        ? study_flashcards[0].time_revised + 1
+      times_revised: study_flashcards[0].times_revised
+        ? study_flashcards[0].times_revised + 1
         : 1,
     };
     copy.splice(0, 1);
-
-    console.log(prof);
 
     if (study_flashcards.length == 1 && prof == "easy") {
       set_study_flashcards([]);
@@ -223,10 +231,18 @@ const Learn = ({ user }) => {
 
   const next_question = () => {
     const cards = [...flashcards];
+    cards.sort((a, b) => {
+      if (a.index < b.index) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    console.log(cards);
+
     const proficiency = get_new_proficiency(study_flashcards[0]);
     const card_index = study_flashcards[0].index;
-
-    console.log(proficiency);
 
     let time = new Date();
 
@@ -265,9 +281,12 @@ const Learn = ({ user }) => {
       time: time.toUTCString(),
     };
 
-    console.log(cards[card_index]);
+    console.log("new card replaced", cards[card_index]);
+    console.log("new card", new_card);
 
-    cards[card_index] = new_card;
+    cards.splice(card_index, 0, { ...new_card });
+
+    console.log(cards);
     set_flashcards(cards);
 
     updateStudiedSets(user, set.id, cards, () => {
@@ -371,6 +390,7 @@ const Learn = ({ user }) => {
                             type="text"
                             className={"input " + (answered ? "hidden" : "")}
                             placeholder="Enter answer here..."
+                            height="30vh"
                             value={answer}
                             onChange={set_answer}
                             visibleDragbar={false}

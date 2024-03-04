@@ -15,17 +15,19 @@ const ChooseDifficulty = ({
         className={"answer-container " + (answered ? "" : "hidden")}
         data-color-mode="light"
       >
-        <div className="your-answer">
-          <p className="label">Your answer</p>
-          <p className="answer-text">
-            <MDEditor.Markdown source={answer} />
-          </p>
-        </div>
-        <div className="correct-answer">
-          <p className="label">Correct answer</p>
-          <p className="answer-text">
-            <MDEditor.Markdown source={study_flashcards[0].definition} />
-          </p>
+        <div className="answer-group">
+          <div className="your-answer">
+            <p className="label">Your answer</p>
+            <p className="answer-text">
+              <MDEditor.Markdown source={answer} />
+            </p>
+          </div>
+          <div className="correct-answer">
+            <p className="label">Correct answer</p>
+            <p className="answer-text">
+              <MDEditor.Markdown source={study_flashcards[0].definition} />
+            </p>
+          </div>
         </div>
         {correct === "unknown" ? (
           <>
