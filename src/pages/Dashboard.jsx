@@ -12,6 +12,7 @@ const Dashboard = ({ user }) => {
   const [my_sets, set_my_sets] = useState([]);
   const [sets_studied_this_week, set_sets_studied_this_week] = useState(0);
   const [sets_studied_this_month, set_sets_studied_this_month] = useState(0);
+  const [cards_studied, set_cards_studied] = useState(0);
 
   useEffect(() => {
     document.title = "Papparakka | Dashboard";
@@ -25,6 +26,7 @@ const Dashboard = ({ user }) => {
       } else {
         set_my_sets(data.slice(0, 6));
       }
+
       set_loading(false);
     });
   }, []);
@@ -56,6 +58,20 @@ const Dashboard = ({ user }) => {
 
     set_sets_studied_this_week(week_count);
     set_sets_studied_this_month(month_count);
+
+    let sum = 0;
+
+    if (user.studied_sets && user.studied_sets.length > 0) {
+      user.studied_sets.forEach((set) => {
+        set.flashcards.forEach((card) => {
+          if (card.times_revised) {
+            sum += card.times_revised;
+          }
+        });
+      });
+    }
+
+    set_cards_studied(sum);
   }, []);
 
   const goToMyDecks = () => {
@@ -83,10 +99,8 @@ const Dashboard = ({ user }) => {
                   <p className="desc">sets studied in the last 30 days</p>
                 </div>
                 <div className="year">
-                  <span className="big">
-                    {user.studied_sets ? user.studied_sets.length : 0}
-                  </span>
-                  <p className="desc">sets studied in lifetime</p>
+                  <span className="big">{cards_studied}</span>
+                  <p className="desc">cards studied</p>
                 </div>
               </div>
               <div className="month"></div>
