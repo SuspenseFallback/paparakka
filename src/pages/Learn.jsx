@@ -311,12 +311,14 @@ const Learn = ({ user }) => {
                 >
                   View cards
                 </button>
-                <button
-                  className="button-outline"
-                  onClick={() => window.open("/edit/" + id, "_blank")}
-                >
-                  Edit cards
-                </button>
+                {set.owner == user.id ? (
+                  <button
+                    className="button-outline"
+                    onClick={() => window.open("/edit/" + id, "_blank")}
+                  >
+                    Edit cards
+                  </button>
+                ) : null}
                 {set.owner == user.id ? (
                   <button
                     className="button-outline"
