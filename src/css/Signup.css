@@ -50,6 +50,7 @@
   border: 1px solid var(--app-secondary-color);
   background-color: var(--app-primary-color);
   font-family: "Lexend";
+  font-size: 14px;
   color: var(--app-secondary-color);
 }
 
@@ -165,6 +166,12 @@
   align-items: center;
 }
 
+.signup-page-1 .button-block {
+  margin-top: 3vh;
+}
+
+/* login page */
+
 .login-page-1 {
   display: flex;
   flex-direction: row;
@@ -218,6 +225,7 @@
   background-color: var(--app-primary-color);
   font-family: "Lexend";
   color: var(--app-secondary-color);
+  font-size: 14px;
 }
 
 .login-page-1 .form .input-container .input:focus {
@@ -240,6 +248,8 @@
   width: 90%;
   text-align: left;
   font-family: "Lexend";
+
+  margin-top: 6px;
 }
 
 .login-page-1 .form .password-input {
@@ -257,6 +267,10 @@
   top: 30%;
   color: var(--app-var(--app-grey));
   cursor: pointer;
+}
+
+.login-page-1 .button-block {
+  margin-top: 3vh;
 }
 
 @keyframes come-in {
