@@ -95,7 +95,10 @@ const Navbar = () => {
         ) : (
           <>
             <div className={"nav " + (is_active ? "active" : "")}>
-              <div className="logo-container">
+              <div
+                className="logo-container"
+                onClick={() => (user ? navigate("/dashboard") : navigate("/"))}
+              >
                 <div className="text-container">
                   <p className="nav-logo">Papparakka</p>
                   <p className="nav-caption">Seeds of knowledge</p>

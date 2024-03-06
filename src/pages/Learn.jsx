@@ -186,6 +186,8 @@ const Learn = ({ user }) => {
 
     const cur_prof = study_flashcards[0].proficiency;
 
+    console.log(cur_prof);
+
     if (correct == "wrong") {
       if (answer == "") {
         return "again1";
@@ -284,7 +286,7 @@ const Learn = ({ user }) => {
     console.log("new card replaced", cards[card_index]);
     console.log("new card", new_card);
 
-    cards.splice(card_index, 0, { ...new_card });
+    cards.splice(card_index, 1, { ...new_card });
 
     console.log(cards);
     set_flashcards(cards);
