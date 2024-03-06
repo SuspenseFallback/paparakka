@@ -23,7 +23,7 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
   };
 
   const deletes = () => {
-    deleteSet(id, { id: user_id }).then((res) => {
+    deleteSet(id, user_id).then((res) => {
       if (res == "401") {
         console.error("Error");
       }

@@ -143,14 +143,20 @@ export const updateSet = async (data, set_id, user) => {
 };
 
 export const deleteSet = async (set_id, user_id) => {
-  const set = doc(db, "sets", set_id);
-  const user_doc = doc(db, "user", user_id.id);
-  const user = await getDoc(user_doc);
+  const set_doc = doc(db, "sets", set_id);
+  const user_doc = doc(db, "user", user_id);
+  let user = null;
+  getUser((data) => {
+    user = data;
+  });
 
-  if (set.owner == user_id.id) {
-    await deleteDoc(doc);
+  const set = await getSet(set_id);
+
+  if (set.owner == user_id) {
+    await deleteDoc(set_doc);
     const new_studied_sets = [...user.studied_sets];
     const naya = new_studied_sets.filter((s) => s.id != set_id);
+    console.log(naya);
     updateDoc(user_doc, {
       studied_sets: naya,
     });
