@@ -205,7 +205,7 @@ const Learn = ({ user }) => {
       }
     } else {
       if (answer === study_flashcards[0].definition) {
-        return "easy2";
+        return "easy1";
       } else {
         switch (cur_prof) {
           case "again1":
