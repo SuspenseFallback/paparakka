@@ -51,6 +51,7 @@
 
 .signup-page-1 .animation {
   width: 30%;
+  left: -15%;
   position: relative;
   display: flex;
   flex-direction: column;

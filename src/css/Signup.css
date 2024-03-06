@@ -130,7 +130,7 @@
 }
 
 .signup-page-1 .image .header-container {
-  height: 50%;
+  height: 25%;
   width: 100%;
 
   display: flex;
@@ -156,8 +156,6 @@
 
 .signup-page-1 .image .img-container .anim-container {
   position: absolute;
-  top: -50%;
-  left: -12%;
 
   width: 100%;
   height: 100%;
