@@ -12,8 +12,6 @@
 }
 
 .app-container.light-theme {
-  background-color: #f6f6f6;
-
   --app-background-color: #f6f6f6;
   --app-background-color-trans: #f6f6f6b0;
   --app-primary-color: #ffffff;
@@ -29,8 +27,6 @@
 }
 
 .app-container.dark-theme {
-  background-color: #303030;
-
   --app-background-color: #303030;
   --app-background-color-trans: #3030309d;
   --app-primary-color: #000;
