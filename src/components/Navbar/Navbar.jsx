@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import Switch from "../Switch/Switch";
 
 import logo from "../../assets/papaya-logo.png";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Navbar = () => {
   const [is_user_items, set_is_user_items] = useState(false);
   const [is_responsive_menu, set_responsive_menu] = useState(false);
   const [is_active, set_is_active] = useState(false);
+  const [scrolled, set_scrolled] = useState(false);
 
   // const [dark_theme, set_dark_theme] = useState(true);
 
@@ -80,9 +82,19 @@ const Navbar = () => {
     navigate(link);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        set_scrolled(true);
+      } else {
+        set_scrolled(false);
+      }
+    });
+  }, []);
+
   return (
     <>
-      <div
+      <motion.div
         className={
           "app-container light-theme"
           // "app-container" + (dark_theme ? " dark-theme" : " light-theme")
@@ -94,7 +106,14 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <div className={"nav " + (is_active ? "active" : "")}>
+            <div
+              className={
+                "nav " +
+                (is_active ? "active" : "") +
+                (scrolled ? "scrolled" : "")
+              }
+            >
+              <div className="frost"></div>
               <div
                 className="logo-container"
                 onClick={() => (user ? navigate("/dashboard") : navigate("/"))}
@@ -274,7 +293,7 @@ const Navbar = () => {
             </div>
           </>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -8,6 +8,18 @@
   justify-content: center;
 }
 
+@keyframes come-in-navbar {
+  0% {
+    opacity: 0;
+    margin-top: -4px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
 .spinner-page .pi {
   color: var(--app-theme-color);
   font-size: 5rem;
@@ -31,6 +43,29 @@
   padding-right: 14px;
 
   transition: 0.25s;
+  animation: come-in-navbar 0.5s;
+}
+
+.nav.scrolled {
+  border-bottom: 2px solid var(--app-light-grey);
+}
+
+.nav:not(.scrolled) .frost {
+  display: none;
+  transition: all 0.25s;
+}
+
+.nav.scrolled .frost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+
+  background-color: #f1f1f18b;
+  filter: blur(3px);
+  transition: all 0.25s;
 }
 
 .nav .logo-container {
@@ -41,6 +76,7 @@
   margin-left: 5%;
 
   cursor: pointer;
+  z-index: 1001;
 }
 
 .nav .logo-container .text-container {
@@ -59,7 +95,7 @@
 }
 
 .nav .nav-caption {
-  margin: 2px 0 0 25px;
+  margin: 0px 0 0 25px;
   font-size: 14px;
   font-weight: 300;
   color: grey;
@@ -78,6 +114,7 @@
   height: 8vh;
   align-items: center;
   justify-content: flex-end;
+  z-index: 1001;
 }
 
 .nav .nav-items .nav-item {
@@ -113,6 +150,7 @@
 .nav-account {
   padding: 6px !important;
   transition: all 0.25s;
+  z-index: 1001;
 }
 
 .hover-underline {

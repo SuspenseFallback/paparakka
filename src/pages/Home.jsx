@@ -98,12 +98,22 @@ const Home = () => {
           >
             What are flashcards?
           </motion.h1>
-          <motion.p className="description">
+          <motion.p
+            className="description"
+            initial={{ opacity: 0, marginTop: "15vh" }}
+            whileInView={{ opacity: 1, marginTop: "10vh" }}
+            transition={{ delay: 0.5, duration: 1 }}
+          >
             Flashcards are cards that contain bite-sized pieces of information
             in question-answer pairs, that help students learn more efficiently
             and much easier.
           </motion.p>
-          <div className="benefits">
+          <motion.div
+            className="benefits"
+            initial={{ opacity: 0, marginTop: "8vh" }}
+            whileInView={{ opacity: 1, marginTop: "3vh" }}
+            transition={{ delay: 1, duration: 1 }}
+          >
             <div className="benefit">
               <div className="icon-container">
                 <i className="pi pi-lock"></i>
@@ -118,9 +128,9 @@ const Home = () => {
             </div>
             <div className="benefit">
               <div className="icon-container">
-                <i className="pi pi-lock"></i>
+                <i className="pi pi-th-large"></i>
               </div>
-              <p className="title">Active recall</p>
+              <p className="title">Spaced repetition</p>
               <p className="desc">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
                 quisquam repudiandae blanditiis reiciendis dolore, neque tempora
@@ -130,9 +140,9 @@ const Home = () => {
             </div>
             <div className="benefit">
               <div className="icon-container">
-                <i className="pi pi-lock"></i>
+                <i className="pi pi-box"></i>
               </div>
-              <p className="title">Active recall</p>
+              <p className="title">Fun learning</p>
               <p className="desc">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
                 quisquam repudiandae blanditiis reiciendis dolore, neque tempora
@@ -140,7 +150,7 @@ const Home = () => {
                 suscipit? Voluptas ducimus sunt possimus.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
         <div className="page page-3 home-page-3">
           <h1 className="header">So many different learning methods</h1>
