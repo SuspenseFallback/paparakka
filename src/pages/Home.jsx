@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router";
-import { logData } from "../firebase/firebase";
+import { getAllSets, logData } from "../firebase/firebase";
 
 import "../css/Home.css";
 
@@ -10,11 +10,16 @@ import HomeAnim from "../components/Home/HomeAnim";
 import Accordion from "../components/Accordion/Accordion";
 
 import { Button } from "../components/ui/moving-border.tsx";
+import Flashcard from "../components/Flashcards/Flashcard.jsx";
 
 const Home = () => {
   const navigate = useNavigate();
+  const flashcard_ref = useRef();
 
   const [card_index, set_card_index] = useState(1);
+  const [illustration_card, set_illustration_card] = useState(false);
+  const [number_of_sets, set_number_of_sets] = useState(0);
+  const [users, set_users] = useState(0);
 
   const ref = useRef(null);
 
@@ -33,8 +38,20 @@ const Home = () => {
   }, [card_index]);
 
   useEffect(() => {
+    setInterval(() => {
+      set_illustration_card(!illustration_card);
+    }, 4000);
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("resize", () => {
       card_move();
+    });
+  }, []);
+
+  useEffect(() => {
+    getAllSets((sets) => {
+      set_number_of_sets(sets.length);
     });
   }, []);
 
@@ -95,7 +112,25 @@ const Home = () => {
               <Button onClick={() => goToLink("/login")}>Log in</Button>
             </div>
           </div>
-          <div className="illustrations"></div>
+          <div className="illustrations">
+            <Flashcard
+              flashcard={flashcard_ref}
+              term="What is a flashcard?"
+              definition="Flashcard"
+              flip={illustration_card}
+              setFlip={set_illustration_card}
+            />
+            <div className="row">
+              <div className="ill-card number-of-studied-card">
+                <p className="stat">{users}</p>
+                <p className="desc">users</p>
+              </div>
+              <div className="ill-card number-of-sets-card">
+                <p className="stat">{number_of_sets}</p>
+                <p className="desc">sets created</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="page page-2 home-page-2">
           <p className="header">Why us?</p>

@@ -346,3 +346,17 @@ export const updateSetRating = async (set_id, newRating) => {
     });
   }
 };
+
+// get all users studied cards number
+
+export const getNumberOfUsers = async (callback) => {
+  getDocs(collection(db, "users")).then((data) => {
+    let docs = [];
+
+    data.docs.forEach((set) => {
+      docs.push(set.data());
+    });
+
+    callback(docs.length);
+  });
+};

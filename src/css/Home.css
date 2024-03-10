@@ -19,8 +19,9 @@
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  animation: come-in 1s;
   width: 40vw;
+
+  animation: come-in 1s;
 }
 
 .home-page-1 .text-container .title {
@@ -59,13 +60,57 @@
 
 .home-page-1 .illustrations {
   width: 40vw;
-  height: 40vh;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3vh;
+
+  animation: come-in 1s;
+}
+
+.home-page-1 .illustrations .controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-page-1 .illustrations .flashcard {
+  width: 40vw;
+  height: 38vh;
+
+  cursor: pointer;
+}
+
+.home-page-1 .illustrations .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-page-1 .illustrations .row .ill-card {
+  width: 19vw;
+  height: 36vh;
+
+  border: 2px solid var(--app-light-grey);
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page-1 .illustrations .row .ill-card .stat {
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 @keyframes come-in {
   0% {
     opacity: 0;
-    margin-top: -5vh;
+    margin-top: 3vh;
   }
 
   100% {

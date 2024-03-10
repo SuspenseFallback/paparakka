@@ -88,7 +88,7 @@
 
 .flashcard.flip {
   transform: rotateX(180deg);
-  box-shadow: 2px 2px 5px var(--app-shadow);
+  /* box-shadow: 2px 2px 5px var(--app-shadow); */
   transition-duration: 0.25s;
 }
 

@@ -93,7 +93,7 @@
   cursor: pointer;
 }
 
-@keyframes come-in {
+@keyframes come-in-sign-up {
   0% {
     opacity: 0;
     margin-top: -5vh;
@@ -115,7 +115,7 @@
   flex-direction: column;
   background-color: #ffba6c;
 
-  animation: come-in 1s;
+  animation: come-in-sign-up 1s;
 }
 
 .signup-page-1 .image.log-in {
@@ -273,18 +273,6 @@
   margin-top: 3vh;
 }
 
-@keyframes come-in {
-  0% {
-    opacity: 0;
-    margin-top: -5vh;
-  }
-
-  100% {
-    opacity: 1;
-    margin-top: 0;
-  }
-}
-
 .login-page-1 .image {
   width: 50vw;
   height: 122vh;
@@ -295,7 +283,7 @@
   flex-direction: column;
   background-color: #ffba6c;
 
-  animation: come-in 1s;
+  animation: come-in-signup 1s;
 }
 
 .login-page-1 .image.log-in {
