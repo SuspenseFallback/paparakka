@@ -67,6 +67,42 @@
   gap: 3vh;
 
   animation: come-in 1s;
+
+  position: relative;
+}
+
+.home-page-1 .illustrations .tooltip {
+  position: absolute;
+  top: -5vh;
+  z-index: 3;
+
+  background-color: #000;
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+
+  font-size: 12px;
+
+  transform: translateX(50%) translateY(50%);
+  animation: move-around 5s infinite;
+}
+
+@keyframes move-around {
+  0% {
+    margin-top: 0;
+  }
+
+  5% {
+    margin-top: -4px;
+  }
+
+  10% {
+    margin-top: 2px;
+  }
+
+  15% {
+    margin-top: 0px;
+  }
 }
 
 .home-page-1 .illustrations .controls-container {
@@ -100,6 +136,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  transition: all 0.25s;
+}
+
+.home-page-1 .illustrations .row .ill-card:hover {
+  box-shadow: 2px 2px var(--app-light-grey);
 }
 
 .home-page-1 .illustrations .row .ill-card .stat {
@@ -122,84 +164,80 @@
 /* ! page 2 */
 
 .home-page-2 {
-  height: 100vh;
+  height: 90vh !important;
 
   background-color: #ffffff;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .home-page-2 .header {
   font-size: 3rem;
+  font-weight: 500;
 }
 
-.home-page-2 .slide {
-  width: 80%;
-  height: 70vh;
-
-  display: grid;
-  grid-template-areas:
-    "box1 box2"
-    "box3 box4";
+.home-page-2 .description {
+  width: 50vw;
+  text-align: center;
+  margin-top: 10vh;
 }
 
-.home-page-2 .reason {
-  padding: 16px;
+.home-page-2 .benefits {
+  width: 80vw;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-top: 5vh;
+}
+
+.home-page-2 .benefits .benefit {
+  width: 20vw;
+  height: 40vh;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page-2 .benefits .benefit .icon-container {
+  height: 10vw;
+  width: 8vw;
+  border: 2px solid var(--app-light-grey);
+
+  border-radius: 12px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.home-page-2 .reason .text-container {
-  width: 80%;
+.home-page-2 .benefits .benefit .icon-container .pi {
+  font-size: 3rem;
 }
 
-.home-page-2 .reason .title {
-  font-size: 20px;
+.home-page-2 .benefits .benefit .title {
+  font-size: 1.2rem;
   font-weight: 500;
+  margin-top: 12px;
 
   text-align: center;
-  padding: 16px;
 }
 
-.home-page-2 .reason .desc {
+.home-page-2 .benefits .benefit .desc {
   text-align: center;
-}
+  font-size: 13px;
 
-.home-page-2 .reason-1 {
-  grid-area: "box1";
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
+  width: 15vw;
 
-.home-page-2 .reason-2 {
-  grid-area: "box2";
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
-.home-page-2 .reason-3 {
-  grid-area: "box3";
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
-  grid-column-end: 3;
-}
-
-.home-page-2 .reason-4 {
-  grid-area: "box4";
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  margin-top: 2vh;
 }
 
 /* page 3 */

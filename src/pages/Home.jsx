@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router";
 import { getAllSets, logData } from "../firebase/firebase";
+import { motion } from "framer-motion";
 
 import "../css/Home.css";
 
@@ -9,18 +10,12 @@ import gsap from "gsap";
 import HomeAnim from "../components/Home/HomeAnim";
 import Accordion from "../components/Accordion/Accordion";
 
-import { Button } from "../components/ui/moving-border.tsx";
-import Flashcard from "../components/Flashcards/Flashcard.jsx";
-import { LampDemo } from "../components/ui/lamp.tsx";
+import LandingPage from "../components/Home/LandingPage.jsx";
 
 const Home = () => {
   const navigate = useNavigate();
-  const flashcard_ref = useRef();
 
   const [card_index, set_card_index] = useState(1);
-  const [illustration_card, set_illustration_card] = useState(false);
-  const [number_of_sets, set_number_of_sets] = useState(0);
-  const [users, set_users] = useState(0);
 
   const ref = useRef(null);
 
@@ -39,20 +34,8 @@ const Home = () => {
   }, [card_index]);
 
   useEffect(() => {
-    setInterval(() => {
-      set_illustration_card(!illustration_card);
-    }, 4000);
-  }, []);
-
-  useEffect(() => {
     window.addEventListener("resize", () => {
       card_move();
-    });
-  }, []);
-
-  useEffect(() => {
-    getAllSets((sets) => {
-      set_number_of_sets(sets.length);
     });
   }, []);
 
@@ -105,36 +88,59 @@ const Home = () => {
   return (
     <>
       <main className="home-page" ref={ref}>
-        <div className="page page-1 home-page-1">
-          <div className="text-container">
-            <h1 className="title">Make flashcards and study for free.</h1>
-            <div className="button-row">
-              <Button onClick={() => goToLink("/signup")}>Sign up</Button>
-              <Button onClick={() => goToLink("/login")}>Log in</Button>
-            </div>
-          </div>
-          <div className="illustrations">
-            <Flashcard
-              flashcard={flashcard_ref}
-              term="What is a flashcard?"
-              definition="Flashcard"
-              flip={illustration_card}
-              setFlip={set_illustration_card}
-            />
-            <div className="row">
-              <div className="ill-card number-of-studied-card">
-                <p className="stat">{users}</p>
-                <p className="desc">users</p>
-              </div>
-              <div className="ill-card number-of-sets-card">
-                <p className="stat">{number_of_sets}</p>
-                <p className="desc">sets created</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LandingPage goToLink={goToLink} />
         <div className="page page-2 home-page-2">
-          <LampDemo title="What are flashcards?" />
+          <motion.h1
+            className="header"
+            initial={{ opacity: 0, marginTop: "5vh" }}
+            whileInView={{ opacity: 1, marginTop: "0" }}
+            transition={{ delay: 0.5, duration: 1 }}
+          >
+            What are flashcards?
+          </motion.h1>
+          <motion.p className="description">
+            Flashcards are cards that contain bite-sized pieces of information
+            in question-answer pairs, that help students learn more efficiently
+            and much easier.
+          </motion.p>
+          <div className="benefits">
+            <div className="benefit">
+              <div className="icon-container">
+                <i className="pi pi-lock"></i>
+              </div>
+              <p className="title">Active recall</p>
+              <p className="desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+                quisquam repudiandae blanditiis reiciendis dolore, neque tempora
+                fugiat vel maiores sed recusandae quo corporis placeat sunt
+                suscipit? Voluptas ducimus sunt possimus.
+              </p>
+            </div>
+            <div className="benefit">
+              <div className="icon-container">
+                <i className="pi pi-lock"></i>
+              </div>
+              <p className="title">Active recall</p>
+              <p className="desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+                quisquam repudiandae blanditiis reiciendis dolore, neque tempora
+                fugiat vel maiores sed recusandae quo corporis placeat sunt
+                suscipit? Voluptas ducimus sunt possimus.
+              </p>
+            </div>
+            <div className="benefit">
+              <div className="icon-container">
+                <i className="pi pi-lock"></i>
+              </div>
+              <p className="title">Active recall</p>
+              <p className="desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+                quisquam repudiandae blanditiis reiciendis dolore, neque tempora
+                fugiat vel maiores sed recusandae quo corporis placeat sunt
+                suscipit? Voluptas ducimus sunt possimus.
+              </p>
+            </div>
+          </div>
         </div>
         <div className="page page-3 home-page-3">
           <h1 className="header">So many different learning methods</h1>
