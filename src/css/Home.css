@@ -328,7 +328,7 @@
 
 .home-page-3 .controls .control {
   border-radius: 8px;
-  border: none;
+  border: 2px solid var(--app-light-grey);
 
   background-color: transparent;
   transition: background-color 0.5s;
@@ -564,7 +564,7 @@
   font-size: 14px;
 
   background-color: var(--app-theme-color);
-  border: none;
+  border: 2px solid var(--app-light-grey);
   border-radius: 8px;
 
   margin-top: 8vh;

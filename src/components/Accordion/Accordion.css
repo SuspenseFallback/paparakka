@@ -17,7 +17,7 @@
 
   margin: 0;
 
-  border: none;
+  border: 2px solid var(--app-light-grey);
   border-radius: 0;
 
   transition: all 0.25s;
