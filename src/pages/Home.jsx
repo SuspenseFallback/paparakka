@@ -132,55 +132,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="page page-2 home-page-2">
-          <p className="header">Why us?</p>
-          <div className="slide">
-            <div className="reason reason-1">
-              <div className="text-container">
-                <p className="title">Active Recall</p>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
-                  voluptatem nihil corrupti sequi, consectetur labore rerum
-                  dicta totam doloremque quia vitae, placeat enim. Enim.
-                </p>
-              </div>
-            </div>
-            <div className="reason reason-2">
-              <div className="text-container">
-                <p className="title">Easy to use</p>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
-                  voluptatem nihil corrupti sequi, consectetur labore rerum
-                  dicta totam doloremque quia vitae, placeat enim. Enim.
-                </p>
-              </div>
-            </div>
-            <div className="reason reason-3">
-              <div className="text-container">
-                <p className="title">Completely free</p>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
-                  voluptatem nihil corrupti sequi, consectetur labore rerum
-                  dicta totam doloremque quia vitae, placeat enim. Enim.
-                </p>
-              </div>
-            </div>
-            <div className="reason reason-4">
-              <div className="text-container">
-                <p className="title">Multiple methods to learn and revise</p>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Deleniti repellat laboriosam, fuga adipisci nostrum corporis
-                  voluptatem nihil corrupti sequi, consectetur labore rerum
-                  dicta totam doloremque quia vitae, placeat enim. Enim.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="page page-2 home-page-2"></div>
         <div className="page page-3 home-page-3">
           <h1 className="header">So many different learning methods</h1>
           <div className="slide-container">
