@@ -11,6 +11,7 @@ import Accordion from "../components/Accordion/Accordion";
 
 import { Button } from "../components/ui/moving-border.tsx";
 import Flashcard from "../components/Flashcards/Flashcard.jsx";
+import { LampDemo } from "../components/ui/lamp.tsx";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -132,7 +133,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="page page-2 home-page-2"></div>
+        <div className="page page-2 home-page-2">
+          <LampDemo title="What are flashcards?" />
+        </div>
         <div className="page page-3 home-page-3">
           <h1 className="header">So many different learning methods</h1>
           <div className="slide-container">
