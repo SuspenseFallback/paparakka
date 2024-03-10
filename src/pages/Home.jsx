@@ -152,71 +152,7 @@ const Home = () => {
             </div>
           </motion.div>
         </div>
-        <div className="page page-3 home-page-3">
-          <h1 className="header">So many different learning methods</h1>
-          <div className="slide-container">
-            <div className="container">
-              <div className="type-card type-card-1">
-                <p className="title">Flashcards</p>
-                <p className="desc">
-                  Flashcards shows multiple cards which have a front and a back
-                  - a question and an answer. These can be used to get a
-                  superficial understanding of the answers, but are superior to
-                  other methods due to active recall.
-                </p>
-              </div>
-              <div className="type-card type-card-2 inactive">
-                <p className="title">Learn</p>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Suscipit voluptate amet corrupti nemo similique iure tempore.
-                  Magnam expedita, doloremque et sed sunt vel iste saepe, fugit
-                  quos optio laborum vitae.
-                </p>
-              </div>
-              <div className="type-card type-card-3 inactive">
-                <p className="title">Dictate</p>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Assumenda itaque aliquam quae dolore iste quasi iusto aut
-                  voluptates quis totam inventore, maxime adipisci aperiam
-                  praesentium nemo. Repellat dolore quisquam quasi.
-                </p>
-              </div>
-            </div>
-            <div className="controls">
-              <button
-                className="control"
-                disabled={card_index == 1}
-                onClick={() => {
-                  set_card_index(card_index - 1);
-                }}
-              >
-                <span className="pi pi-angle-left"></span>
-              </button>
-              <button
-                className="control"
-                disabled={card_index == 3}
-                onClick={() => {
-                  set_card_index(card_index + 1);
-                }}
-              >
-                <span className="pi pi-angle-right"></span>
-              </button>
-            </div>
-            <div className="pagination">
-              <span
-                className={"dot" + (card_index == 1 ? " active" : "")}
-              ></span>
-              <span
-                className={"dot" + (card_index == 2 ? " active" : "")}
-              ></span>
-              <span
-                className={"dot" + (card_index == 3 ? " active" : "")}
-              ></span>
-            </div>
-          </div>
-        </div>
+        <div className="page page-3 home-page-3"></div>
         <div className="page page-4 home-page-4">
           <p>
             <h1 className="header">FAQ</h1>
