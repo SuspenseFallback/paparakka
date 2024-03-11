@@ -26,7 +26,7 @@
     "primereact": "^9.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.14.2",
+    "react-router": "^6.22.3",
     "react-router-dom": "^6.14.2",
     "react-speech-recognition": "^3.10.0",
     "react-tooltip": "^5.19.0",
