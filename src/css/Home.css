@@ -243,144 +243,42 @@
 /* page 3 */
 
 .home-page-3 {
-  padding: 1vw;
-  background-color: var(--app-primary-color);
-}
-
-.home-page-3 .header {
-  font-size: 3rem;
-  margin-top: 10vh;
-  color: var(--app-primary-text-color);
-  text-align: center;
-}
-
-.home-page-3 .slide-container {
-  position: relative;
-  height: 70vh;
-}
-
-.home-page-3 .container {
-  width: 120vw;
-  height: 40vh;
+  padding: 2vw;
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-
-  margin-top: 10vh;
-
-  position: absolute;
-  left: 30%;
-  top: 0;
 }
 
-.home-page-3 .container .type-card {
+.home-page-3 .header-container {
+  width: 30vw;
+}
+
+.home-page-3 .header-container .header {
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.home-page-3 .text-container {
+  width: 60vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  padding: 16px;
-  width: 35vw;
-  height: 30vh;
-  border-radius: 8px;
-
-  background-color: var(--app-secondary-color);
-  transition: all 0.5s;
 }
 
-.home-page-3 .container .type-card .title {
+.home-page-3 .text-container .desc {
   text-align: center;
+
+  margin-bottom: 4vh;
+}
+
+.home-page-3 .text-container .button {
+  margin-top: 3vh;
   width: 100%;
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--app-secondary-text-color);
-}
-
-.home-page-3 .container .type-card .desc {
-  font-weight: 300;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  color: lightgrey;
-}
-
-.home-page-3 .container .type-card.inactive {
-  scale: 0.95 !important;
-  opacity: 0.8;
-
-  background-color: #00000091;
-}
-
-.home-page-3 .controls {
-  position: absolute;
-  bottom: 0;
-
-  width: 100%;
-  height: 15%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-page-3 .controls .control {
-  border-radius: 8px;
-  border: 2px solid var(--app-light-grey);
-
-  background-color: transparent;
-  transition: background-color 0.5s;
-
-  padding: 12px;
-
-  margin: 8px;
-  cursor: pointer;
-}
-
-.home-page-3 .controls .control:hover {
-  background-color: lightgrey;
-}
-
-.home-page-3 .controls .control:disabled {
-  background-color: rgb(238, 238, 238);
-  pointer-events: none;
-}
-
-.home-page-3 .controls .control .pi {
-  color: rgb(0, 0, 0);
-  font-size: 18px;
-}
-
-.home-page-3 .pagination {
-  position: absolute;
-  bottom: 0;
-
-  width: 100%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-page-3 .pagination .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50px;
-
-  background-color: #cdcdcd;
-
-  margin: 4px;
-
-  transition: all 0.5s;
-}
-
-.home-page-3 .pagination .dot.active {
-  background-color: #959595;
-  width: 9px;
-  height: 9px;
 }
 
 /* ! page 4 */

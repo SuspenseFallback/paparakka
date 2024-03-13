@@ -11,13 +11,10 @@ import HomeAnim from "../components/Home/HomeAnim";
 import Accordion from "../components/Accordion/Accordion";
 
 import LandingPage from "../components/Home/LandingPage.jsx";
+import Searchbar from "../components/Searchbar/Searchbar.jsx";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const [card_index, set_card_index] = useState(1);
-
-  const ref = useRef(null);
 
   const goToLink = (link) => {
     navigate(link);
@@ -29,65 +26,9 @@ const Home = () => {
     logData("home_page");
   }, []);
 
-  useEffect(() => {
-    card_move();
-  }, [card_index]);
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      card_move();
-    });
-  }, []);
-
-  const card_move = () => {
-    const slide = document.querySelector(".home-page-3 .container");
-    const x =
-      card_index == 1
-        ? 0
-        : card_index == 2
-        ? window.innerWidth * 0.387 * -1
-        : card_index == 3
-        ? window.innerWidth * 0.387 * -2
-        : 0;
-
-    const card1 = document.querySelector(
-      ".home-page-3 .container .type-card-1"
-    );
-    const card2 = document.querySelector(
-      ".home-page-3 .container .type-card-2"
-    );
-    const card3 = document.querySelector(
-      ".home-page-3 .container .type-card-3"
-    );
-
-    if (card_index == 1) {
-      card1.classList.remove("inactive");
-      card2.classList.add("inactive");
-      card3.classList.add("inactive");
-    } else if (card_index == 2) {
-      card1.classList.add("inactive");
-      card2.classList.remove("inactive");
-      card3.classList.add("inactive");
-    } else if (card_index == 3) {
-      card1.classList.add("inactive");
-      card2.classList.add("inactive");
-      card3.classList.remove("inactive");
-    }
-
-    const ctx = gsap.context(() => {
-      gsap.to(slide, {
-        duration: 0.5,
-        ease: "",
-        x: x,
-      });
-    }, ref);
-
-    return () => ctx.revert();
-  };
-
   return (
     <>
-      <main className="home-page" ref={ref}>
+      <main className="home-page">
         <LandingPage goToLink={goToLink} />
         <div className="page page-2 home-page-2">
           <motion.h1
@@ -152,7 +93,21 @@ const Home = () => {
             </div>
           </motion.div>
         </div>
-        <div className="page page-3 home-page-3"></div>
+        <div className="page page-3 home-page-3">
+          <div className="header-container">
+            <h1 className="header">Use everyone's flashcards</h1>
+          </div>
+          <div className="text-container">
+            <p className="desc">
+              Rather than making your own flashcards for everything, why not use
+              other's? Our website is made so that users can access any set of
+              flashcards that anyone else has made, so that you can spend less
+              boring time making flashcards and more useful time learning them.
+            </p>
+            <Searchbar placeholder="Search for sets..." />
+            <button className="button button-block">Search</button>
+          </div>
+        </div>
         <div className="page page-4 home-page-4">
           <p>
             <h1 className="header">FAQ</h1>

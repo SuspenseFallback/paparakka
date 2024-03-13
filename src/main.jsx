@@ -43,6 +43,7 @@ import Settings from "./pages/Settings.jsx";
 import Stats from "./pages/Stats.jsx";
 import AddCards from "./pages/AddCards.jsx";
 import EditCards from "./pages/EditCards.jsx";
+import Tools from "./pages/Tools.jsx";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
@@ -147,6 +148,10 @@ const router = createBrowserRouter([
             <Stats />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/tools",
+        element: <Tools />,
       },
       {
         path: "/edit-set/:id",
