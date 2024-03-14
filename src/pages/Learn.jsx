@@ -186,8 +186,6 @@ const Learn = ({ user }) => {
 
     const cur_prof = study_flashcards[0].proficiency;
 
-    console.log(cur_prof);
-
     if (correct == "wrong") {
       if (answer == "") {
         return "again1";
@@ -283,21 +281,18 @@ const Learn = ({ user }) => {
       time: time.toUTCString(),
     };
 
-    console.log("new card replaced", cards[card_index]);
-    console.log("new card", new_card);
-
     cards.splice(card_index, 1, { ...new_card });
 
-    console.log(cards);
     set_flashcards(cards);
 
     cards.sort((a, b) => {
-      if (a.index > b.index) {
+      if (a.index < b.index) {
         return -1;
       } else {
         return 1;
       }
     });
+    console.log(cards);
 
     updateStudiedSets(user, set.id, cards, () => {
       set_correct("unknown");
@@ -306,15 +301,6 @@ const Learn = ({ user }) => {
       modify_study_cards(proficiency);
     });
   };
-
-  // key events
-
-  // onkeydown = (e) => {
-  //   console.log(e);
-  //   if (e.key === "Enter") {
-  //     check_answer();
-  //   }
-  // };
 
   const onOver = () => {
     navigate("/dashboard/");
