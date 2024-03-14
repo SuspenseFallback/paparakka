@@ -44,6 +44,7 @@ import Stats from "./pages/Stats.jsx";
 import AddCards from "./pages/AddCards.jsx";
 import EditCards from "./pages/EditCards.jsx";
 import Tools from "./pages/Tools.jsx";
+import AddBinary from "./pages/tools/AddBinary.jsx";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
       {
         path: "/tools",
         element: <Tools />,
+      },
+      {
+        path: "/tools/add-binary",
+        element: <AddBinary />,
       },
       {
         path: "/edit-set/:id",
