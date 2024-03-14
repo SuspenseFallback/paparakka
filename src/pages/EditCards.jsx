@@ -15,18 +15,36 @@ const EditCards = ({ user }) => {
 
   useEffect(() => {
     getSet(id).then((data) => {
-      document.title = "Papparakka | Add cards to " + data.title;
+      document.title = "Papparakka | Edit cards for " + data.title;
       set_set({ ...data });
       setLoading(false);
     });
   }, []);
 
   useEffect(() => {
-    if (set == {}) {
-      return;
-    } else {
+    if (Object.keys(set).length > 0) {
       updateSet(set, set.id, user);
-      updateStudiedSets(user, set.id, set.flashcards);
+
+      const studiedSet = user.studied_sets.filter((s) => s.id == set.id)[0]
+        .flashcards;
+      const newCards = [...set.flashcards];
+      set.flashcards.forEach((card, index) => {
+        newCards[index].proficiency = studiedSet[index].proficiency;
+        newCards[index].proficiency = studiedSet[index].proficiency;
+      });
+
+      newCards.sort((a, b) => {
+        if (a.index > b.index) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      console.log(studiedSet);
+
+      updateStudiedSets(user, set.id, newCards, () => {
+        console.log("done");
+      });
     }
   }, [set]);
 
