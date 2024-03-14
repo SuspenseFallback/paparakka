@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router";
 
 const FlashcardControlBar = ({
   index,
@@ -13,13 +14,19 @@ const FlashcardControlBar = ({
   flip,
   set,
 }) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   return (
     <>
       {/* controls */}
       <div className="controls">
         {/* leave */}
         <div className="left-controls">
-          <button className="button-icon">
+          <button
+            className="button-icon"
+            onClick={() => navigate("/learn/" + id)}
+          >
             <span className="pi pi-arrow-left"></span>
           </button>
         </div>
