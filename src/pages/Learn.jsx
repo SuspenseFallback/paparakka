@@ -234,7 +234,7 @@ const Learn = ({ user }) => {
   const next_question = () => {
     const cards = [...flashcards];
     cards.sort((a, b) => {
-      if (a.index < b.index) {
+      if (a.index > b.index) {
         return -1;
       } else {
         return 1;
