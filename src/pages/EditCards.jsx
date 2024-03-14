@@ -30,11 +30,11 @@ const EditCards = ({ user }) => {
       const newCards = [...set.flashcards];
       set.flashcards.forEach((card, index) => {
         newCards[index].proficiency = studiedSet[index].proficiency;
-        newCards[index].proficiency = studiedSet[index].proficiency;
+        newCards[index].times_revised = studiedSet[index].times_revised;
       });
 
       newCards.sort((a, b) => {
-        if (a.index > b.index) {
+        if (a.index < b.index) {
           return -1;
         } else {
           return 1;
