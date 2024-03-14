@@ -291,6 +291,14 @@ const Learn = ({ user }) => {
     console.log(cards);
     set_flashcards(cards);
 
+    cards.sort((a, b) => {
+      if (a.index > b.index) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
     updateStudiedSets(user, set.id, cards, () => {
       set_correct("unknown");
       set_answered(false);

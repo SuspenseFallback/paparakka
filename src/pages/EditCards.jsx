@@ -40,7 +40,6 @@ const EditCards = ({ user }) => {
           return 1;
         }
       });
-      console.log(studiedSet);
 
       updateStudiedSets(user, set.id, newCards, () => {
         console.log("done");
