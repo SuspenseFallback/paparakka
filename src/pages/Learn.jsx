@@ -239,8 +239,6 @@ const Learn = ({ user }) => {
       }
     });
 
-    console.log(cards);
-
     const proficiency = get_new_proficiency(study_flashcards[0]);
     const card_index = study_flashcards[0].index;
 
@@ -292,6 +290,7 @@ const Learn = ({ user }) => {
         return 1;
       }
     });
+
     console.log(cards);
 
     updateStudiedSets(user, set.id, cards, () => {
