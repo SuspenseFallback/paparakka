@@ -23,7 +23,7 @@ const Flashcard = ({
         className="flashcard-front flashcard-face"
         onClick={active ? () => setFlip(!flip) : null}
       >
-        <p className="content">{term}</p>
+        <MDEditor.Markdown className="content">{term}</MDEditor.Markdown>
       </div>
       <div
         className="flashcard-back flashcard-face"
