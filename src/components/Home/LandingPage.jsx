@@ -3,16 +3,23 @@ import React, { useState, useEffect, useRef } from "react";
 import { Button } from "../ui/moving-border.tsx";
 import Flashcard from "../Flashcards/Flashcard.jsx";
 import { getAllSets, getNumberOfUsers } from "../../firebase/firebase";
+import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 
 const LandingPage = ({ goToLink }) => {
   const flashcard_ref = useRef();
   const [illustration_card, set_illustration_card] = useState(false);
-  const [number_of_sets, set_number_of_sets] = useState(0);
+  const [number_of_cards, set_number_of_cards] = useState(0);
   const [users, set_users] = useState(0);
 
   useEffect(() => {
     getAllSets((sets) => {
-      set_number_of_sets(sets.length);
+      let acc = 0;
+
+      sets.forEach((s) => {
+        acc += s.flashcards.length;
+      });
+
+      set_number_of_cards(acc);
     });
 
     getNumberOfUsers((number) => {
@@ -44,8 +51,8 @@ const LandingPage = ({ goToLink }) => {
             <p className="desc">users</p>
           </div>
           <div className="ill-card number-of-sets-card">
-            <p className="stat">{number_of_sets}</p>
-            <p className="desc">sets created</p>
+            <p className="stat">{number_of_cards}</p>
+            <p className="desc">cards created</p>
           </div>
         </div>
       </div>
