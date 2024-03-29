@@ -2,6 +2,7 @@
   padding: 2vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -54,8 +55,9 @@
 .sets-page-1 .recent-sets .subheader {
   color: var(--app-secondary-color);
   font-family: "Lexend";
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
+  margin-top: 1vh;
 }
 
 .sets-page-1 .recent-sets .cards {
@@ -63,6 +65,9 @@
   flex-direction: row;
   justify-content: space-around;
   gap: 2vw;
+  width: 90vw;
+
+  margin-top: 2vh;
 }
 
 .sets-page-1 .recent-sets .cards .card {
@@ -116,5 +121,6 @@
 
   .sets-page-1 .recent-sets .cards .card {
     flex-basis: 100%;
+    width: 100%;
   }
 }

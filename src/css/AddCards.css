@@ -29,13 +29,16 @@
   width: 100%;
   padding: 12px;
 
-  /* border: 1px solid var(--app-light-grey); */
+  border: 1.5px solid var(--app-light-grey);
   border-radius: 4px;
   margin-top: 4px;
+
+  transition: all 0.25s;
 }
 
 .add-cards-page-1 .container .question-container #question:focus {
-  outline: black;
+  border-color: black;
+  outline: none;
 }
 
 .add-cards-page-1 .container .answer-container {

@@ -106,6 +106,8 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 1vw;
+
+  margin-top: 2vh;
 }
 
 .dashboard-page-1 .my-sets .sets.empty {
