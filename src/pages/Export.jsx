@@ -31,7 +31,7 @@ const Export = () => {
       link.href = URL.createObjectURL(file);
 
       // Add file name
-      link.download = "set.txt";
+      link.download = data.title + ".txt";
 
       // Add click event to <a> tag to save file.
       link.click();
