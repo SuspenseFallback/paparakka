@@ -45,6 +45,7 @@ import AddCards from "./pages/AddCards.jsx";
 import EditCards from "./pages/EditCards.jsx";
 import Tools from "./pages/Tools.jsx";
 import AddBinary from "./pages/tools/AddBinary.jsx";
+import Export from "./pages/Export.jsx";
 
 gsap.registerPlugin(PixiPlugin, MotionPathPlugin, ScrollTrigger, TextPlugin);
 
@@ -95,6 +96,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Learn />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/learn/:id/export",
+        element: (
+          <ProtectedRoute>
+            <Export />
           </ProtectedRoute>
         ),
       },

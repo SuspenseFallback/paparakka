@@ -54,6 +54,12 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
           >
             <span className="icon pi pi-external-link"></span>
           </div>
+          <div
+            className={"menu-item " + (open ? "" : "hiddens")}
+            onClick={() => navigate(`/learn/${id}/export`)}
+          >
+            <span className="icon pi pi-file-export"></span>
+          </div>
           {user_id == owner_id ? (
             <>
               <div

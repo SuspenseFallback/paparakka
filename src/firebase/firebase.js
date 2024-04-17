@@ -19,6 +19,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import food from "./food";
 
 import fuzzysort from "fuzzysort";
 
@@ -360,3 +361,32 @@ export const getNumberOfUsers = async (callback) => {
     callback(docs.length);
   });
 };
+
+// const processFood = async () => {
+//   const lines = food.split("\n");
+//   const cards = [];
+
+//   lines.forEach((line, index) => {
+//     const card = {
+//       term: "",
+//       definition: "",
+//       proficiency: "hard1",
+//       times_revised: 0,
+//       index: index,
+//     };
+
+//     const split = line.split(" ");
+
+//     card.definition = split[0].trim();
+//     split.splice(0, 1);
+
+//     card.term = split.join(" ");
+//     cards.push(card);
+//   });
+//   const docRef = doc(db, "sets", "1ade4d71-d1b1-4cfb-9074-8ce20c9b6e7c");
+//   updateDoc(docRef, { flashcards: cards });
+
+//   console.log("Completed");
+// };
+
+// processFood();

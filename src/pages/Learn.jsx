@@ -49,6 +49,24 @@ const Learn = ({ user }) => {
       document.title = "Papparakka | " + data.title;
       set_set({ ...data });
 
+      let f = `
+#separator:tab
+#html:true
+`;
+
+      data.flashcards.forEach((i) => {
+        let line = i.definition.includes("\n")
+          ? i.term + '\t"' + i.definition + '"'
+          : i.term + "\t" + i.definition;
+        console.log(line);
+
+        line += "\n";
+
+        f += line;
+      });
+
+      console.log(f);
+
       addStudiedSets(user, id, (cards) => {
         function compare(a, b) {
           if (a.times_revised < b.times_revised) {
