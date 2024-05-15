@@ -1,7 +1,6 @@
 .button {
   padding: 16px;
   background-color: var(--app-theme-color);
-  border: 2px solid var(--app-light-grey);
   border-radius: 8px;
   color: var(--app-primary-text-color);
   font-family: "Lexend";
@@ -18,7 +17,7 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  border: 2px solid var(--app-light-grey);
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.25s;
@@ -40,7 +39,6 @@
 .button-block {
   padding: 16px;
   background-color: var(--app-theme-color);
-  border: 2px solid var(--app-light-grey);
   border-radius: 24px;
   color: var(--app-primary-text-color);
   font-family: "Lexend";
@@ -50,7 +48,7 @@
   width: 90%;
 }
 
-.bottom {
+.button.bottom {
   position: absolute;
   bottom: 2vh;
 }

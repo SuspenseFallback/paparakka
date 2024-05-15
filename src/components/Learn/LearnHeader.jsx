@@ -37,9 +37,9 @@ const LearnHeader = ({ answered, study_flashcards, correct }) => {
   };
   return (
     <>
-      <div className="top">
-        <div className="row" data-color-mode="light">
-          <div className={"left" + (answered ? " hidden" : "")}>
+      <div className="question-container">
+        <div className="column">
+          <div className={"top" + (answered ? " hidden" : "")}>
             <span className="label">QUESTION</span>
             <div className="group">
               <button className="button button-icon" onClick={speak}>
@@ -50,7 +50,7 @@ const LearnHeader = ({ answered, study_flashcards, correct }) => {
               </p>
             </div>
           </div>
-          <div className="center">
+          <div className="bottom">
             <button
               className={"button button-icon " + (answered ? "" : "hidden")}
               id={answered ? correct : ""}
@@ -68,15 +68,8 @@ const LearnHeader = ({ answered, study_flashcards, correct }) => {
               ></span>
             </button>
           </div>
-          <div className="right">
-            {/* <button
-              className={"button button-icon " + (answered ? "hidden" : "")}
-            >
-              <span className={"pi pi-cog icon"}></span>
-            </button> */}
-          </div>
         </div>
-        <div className={"stats-section " + (answered ? "hidden" : "")}>
+        {/* <div className={"stats-section " + (answered ? "hidden" : "")}>
           <p className="stat">
             Times revised: {study_flashcards[0].times_revised || "0"}
           </p>
@@ -86,7 +79,7 @@ const LearnHeader = ({ answered, study_flashcards, correct }) => {
           <p className="stat">
             Last revised: {study_flashcards[0].time || "never"}
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );

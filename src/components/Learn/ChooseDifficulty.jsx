@@ -12,14 +12,14 @@ const ChooseDifficulty = ({
     <>
       {" "}
       <div
-        className={"answer-container " + (answered ? "" : "hidden")}
+        className={"step-2 " + (answered ? "" : "hidden")}
         data-color-mode="light"
       >
         <div className="answer-group">
           <div className="your-answer">
             <p className="label">Your answer</p>
             <p className="answer-text">
-              <MDEditor.Markdown source={answer} />
+              {answer ? <MDEditor.Markdown source={answer} /> : <br />}
             </p>
           </div>
           <div className="correct-answer">

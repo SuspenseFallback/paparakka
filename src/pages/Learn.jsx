@@ -336,7 +336,6 @@ const Learn = ({ user }) => {
             <div className="row">
               <h1 className="header">{set.title}</h1>
               <div className="buttons">
-                <Rating />
                 <button
                   className="button-outline"
                   onClick={() => navigate("/flashcards/" + id)}
@@ -363,88 +362,87 @@ const Learn = ({ user }) => {
                 ) : null}
               </div>
             </div>
-            {/* layout (main body) */}
-            <div className="layout">
-              <div className="question-container">
-                {study_flashcards.length > 0 ? (
-                  <>
-                    <LearnHeader
-                      answered={answered}
-                      study_flashcards={study_flashcards}
-                      correct={correct}
-                    />
+            <div className="learn-container">
+              {study_flashcards.length > 0 ? (
+                <>
+                  <LearnHeader
+                    answered={answered}
+                    study_flashcards={study_flashcards}
+                    correct={correct}
+                  />
+                  <ChooseDifficulty
+                    answered={answered}
+                    study_flashcards={study_flashcards}
+                    correct={correct}
+                    set_correct={set_correct}
+                    answer={answer}
+                  />
+                  {listening ? (
+                    <p>Your browser is currently listening</p>
+                  ) : null}
 
-                    <ChooseDifficulty
-                      answered={answered}
-                      study_flashcards={study_flashcards}
-                      correct={correct}
-                      set_correct={set_correct}
-                      answer={answer}
-                    />
-                    {listening ? (
-                      <p>Your browser is currently listening</p>
-                    ) : null}
-
-                    <div className="answer">
-                      <p className={"label " + (answered ? "hidden" : "")}>
-                        Answer{" "}
-                      </p>
-                      <div
-                        className={
-                          "input-container " + (answered ? "answered" : "")
-                        }
-                      >
-                        <div
-                          className={
-                            "input-row " + (answered ? "answered" : "")
-                          }
-                        >
-                          <MDEditor
-                            type="text"
-                            className={"input " + (answered ? "hidden" : "")}
-                            placeholder="Enter answer here..."
-                            height="30vh"
-                            value={answer}
-                            onChange={set_answer}
-                            visibleDragbar={false}
-                            previewOptions={{
-                              rehypePlugins: [[rehypeSanitize]],
-                            }}
-                          />
-                          <button
-                            className={
-                              "button-icon " + (answered ? "hidden" : "")
-                            }
-                            onClick={listening ? stopListening : startListening}
-                          >
-                            <i className="icon pi pi-microphone"></i>
-                          </button>
-                          <button
-                            className={
-                              "button " +
-                              (answered ? "button-block" : "button-icon")
-                            }
-                            onClick={answered ? next_question : check_answer}
-                            disabled={answered ? correct === "unknown" : false}
-                          >
-                            {answered ? "Next" : ""}
-                            <span className="pi pi-reply icon"></span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="center">
-                    <p className="header">
-                      You have completed this set for now.
+                  <div className="answer-container">
+                    <p className={"label " + (answered ? "hidden" : "")}>
+                      Answer{" "}
                     </p>
-                    <button className="button" onClick={onOver}>
-                      Go back home
-                    </button>
+                    <div
+                      className={"input-row " + (answered ? "answered" : "")}
+                    >
+                      <MDEditor
+                        hideToolbar={true}
+                        preview="edit"
+                        data-color-mode="light"
+                        type="text"
+                        className={"input " + (answered ? "hidden" : "")}
+                        textareaProps={{
+                          placeholder:
+                            "Please enter your answer here...\n\n- Do this for\n- Bullet points",
+                        }}
+                        height="30vh"
+                        value={answer}
+                        onChange={set_answer}
+                        visibleDragbar={false}
+                        previewOptions={{
+                          rehypePlugins: [[rehypeSanitize]],
+                        }}
+                      />
+                      {/* <button
+                        className={"button-icon " + (answered ? "hidden" : "")}
+                        onClick={listening ? stopListening : startListening}
+                      >
+                        <i className="icon pi pi-microphone"></i>
+                      </button> */}
+                    </div>
+                    <div className="button-group">
+                      <button
+                        className={"button button-wide "}
+                        onClick={listening ? stopListening : startListening}
+                        disabled={answered}
+                      >
+                        Dictate
+                      </button>
+                      <button
+                        className={
+                          "button button-wide " + (answered ? "answered" : "")
+                        }
+                        onClick={answered ? next_question : check_answer}
+                        disabled={answered ? correct === "unknown" : false}
+                      >
+                        {answered ? "Next" : "Submit"}
+                      </button>
+                    </div>
                   </div>
-                )}
-              </div>
+                </>
+              ) : (
+                <div className="center">
+                  <p className="header">
+                    Congratulations! You have completed this set for now.
+                  </p>
+                  <button className="button" onClick={onOver}>
+                    Go back home
+                  </button>
+                </div>
+              )}
             </div>
           </>
         )}

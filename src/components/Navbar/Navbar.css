@@ -183,7 +183,7 @@
   margin-right: 2vw !important;
 }
 
-.hidden {
+.nav .hidden {
   display: none !important;
   transition: all 1s;
 }

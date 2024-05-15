@@ -88,6 +88,7 @@ const AddCards = ({ user }) => {
                 <p className="label">Answer</p>
                 <div className="editor-container">
                   <MDEditor
+                    data-color-mode="light"
                     value={answer}
                     height="100%"
                     onChange={setAnswer}

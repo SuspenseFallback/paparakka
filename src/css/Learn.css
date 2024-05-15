@@ -1,168 +1,141 @@
 .learn-page-1 {
+  height: 90vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-
-  min-height: 100vh;
+  justify-content: center;
+  gap: 1vw;
 }
 
-/* top header row */
-
 .learn-page-1 .row {
-  width: 80%;
-  height: 7vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  margin-top: 5vh;
+  width: 90vw;
 }
 
 .learn-page-1 .row .header {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 500;
-
-  margin-left: 1vw;
 }
 
 .learn-page-1 .row .buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  gap: 1vw;
+  gap: 8px;
 }
 
-.learn-page-1 .row .buttons .rating {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 15vw;
-  margin-right: 1vw;
-
-  background-color: transparent;
-  cursor: pointer;
-
-  padding: 8px;
+.learn-page-1 .learn-container {
+  width: 90vw;
+  height: 70vh;
   border-radius: 8px;
 
-  transition: all 0.25s;
-}
-
-.learn-page-1 .row .buttons .rating.rate {
-  width: 15vw;
-}
-
-.learn-page-1 .row .buttons .rating.rate .icon {
-  font-size: 1.5rem;
-}
-
-.learn-page-1 .row .buttons .rating:hover {
-  background-color: var(--app-light-grey);
-}
-
-.learn-page-1 .row .buttons .rating .icon {
-  color: var(--app-theme-color);
-  font-size: 2rem;
-  transition: all 0.25s;
-}
-
-.learn-page-1 .row .buttons .rating-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.learn-page-1 .row .buttons .number-of-ratings {
-  font-size: 12px;
-  font-weight: 300;
-
-  text-align: right;
-}
-
-/* main body */
-
-.learn-page-1 .layout {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 80%;
-  min-height: 75vh;
-}
-
-/* question container */
-
-.learn-page-1 .question-container {
-  width: 80vw;
-  height: 100%;
-
-  background-color: var(--app-primary-color);
-  border-radius: 24px;
-  border: 1px solid var(--app-secondary-color);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
-  position: relative;
-  padding: 1vh 2vw 2vw 2vw;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-  font-family: "Lexend";
-
-  margin-top: 2vh;
 }
 
-.learn-page-1 .question-container .top .left {
+/* question area */
+/* 
+.learn-page-1 .hidden {
+  display: none;
+} */
+
+.learn-page-1 .learn-container .question-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
 
-.learn-page-1 .question-container .top .left .group {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.learn-page-1 .question-container .top .center .button-icon {
-  background-color: var(--app-theme-color);
-  padding: 48px;
-}
-
-.question-container > .center {
   width: 100%;
-  height: 100%;
+}
 
+.learn-page-1 .learn-container .question-container .column {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+
+  width: 100%;
 }
 
-.question-container > .center .header {
-  color: var(--app-primary-text-color);
-  font-size: 2rem;
+.learn-page-1 .learn-container .question-container .column .top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10vw;
+  gap: 8px;
+  opacity: 1;
+
+  transition: all 0.25s;
+}
+
+.learn-page-1 .learn-container .question-container .column .top.hidden {
+  display: none;
+}
+
+.learn-page-1 .learn-container .question-container .column .top .label {
+  color: var(--app-theme-color);
   font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
-/* icons for right/wrong answer */
+.learn-page-1 .learn-container .question-container .column .top .group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-.button-icon#wrong {
-  background-color: rgb(231, 48, 48);
+  gap: 8px;
+}
+
+.learn-page-1 .learn-container .question-container .column .top .group .button {
+  background-color: var(--app-theme-color);
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.learn-page-1
+  .learn-container
+  .question-container
+  .column
+  .top
+  .group
+  .button:hover {
+  background-color: var(--app-theme-hover-color);
+}
+
+.learn-page-1 .question-container .column .bottom {
+  margin-top: 2vw;
+}
+
+.learn-page-1 .question-container .column .bottom .button-icon {
   cursor: default;
   pointer-events: none;
   padding: 36px;
+
+  transition: all 0.25s;
+}
+
+.learn-page-1 .question-container .column .bottom .button-icon.hidden {
+  width: 0px;
+  height: 0px;
+}
+
+.learn-page-1 .question-container .column .bottom .button-icon .icon {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.learn-page-1 .question-container .column .bottom .button-icon.hidden .icon {
+  display: none;
+}
+
+.button-icon#wrong {
+  background-color: rgb(231, 48, 48);
 }
 
 .button-icon#wrong:hover {
@@ -175,9 +148,6 @@
 
 .button-icon#correct {
   background-color: rgb(86, 213, 90);
-  cursor: default;
-  pointer-events: none;
-  padding: 36px;
 }
 
 .button-icon#unknown:hover {
@@ -190,260 +160,101 @@
   pointer-events: none;
 }
 
-.button-icon#hard .icon,
-.button-icon#easy .icon,
-.button-icon#medium .icon,
-.button-icon#unknown .icon {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.button-icon:hover {
-  background-color: #5916c5;
-  box-shadow: none;
-}
-
-.learn-page-1 .question-container .top .center .button-icon .icon {
-  font-size: 20px;
-  color: white;
-  transition: all 0.5s;
-}
-
-.learn-page-1 .question-container .top .controls {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1vh;
-}
-
-.learn-page-1 .question-container .hidden {
+.learn-page-1 .question-container .top.hidden {
   opacity: 0;
-  pointer-events: none;
-}
-
-.learn-page-1 .question-container .top {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
 }
 
-.learn-page-1 .question-container .top .row {
+/* middle area */
+
+.learn-page-1 .learn-container .step-2 .answer-group {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
+
+  height: 20vh;
+  max-height: 20vh;
+  overflow-y: auto;
+
+  width: 30vw;
+  gap: 2vw;
 }
 
-.learn-page-1 .question-container .top .right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 1vw;
+.learn-page-1 .learn-container .step-2 .answer-group .answer-text {
+  text-align: center;
+  padding: 6px;
 }
 
-.learn-page-1 .question-container .button-icon:hover {
-  box-shadow: none;
-  background-color: var(--app-primary-hover-color);
-}
-
-.learn-page-1 .question-container .label {
-  font-weight: normal;
-  font-size: 13px;
-  text-transform: uppercase;
+.learn-page-1 .learn-container .step-2 .label {
   color: var(--app-theme-color);
-  letter-spacing: 1px;
   font-weight: bold;
-  transition: all 0.25s;
-  text-align: center;
-}
-
-.learn-page-1 .question-container .question {
-  padding-left: 12px;
-  margin: 0;
-  transition: all 0.25s;
-  text-align: center;
-  color: var(--app-primary-text-color);
-}
-
-.learn-page-1 .question-container .question .term {
-  margin-top: 8px;
-  display: block;
-  font-size: 18px;
-  transition: all 0.25s;
-  text-align: center;
-  color: var(--app-primary-text-color);
-}
-
-/* * middle parts  */
-
-.learn-page-1 .question-container .stats-section {
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-
-  margin-top: 3vh;
-}
-
-.learn-page-1 .question-container .stats-section .stat {
-  color: var(--app-grey);
-}
-
-.learn-page-1 .question-container .dn {
-  margin-left: 8px;
-  font-weight: bold;
-  color: var(--app-theme-color);
-
-  cursor: pointer;
-}
-
-.learn-page-1 .question-container .dn:hover {
-  text-decoration: underline;
-}
-
-/* answer container */
-
-.learn-page-1 .question-container .input-container {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-
-  border-radius: 12px;
-}
-
-.learn-page-1 .question-container .input-container .input {
-  width: 90%;
-  padding: 12px;
-  margin-right: 6px;
-  border-radius: 4px;
-  height: 30vh;
-
-  font-family: "Lexend";
-  color: var(--app-secondary-color);
-  background-color: var(--app-background-color);
-  border: 2px solid #000;
-  transition: all 0.25s;
-  background-color: transparent;
-  resize: none;
-}
-
-.learn-page-1 .answer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.learn-page-1 .answer .input-container .input:focus {
-  outline: none;
-}
-
-.learn-page-1 .answer .input-container .label {
-  text-align: left;
-  width: 100%;
-  margin: 0;
-  padding-bottom: 4px;
   font-size: 14px;
-  color: var(--app-secondary-color);
-  font-family: "Lexend";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.learn-page-1 .learn-container .step-2 .choose {
+  text-align: center;
+}
+
+.learn-page-1 .learn-container .step-2 .button-group {
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 8px;
+}
+
+/* answer area */
+
+.learn-page-1 .learn-container .answer-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.learn-page-1 .learn-container .answer-container .label {
+  color: var(--app-theme-color);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.learn-page-1 .learn-container .answer-container .input-row {
+  width: 100%;
+  opacity: 1;
+
   transition: all 0.25s;
 }
 
-.learn-page-1 .answer .hidden {
-  position: absolute;
-  bottom: -10vh;
+.learn-page-1 .learn-container .answer-container .input-row.answered {
+  display: none;
   opacity: 0;
 }
 
-.learn-page-1 .answer .input-container .input-row {
+.learn-page-1 .learn-container .answer-container .button-group {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
+  gap: 1vw;
 }
 
-/* after answered */
-
-.learn-page-1 .answer-container {
-  /* text-align: center; */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 95%;
+.learn-page-1 .learn-container .answer-container .button-group .button-wide {
+  width: 20vw;
+  transition: all 0.25s;
 }
 
-.learn-page-1 .answer-container .choose {
-  margin-bottom: 0;
-  margin-top: 2vh;
-  text-align: center;
-  width: 100%;
-  color: var(--app-primary-text-color);
-}
-
-.learn-page-1 .answer-container .answer-group {
-  max-height: 30vh;
-  overflow-y: scroll;
-
-  margin-top: 5vh;
-}
-
-.learn-page-1 .answer-container .button-group {
-  margin-top: 1vh;
-}
-
-.learn-page-1 .answer-container .correct-answer {
-  margin-top: 1vh;
-}
-
-.learn-page-1 .answer-container .your-answer,
-.learn-page-1 .answer-container .correct-answer {
-  width: 100%;
-  color: var(--app-theme-color);
-}
-
-.learn-page-1 .label {
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.learn-page-1 .answer-container .answer-text {
-  margin: 0;
-  color: var(--app-secondary-color);
-}
-
-.learn-page-1 .answer .input-container .input-row.answered {
-  justify-content: center;
-}
-
-.learn-page-1 .answer .input-container .input-row.answered .button {
-  width: 100%;
-}
-
-.learn-page-1 .answer .input-container .input-row.answered .button .icon {
-  padding-left: 8px;
-}
-
-.learn-page-1 .question-container .answer .button-icon,
-.learn-page-1 .left .button-icon {
-  background-color: var(--app-theme-color);
-  padding: 23px !important;
-}
-
-.learn-page-1 .question-container .answer .button-icon:hover,
-.learn-page-1 .left .button-icon:hover {
-  background-color: var(--app-theme-hover-color);
-}
-
-.learn-page-1 .question-container .answer .button-icon .icon,
-.learn-page-1 .left .button-icon .icon {
-  color: white;
-  font-size: 15px;
+.learn-page-1
+  .learn-container
+  .answer-container
+  .button-group
+  .button-wide.answered {
+  width: 40vw;
 }
