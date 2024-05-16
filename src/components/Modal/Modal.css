@@ -16,6 +16,14 @@
   align-items: center;
 }
 
+.overlay.hidden {
+  display: none;
+}
+
+.mini-modal.hidden {
+  display: none !important;
+}
+
 .modal {
   width: 35vw;
   height: 60vh;
