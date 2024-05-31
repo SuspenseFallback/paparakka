@@ -338,6 +338,12 @@ const Learn = ({ user }) => {
               <div className="buttons">
                 <button
                   className="button-outline"
+                  onClick={() => navigate("/learn/" + id + "/export")}
+                >
+                  Export
+                </button>
+                <button
+                  className="button-outline"
                   onClick={() => navigate("/flashcards/" + id)}
                 >
                   View cards
