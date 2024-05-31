@@ -340,7 +340,7 @@ const Learn = ({ user }) => {
                   className="button-outline"
                   onClick={() => navigate("/learn/" + id + "/export")}
                 >
-                  Export
+                  Export to Anki
                 </button>
                 <button
                   className="button-outline"
