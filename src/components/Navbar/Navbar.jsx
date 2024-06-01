@@ -148,14 +148,6 @@ const Navbar = () => {
                     Sets
                   </NavLink>
                 </div>
-                <div
-                  className="nav-item nav-hide hover-underline"
-                  onClick={() => goToLink("/tools")}
-                >
-                  <NavLink className={"nav-link"} to="tools">
-                    Tools
-                  </NavLink>
-                </div>
                 {user ? (
                   <>
                     <div
