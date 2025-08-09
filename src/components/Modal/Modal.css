@@ -36,8 +36,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  border-radius: 12px;
-  border: 2px solid var(--app-light-grey);
+  border-radius: 8px;
+  border: 1px solid var(--app-border-color);
 }
 
 .modal .modal-header {
@@ -49,7 +49,7 @@
   padding-left: 16px;
   padding-right: 16px;
 
-  border-bottom: 1px solid var(--app-light-grey);
+  border-bottom: 1px solid var(--app-border-color);
 }
 
 .modal .modal-header .title {
@@ -85,8 +85,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  border-radius: 12px;
-  border: 2px solid var(--app-light-grey);
+  border-radius: 8px;
+  border: 1px solid var(--app-border-color);
 
   padding: 18px 1vw;
 

@@ -21,6 +21,7 @@
   --app-secondary-text-color: #ffffff;
   --app-grey: rgb(136, 136, 136);
   --app-light-grey: rgb(218, 218, 218);
+  --app-border-color: #e0e0e0;
   --app-shadow: rgba(0, 0, 0, 0.5);
   --app-light-orange: #ffad7a;
   --app-disabled: #ffcfac;
@@ -34,6 +35,7 @@
   --app-secondary-color: #fff;
   --app-primary-text-color: #ffffff;
   --app-secondary-text-color: #000;
+  --app-border-color: #424242;
 
   --app-grey: lightgrey;
   --app-shadow: rgba(0, 0, 0, 0.5);
