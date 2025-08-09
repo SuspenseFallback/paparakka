@@ -11,8 +11,6 @@ const Flashcard = ({
   definition,
   active = true,
 }) => {
-  const [answer, setAnswer] = useState(definition);
-
   return (
     <div
       className={"flashcard " + (flip ? "flip" : "")}

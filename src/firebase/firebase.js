@@ -42,41 +42,40 @@ const db = getFirestore(app);
 
 // AUTHENTICATION
 
-export const signUpWithEmail = (username, email, password, callback) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((data) => {
-      const user = doc(db, "users", data.user.uid);
+export const signUpWithEmail = async (username, email, password) => {
+  try {
+    const data = await createUserWithEmailAndPassword(auth, email, password);
+    const user = doc(db, "users", data.user.uid);
 
-      console.log(data);
-
-      setDoc(user, {
-        username: username,
-        email: email,
-        history: {},
-        id: data.user.uid,
-      }).then((db_data) => {
-        callback(data, false);
-      });
-    })
-    .catch((err) => {
-      callback({}, err);
+    await setDoc(user, {
+      username: username,
+      email: email,
+      history: [],
+      id: data.user.uid,
     });
+
+    return { data, error: false };
+  } catch (err) {
+    return { data: {}, error: err };
+  }
 };
 
-export const signInWithEmail = (email, password, callback) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((data) => {
-      callback(data, "");
-    })
-    .catch((err) => {
-      callback({}, err);
-    });
+export const signInWithEmail = async (email, password) => {
+  try {
+    const data = await signInWithEmailAndPassword(auth, email, password);
+    return { data, error: false };
+  } catch (err) {
+    return { data: {}, error: err };
+  }
 };
 
-export const logOut = (callback) => {
-  signOut(auth).then(() => {
-    callback();
-  });
+export const logOut = async () => {
+  try {
+    await signOut(auth);
+    return { error: false };
+  } catch (err) {
+    return { error: err };
+  }
 };
 
 export const getUser = async (callback) => {
@@ -98,86 +97,91 @@ export const getUser = async (callback) => {
 
 // SETS
 
-export const addSet = (data, callback) => {
+export const addSet = async (data) => {
   const id = uuidv4();
   const docRef = doc(db, "sets", id);
 
-  setDoc(docRef, {
-    title: data.title,
-    description: data.description,
-    tags: data.tags,
-    flashcards: data.flashcards,
-    owner: data.owner,
-    ownerName: data.ownerName,
-    id: id,
-    time: new Date().toUTCString(),
-  })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((err) => {
-      throw err;
+  try {
+    await setDoc(docRef, {
+      title: data.title,
+      description: data.description,
+      tags: data.tags,
+      flashcards: data.flashcards,
+      owner: data.owner,
+      ownerName: data.ownerName,
+      id: id,
+      time: new Date().toUTCString(),
     });
+    return { id, error: false };
+  } catch (err) {
+    return { id: null, error: err };
+  }
 };
 
 export const updateSet = async (data, set_id, user) => {
   const docRef = doc(db, "sets", set_id);
 
-  updateDoc(docRef, {
-    title: data.title,
-    description: data.description,
-    tags: data.tags,
-    flashcards: data.flashcards,
-    owner: data.owner,
-    ownerName: data.ownerName,
-    id: set_id,
-    time: new Date().toUTCString(),
-  })
-    .then((new_data) => {
-      updateStudiedSets(user, set_id, data.flashcards, () => {
-        return new_data;
-      });
-    })
-    .catch((err) => {
-      throw err;
+  try {
+    await updateDoc(docRef, {
+      title: data.title,
+      description: data.description,
+      tags: data.tags,
+      flashcards: data.flashcards,
+      owner: data.owner,
+      ownerName: data.ownerName,
+      id: set_id,
+      time: new Date().toUTCString(),
     });
+
+    await updateStudiedSets(user, set_id, data.flashcards);
+    return { error: false };
+  } catch (err) {
+    return { error: err };
+  }
 };
 
 export const deleteSet = async (set_id, user_id) => {
   const set_doc = doc(db, "sets", set_id);
-  const user_doc = doc(db, "user", user_id);
-  let user = null;
-  getUser((data) => {
-    user = data;
-  });
+  const user_doc = doc(db, "users", user_id);
 
-  const set = await getSet(set_id);
-
-  if (set.owner == user_id) {
+  try {
+    // The security rules will enforce that only the owner can delete the set.
     await deleteDoc(set_doc);
-    const new_studied_sets = [...user.studied_sets];
-    const naya = new_studied_sets.filter((s) => s.id != set_id);
-    console.log(naya);
-    updateDoc(user_doc, {
-      studied_sets: naya,
-    });
+
+    // Also remove the set from the user's studied_sets list.
+    const user_snap = await getDoc(user_doc);
+    if (user_snap.exists()) {
+      const user_data = user_snap.data();
+      if (user_data.studied_sets) {
+        const new_studied_sets = user_data.studied_sets.filter(
+          (s) => s.id !== set_id
+        );
+        await updateDoc(user_doc, {
+          studied_sets: new_studied_sets,
+        });
+      }
+    }
 
     return "200";
-  } else {
-    return "401";
+  } catch (error) {
+    console.error("Error deleting set: ", error);
+    return "401"; // Or re-throw the error, depending on desired error handling.
   }
 };
 
-export const getAllSets = (callback) => {
-  getDocs(collection(db, "sets")).then((data) => {
+export const getAllSets = async () => {
+  try {
+    const data = await getDocs(collection(db, "sets"));
     let docs = [];
 
     data.docs.forEach((set) => {
       docs.push(set.data());
     });
 
-    callback(docs);
-  });
+    return { sets: docs, error: false };
+  } catch (err) {
+    return { sets: [], error: err };
+  }
 };
 
 export const getSet = async (id) => {
@@ -191,21 +195,22 @@ export const getSet = async (id) => {
   }
 };
 
-export const getOwnerSets = (id, callback) => {
-  getAllSets((sets) => {
-    const matches = searchSetsByOwnerId(sets, id);
-
-    callback(matches);
-  });
+export const getOwnerSets = async (id) => {
+  const { sets, error } = await getAllSets();
+  if (error) {
+    return { sets: [], error };
+  }
+  const matches = searchSetsByOwnerId(sets, id);
+  return { sets: matches, error: false };
 };
 
-export const searchSetTitles = (target, callback) => {
-  getAllSets((data) => {
-    console.log(data);
-    const matches = searchSets(data, target);
-
-    callback(matches);
-  });
+export const searchSetTitles = async (target) => {
+  const { sets, error } = await getAllSets();
+  if (error) {
+    return { sets: [], error };
+  }
+  const matches = searchSets(sets, target);
+  return { sets: matches, error: false };
 };
 
 function searchSets(array, target) {
@@ -242,151 +247,140 @@ export const logData = (data) => {
 
 // HISTORY
 
-export const addHistory = (id) => {
-  // see if user is authenticated
-  getUser((user) => {
-    // if they are, proceed
+export const addHistory = async (id) => {
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
-      // fetch user doc
-      const document = doc(db, "users", user.id);
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDocSnap = await getDoc(userDocRef);
 
-      getDoc(document).then((res) => {
-        // doc data
-        const data = res.data();
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          let history = userData.history || [];
 
-        // different actions for history length
-        let history =
-          data.history.length > 0
-            ? data.history.filter((set) => set.id !== id)
-            : [];
+          // Remove the set if it already exists in the history
+          history = history.filter((set) => set.id !== id);
 
-        getSet(id).then((data) => {
-          delete data.flashcards;
-          history.splice(0, 0, data);
+          const set = await getSet(id);
+          if (set) {
+            // Remove flashcards before adding to history
+            delete set.flashcards;
+            history.unshift(set);
 
-          updateDoc(document, {
-            history: history,
-          });
-        });
-      });
+            // Keep history to a reasonable length (e.g., 20 items)
+            if (history.length > 20) {
+              history.pop();
+            }
+
+            await updateDoc(userDocRef, { history });
+          }
+        }
+      } catch (error) {
+        console.error("Error adding to history:", error);
+      }
     }
   });
 };
 
 // STUDIED SETS
 
-export const addStudiedSets = (user, set_id, callback) => {
-  getSet(set_id).then((set) => {
-    const docRef = doc(db, "users", user.id);
+export const addStudiedSets = async (user, set_id) => {
+  try {
+    const set = await getSet(set_id);
+    if (!set) {
+      throw new Error("Set not found");
+    }
 
+    const docRef = doc(db, "users", user.id);
     let studied_sets = user.studied_sets ? [...user.studied_sets] : [];
     let cards = [...set.flashcards];
 
-    studied_sets.forEach((mod_set) => {
-      if (mod_set.id === set_id) {
-        console.log(mod_set);
-        cards = [...mod_set.flashcards];
-      }
-    });
+    const existing_set = studied_sets.find((s) => s.id === set_id);
+    if (existing_set) {
+      cards = [...existing_set.flashcards];
+    }
 
-    console.log(cards);
+    studied_sets = studied_sets.filter((s) => s.id !== set_id);
 
-    studied_sets = studied_sets.filter((fil_set) => fil_set.id !== set_id);
-
-    studied_sets.splice(0, 0, {
+    studied_sets.unshift({
       ...set,
       flashcards: cards,
       time: new Date().toUTCString(),
     });
 
-    updateDoc(docRef, {
+    await updateDoc(docRef, {
       studied_sets: studied_sets,
-    }).then(callback(cards));
-  });
+    });
+
+    return { cards, error: false };
+  } catch (err) {
+    return { cards: [], error: err };
+  }
 };
 
-export const updateStudiedSets = (user, set_id, cards, callback) => {
-  getSet(set_id).then((set) => {
+export const updateStudiedSets = async (user, set_id, cards) => {
+  try {
+    const set = await getSet(set_id);
+    if (!set) {
+      throw new Error("Set not found");
+    }
+
     const docRef = doc(db, "users", user.id);
     let studied_sets = user.studied_sets ? [...user.studied_sets] : [];
     const new_set = { ...set, flashcards: cards };
 
-    studied_sets = studied_sets.filter((set) => set.id !== set_id);
+    studied_sets = studied_sets.filter((s) => s.id !== set_id);
 
-    studied_sets.splice(0, 0, {
-      ...new_set,
+    studied_sets.unshift(new_set);
+
+    await updateDoc(docRef, {
+      studied_sets: studied_sets,
     });
 
-    updateDoc(docRef, {
-      studied_sets: studied_sets,
-    }).then(callback());
-  });
+    return { error: false };
+  } catch (err) {
+    return { error: err };
+  }
 };
 
 // set rating
 
 export const updateSetRating = async (set_id, newRating) => {
-  const setDoc = doc(db, "sets", set_id);
+  const setDocRef = doc(db, "sets", set_id);
 
-  const { rating, number_of_ratings } = getDoc(setDoc);
+  try {
+    const setSnap = await getDoc(setDocRef);
+    if (setSnap.exists()) {
+      const setData = setSnap.data();
+      const currentRating = setData.rating || 0;
+      const numberOfRatings = setData.number_of_ratings || 0;
 
-  if (rating && number_of_ratings) {
-    updateDoc(setDoc, {
-      rating: parseFloat(
-        (
-          (rating * number_of_ratings + newRating) / number_of_ratings +
-          1
-        ).toFixed(1)
-      ),
-      number_of_ratings: number_of_ratings + 1,
-    });
-  } else {
-    updateDoc(setDoc, {
-      rating: newRating,
-      number_of_ratings: 1,
-    });
+      const newNumberOfRatings = numberOfRatings + 1;
+      const newTotalRating = currentRating * numberOfRatings + newRating;
+      const newAverageRating = newTotalRating / newNumberOfRatings;
+
+      await updateDoc(setDocRef, {
+        rating: parseFloat(newAverageRating.toFixed(1)),
+        number_of_ratings: newNumberOfRatings,
+      });
+    } else {
+      // If the set doesn't exist, maybe create it or handle the error.
+      // For now, we'll just log an error.
+      console.error("Set not found for rating update:", set_id);
+    }
+  } catch (error) {
+    console.error("Error updating set rating:", error);
   }
 };
 
 // get all users studied cards number
 
-export const getNumberOfUsers = async (callback) => {
-  getDocs(collection(db, "users")).then((data) => {
-    let docs = [];
-
-    data.docs.forEach((set) => {
-      docs.push(set.data());
-    });
-
-    callback(docs.length);
-  });
+export const getNumberOfUsers = async () => {
+  try {
+    const data = await getDocs(collection(db, "users"));
+    return { count: data.docs.length, error: false };
+  } catch (err) {
+    return { count: 0, error: err };
+  }
 };
 
-// const processFood = async () => {
-//   const lines = food.split("\n");
-//   const cards = [];
-
-//   lines.forEach((line, index) => {
-//     const card = {
-//       term: "",
-//       definition: "",
-//       proficiency: "hard1",
-//       times_revised: 0,
-//       index: index,
-//     };
-
-//     const split = line.split(" ");
-
-//     card.definition = split[0].trim();
-//     split.splice(0, 1);
-
-//     card.term = split.join(" ");
-//     cards.push(card);
-//   });
-//   const docRef = doc(db, "sets", "1ade4d71-d1b1-4cfb-9074-8ce20c9b6e7c");
-//   updateDoc(docRef, { flashcards: cards });
-
-//   console.log("Completed");
-// };
-
-// processFood();

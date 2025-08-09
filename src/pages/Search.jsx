@@ -18,14 +18,21 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
-    const params = new URL(document.location).searchParams;
-    const query = params.get("query");
-    set_search(query);
+    const fetchSets = async () => {
+      const params = new URL(document.location).searchParams;
+      const query = params.get("query");
+      set_search(query);
 
-    searchSetTitles(query, (data) => {
+      const { sets, error } = await searchSetTitles(query);
+      if (error) {
+        console.error("Error searching sets:", error);
+        // Optionally, set an error state to display to the user
+      } else {
+        set_sets(sets);
+      }
       set_loading(false);
-      set_sets(data);
-    });
+    };
+    fetchSets();
   }, []);
 
   const searchQuery = () => {
@@ -54,7 +61,6 @@ const Search = () => {
             </>
           ) : sets.length > 0 ? (
             sets.map((card) => {
-              console.log(card);
               return (
                 <LongCard
                   title={card.title}
