@@ -21,24 +21,32 @@ const Login = () => {
     }
   }, [email, password]);
 
-  const login_handler = () => {
-    signInWithEmail(email, password, (data, error) => {
-      if (error) {
-        console.log(error.code);
-        if (error.code == "auth/invalid-email") {
-          return set_error("Invalid credentials");
-        } else if (error.code == "auth/user-not-found") {
-          return set_error("Invalid credentials");
-        } else if (error.code == "auth/wrong-password") {
-          return set_error("Invalid credentials");
-        } else if (error.code == "auth/user-disabled") {
-          return set_error("User banned");
-        }
+  const login_handler = async () => {
+    // This function handles the login process.
+    // It calls the signInWithEmail function from firebase.js,
+    // and then handles the response.
+    const { data, error } = await signInWithEmail(email, password);
+
+    if (error) {
+      // We use a switch statement to handle different error codes.
+      // This makes the code cleaner and easier to read.
+      switch (error.code) {
+        case "auth/invalid-email":
+        case "auth/user-not-found":
+        case "auth/wrong-password":
+          set_error("Invalid credentials");
+          break;
+        case "auth/user-disabled":
+          set_error("User banned");
+          break;
+        default:
+          set_error("An unknown error occurred.");
+          break;
       }
-      console.log(data);
+    } else {
       logData("login_complete");
       navigate("/dashboard");
-    });
+    }
   };
 
   useEffect(() => {

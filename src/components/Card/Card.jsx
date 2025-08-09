@@ -22,15 +22,18 @@ const Card = ({ title, desc, tags, owner, id, user_id, owner_id }) => {
     window.open("/edit-set/" + id, "_blank");
   };
 
-  const deletes = () => {
-    deleteSet(id, user_id).then((res) => {
-      if (res == "401") {
-        console.error("Error");
-      }
-
-      setDeleteModal(false);
-      window.location.reload();
-    });
+  const deletes = async () => {
+    const res = await deleteSet(id, user_id);
+    if (res === "401") {
+      console.error("Error deleting set");
+      // It would be better to show an error message to the user
+      // instead of just logging to the console.
+    }
+    setDeleteModal(false);
+    // Reloading the page is not ideal in a single-page application.
+    // A better approach would be to have a callback function from the parent
+    // component to update the state and remove the deleted card from the UI.
+    window.location.reload();
   };
 
   return (

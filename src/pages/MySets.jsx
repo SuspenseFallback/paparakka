@@ -14,16 +14,26 @@ const MySets = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    getOwnerSets(user.id, (data) => {
-      set_total_sets(data);
-      if (data.length < 9) {
-        set_my_sets(data);
+    const fetchSets = async () => {
+      const { sets, error } = await getOwnerSets(user.id);
+      if (error) {
+        console.error("Error fetching owner sets:", error);
+        // Optionally, set an error state to display to the user
       } else {
-        set_my_sets(data.slice(0, 9));
+        set_total_sets(sets);
+        if (sets.length < 9) {
+          set_my_sets(sets);
+        } else {
+          set_my_sets(sets.slice(0, 9));
+        }
       }
       set_loading(false);
-    });
-  }, []);
+    };
+
+    if (user && user.id) {
+      fetchSets();
+    }
+  }, [user]);
   return (
     <>
       <main className="my-sets-page">

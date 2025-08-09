@@ -21,38 +21,12 @@ const Navbar = () => {
   const [is_active, set_is_active] = useState(false);
   const [scrolled, set_scrolled] = useState(false);
 
-  // const [dark_theme, set_dark_theme] = useState(true);
-
-  // useEffect(() => {
-  //   const dark = localStorage.getItem("dark_theme");
-
-  //   if (dark !== undefined) {
-  //     set_dark_theme(dark == "dark" ? true : false);
-  //   } else {
-  //     if (
-  //       window.matchMedia &&
-  //       window.matchMedia("(prefers-color-scheme: dark)").matches
-  //     ) {
-  //       set_dark_theme(true);
-  //     }
-
-  //     window
-  //       .matchMedia("(prefers-color-scheme: dark)")
-  //       .addEventListener("change", (event) => {
-  //         const newColorScheme = event.matches ? true : false;
-  //         set_dark_theme(newColorScheme);
-  //         localStorage.setItem("dark_theme", newColorScheme);
-  //       });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("dark_theme", dark_theme);
-  // }, [dark_theme]);
-
   useEffect(() => {
+    // getUser uses onAuthStateChanged, which is a listener.
+    // This means it will be called every time the auth state changes.
+    // Because of this, it's not a simple async operation that we can
+    // wrap in a promise. We will leave it as a callback for now.
     getUser((data) => {
-      console.log(data);
       set_user(data);
       set_loading(false);
 
@@ -62,10 +36,9 @@ const Navbar = () => {
     });
   }, []);
 
-  const logOutHandler = () => {
-    logOut(() => {
-      navigate("/");
-    });
+  const logOutHandler = async () => {
+    await logOut();
+    navigate("/");
   };
 
   useEffect(() => {

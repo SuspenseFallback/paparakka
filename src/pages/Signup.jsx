@@ -18,18 +18,27 @@ const Signup = () => {
   const [is_password_visible, set_is_password_visible] = useState(false);
   const [disabled, set_disabled] = useState(true);
 
-  const sign_up = () => {
-    signUpWithEmail(username, email, password, (data, err) => {
-      if (err) {
-        console.log(err.code);
-        if (err.code == "auth/email-already-in-use") {
-          return set_error("Email already in use");
-        }
+  const sign_up = async () => {
+    // This function handles the sign up process.
+    // It calls the signUpWithEmail function from firebase.js,
+    // and then handles the response.
+    const { data, error } = await signUpWithEmail(username, email, password);
+
+    if (error) {
+      // We use a switch statement to handle different error codes.
+      // This makes the code cleaner and easier to read.
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          set_error("Email already in use");
+          break;
+        default:
+          set_error("An unknown error occurred.");
+          break;
       }
-      console.log(data);
+    } else {
       logData("signup_complete");
       navigate("/dashboard");
-    });
+    }
   };
 
   useEffect(() => {
