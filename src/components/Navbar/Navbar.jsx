@@ -18,8 +18,8 @@ const Navbar = () => {
   const [user, set_user] = useState(null);
   const [is_user_items, set_is_user_items] = useState(false);
   const [is_responsive_menu, set_responsive_menu] = useState(false);
-  const [is_active, set_is_active] = useState(false);
-  const [scrolled, set_scrolled] = useState(false);
+  const [navVisible, set_navVisible] = useState(true);
+  const [isScrolled, set_isScrolled] = useState(false);
 
   useEffect(() => {
     // getUser uses onAuthStateChanged, which is a listener.
@@ -56,13 +56,25 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
-        set_scrolled(true);
+    let lastScrollY = 0;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrolledPastTop = currentScrollY > 5;
+
+      set_isScrolled(scrolledPastTop);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 0) {
+        set_navVisible(false);
       } else {
-        set_scrolled(false);
+        set_navVisible(true);
       }
-    });
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -70,7 +82,6 @@ const Navbar = () => {
       <motion.div
         className={
           "app-container light-theme"
-          // "app-container" + (dark_theme ? " dark-theme" : " light-theme")
         }
       >
         {loading ? (
@@ -79,32 +90,17 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <div
-              className={
-                "nav " +
-                (is_active ? "active" : "") +
-                (scrolled ? "scrolled" : "")
-              }
-            >
-              <div className="frost"></div>
+            <div className="nav-container">
+            <div className={"nav " + (navVisible ? "visible" : "hidden") + (isScrolled ? " scrolled" : "")}> 
               <div
                 className="logo-container"
                 onClick={() => (user ? navigate("/dashboard") : navigate("/"))}
               >
                 <div className="text-container">
                   <p className="nav-logo">Papparakka</p>
-                  <p className="nav-caption">Seeds of knowledge</p>
                 </div>
-                <img className="img" src={logo} />
-              </div>
 
-              <div className="nav-items">
-                {/* <div className="nav-item nav-switch">
-                  <Switch
-                    isOn={dark_theme}
-                    handleToggle={() => set_dark_theme(!dark_theme)}
-                  />
-                </div> */}
+              <div className="right-nav-items">
                 <div
                   className="nav-item nav-hide hover-underline"
                   onClick={() => goToLink(user ? "/dashboard" : "/")}
@@ -121,6 +117,17 @@ const Navbar = () => {
                     Sets
                   </NavLink>
                 </div>
+                </div>
+              </div>
+
+              <div className="nav-items">
+                {/* <div className="nav-item nav-switch">
+                  <Switch
+                    isOn={dark_theme}
+                    handleToggle={() => set_dark_theme(!dark_theme)}
+                  />
+                </div> */}
+                
                 {user ? (
                   <>
                     <div
@@ -131,11 +138,16 @@ const Navbar = () => {
                         Create a new set <span className="pi pi-plus"></span>
                       </NavLink>
                     </div>
-                    <div
-                      className="nav-item nav-hide nav-user"
-                      onClick={() => set_is_user_items(!is_user_items)}
+
+                    <div className="menu-container"
+                    onMouseEnter={() => set_is_user_items(true)}
+                    onMouseLeave={() => set_is_user_items(false)}
                     >
-                      <p className="nav-link">
+                      <div
+                        className="nav-item nav-hide nav-user"
+                        
+                      >
+                      <p className="nav-link nav-user-trigger">
                         {user.username}{" "}
                         <span
                           className={
@@ -145,9 +157,8 @@ const Navbar = () => {
                         ></span>
                       </p>
                       <div
-                        className={
-                          "user-menu " + (is_user_items ? "" : "hidden")
-                        }
+                        className={"user-menu " + (is_user_items ? "visible" : "hidden")}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <div
                           className="user-link"
@@ -180,20 +191,12 @@ const Navbar = () => {
                         </div>
                       </div>
                     </div>
+                    </div>
                   </>
                 ) : (
                   <>
-                    <div
-                      className="nav-item nav-hide nav-button button"
-                      onClick={() => goToLink("/signup")}
-                    >
-                      {" "}
-                      <NavLink className="nav-link" to="signup">
-                        Sign up
-                      </NavLink>
-                    </div>
-                    <div
-                      className="nav-item nav-hide nav-button button"
+                  <div
+                      className="nav-item nav-hide hover-underline"
                       onClick={() => goToLink("/login")}
                     >
                       {" "}
@@ -201,6 +204,16 @@ const Navbar = () => {
                         Log in
                       </NavLink>
                     </div>
+                    <div
+                      className="nav-item nav-hide nav-button ="
+                      onClick={() => goToLink("/signup")}
+                    >
+                      {" "}
+                      <NavLink className="nav-link" to="signup">
+                        Sign up
+                      </NavLink>
+                    </div>
+                    
                   </>
                 )}
                 <div
@@ -255,6 +268,7 @@ const Navbar = () => {
                   <span className="icon pi pi-sign-out"></span>
                 </div>
               </div>
+            </div>
             </div>
             <div
               className={is_responsive_menu ? "overlay" : ""}
