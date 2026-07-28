@@ -31,8 +31,14 @@ const Signup = () => {
         case "auth/email-already-in-use":
           set_error("Email already in use");
           break;
+        case "auth/configuration-not-found":
+          set_error(error.message || "Firebase is not configured correctly.");
+          break;
+        case "permission-denied":
+          set_error("Your account was created, but your profile could not be saved. Please try again.");
+          break;
         default:
-          set_error("An unknown error occurred.");
+          set_error(error.message || "An unknown error occurred.");
           break;
       }
     } else {

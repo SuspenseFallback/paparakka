@@ -1,16 +1,16 @@
 .button {
-  padding: 16px;
+  padding: 24px;
   background-color: var(--app-theme-color);
   border-radius: 8px;
   color: var(--app-primary-text-color);
   font-size: 14px;
   cursor: pointer;
   transition: 0.25s;
-  border: 1px solid var(--app-border-color);
+  /* border: 1px solid var(--app-border-color); */
 }
 
 .button:hover {
-  background-color: var(--app-theme-hover-color);
+  transform: scale(1.1);
 }
 
 .button-icon {

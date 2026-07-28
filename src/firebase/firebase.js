@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -25,25 +24,77 @@ import fuzzysort from "fuzzysort";
 
 // initialize
 
+const env = import.meta.env;
+
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
-  authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_REACT_APP_APP_ID,
-  measurementId: import.meta.env.VITE_REACT_APP_MEASUREMENT_ID,
+  apiKey:
+    env.VITE_FIREBASE_API_KEY ||
+    env.VITE_REACT_APP_API_KEY ||
+    env.REACT_APP_API_KEY ||
+    "",
+  authDomain:
+    env.VITE_FIREBASE_AUTH_DOMAIN ||
+    env.VITE_REACT_APP_AUTH_DOMAIN ||
+    env.REACT_APP_AUTH_DOMAIN ||
+    "",
+  projectId:
+    env.VITE_FIREBASE_PROJECT_ID ||
+    env.VITE_REACT_APP_PROJECT_ID ||
+    env.REACT_APP_PROJECT_ID ||
+    "",
+  storageBucket:
+    env.VITE_FIREBASE_STORAGE_BUCKET ||
+    env.VITE_REACT_APP_STORAGE_BUCKET ||
+    env.REACT_APP_STORAGE_BUCKET ||
+    "",
+  messagingSenderId:
+    env.VITE_FIREBASE_MESSAGING_SENDER_ID ||
+    env.VITE_REACT_APP_MESSAGING_SENDER_ID ||
+    env.REACT_APP_MESSAGING_SENDER_ID ||
+    "",
+  appId:
+    env.VITE_FIREBASE_APP_ID ||
+    env.VITE_REACT_APP_APP_ID ||
+    env.REACT_APP_APP_ID ||
+    "",
+  measurementId:
+    env.VITE_FIREBASE_MEASUREMENT_ID ||
+    env.VITE_REACT_APP_MEASUREMENT_ID ||
+    env.REACT_APP_MEASUREMENT_ID ||
+    "",
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const hasRequiredFirebaseConfig = Boolean(
+  firebaseConfig.apiKey &&
+    firebaseConfig.authDomain &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId
+);
+
+if (!hasRequiredFirebaseConfig) {
+  console.warn(
+    "Firebase config is incomplete. Check your Vite environment variables."
+  );
+}
+
+const app = hasRequiredFirebaseConfig ? initializeApp(firebaseConfig) : null;
+const auth = app ? getAuth(app) : null;
+const db = app ? getFirestore(app) : null;
+
+const ensureFirebaseReady = () => {
+  if (!auth || !db) {
+    throw new Error(
+      "Firebase is not configured correctly. Check your environment variables."
+    );
+  }
+};
 
 // AUTHENTICATION
 
 export const signUpWithEmail = async (username, email, password) => {
   try {
+    ensureFirebaseReady();
+
     const data = await createUserWithEmailAndPassword(auth, email, password);
     const user = doc(db, "users", data.user.uid);
 
@@ -56,12 +107,16 @@ export const signUpWithEmail = async (username, email, password) => {
 
     return { data, error: false };
   } catch (err) {
-    return { data: {}, error: err };
+    return {
+      data: {},
+      error: err,
+    };
   }
 };
 
 export const signInWithEmail = async (email, password) => {
   try {
+    ensureFirebaseReady();
     const data = await signInWithEmailAndPassword(auth, email, password);
     return { data, error: false };
   } catch (err) {
@@ -71,6 +126,7 @@ export const signInWithEmail = async (email, password) => {
 
 export const logOut = async () => {
   try {
+    ensureFirebaseReady();
     await signOut(auth);
     return { error: false };
   } catch (err) {
@@ -79,6 +135,11 @@ export const logOut = async () => {
 };
 
 export const getUser = async (callback) => {
+  if (!auth || !db) {
+    callback(null);
+    return;
+  }
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const docRef = doc(db, "users", user.uid);
@@ -241,9 +302,7 @@ function searchSetsByOwnerId(array, id) {
 
 // ANALYTICS
 
-export const logData = (data) => {
-  logEvent(analytics, data);
-};
+export const logData = () => {};
 
 // HISTORY
 
