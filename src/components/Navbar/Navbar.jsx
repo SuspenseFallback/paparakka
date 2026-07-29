@@ -8,7 +8,6 @@ import SpinnerPage from "../SpinnerPage";
 import Footer from "../Footer/Footer";
 import Switch from "../Switch/Switch";
 
-import logo from "../../assets/papaya-logo.png";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
