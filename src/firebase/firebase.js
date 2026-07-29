@@ -256,13 +256,13 @@ export const getSet = async (id) => {
   }
 };
 
-export const getOwnerSets = async (id) => {
+export const getOwnerSets = async (id, callback) => {
   const { sets, error } = await getAllSets();
   if (error) {
     return { sets: [], error };
   }
   const matches = searchSetsByOwnerId(sets, id);
-  return { sets: matches, error: false };
+  callback({ sets: matches, error: false });
 };
 
 export const searchSetTitles = async (target) => {

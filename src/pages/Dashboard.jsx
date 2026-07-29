@@ -20,14 +20,13 @@ const Dashboard = ({ user }) => {
 
   useEffect(() => {
     getOwnerSets(user.id, (data) => {
-      console.log(data);
+      set_loading(false);
+
       if (data.length < 6) {
         set_my_sets(data);
       } else {
         set_my_sets(data.slice(0, 6));
       }
-
-      set_loading(false);
     });
   }, []);
 
