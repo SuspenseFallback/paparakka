@@ -280,10 +280,15 @@
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 }
 
-.menu-container {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+
+.menu-container::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8vw;
+  height: 20vh;
 }
 
 .nav .nav-user .nav-user-trigger {
