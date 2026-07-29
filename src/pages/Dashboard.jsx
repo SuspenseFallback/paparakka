@@ -87,7 +87,7 @@ const Dashboard = ({ user }) => {
         ) : (
           <>
             <div className="header">
-              <div className="name">{user.username}'s stats</div>
+              {/* <div className="name">{user.username}'s stats</div> */}
               <div className="stats">
                 <div className="week">
                   <span className="big">{sets_studied_this_week}</span>
@@ -129,7 +129,10 @@ const Dashboard = ({ user }) => {
                     );
                   })
                 ) : (
-                  <p className="placeholder">You don't have any sets.</p>
+                  <div className="placeholder-container">
+                    <p className="placeholder">You don't have any sets yet!<br></br>Create your first set to get started.</p>
+                    <button className="button">Create set <i className="pi pi-plus"></i></button>
+                  </div>
                 )}
               </div>
             </div>

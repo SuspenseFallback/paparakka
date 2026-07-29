@@ -20,9 +20,6 @@
   width: 100vw;
   height: 25vh;
 
-  background-color: var(--app-theme-color);
-  border-radius: 0 0 100px 100px;
-
   display: flex;
   flex-direction: column;
 
@@ -73,13 +70,21 @@
 
 .dashboard-page-1 .my-sets {
   width: 100vw;
-  height: 70vh;
+  height: 40vh;
 
   display: flex;
   flex-direction: column;
 
   padding: 2vw;
 }
+
+
+.dashboard-page-1 .my-sets .placeholder-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw
+} 
 
 .dashboard-page-1 .my-sets .placeholder {
   color: var(--app-primary-text-color);
